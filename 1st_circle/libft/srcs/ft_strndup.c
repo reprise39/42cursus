@@ -6,16 +6,16 @@
 /*   By: mkuida <reprise39@yahoo.co.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/13 15:54:42 by mkuida            #+#    #+#             */
-/*   Updated: 2024/11/13 15:54:53 by mkuida           ###   ########.fr       */
+/*   Updated: 2024/11/13 17:27:07 by mkuida           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 # include "libft.h"
 
-char * ft_strndup(const char *str, size_t len)
+char *ft_strndup(const char *str, size_t len)
 {
 	char	*sub;
-	int		i;
+	size_t	i;
 
 	sub = malloc(sizeof(char) * (len + 1));
 	if (!sub)
