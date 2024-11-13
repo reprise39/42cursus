@@ -6,21 +6,26 @@
 /*   By: mkuida <reprise39@yahoo.co.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 01:08:12 by mkuida            #+#    #+#             */
-/*   Updated: 2024/11/12 01:15:19 by mkuida           ###   ########.fr       */
+/*   Updated: 2024/11/12 01:20:05 by mkuida           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "libft.h"
+#include "libft.h"
 
-void *ft_memchr(const void *s, int c, size_t n)
+void	*ft_memchr(const void *s, int c, size_t n)
 {
-	unsigned char *dest;
-	size_t i;
+	unsigned char	*dest;
+	unsigned char	target;
+	size_t			i;
 
 	dest = (unsigned char *)s;
+	target = (unsigned char)c;
 	i = 0;
-	while(n > 0)
+	while (n > i)
 	{
-		
+		if (dest[i] == target)
+			return (void *)(dest + i);
+		i++;
 	}
+	return (NULL);
 }

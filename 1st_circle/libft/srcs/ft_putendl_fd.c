@@ -1,37 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memmove.c                                       :+:      :+:    :+:   */
+/*   ft_putendl_fd.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mkuida <reprise39@yahoo.co.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/11 19:10:39 by mkuida            #+#    #+#             */
-/*   Updated: 2024/11/11 19:52:10 by mkuida           ###   ########.fr       */
+/*   Created: 2024/11/13 13:34:34 by mkuida            #+#    #+#             */
+/*   Updated: 2024/11/13 13:36:46 by mkuida           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_rev_memcpy(void *dest, const void *src, size_t n)
+void ft_putendl_fd(char *s, int fd)
 {
-	unsigned char	*cpy;
-	unsigned char	*tar;
-
-	cpy = (unsigned char *)dest;
-	tar = (unsigned char *)src;
-	while (0 != n)
-	{
-		cpy[n - 1] = tar[n - 1];
-		n--;
-	}
-	return (dest);
-}
-
-void	*ft_memmove(void *dest, const void *src, size_t n)
-{
-	if (dest < src)
-		return (ft_memcpy(dest, src, n));
-	else if (dest > src)
-		return (ft_rev_memcpy(dest, src, n));
-	return (dest);
+	if(s == NULL)
+		return;
+	write(fd,s,ft_strlen(s));
+	write(fd,"\n",1);	
 }

@@ -1,23 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_tolower.c                                       :+:      :+:    :+:   */
+/*   ft_putchar_fd.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mkuida <reprise39@yahoo.co.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/11 23:40:10 by mkuida            #+#    #+#             */
-/*   Updated: 2024/11/11 23:40:51 by mkuida           ###   ########.fr       */
+/*   Created: 2024/11/13 13:30:46 by mkuida            #+#    #+#             */
+/*   Updated: 2024/11/13 13:33:35 by mkuida           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+# include "libft.h"
 
-int	ft_tolower(int c)
+void ft_putchar_fd(char c, int fd)
 {
-	unsigned char	uc;
-
-	uc = (unsigned char)c;
-	if ('A' <= uc && uc <= 'Z')
-		uc += ('a' - 'Z');
-	return (int)(uc);
+	write(fd,&c,1);
 }

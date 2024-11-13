@@ -1,37 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memmove.c                                       :+:      :+:    :+:   */
+/*   ft_striteri.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mkuida <reprise39@yahoo.co.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/11 19:10:39 by mkuida            #+#    #+#             */
-/*   Updated: 2024/11/11 19:52:10 by mkuida           ###   ########.fr       */
+/*   Created: 2024/11/13 13:26:23 by mkuida            #+#    #+#             */
+/*   Updated: 2024/11/13 13:29:53 by mkuida           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_rev_memcpy(void *dest, const void *src, size_t n)
+void ft_striteri(char *s, void (*f)(unsigned int,char*))
 {
-	unsigned char	*cpy;
-	unsigned char	*tar;
+	unsigned int i;
 
-	cpy = (unsigned char *)dest;
-	tar = (unsigned char *)src;
-	while (0 != n)
+	i = 0;
+	if(s == NULL || f == NULL)
+		return;
+	while(s[i] != '\0')
 	{
-		cpy[n - 1] = tar[n - 1];
-		n--;
+		f(i,&s[i]);
+		i++;
 	}
-	return (dest);
-}
-
-void	*ft_memmove(void *dest, const void *src, size_t n)
-{
-	if (dest < src)
-		return (ft_memcpy(dest, src, n));
-	else if (dest > src)
-		return (ft_rev_memcpy(dest, src, n));
-	return (dest);
 }

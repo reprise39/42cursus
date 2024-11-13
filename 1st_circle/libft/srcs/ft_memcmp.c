@@ -1,37 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memmove.c                                       :+:      :+:    :+:   */
+/*   ft_memcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mkuida <reprise39@yahoo.co.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/11 19:10:39 by mkuida            #+#    #+#             */
-/*   Updated: 2024/11/11 19:52:10 by mkuida           ###   ########.fr       */
+/*   Created: 2024/11/12 01:20:42 by mkuida            #+#    #+#             */
+/*   Updated: 2024/11/12 01:28:15 by mkuida           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_rev_memcpy(void *dest, const void *src, size_t n)
+int	ft_memcmp(const void *s1, const void *s2, size_t n)
 {
-	unsigned char	*cpy;
-	unsigned char	*tar;
+	size_t			i;
+	unsigned char	*suc1;
+	unsigned char	*suc2;
 
-	cpy = (unsigned char *)dest;
-	tar = (unsigned char *)src;
-	while (0 != n)
+	suc1 = (unsigned char *)s1;
+	suc2 = (unsigned char *)s2;
+	i = 0;
+	while (n > i)
 	{
-		cpy[n - 1] = tar[n - 1];
-		n--;
+		if (suc1[i] != suc2[i])
+			return (int)(suc1[i] - suc2[i]);
+		i++;
 	}
-	return (dest);
-}
-
-void	*ft_memmove(void *dest, const void *src, size_t n)
-{
-	if (dest < src)
-		return (ft_memcpy(dest, src, n));
-	else if (dest > src)
-		return (ft_rev_memcpy(dest, src, n));
-	return (dest);
+	return (0);
 }

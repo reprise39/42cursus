@@ -10,14 +10,14 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "libft.h"
+#include "libft.h"
 
-int ft_toupper(int c)
+int	ft_toupper(int c)
 {
-	unsigned char uc;
-	
+	unsigned char	uc;
+
 	uc = (unsigned char)c;
-	if('a' <= uc && uc <= 'z')
-		uc +=  ('A' - 'a');
+	if ('a' <= uc && uc <= 'z')
+		uc += ('A' - 'a');
 	return (int)(uc);
 }

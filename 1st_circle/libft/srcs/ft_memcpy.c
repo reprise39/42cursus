@@ -10,21 +10,21 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "libft.h"
+#include "libft.h"
 
-void *ft_memcpy(void *dest, const void *src, size_t n)
+void	*ft_memcpy(void *dest, const void *src, size_t n)
 {
-	unsigned char *cpy;
-	unsigned char *tar;
-	size_t i;
+	unsigned char	*cpy;
+	unsigned char	*tar;
+	size_t			i;
 
 	cpy = (unsigned char *)dest;
 	tar = (unsigned char *)src;
 	i = 0;
-	while(i < n)
+	while (i < n)
 	{
 		cpy[i] = tar[i];
 		i++;
 	}
-	return dest;
+	return (dest);
 }

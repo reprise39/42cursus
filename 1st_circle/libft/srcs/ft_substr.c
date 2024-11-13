@@ -1,37 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memmove.c                                       :+:      :+:    :+:   */
+/*   ft_substr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mkuida <reprise39@yahoo.co.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/11 19:10:39 by mkuida            #+#    #+#             */
-/*   Updated: 2024/11/11 19:52:10 by mkuida           ###   ########.fr       */
+/*   Created: 2024/11/12 18:16:53 by mkuida            #+#    #+#             */
+/*   Updated: 2024/11/12 18:50:41 by mkuida           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_rev_memcpy(void *dest, const void *src, size_t n)
+char *ft_substr(char const *s, unsigned int start,size_t len)
 {
-	unsigned char	*cpy;
-	unsigned char	*tar;
+	size_t s_size;
+	size_t i;
+	char *dest;
 
-	cpy = (unsigned char *)dest;
-	tar = (unsigned char *)src;
-	while (0 != n)
+	s_size = strlen(s);
+	i = 0;
+	if(s_size == 0)
+		return NULL;
+	if(start > s_size || len == 0)
+		return NULL;
+	if(start + len > s_size)
+		len =s_size-start;
+	dest = malloc((len + 1) * sizeof(char));
+	if(dest ==NULL)
+		return NULL;
+	while(i < len)
 	{
-		cpy[n - 1] = tar[n - 1];
-		n--;
+		dest[i] = s[start+i];
+		i++;
 	}
-	return (dest);
-}
-
-void	*ft_memmove(void *dest, const void *src, size_t n)
-{
-	if (dest < src)
-		return (ft_memcpy(dest, src, n));
-	else if (dest > src)
-		return (ft_rev_memcpy(dest, src, n));
-	return (dest);
+	dest[len] = '\0';
+	return dest;
 }

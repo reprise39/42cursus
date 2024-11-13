@@ -1,31 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strchr.c                                        :+:      :+:    :+:   */
+/*   ft_strlcat.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mkuida <reprise39@yahoo.co.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/11 23:42:44 by mkuida            #+#    #+#             */
-/*   Updated: 2024/11/12 00:13:42 by mkuida           ###   ########.fr       */
+/*   Created: 2024/11/12 18:01:29 by mkuida            #+#    #+#             */
+/*   Updated: 2024/11/12 18:14:46 by mkuida           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+# include "libft.h"
 
-char	*ft_strchr(const char *s, int c)
+size_t ft_strlcat(char *dst, const char *src, size_t dstsize)
 {
-	size_t			i;
-	unsigned char	uc;
+	size_t dst_size;
+	size_t src_size;
+	size_t total_size;
+	size_t i;
 
 	i = 0;
-	uc = (unsigned char)c;
-	while (s[i] != '\0')
+	dst_size = ft_strlen(dst);
+	src_size = ft_strlen(src);
+	total_size = dst_size + src_size;
+	if(dst_size >= dstsize)
+		return dstsize + src_size;;
+	while(dst_size + i < dstsize - 1 && i < src_size)
 	{
-		if (s[i] == uc)
-			return (char *)(s + i);
+		dst[dst_size + i] = src[i];
 		i++;
 	}
-	if (uc == '\0')
-		return (char *)(s + i);
-	return (NULL);
+	dst[dst_size + i] = '\0';
+	return total_size;
 }
