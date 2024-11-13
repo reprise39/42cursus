@@ -6,7 +6,7 @@
 /*   By: mkuida <reprise39@yahoo.co.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 02:46:33 by mkuida            #+#    #+#             */
-/*   Updated: 2024/11/12 17:51:29 by mkuida           ###   ########.fr       */
+/*   Updated: 2024/11/13 18:25:19 by mkuida           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,8 @@ char *ft_strnstr(const char *big, const char *little, size_t len)
 	
 	i = 0;
 	little_size = ft_strlen(little);
-	big_size= ft_strlen(big);
-	if(little_size == 0)
-		return (char *)(big);
+	if(little_size == 0) return (char *)(big);
+	if(little_size > len) return NULL;
 	if(big_size < len)
 		compare_size = big_size - little_size;
 	else
