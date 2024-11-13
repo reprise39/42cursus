@@ -6,7 +6,7 @@
 /*   By: mkuida <reprise39@yahoo.co.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 19:10:34 by mkuida            #+#    #+#             */
-/*   Updated: 2024/11/13 18:29:29 by mkuida           ###   ########.fr       */
+/*   Updated: 2024/11/13 19:43:45 by mkuida           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,9 @@ char *ft_strtrim(char const *s1, char const *set)
 	while(ft_isinit(s1[s1_len - 1 - end],set) == 1 && end < s1_len)
 		end++;
 	if(start+end >= s1_len)
-		return ("");
+		return (ft_strdup(""));
 	dest = ft_substr(s1,start,s1_len-start-end);
+	if(dest == NULL)
+		return NULL;
 	return dest;
 }
