@@ -6,29 +6,11 @@
 /*   By: mkuida <reprise39@yahoo.co.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 20:57:06 by mkuida            #+#    #+#             */
-/*   Updated: 2024/11/13 03:01:43 by mkuida           ###   ########.fr       */
+/*   Updated: 2024/11/13 15:54:33 by mkuida           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 # include "libft.h"
-
-char * ft_strndup(const char *str, size_t len)
-{
-	char	*sub;
-	int		i;
-
-	sub = malloc(sizeof(char) * (len + 1));
-	if (!sub)
-		return (NULL);
-	i = 0;
-	while (i < len)
-	{
-		sub[i] = str[i];
-		i++;
-	}
-	sub[i] = '\0';
-	return (sub);
-}
 
 void free_dest(char **dest,size_t num)
 {

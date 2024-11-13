@@ -1,33 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strtrim.c                                       :+:      :+:    :+:   */
+/*   ft_strndup.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mkuida <reprise39@yahoo.co.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/12 19:10:34 by mkuida            #+#    #+#             */
-/*   Updated: 2024/11/13 15:52:18 by mkuida           ###   ########.fr       */
+/*   Created: 2024/11/13 15:54:42 by mkuida            #+#    #+#             */
+/*   Updated: 2024/11/13 15:54:53 by mkuida           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 # include "libft.h"
 
-char *ft_strtrim(char const *s1, char const *set)
+char * ft_strndup(const char *str, size_t len)
 {
-	size_t start;
-	size_t end;
-	size_t s1_len;
-	char *dest;
+	char	*sub;
+	int		i;
 
-	start = 0;
-	end = 0;
-	s1_len = ft_strlen(s1);
-	while(ft_isinit(s1[start],set) == 1)
-		start++;
-	while(ft_isinit(s1[s1_len -1 -end],set) == 1)
-		end++;
-	if(start+end >= s1_len)
-		return ("");
-	dest = ft_substr(s1,start,s1_len-start-end);
-	return dest;
+	sub = malloc(sizeof(char) * (len + 1));
+	if (!sub)
+		return (NULL);
+	i = 0;
+	while (i < len)
+	{
+		sub[i] = str[i];
+		i++;
+	}
+	sub[i] = '\0';
+	return (sub);
 }

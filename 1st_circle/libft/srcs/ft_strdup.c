@@ -6,13 +6,13 @@
 /*   By: mkuida <reprise39@yahoo.co.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 01:52:32 by mkuida            #+#    #+#             */
-/*   Updated: 2024/11/12 02:30:14 by mkuida           ###   ########.fr       */
+/*   Updated: 2024/11/13 15:50:20 by mkuida           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*strdup(const char *s)
+char	*ft_strdup(const char *s)
 {
 	size_t	len;
 	size_t	i;
