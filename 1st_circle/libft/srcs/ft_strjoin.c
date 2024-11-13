@@ -6,7 +6,7 @@
 /*   By: mkuida <reprise39@yahoo.co.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 18:52:53 by mkuida            #+#    #+#             */
-/*   Updated: 2024/11/12 19:07:46 by mkuida           ###   ########.fr       */
+/*   Updated: 2024/11/13 16:40:08 by mkuida           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,10 @@ char *ft_strjoin(char const *s1, char const *s2)
 	char *dest;
 	size_t s1len;
 	size_t s2len;
-	size_t i;
 	
 	s1len = ft_strlen(s1);
 	s2len = ft_strlen(s2);
-	i = 0;
-	if(s1len+s2len == 0 ||s1len > SIZE_MAX - s2len)
+	if(s1len+s2len == 0 || s1len > SIZE_MAX - s2len)
 		return NULL;
 	dest = malloc((s1len+s2len)*sizeof(char)+1);
 	if(dest ==NULL)

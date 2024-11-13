@@ -6,7 +6,7 @@
 /*   By: mkuida <reprise39@yahoo.co.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 17:03:48 by mkuida            #+#    #+#             */
-/*   Updated: 2024/11/11 17:39:10 by mkuida           ###   ########.fr       */
+/*   Updated: 2024/11/13 16:31:47 by mkuida           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int	isalpha(int c)
 	unsigned char	ch;
 
 	ch = (unsigned char)(c);
-	if ('a' <= ch && ch <= 'z' || 'A' <= ch && ch <= 'Z')
+	if (('a' <= ch && ch <= 'z') || ('A' <= ch && ch <= 'Z'))
 		return (1);
 	else
 		return (0);

@@ -6,7 +6,7 @@
 #    By: mkuida <reprise39@yahoo.co.jp>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/07 18:37:43 by mkuida            #+#    #+#              #
-#    Updated: 2024/11/11 16:53:26 by mkuida           ###   ########.fr        #
+#    Updated: 2024/11/13 16:52:15 by mkuida           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,14 +28,14 @@ MAN_SRC_FILES = ft_isalpha.c ft_isdigit.c ft_isalnum.c ft_isascii.c ft_isprint.c
 BNS_SRC_FILES = ft_lstnew.c ft_lstadd_front.c ft_lstsize.c ft_lstlast.c ft_lstadd_back.c \
 				ft_lstdelone.c ft_lstclear.c ft_lstiter.c ft_lstmap.c
 
-MAN_SRCS = $(addprefix $(SRC_DIR)/, $(SRC_FILES))
+MAN_SRCS = $(addprefix $(MAN_SRC_DIR)/, $(MAN_SRC_FILES))
 BNS_SRCS = $(addprefix $(BNS_SRC_DIR)/, $(BNS_SRC_FILES))
 
-MAN_OBJ_DIR = srcs
-BNS_OBJ_DIR = bonus_srcs
+MAN_OBJ_DIR = objs
+BNS_OBJ_DIR = bonus_objs
 
-MAN_OBJS = $(SRCS:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)
-BNS_OBJS = $(BNS_SRCS:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)
+MAN_OBJS = $(MAN_SRCS:$(MAN_SRC_DIR)/%.c=$(MAN_OBJ_DIR)/%.o)
+BNS_OBJS = $(BNS_SRCS:$(BNS_SRC_DIR)/%.c=$(BNS_OBJ_DIR)/%.o)
 
 OBJS = $(MAN_OBJS) $(BNS_OBJS)
 

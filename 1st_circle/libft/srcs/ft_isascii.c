@@ -6,7 +6,7 @@
 /*   By: mkuida <reprise39@yahoo.co.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 17:50:08 by mkuida            #+#    #+#             */
-/*   Updated: 2024/11/11 17:51:50 by mkuida           ###   ########.fr       */
+/*   Updated: 2024/11/13 16:33:58 by mkuida           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@ int	ft_isascii(int c)
 	unsigned char	ch;
 
 	ch = (unsigned char)c;
-	if (0 <= ch && ch <= 127)
+	if (ch <= 127)
 		return (1);
 	return (0);
 }

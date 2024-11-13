@@ -6,7 +6,7 @@
 /*   By: mkuida <reprise39@yahoo.co.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 20:57:06 by mkuida            #+#    #+#             */
-/*   Updated: 2024/11/13 15:54:33 by mkuida           ###   ########.fr       */
+/*   Updated: 2024/11/13 16:42:15 by mkuida           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int dests_pad(char **dest,const char *src,char c)
 	size_t count;
 	char *target;
 
-	target = (char *)dest;
+	target = (char *)src;
 	count = 0;
 	while(*target !='\0')
 	{
@@ -44,7 +44,7 @@ int dests_pad(char **dest,const char *src,char c)
 			if(dest[count]==NULL)
 			{
 				free_dest(dest,count);
-				return NULL;
+				return -1;
 			}
 			count++;
 			target += len;
@@ -82,7 +82,7 @@ char **ft_split(char const *s, char c)
 	dest = malloc((words+1) * sizeof(char *));
 	if(dest == NULL)
 		return NULL;
-	if(dests_pad(dest,s,c) == 0)
+	if(dests_pad(dest,s,c) == -1)
 	{
 		free(dest);
 		return NULL;

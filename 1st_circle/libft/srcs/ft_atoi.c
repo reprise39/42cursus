@@ -6,7 +6,7 @@
 /*   By: mkuida <reprise39@yahoo.co.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 02:30:59 by mkuida            #+#    #+#             */
-/*   Updated: 2024/11/13 15:29:20 by mkuida           ###   ########.fr       */
+/*   Updated: 2024/11/13 16:38:20 by mkuida           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int	ft_atoi(const char *nptr)
 		sign = -1;
 		ptr++;
 	}
-	else if (ptr == '+')
+	else if (*ptr == '+')
 		ptr++;
 	while (ft_isdigit(*ptr) == 1)
 	{
