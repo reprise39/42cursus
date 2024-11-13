@@ -6,13 +6,13 @@
 /*   By: mkuida <reprise39@yahoo.co.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 17:03:48 by mkuida            #+#    #+#             */
-/*   Updated: 2024/11/13 16:31:47 by mkuida           ###   ########.fr       */
+/*   Updated: 2024/11/13 17:03:43 by mkuida           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	isalpha(int c)
+int	ft_isalpha(int c)
 {
 	unsigned char	ch;
 
