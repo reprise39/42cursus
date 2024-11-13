@@ -10,26 +10,26 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "libft.h"
+#include "libft.h"
 
-char *ft_strtrim(char const *s1, char const *set)
+char	*ft_strtrim(char const *s1, char const *set)
 {
-	size_t start;
-	size_t end;
-	size_t s1_len;
-	char *dest;
+	size_t	start;
+	size_t	end;
+	size_t	s1_len;
+	char	*dest;
 
 	start = 0;
 	end = 0;
 	s1_len = ft_strlen(s1);
-	while(ft_isinit(s1[start],set) == 1 && start < s1_len)
+	while (ft_isinit(s1[start], set) == 1 && start < s1_len)
 		start++;
-	while(ft_isinit(s1[s1_len - 1 - end],set) == 1 && end < s1_len)
+	while (ft_isinit(s1[s1_len - 1 - end], set) == 1 && end < s1_len)
 		end++;
-	if(start+end >= s1_len)
+	if (start + end >= s1_len)
 		return (ft_strdup(""));
-	dest = ft_substr(s1,start,s1_len-start-end);
-	if(dest == NULL)
-		return NULL;
-	return dest;
+	dest = ft_substr(s1, start, s1_len - start - end);
+	if (dest == NULL)
+		return (NULL);
+	return (dest);
 }

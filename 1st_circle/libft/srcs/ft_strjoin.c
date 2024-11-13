@@ -10,22 +10,22 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "libft.h"
+#include "libft.h"
 
-char *ft_strjoin(char const *s1, char const *s2)
+char	*ft_strjoin(char const *s1, char const *s2)
 {
-	char *dest;
-	size_t s1len;
-	size_t s2len;
-	
+	char	*dest;
+	size_t	s1len;
+	size_t	s2len;
+
 	s1len = ft_strlen(s1);
 	s2len = ft_strlen(s2);
-	if(s1len+s2len == 0 || s1len > SIZE_MAX - s2len)
-		return ft_strdup("");
-	dest = malloc((s1len+s2len)*sizeof(char)+1);
-	if(dest ==NULL)
-		return NULL;
-	ft_strlcpy(dest,s1,s1len+1);
-	ft_strlcpy(dest+s1len,s2,s2len+1);
-	return dest;
+	if (s1len + s2len == 0 || s1len > SIZE_MAX - s2len)
+		return (ft_strdup(""));
+	dest = malloc((s1len + s2len) * sizeof(char) + 1);
+	if (dest == NULL)
+		return (NULL);
+	ft_strlcpy(dest, s1, s1len + 1);
+	ft_strlcpy(dest + s1len, s2, s2len + 1);
+	return (dest);
 }

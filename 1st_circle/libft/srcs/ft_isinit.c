@@ -6,24 +6,24 @@
 /*   By: mkuida <reprise39@yahoo.co.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/13 15:52:31 by mkuida            #+#    #+#             */
-/*   Updated: 2024/11/13 15:52:44 by mkuida           ###   ########.fr       */
+/*   Updated: 2024/11/13 20:52:23 by mkuida           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "libft.h"
+#include "libft.h"
 
-int ft_isinit(char c,char const* str)
+int	ft_isinit(char c, char const *str)
 {
-	size_t i;
-	size_t str_len;
+	size_t	i;
+	size_t	str_len;
 
 	i = 0;
 	str_len = ft_strlen(str);
-	while(i < str_len)
+	while (i < str_len)
 	{
-		if(c == str[i])
-			return 1;
+		if (c == str[i])
+			return (1);
 		i++;
 	}
-	return 0;
+	return (0);
 }

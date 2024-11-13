@@ -6,7 +6,7 @@
 /*   By: mkuida <reprise39@yahoo.co.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 01:20:42 by mkuida            #+#    #+#             */
-/*   Updated: 2024/11/12 01:28:15 by mkuida           ###   ########.fr       */
+/*   Updated: 2024/11/13 20:51:55 by mkuida           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int	ft_memcmp(const void *s1, const void *s2, size_t n)
 	while (n > i)
 	{
 		if (suc1[i] != suc2[i])
-			return (int)(suc1[i] - suc2[i]);
+			return ((int)(suc1[i] - suc2[i]));
 		i++;
 	}
 	return (0);

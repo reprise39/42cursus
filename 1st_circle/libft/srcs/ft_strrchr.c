@@ -6,7 +6,7 @@
 /*   By: mkuida <reprise39@yahoo.co.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 00:15:10 by mkuida            #+#    #+#             */
-/*   Updated: 2024/11/13 15:35:28 by mkuida           ###   ########.fr       */
+/*   Updated: 2024/11/13 20:52:11 by mkuida           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,11 @@ char	*ft_strrchr(const char *s, int c)
 	target = (unsigned int)c;
 	len = ft_strlen(s);
 	if (target == '\0')
-		return (char *)(s + len);
+		return ((char *)(s + len));
 	while (len != 0)
 	{
 		if (s[len - 1] == target)
-			return (char *)(s + len - 1);
+			return ((char *)(s + len - 1));
 		len--;
 	}
 	return (NULL);

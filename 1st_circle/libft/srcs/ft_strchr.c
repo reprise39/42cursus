@@ -6,7 +6,7 @@
 /*   By: mkuida <reprise39@yahoo.co.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 23:42:44 by mkuida            #+#    #+#             */
-/*   Updated: 2024/11/12 00:13:42 by mkuida           ###   ########.fr       */
+/*   Updated: 2024/11/13 20:49:02 by mkuida           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,10 @@ char	*ft_strchr(const char *s, int c)
 	while (s[i] != '\0')
 	{
 		if (s[i] == uc)
-			return (char *)(s + i);
+			return ((char *)(s + i));
 		i++;
 	}
 	if (uc == '\0')
-		return (char *)(s + i);
+		return ((char *)(s + i));
 	return (NULL);
 }

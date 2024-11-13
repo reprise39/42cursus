@@ -6,7 +6,7 @@
 /*   By: mkuida <reprise39@yahoo.co.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 23:33:31 by mkuida            #+#    #+#             */
-/*   Updated: 2024/11/11 23:39:26 by mkuida           ###   ########.fr       */
+/*   Updated: 2024/11/13 20:50:45 by mkuida           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,5 +19,5 @@ int	ft_toupper(int c)
 	uc = (unsigned char)c;
 	if ('a' <= uc && uc <= 'z')
 		uc += ('A' - 'a');
-	return (int)(uc);
+	return ((int)(uc));
 }

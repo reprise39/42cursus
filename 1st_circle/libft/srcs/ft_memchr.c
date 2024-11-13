@@ -6,7 +6,7 @@
 /*   By: mkuida <reprise39@yahoo.co.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 01:08:12 by mkuida            #+#    #+#             */
-/*   Updated: 2024/11/12 01:20:05 by mkuida           ###   ########.fr       */
+/*   Updated: 2024/11/13 20:51:00 by mkuida           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	*ft_memchr(const void *s, int c, size_t n)
 	while (n > i)
 	{
 		if (dest[i] == target)
-			return (void *)(dest + i);
+			return ((void *)(dest + i));
 		i++;
 	}
 	return (NULL);

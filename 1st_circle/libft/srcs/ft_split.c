@@ -6,88 +6,86 @@
 /*   By: mkuida <reprise39@yahoo.co.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 20:57:06 by mkuida            #+#    #+#             */
-/*   Updated: 2024/11/13 16:42:15 by mkuida           ###   ########.fr       */
+/*   Updated: 2024/11/13 20:56:05 by mkuida           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "libft.h"
+#include "libft.h"
 
-void free_dest(char **dest,size_t num)
+int	free_dest(char **dest, size_t num)
 {
-	size_t i;
+	size_t	i;
 
 	i = 0;
-	while(i <= num)
+	while (i <= num)
 	{
 		free(dest[i]);
 	}
+	return (-1);
 }
 
-int dests_pad(char **dest,const char *src,char c)
+int	dests_pad(char **dest, const char *src, char c)
 {
-	size_t len;
-	size_t count;
-	char *target;
+	size_t	len;
+	size_t	count;
+	char	*target;
 
 	target = (char *)src;
 	count = 0;
-	while(*target !='\0')
+	while (*target != '\0')
 	{
-		while(*target == c)
+		while (*target == c)
 			target++;
-		if(*target != '\0')
+		if (*target != '\0')
 		{
 			len = 0;
-			while(target[len] != c && target[len] != '\0')
+			while (target[len] != c && target[len] != '\0')
 				len++;
-			dest[count] = ft_strndup(target,len);
-			if(dest[count]==NULL)
-			{
-				free_dest(dest,count);
-				return -1;
-			}
+			dest[count] = ft_strndup(target, len);
+			if (dest[count] == NULL)
+				return (free_dest(dest, count));
 			count++;
 			target += len;
-		} 
+		}
 	}
-	return count;
+	return (count);
 }
 
 size_t	count_words(const char *src, char c)
 {
-	size_t i;
-	size_t count;
+	size_t	i;
+	size_t	count;
 
 	i = 0;
 	count = 0;
-	while(src[i]!='\0')
+	while (src[i] != '\0')
 	{
-		while(src[i] == c)
+		while (src[i] == c)
 			i++;
-		if(src[i] != '\0')
+		if (src[i] != '\0')
 		{
 			count++;
-			while(src[i] != c && src[i] != '\0')
-			i++;
+			while (src[i] != c && src[i] != '\0')
+				i++;
 		}
 	}
-	return count;
+	return (count);
 }
 
-char **ft_split(char const *s, char c)
+char	**ft_split(char const *s, char c)
 {
-	size_t words;
-	char **dest;
-	words = count_words(s,c);
-	dest = malloc((words+1) * sizeof(char *));
-	if(dest == NULL)
-		return NULL;
-	if(dests_pad(dest,s,c) == -1)
+	size_t	words;
+	char	**dest;
+
+	words = count_words(s, c);
+	dest = malloc((words + 1) * sizeof(char *));
+	if (dest == NULL)
+		return (NULL);
+	if (dests_pad(dest, s, c) == -1)
 	{
 		free(dest);
-		return NULL;
+		return (NULL);
 	}
 	dest[words] = NULL;
-	return dest;
+	return (dest);
 }
-

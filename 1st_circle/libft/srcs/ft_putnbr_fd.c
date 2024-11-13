@@ -10,32 +10,32 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "libft.h"
+#include "libft.h"
 
-void print_recursive(int n,int fd)
+void	print_recursive(int n, int fd)
 {
-	char printc;
+	char	printc;
 
 	printc = (n % 10) + '0';
-	if(n >= 10)
+	if (n >= 10)
 	{
-		n = n/10;
-		print_recursive(n,fd);
+		n = n / 10;
+		print_recursive(n, fd);
 	}
-	write(fd,&printc,1);
+	write(fd, &printc, 1);
 }
 
-void ft_putnbr_fd(int n, int fd)
+void	ft_putnbr_fd(int n, int fd)
 {
-	if(n == INT_MIN)
+	if (n == INT_MIN)
 	{
-		write(fd,"-2147483648",11);
-		return;
+		write(fd, "-2147483648", 11);
+		return ;
 	}
-	if(n < 0)
+	if (n < 0)
 	{
-		write(fd,"-",1);
+		write(fd, "-", 1);
 		n *= -1;
 	}
-	print_recursive(n,fd);
+	print_recursive(n, fd);
 }
