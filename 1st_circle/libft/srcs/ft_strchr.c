@@ -6,7 +6,7 @@
 /*   By: mkuida <reprise39@yahoo.co.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 23:42:44 by mkuida            #+#    #+#             */
-/*   Updated: 2024/11/14 19:21:09 by mkuida           ###   ########.fr       */
+/*   Updated: 2024/11/14 20:01:30 by mkuida           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ char	*ft_strchr(const char *s, int c)
 	size_t			i;
 	unsigned char	uc;
 
-	if(s == NULL)
+	if (s == NULL)
 		return (NULL);
 	i = 0;
 	uc = (unsigned char)c;

@@ -6,7 +6,7 @@
 /*   By: mkuida <reprise39@yahoo.co.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 18:30:11 by mkuida            #+#    #+#             */
-/*   Updated: 2024/11/14 18:58:41 by mkuida           ###   ########.fr       */
+/*   Updated: 2024/11/14 20:02:45 by mkuida           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@ void	ft_bzero(void *s, size_t n)
 {
 	unsigned char	*str;
 
-	if(s == NULL || n == 0)
-		return;
+	if (s == NULL || n == 0)
+		return ;
 	str = (unsigned char *)s;
 	while (n != 0)
 	{

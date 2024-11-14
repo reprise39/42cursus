@@ -6,7 +6,7 @@
 /*   By: mkuida <reprise39@yahoo.co.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 01:52:32 by mkuida            #+#    #+#             */
-/*   Updated: 2024/11/14 19:21:40 by mkuida           ###   ########.fr       */
+/*   Updated: 2024/11/14 20:03:21 by mkuida           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ char	*ft_strdup(const char *s)
 	size_t	i;
 	char	*dest;
 
-	if(s == NULL)
+	if (s == NULL)
 		return (NULL);
 	len = ft_strlen(s);
 	i = 0;

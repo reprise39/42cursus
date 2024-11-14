@@ -6,7 +6,7 @@
 /*   By: mkuida <reprise39@yahoo.co.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 18:09:48 by mkuida            #+#    #+#             */
-/*   Updated: 2024/11/14 19:17:33 by mkuida           ###   ########.fr       */
+/*   Updated: 2024/11/14 20:06:29 by mkuida           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	*ft_memset(void *s, int c, size_t n)
 	unsigned char	*str;
 	unsigned char	target;
 
-	if(s == NULL)
+	if (s == NULL)
 		return (NULL);
 	target = (unsigned char)c;
 	str = (unsigned char *)s;

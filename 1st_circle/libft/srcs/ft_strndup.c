@@ -6,7 +6,7 @@
 /*   By: mkuida <reprise39@yahoo.co.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/13 15:54:42 by mkuida            #+#    #+#             */
-/*   Updated: 2024/11/14 19:47:25 by mkuida           ###   ########.fr       */
+/*   Updated: 2024/11/14 20:04:31 by mkuida           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@ char	*ft_strndup(const char *str, size_t len)
 	char	*sub;
 	size_t	i;
 
-	if(str == NULL)
-		return NULL;
+	if (str == NULL)
+		return (NULL);
 	sub = malloc(sizeof(char) * (len + 1));
 	if (!sub)
 		return (NULL);

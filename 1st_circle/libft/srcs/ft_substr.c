@@ -6,7 +6,7 @@
 /*   By: mkuida <reprise39@yahoo.co.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 18:16:53 by mkuida            #+#    #+#             */
-/*   Updated: 2024/11/14 19:50:46 by mkuida           ###   ########.fr       */
+/*   Updated: 2024/11/14 20:03:47 by mkuida           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	size_t	i;
 	char	*dest;
 
-	if(s == NULL)
-		return NULL;
+	if (s == NULL)
+		return (NULL);
 	s_size = ft_strlen(s);
 	i = 0;
 	if (s_size == 0)

@@ -6,7 +6,7 @@
 /*   By: mkuida <reprise39@yahoo.co.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 01:08:12 by mkuida            #+#    #+#             */
-/*   Updated: 2024/11/14 19:10:48 by mkuida           ###   ########.fr       */
+/*   Updated: 2024/11/14 20:02:55 by mkuida           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	*ft_memchr(const void *s, int c, size_t n)
 	unsigned char	target;
 	size_t			i;
 
-	if(s == NULL)
+	if (s == NULL)
 		return (NULL);
 	dest = (unsigned char *)s;
 	target = (unsigned char)c;

@@ -6,7 +6,7 @@
 /*   By: mkuida <reprise39@yahoo.co.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 20:57:06 by mkuida            #+#    #+#             */
-/*   Updated: 2024/11/14 19:20:00 by mkuida           ###   ########.fr       */
+/*   Updated: 2024/11/14 20:01:43 by mkuida           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ char	**ft_split(char const *s, char c)
 	size_t	words;
 	char	**dest;
 
-	if(s == NULL)
+	if (s == NULL)
 		return (NULL);
 	words = count_words(s, c);
 	dest = malloc((words + 1) * sizeof(char *));
