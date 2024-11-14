@@ -6,7 +6,7 @@
 /*   By: mkuida <reprise39@yahoo.co.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 17:53:24 by mkuida            #+#    #+#             */
-/*   Updated: 2024/11/12 18:00:14 by mkuida           ###   ########.fr       */
+/*   Updated: 2024/11/14 19:45:41 by mkuida           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize)
 	size_t	i;
 	size_t	src_size;
 
+	if(dst == NULL || src == NULL)
+		return ((size_t)(-1));
 	i = 0;
 	src_size = ft_strlen(src);
 	if (dstsize == 0)

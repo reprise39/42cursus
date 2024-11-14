@@ -6,7 +6,7 @@
 /*   By: mkuida <reprise39@yahoo.co.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/13 16:47:48 by mkuida            #+#    #+#             */
-/*   Updated: 2024/11/13 16:49:01 by mkuida           ###   ########.fr       */
+/*   Updated: 2024/11/14 19:19:11 by mkuida           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,5 +14,7 @@
 
 void	ft_putstr_fd(char *s, int fd)
 {
+	if(s == NULL)
+		return;
 	write(fd, s, ft_strlen(s));
 }

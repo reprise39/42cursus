@@ -6,7 +6,7 @@
 /*   By: mkuida <reprise39@yahoo.co.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 01:20:42 by mkuida            #+#    #+#             */
-/*   Updated: 2024/11/13 20:51:55 by mkuida           ###   ########.fr       */
+/*   Updated: 2024/11/14 19:13:22 by mkuida           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ int	ft_memcmp(const void *s1, const void *s2, size_t n)
 	unsigned char	*suc1;
 	unsigned char	*suc2;
 
+	if( s1 == NULL || s2 == NULL)
+		return (-1);
 	suc1 = (unsigned char *)s1;
 	suc2 = (unsigned char *)s2;
 	i = 0;
