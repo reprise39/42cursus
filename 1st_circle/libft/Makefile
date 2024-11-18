@@ -64,19 +64,19 @@ $(BNS_OBJ_DIR)/%.o: $(BNS_SRC_DIR)/%.c | $(BNS_OBJ_DIR)
 	$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
 
 # make object directorie
-$(MAN_OBJ_DIR):
-	mkdir -p $(MAN_OBJ_DIR)
+# $(MAN_OBJ_DIR):
+# 	mkdir -p $(MAN_OBJ_DIR)
 
-$(BNS_OBJ_DIR):
-	mkdir -p $(BNS_OBJ_DIR)
+# $(BNS_OBJ_DIR):
+# 	mkdir -p $(BNS_OBJ_DIR)
 
 so:
-	$(CC) -nostartfiles -fPIC $(CFLAGS) $(MAN_SRC_FILES) $(BNS_SRC_FILES)
+	$(CC) -nostartfiles -fPIC $(CFLAGS) $(BNS_SRCS) $(MAN_SRCS)
 	gcc -nostartfiles -shared -o libft.so $(OBJS)
 
 clean:
 	rm -f $(OBJS)
-	rm -f $(BONUS_FLAGS)
+	rm -f $(BONUS_FLAG)
 
 fclean: clean
 	rm -f $(NAME)
