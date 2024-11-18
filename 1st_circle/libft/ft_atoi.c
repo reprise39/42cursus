@@ -6,7 +6,7 @@
 /*   By: mkuida <reprise39@yahoo.co.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 02:30:59 by mkuida            #+#    #+#             */
-/*   Updated: 2024/11/18 20:30:40 by mkuida           ###   ########.fr       */
+/*   Updated: 2024/11/18 23:02:10 by mkuida           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,9 @@ static int	ft_isspace(int c)
 	unsigned char	ch;
 
 	ch = (unsigned char)c;
-	if (ch == '\f' || ch == '\n' || ch == '\r' || ch == '\t' || ch == '\v')
+	if (ch == '\f' || ch == '\n' || ch == '\r')
+		return (1);
+	else if (ch == '\t' || ch == '\v' || ch == ' ')
 		return (1);
 	else
 		return (0);

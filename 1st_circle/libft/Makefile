@@ -71,7 +71,7 @@ $(BNS_OBJ_DIR):
 	mkdir -p $(BNS_OBJ_DIR)
 
 so:
-	$(CC) -nostartfiles -fPIC $(CFLAGS) $(MAN_SRC_FILESRC) $(BNS_SRC_FILES)
+	$(CC) -nostartfiles -fPIC $(CFLAGS) $(MAN_SRC_FILES) $(BNS_SRC_FILES)
 	gcc -nostartfiles -shared -o libft.so $(OBJS)
 
 clean:

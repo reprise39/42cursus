@@ -6,7 +6,7 @@
 /*   By: mkuida <reprise39@yahoo.co.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 20:57:06 by mkuida            #+#    #+#             */
-/*   Updated: 2024/11/18 20:33:41 by mkuida           ###   ########.fr       */
+/*   Updated: 2024/11/18 23:02:50 by mkuida           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,6 @@ static char	*ft_strndup(const char *str, size_t len)
 	sub[i] = '\0';
 	return (sub);
 }
-
 
 static int	free_dest(char **dest, size_t num)
 {
