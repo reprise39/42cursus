@@ -6,7 +6,7 @@
 /*   By: mkuida <reprise39@yahoo.co.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/20 21:48:59 by mkuida            #+#    #+#             */
-/*   Updated: 2024/11/23 14:13:36 by mkuida           ###   ########.fr       */
+/*   Updated: 2024/11/23 18:25:47 by mkuida           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,7 @@ int	main(void)
 	printf("\n yobidasimae \n");
 	while (line)
 	{
-		printf("\n yobidasimae \n");
 		line = get_next_line(fd);
-		printf("\n yobidasimae \n");
 		printf("> %s", line);
 		free(line);
 	}

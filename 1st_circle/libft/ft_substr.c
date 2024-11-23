@@ -6,7 +6,7 @@
 /*   By: mkuida <reprise39@yahoo.co.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 18:16:53 by mkuida            #+#    #+#             */
-/*   Updated: 2024/11/22 19:41:31 by mkuida           ###   ########.fr       */
+/*   Updated: 2024/11/22 20:34:52 by mkuida           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,5 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	dest[len] = '\0';
 	return (dest);
 }
-
-// if (s_size == 0)
-// 	return (NULL);
+	// if (s_size == 0)
+	// 	return (NULL);

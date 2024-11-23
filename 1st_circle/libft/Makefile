@@ -70,14 +70,10 @@ $(BNS_OBJ_DIR)/%.o: $(BNS_SRC_DIR)/%.c | $(BNS_OBJ_DIR)
 # $(BNS_OBJ_DIR):
 # 	mkdir -p $(BNS_OBJ_DIR)
 
-# ubuntu
+# for test https://github.com/alelievr/libft-unit-test/blob/master/README.md
 # so:
 # 	$(CC) -nostartfiles -fPIC $(CFLAGS) $(BNS_SRCS) $(MAN_SRCS)
 # 	gcc -nostartfiles -shared -o libft.so $(OBJS)
-
-so:
-	$(CC) -fPIC $(CFLAGS) $(BNS_SRCS) $(MAN_SRCS)
-	gcc -shared -o libft.so $(OBJS)
 
 clean:
 	rm -f $(OBJS)
