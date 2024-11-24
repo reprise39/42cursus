@@ -6,11 +6,11 @@
 /*   By: mkuida <reprise39@yahoo.co.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/21 17:47:14 by mkuida            #+#    #+#             */
-/*   Updated: 2024/11/23 13:41:42 by mkuida           ###   ########.fr       */
+/*   Updated: 2024/11/24 22:49:42 by mkuida           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "get_next_line.h"
+#include "get_next_line.h"
 
 size_t	ft_strlen(const char *s)
 {
@@ -24,6 +24,14 @@ size_t	ft_strlen(const char *s)
 	return (str - s);
 }
 
+// never input added_str NULL
+	// else if (added_str == NULL)
+	// {
+	// 	return_dest = ft_strdup(freed_str);
+	// 	free(freed_str);
+	// 	return (return_dest);
+	// }
+
 char	*strjoin_and_free(char *freed_str, char const *added_str)
 {
 	char	*return_dest;
@@ -34,18 +42,12 @@ char	*strjoin_and_free(char *freed_str, char const *added_str)
 		return (NULL);
 	else if (freed_str == NULL)
 		return (ft_strdup(added_str));
-	else if (added_str == NULL)
-	{
-		return_dest = ft_strdup(freed_str);
-		free(freed_str);
-		return (return_dest);
-	}
 	fr_len = ft_strlen(freed_str);
 	ad_len = ft_strlen(added_str);
 	if (fr_len + ad_len == 0 || fr_len > SIZE_MAX - ad_len)
 	{
 		free(freed_str);
-		return (ft_strdup(""));		
+		return (ft_strdup(""));
 	}
 	return_dest = malloc((fr_len + ad_len) * sizeof(char) + 1);
 	if (return_dest == NULL)
@@ -78,7 +80,6 @@ size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize)
 	dst[i] = '\0';
 	return (src_size);
 }
-
 
 char	*ft_strdup(const char *s)
 {
