@@ -6,7 +6,7 @@
 /*   By: mkuida <reprise39@yahoo.co.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/19 20:24:51 by mkuida            #+#    #+#             */
-/*   Updated: 2024/11/25 01:12:52 by mkuida           ###   ########.fr       */
+/*   Updated: 2024/11/26 19:01:19 by mkuida           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ static char	*mem_update(int fd, char *saved_mem)
 	while (ft_strchr(saved_mem, '\n') == NULL && return_read_value != 0)
 	{
 		return_read_value = read(fd, buffer, BUFFER_SIZE);
-		if (return_read_value < 0 || (return_read_value == 0 && saved_mem == NULL))
+		if (return_read_value == (size_t)(-1) || (return_read_value == 0 && saved_mem == NULL))
 		{
 			free(buffer);
 			return (NULL);
@@ -44,24 +44,28 @@ static char	*mem_update(int fd, char *saved_mem)
 static char	*put_savedmem_before_linebreak(char *saved_mem)
 {
 	size_t	i;
-	size_t	j;
 	char	*dest;
 
 	if (saved_mem == NULL || *saved_mem == '\0')
 		return (NULL);
 	i = 0;
-	j = 0;
 	while (saved_mem[i] != '\n' && saved_mem[i] != '\0')
 		i++;
-	dest = malloc(sizeof(char) * (i + 1));
+	dest = malloc(sizeof(char) * (i + 2));
 	if (dest == NULL)
 		return (NULL);
-	while (j < i)
+	i = 0;
+	while (saved_mem[i] != '\n' && saved_mem[i] != '\0')
 	{
-		dest[j] = saved_mem[j];
-		j++;
+		dest[i] = saved_mem[i];
+		i++;
 	}
-	dest[j] = '\0';
+	if(saved_mem[i] == '\n')
+	{
+		dest[i] = '\n';
+		i++;
+	}
+	dest[i] = '\0';
 	return (dest);
 }
 
@@ -129,7 +133,7 @@ char	*get_next_line(int fd)
 	if (dest_line == NULL)
 	{
 		free(saved_mem);
-		saved_mem == NULL;
+		saved_mem = NULL;
 		return (NULL);
 	}
 	saved_mem = cut_savedmem_before_linebreak(saved_mem);

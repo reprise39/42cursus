@@ -6,7 +6,7 @@
 /*   By: mkuida <reprise39@yahoo.co.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/20 21:48:59 by mkuida            #+#    #+#             */
-/*   Updated: 2024/11/25 00:25:15 by mkuida           ###   ########.fr       */
+/*   Updated: 2024/11/26 18:39:48 by mkuida           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int	main(void)
 
 	line = "";
 	fd = open("masahiko.txt", O_RDONLY);
-	fd = 0;
+	// fd = 0;
 	while (line)
 	{
 		line = get_next_line(fd);

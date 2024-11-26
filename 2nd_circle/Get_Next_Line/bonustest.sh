@@ -1,1 +1,1 @@
-cc -D BUFFER_SIZE=42 get_nect_line_bonus.c get_next_line_bonus_utils.c bonustest.c
+cc -D BUFFER_SIZE=42 get_next_line_bonus.c get_next_line_utils_bonus.c bonustest.c
