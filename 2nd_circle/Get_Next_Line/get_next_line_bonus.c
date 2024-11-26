@@ -15,21 +15,21 @@
 static char	*mem_update(int fd, char *saved_mem)
 {
 	char	*buffer;
-	size_t	return_read_value;
+	size_t	read_value;
 
 	buffer = malloc(sizeof(char) * (BUFFER_SIZE + 1));
 	if (buffer == NULL)
 		return (NULL);
-	return_read_value = 1;
-	while (ft_strchr(saved_mem, '\n') == NULL && return_read_value != 0)
+	read_value = 1;
+	while (ft_strchr(saved_mem, '\n') == NULL && read_value != 0)
 	{
-		return_read_value = read(fd, buffer, BUFFER_SIZE);
-		if (return_read_value == (size_t)(-1) || (return_read_value == 0 && saved_mem == NULL))
+		read_value = read(fd, buffer, BUFFER_SIZE);
+		if (read_value == (size_t)(-1) || (!read_value && !saved_mem))
 		{
 			free(buffer);
 			return (NULL);
 		}
-		buffer[return_read_value] = '\0';
+		buffer[read_value] = '\0';
 		saved_mem = strjoin_and_free(saved_mem, buffer);
 		if (saved_mem == NULL)
 		{
@@ -60,7 +60,7 @@ static char	*put_savedmem_before_linebreak(char *saved_mem)
 		dest[i] = saved_mem[i];
 		i++;
 	}
-	if(saved_mem[i] == '\n')
+	if (saved_mem[i] == '\n')
 	{
 		dest[i] = '\n';
 		i++;
@@ -126,13 +126,13 @@ char	*get_next_line(int fd)
 	static char	*saved_mem[FD_SIZE];
 	char		*dest_line;
 
-	if (BUFFER_SIZE <= 0 || fd < 0 )
+	if (BUFFER_SIZE <= 0 || fd < 0)
 		return (NULL);
 	saved_mem[fd] = mem_update(fd, saved_mem[fd]);
 	dest_line = put_savedmem_before_linebreak(saved_mem[fd]);
 	if (dest_line == NULL)
 	{
-		if(saved_mem[fd] != NULL)
+		if (saved_mem[fd] != NULL)
 		{
 			free(saved_mem[fd]);
 			saved_mem[fd] = NULL;
