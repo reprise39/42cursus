@@ -1,28 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_bzero.c                                         :+:      :+:    :+:   */
+/*   ft_lstlast.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mkuida <reprise39@yahoo.co.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/11 18:30:11 by mkuida            #+#    #+#             */
-/*   Updated: 2024/11/14 20:02:45 by mkuida           ###   ########.fr       */
+/*   Created: 2024/11/07 23:06:41 by mkuida            #+#    #+#             */
+/*   Updated: 2024/11/13 18:58:34 by mkuida           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_bzero(void *s, size_t n)
+t_list	*ft_lstlast(t_list *lst)
 {
-	unsigned char	*str;
+	t_list	*dest;
 
-	if (s == NULL || n == 0)
-		return ;
-	str = (unsigned char *)s;
-	while (n != 0)
+	if (lst == NULL)
+		return (NULL);
+	dest = lst;
+	while (dest->next != NULL)
 	{
-		*str = '\0';
-		str++;
-		n--;
+		dest = dest->next;
 	}
+	return (dest);
 }
