@@ -1,35 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memcmp.c                                        :+:      :+:    :+:   */
+/*   test.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mkuida <reprise39@yahoo.co.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/12 01:20:42 by mkuida            #+#    #+#             */
-/*   Updated: 2024/11/25 16:59:55 by mkuida           ###   ########.fr       */
+/*   Created: 2024/11/29 16:59:13 by mkuida            #+#    #+#             */
+/*   Updated: 2024/12/02 16:40:43 by mkuida           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "ft_printf.h"
+#include <stdio.h>
 
-// better to no NULL gurd
-// if (s1 == NULL || s2 == NULL)
-// 	return (-1);
-
-int	ft_memcmp(const void *s1, const void *s2, size_t n)
+int	main(void)
 {
-	size_t			i;
-	unsigned char	*suc1;
-	unsigned char	*suc2;
+	char *str;
+	char c;
+	int d;
+	void *p;
+	int i;
 
-	suc1 = (unsigned char *)s1;
-	suc2 = (unsigned char *)s2;
-	i = 0;
-	while (n > i)
-	{
-		if (suc1[i] != suc2[i])
-			return ((int)(suc1[i] - suc2[i]));
-		i++;
-	}
+	str = 0;
+	c = 'a';
+	d = -1;
+	p = 0;
+
+	// printf
+	i = printf("std_printf        > %d \n", d);
+	printf("std_printf_return > %d \n", i - 22);
+	printf("\n");
+	fflush(stdout);
+	// ft_printf
+	i = ft_printf("ft__printf        > %d \n", d);
+	ft_printf("ft__printf_return > %d \n", i - 22);
 	return (0);
 }

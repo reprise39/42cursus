@@ -1,41 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_substr.c                                        :+:      :+:    :+:   */
+/*   ft_strlcpy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mkuida <reprise39@yahoo.co.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/12 18:16:53 by mkuida            #+#    #+#             */
-/*   Updated: 2024/11/22 20:34:52 by mkuida           ###   ########.fr       */
+/*   Created: 2024/11/12 17:53:24 by mkuida            #+#    #+#             */
+/*   Updated: 2024/11/14 20:03:55 by mkuida           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_substr(char const *s, unsigned int start, size_t len)
+size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize)
 {
-	size_t	s_size;
 	size_t	i;
-	char	*dest;
+	size_t	src_size;
 
-	if (s == NULL)
-		return (NULL);
-	s_size = ft_strlen(s);
+	if (dst == NULL || src == NULL)
+		return ((size_t)(-1));
 	i = 0;
-	if (start >= s_size)
-		return (ft_strdup(""));
-	if (start + len > s_size)
-		len = s_size - start;
-	dest = malloc((len + 1) * sizeof(char));
-	if (dest == NULL)
-		return (NULL);
-	while (i < len)
+	src_size = ft_strlen(src);
+	if (dstsize == 0)
+		return (src_size);
+	while (i < src_size && i < dstsize - 1)
 	{
-		dest[i] = s[start + i];
+		dst[i] = src[i];
 		i++;
 	}
-	dest[len] = '\0';
-	return (dest);
+	dst[i] = '\0';
+	return (src_size);
 }
-// if (s_size == 0)
-// 	return (NULL);

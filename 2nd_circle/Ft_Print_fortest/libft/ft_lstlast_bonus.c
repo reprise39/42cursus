@@ -1,41 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_substr.c                                        :+:      :+:    :+:   */
+/*   ft_lstlast.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mkuida <reprise39@yahoo.co.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/12 18:16:53 by mkuida            #+#    #+#             */
-/*   Updated: 2024/11/22 20:34:52 by mkuida           ###   ########.fr       */
+/*   Created: 2024/11/07 23:06:41 by mkuida            #+#    #+#             */
+/*   Updated: 2024/11/13 18:58:34 by mkuida           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_substr(char const *s, unsigned int start, size_t len)
+t_list	*ft_lstlast(t_list *lst)
 {
-	size_t	s_size;
-	size_t	i;
-	char	*dest;
+	t_list	*dest;
 
-	if (s == NULL)
+	if (lst == NULL)
 		return (NULL);
-	s_size = ft_strlen(s);
-	i = 0;
-	if (start >= s_size)
-		return (ft_strdup(""));
-	if (start + len > s_size)
-		len = s_size - start;
-	dest = malloc((len + 1) * sizeof(char));
-	if (dest == NULL)
-		return (NULL);
-	while (i < len)
+	dest = lst;
+	while (dest->next != NULL)
 	{
-		dest[i] = s[start + i];
-		i++;
+		dest = dest->next;
 	}
-	dest[len] = '\0';
 	return (dest);
 }
-// if (s_size == 0)
-// 	return (NULL);

@@ -1,1 +1,0 @@
-cc test.c libftprintf.a -L. -lftprintf

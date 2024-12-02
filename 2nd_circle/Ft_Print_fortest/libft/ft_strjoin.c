@@ -1,41 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_substr.c                                        :+:      :+:    :+:   */
+/*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mkuida <reprise39@yahoo.co.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/12 18:16:53 by mkuida            #+#    #+#             */
-/*   Updated: 2024/11/22 20:34:52 by mkuida           ###   ########.fr       */
+/*   Created: 2024/11/12 18:52:53 by mkuida            #+#    #+#             */
+/*   Updated: 2024/11/14 20:04:51 by mkuida           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_substr(char const *s, unsigned int start, size_t len)
+char	*ft_strjoin(char const *s1, char const *s2)
 {
-	size_t	s_size;
-	size_t	i;
 	char	*dest;
+	size_t	s1len;
+	size_t	s2len;
 
-	if (s == NULL)
+	if (s1 == NULL && s2 == NULL)
 		return (NULL);
-	s_size = ft_strlen(s);
-	i = 0;
-	if (start >= s_size)
+	else if (s1 == NULL)
+		return (ft_strdup(s2));
+	else if (s2 == NULL)
+		return (ft_strdup(s1));
+	s1len = ft_strlen(s1);
+	s2len = ft_strlen(s2);
+	if (s1len + s2len == 0 || s1len > SIZE_MAX - s2len)
 		return (ft_strdup(""));
-	if (start + len > s_size)
-		len = s_size - start;
-	dest = malloc((len + 1) * sizeof(char));
+	dest = malloc((s1len + s2len) * sizeof(char) + 1);
 	if (dest == NULL)
 		return (NULL);
-	while (i < len)
-	{
-		dest[i] = s[start + i];
-		i++;
-	}
-	dest[len] = '\0';
+	ft_strlcpy(dest, s1, s1len + 1);
+	ft_strlcpy(dest + s1len, s2, s2len + 1);
 	return (dest);
 }
-// if (s_size == 0)
-// 	return (NULL);

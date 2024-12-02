@@ -1,41 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_substr.c                                        :+:      :+:    :+:   */
+/*   ft_strrchr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mkuida <reprise39@yahoo.co.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/12 18:16:53 by mkuida            #+#    #+#             */
-/*   Updated: 2024/11/22 20:34:52 by mkuida           ###   ########.fr       */
+/*   Created: 2024/11/12 00:15:10 by mkuida            #+#    #+#             */
+/*   Updated: 2024/11/14 20:05:14 by mkuida           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_substr(char const *s, unsigned int start, size_t len)
+char	*ft_strrchr(const char *s, int c)
 {
-	size_t	s_size;
-	size_t	i;
-	char	*dest;
+	unsigned char	target;
+	size_t			len;
 
 	if (s == NULL)
 		return (NULL);
-	s_size = ft_strlen(s);
-	i = 0;
-	if (start >= s_size)
-		return (ft_strdup(""));
-	if (start + len > s_size)
-		len = s_size - start;
-	dest = malloc((len + 1) * sizeof(char));
-	if (dest == NULL)
-		return (NULL);
-	while (i < len)
+	target = (unsigned int)c;
+	len = ft_strlen(s);
+	if (target == '\0')
+		return ((char *)(s + len));
+	while (len != 0)
 	{
-		dest[i] = s[start + i];
-		i++;
+		if (s[len - 1] == target)
+			return ((char *)(s + len - 1));
+		len--;
 	}
-	dest[len] = '\0';
-	return (dest);
+	return (NULL);
 }
-// if (s_size == 0)
-// 	return (NULL);

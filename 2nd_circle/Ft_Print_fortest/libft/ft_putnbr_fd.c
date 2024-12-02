@@ -1,35 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memcmp.c                                        :+:      :+:    :+:   */
+/*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mkuida <reprise39@yahoo.co.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/12 01:20:42 by mkuida            #+#    #+#             */
-/*   Updated: 2024/11/25 16:59:55 by mkuida           ###   ########.fr       */
+/*   Created: 2024/11/13 13:38:16 by mkuida            #+#    #+#             */
+/*   Updated: 2024/11/18 19:49:49 by mkuida           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-// better to no NULL gurd
-// if (s1 == NULL || s2 == NULL)
-// 	return (-1);
-
-int	ft_memcmp(const void *s1, const void *s2, size_t n)
+static void	print_recursive(int n, int fd)
 {
-	size_t			i;
-	unsigned char	*suc1;
-	unsigned char	*suc2;
+	char	printc;
 
-	suc1 = (unsigned char *)s1;
-	suc2 = (unsigned char *)s2;
-	i = 0;
-	while (n > i)
+	printc = (n % 10) + '0';
+	if (n >= 10)
 	{
-		if (suc1[i] != suc2[i])
-			return ((int)(suc1[i] - suc2[i]));
-		i++;
+		n = n / 10;
+		print_recursive(n, fd);
 	}
-	return (0);
+	write(fd, &printc, 1);
+}
+
+void	ft_putnbr_fd(int n, int fd)
+{
+	if (n == INT_MIN)
+	{
+		write(fd, "-2147483648", 11);
+		return ;
+	}
+	if (n < 0)
+	{
+		write(fd, "-", 1);
+		n *= -1;
+	}
+	print_recursive(n, fd);
 }
