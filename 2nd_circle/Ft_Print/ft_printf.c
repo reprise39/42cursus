@@ -6,7 +6,7 @@
 /*   By: mkuida <reprise39@yahoo.co.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/25 19:15:41 by mkuida            #+#    #+#             */
-/*   Updated: 2024/12/02 14:53:05 by mkuida           ###   ########.fr       */
+/*   Updated: 2024/12/02 15:01:19 by mkuida           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,7 @@
 # include "./libft/libft.h"
 
 //printxの戻り値のオーバーフローどうしようかな^0^
-
-
-
-int check_and_printcall(char *str,va_list args,int words_count)
+static int check_and_printcall(char *str,va_list args,int words_count)
 {
 	if (ft_strnstr(str,"%c",2))
 		words_count = ft_printc(args,words_count); //ok
