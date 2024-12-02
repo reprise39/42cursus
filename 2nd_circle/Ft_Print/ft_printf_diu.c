@@ -6,7 +6,7 @@
 /*   By: mkuida <reprise39@yahoo.co.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 14:51:15 by mkuida            #+#    #+#             */
-/*   Updated: 2024/12/02 15:36:21 by mkuida           ###   ########.fr       */
+/*   Updated: 2024/12/02 16:05:55 by mkuida           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ int	ft_printdi(va_list args,int words_counted)
 	if (d < 0)
 	{
 		write(1, "-", 1);
+		d *= -1;
 		count_words++;
 	}
 	count_words = printdi_recursive(d, count_words);
@@ -69,6 +70,6 @@ int ft_printu(va_list args,int words_counted)
 
 	count_words = 0;
 	u = va_arg(args, unsigned int);
-	count_words = printu_recursive(u, words_counted);
+	count_words = printu_recursive(u, count_words);
 	return (words_counted + count_words);
 }

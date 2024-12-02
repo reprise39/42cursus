@@ -6,7 +6,7 @@
 /*   By: mkuida <reprise39@yahoo.co.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 14:49:52 by mkuida            #+#    #+#             */
-/*   Updated: 2024/12/02 15:36:24 by mkuida           ###   ########.fr       */
+/*   Updated: 2024/12/02 16:07:23 by mkuida           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ static int	print_upperx_recursive(unsigned int u, int words_counted)
 	if (u >= 16)
 	{
 		u = u / 16;
-		words_counted = print_lowerx_recursive(u, words_counted);
+		words_counted = print_upperx_recursive(u, words_counted);
 	}
 	write(1, &printc, 1);
 	return (words_counted + 1);

@@ -1,1 +1,1 @@
-cc ft_printf.c ft_printf_diu.c ft_printf_x.c ft_printf_cspp.c test.c -L./libft -libft
+cc test.c libftprintf.a -L. -lftprintf
