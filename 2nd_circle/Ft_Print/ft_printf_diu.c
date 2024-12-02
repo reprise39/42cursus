@@ -1,16 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf_diu                                      :+:      :+:    :+:   */
+/*   ft_printf_diu.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mkuida <reprise39@yahoo.co.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 14:51:15 by mkuida            #+#    #+#             */
-/*   Updated: 2024/12/02 15:02:34 by mkuida           ###   ########.fr       */
+/*   Updated: 2024/12/02 15:36:21 by mkuida           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 # include "ft_printf.h"
+# include "./libft/libft.h"
 
 static int	printdi_recursive(int d, int words_counted)
 {
@@ -65,7 +66,6 @@ int ft_printu(va_list args,int words_counted)
 {
 	int count_words;
 	unsigned int u;
-	char *a;
 
 	count_words = 0;
 	u = va_arg(args, unsigned int);

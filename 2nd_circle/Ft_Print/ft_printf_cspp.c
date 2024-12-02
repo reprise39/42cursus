@@ -6,11 +6,12 @@
 /*   By: mkuida <reprise39@yahoo.co.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 14:52:44 by mkuida            #+#    #+#             */
-/*   Updated: 2024/12/02 15:03:52 by mkuida           ###   ########.fr       */
+/*   Updated: 2024/12/02 15:35:37 by mkuida           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 # include "ft_printf.h"
+# include "./libft/libft.h"
 
 int ft_printc(va_list args,int words_counted)
 {
@@ -48,15 +49,12 @@ static int	printp_recursive(uintptr_t u, int words_counted)
 
 int ft_printp(va_list args,int words_counted)
 {
-	void *p;
-	char *a;
 	int count_words;
 	uintptr_t address;
 	
-	ft_putstr_fd("0x",STDOUT_FILENO);
-	ft_putstr_fd(a,STDOUT_FILENO);	
+	count_words = 0;
 	address = va_arg(args, uintptr_t);
-
+	ft_putstr_fd("0x",STDOUT_FILENO);
 	count_words = printp_recursive(address, count_words);
 	return (count_words + words_counted + 2);
 }
