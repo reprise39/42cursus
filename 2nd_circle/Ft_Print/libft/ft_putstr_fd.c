@@ -1,24 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*   ft_putstr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mkuida <reprise39@yahoo.co.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/25 19:24:44 by mkuida            #+#    #+#             */
-/*   Updated: 2024/12/02 14:37:31 by mkuida           ###   ########.fr       */
+/*   Created: 2024/11/13 16:47:48 by mkuida            #+#    #+#             */
+/*   Updated: 2024/11/14 20:05:25 by mkuida           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "libft.h"
 
-#ifndef FT_PRINT_H
-
-# define FT_PRINT_H
-# include <stdarg.h>
-# include <stdio.h>
-# include <stdint.h>
-
-int 	ft_printf(const char *str, ...);
-
-
-#endif
+void	ft_putstr_fd(char *s, int fd)
+{
+	if (s == NULL)
+		return ;
+	write(fd, s, ft_strlen(s));
+}

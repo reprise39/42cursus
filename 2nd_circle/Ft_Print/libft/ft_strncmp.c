@@ -1,24 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*   ft_strncmp.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mkuida <reprise39@yahoo.co.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/25 19:24:44 by mkuida            #+#    #+#             */
-/*   Updated: 2024/12/02 14:37:31 by mkuida           ###   ########.fr       */
+/*   Created: 2024/11/12 00:47:23 by mkuida            #+#    #+#             */
+/*   Updated: 2024/11/18 22:06:28 by mkuida           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "libft.h"
 
-#ifndef FT_PRINT_H
+int	ft_strncmp(const char *s1, const char *s2, size_t n)
+{
+	size_t	i;
 
-# define FT_PRINT_H
-# include <stdarg.h>
-# include <stdio.h>
-# include <stdint.h>
-
-int 	ft_printf(const char *str, ...);
-
-
-#endif
+	if (s1 == NULL || s2 == NULL)
+		return (-1);
+	i = 0;
+	while (i < n)
+	{
+		if (s1[i] != s2[i])
+			return ((int)((unsigned char)s1[i] - (unsigned char)s2[i]));
+		else if (s1[i] == '\0' && s2[i] == '\0')
+			return (0);
+		i++;
+	}
+	return (0);
+}

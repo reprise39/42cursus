@@ -1,24 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*   ft_isascii.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mkuida <reprise39@yahoo.co.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/25 19:24:44 by mkuida            #+#    #+#             */
-/*   Updated: 2024/12/02 14:37:31 by mkuida           ###   ########.fr       */
+/*   Created: 2024/11/11 17:50:08 by mkuida            #+#    #+#             */
+/*   Updated: 2024/11/18 19:47:15 by mkuida           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-
-#ifndef FT_PRINT_H
-
-# define FT_PRINT_H
-# include <stdarg.h>
-# include <stdio.h>
-# include <stdint.h>
-
-int 	ft_printf(const char *str, ...);
-
-
-#endif
+int	ft_isascii(int c)
+{
+	if (0 <= c && c <= 127)
+		return (1);
+	return (0);
+}

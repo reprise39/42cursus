@@ -1,24 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*   ft_tolower.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mkuida <reprise39@yahoo.co.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/25 19:24:44 by mkuida            #+#    #+#             */
-/*   Updated: 2024/12/02 14:37:31 by mkuida           ###   ########.fr       */
+/*   Created: 2024/11/11 23:40:10 by mkuida            #+#    #+#             */
+/*   Updated: 2024/11/13 20:50:38 by mkuida           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "libft.h"
 
-#ifndef FT_PRINT_H
+int	ft_tolower(int c)
+{
+	unsigned char	uc;
 
-# define FT_PRINT_H
-# include <stdarg.h>
-# include <stdio.h>
-# include <stdint.h>
-
-int 	ft_printf(const char *str, ...);
-
-
-#endif
+	uc = (unsigned char)c;
+	if ('A' <= uc && uc <= 'Z')
+		uc += ('a' - 'A');
+	return ((int)(uc));
+}

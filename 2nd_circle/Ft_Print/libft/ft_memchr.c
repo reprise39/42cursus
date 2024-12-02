@@ -1,24 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*   ft_memchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mkuida <reprise39@yahoo.co.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/25 19:24:44 by mkuida            #+#    #+#             */
-/*   Updated: 2024/12/02 14:37:31 by mkuida           ###   ########.fr       */
+/*   Created: 2024/11/12 01:08:12 by mkuida            #+#    #+#             */
+/*   Updated: 2024/11/14 20:02:55 by mkuida           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "libft.h"
 
-#ifndef FT_PRINT_H
+void	*ft_memchr(const void *s, int c, size_t n)
+{
+	unsigned char	*dest;
+	unsigned char	target;
+	size_t			i;
 
-# define FT_PRINT_H
-# include <stdarg.h>
-# include <stdio.h>
-# include <stdint.h>
-
-int 	ft_printf(const char *str, ...);
-
-
-#endif
+	if (s == NULL)
+		return (NULL);
+	dest = (unsigned char *)s;
+	target = (unsigned char)c;
+	i = 0;
+	while (n > i)
+	{
+		if (dest[i] == target)
+			return ((void *)(dest + i));
+		i++;
+	}
+	return (NULL);
+}

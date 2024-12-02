@@ -1,24 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*   ft_lstclear.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mkuida <reprise39@yahoo.co.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/25 19:24:44 by mkuida            #+#    #+#             */
-/*   Updated: 2024/12/02 14:37:31 by mkuida           ###   ########.fr       */
+/*   Created: 2024/11/07 23:11:57 by mkuida            #+#    #+#             */
+/*   Updated: 2024/11/18 19:48:40 by mkuida           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "libft.h"
 
-#ifndef FT_PRINT_H
+static void	dellist_recursive(t_list *dest, void (*del)(void *))
+{
+	if (dest == NULL)
+		return ;
+	if (dest->next != NULL)
+		dellist_recursive(dest->next, del);
+	del(dest->content);
+	free(dest);
+}
 
-# define FT_PRINT_H
-# include <stdarg.h>
-# include <stdio.h>
-# include <stdint.h>
-
-int 	ft_printf(const char *str, ...);
-
-
-#endif
+void	ft_lstclear(t_list **lst, void (*del)(void *))
+{
+	if (lst == NULL || *lst == NULL || del == NULL)
+		return ;
+	dellist_recursive(*lst, del);
+	*lst = NULL;
+}

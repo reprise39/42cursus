@@ -1,24 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*   ft_memset.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mkuida <reprise39@yahoo.co.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/25 19:24:44 by mkuida            #+#    #+#             */
-/*   Updated: 2024/12/02 14:37:31 by mkuida           ###   ########.fr       */
+/*   Created: 2024/11/11 18:09:48 by mkuida            #+#    #+#             */
+/*   Updated: 2024/11/14 20:06:29 by mkuida           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "libft.h"
 
-#ifndef FT_PRINT_H
+void	*ft_memset(void *s, int c, size_t n)
+{
+	unsigned char	*str;
+	unsigned char	target;
 
-# define FT_PRINT_H
-# include <stdarg.h>
-# include <stdio.h>
-# include <stdint.h>
-
-int 	ft_printf(const char *str, ...);
-
-
-#endif
+	if (s == NULL)
+		return (NULL);
+	target = (unsigned char)c;
+	str = (unsigned char *)s;
+	while (n != 0)
+	{
+		*str = target;
+		str++;
+		n--;
+	}
+	return (s);
+}

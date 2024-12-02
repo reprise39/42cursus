@@ -1,0 +1,1 @@
+cc ft_printf.c test.c ./libft/libft.a

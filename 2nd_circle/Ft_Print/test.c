@@ -1,24 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*   test.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mkuida <reprise39@yahoo.co.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/25 19:24:44 by mkuida            #+#    #+#             */
-/*   Updated: 2024/12/02 14:37:31 by mkuida           ###   ########.fr       */
+/*   Created: 2024/11/29 16:59:13 by mkuida            #+#    #+#             */
+/*   Updated: 2024/12/02 13:56:24 by mkuida           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-
-#ifndef FT_PRINT_H
-
-# define FT_PRINT_H
-# include <stdarg.h>
 # include <stdio.h>
-# include <stdint.h>
-
-int 	ft_printf(const char *str, ...);
-
-
-#endif
+# include "ft_printf.h"
+int main()
+{
+	char *str;
+	char c;
+	int d;
+	d = 12345678;
+	c = 'a';
+	str = "%";
+	int i;
+	//printf
+	i = printf("std_printf        > %d \n",d);
+	printf("std_printf_return > %d \n",i-22);
+	printf("\n");
+	fflush(stdout);
+	//ft_printf
+	i = ft_printf("ft__printf        > %d \n",d);
+	ft_printf("ft__printf_return > %d \n",i-22);
+	return 0;
+}

@@ -1,24 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mkuida <reprise39@yahoo.co.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/25 19:24:44 by mkuida            #+#    #+#             */
-/*   Updated: 2024/12/02 14:37:31 by mkuida           ###   ########.fr       */
+/*   Created: 2024/11/13 13:38:16 by mkuida            #+#    #+#             */
+/*   Updated: 2024/11/18 19:49:49 by mkuida           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "libft.h"
 
-#ifndef FT_PRINT_H
+static void	print_recursive(int n, int fd)
+{
+	char	printc;
 
-# define FT_PRINT_H
-# include <stdarg.h>
-# include <stdio.h>
-# include <stdint.h>
+	printc = (n % 10) + '0';
+	if (n >= 10)
+	{
+		n = n / 10;
+		print_recursive(n, fd);
+	}
+	write(fd, &printc, 1);
+}
 
-int 	ft_printf(const char *str, ...);
-
-
-#endif
+void	ft_putnbr_fd(int n, int fd)
+{
+	if (n == INT_MIN)
+	{
+		write(fd, "-2147483648", 11);
+		return ;
+	}
+	if (n < 0)
+	{
+		write(fd, "-", 1);
+		n *= -1;
+	}
+	print_recursive(n, fd);
+}

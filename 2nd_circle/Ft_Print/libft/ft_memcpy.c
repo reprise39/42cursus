@@ -1,24 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*   ft_memcpy.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mkuida <reprise39@yahoo.co.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/25 19:24:44 by mkuida            #+#    #+#             */
-/*   Updated: 2024/12/02 14:37:31 by mkuida           ###   ########.fr       */
+/*   Created: 2024/11/11 18:36:54 by mkuida            #+#    #+#             */
+/*   Updated: 2024/11/14 20:13:30 by mkuida           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "libft.h"
 
-#ifndef FT_PRINT_H
+void	*ft_memcpy(void *dest, const void *src, size_t n)
+{
+	unsigned char	*cpy;
+	unsigned char	*tar;
+	size_t			i;
 
-# define FT_PRINT_H
-# include <stdarg.h>
-# include <stdio.h>
-# include <stdint.h>
-
-int 	ft_printf(const char *str, ...);
-
-
-#endif
+	if (dest == NULL)
+		return (NULL);
+	if (src == NULL)
+		return (dest);
+	cpy = (unsigned char *)dest;
+	tar = (unsigned char *)src;
+	i = 0;
+	while (i < n)
+	{
+		cpy[i] = tar[i];
+		i++;
+	}
+	return (dest);
+}
