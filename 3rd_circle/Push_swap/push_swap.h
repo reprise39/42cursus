@@ -1,18 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_bzero.c                                         :+:      :+:    :+:   */
+/*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mkuida <reprise39@yahoo.co.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/11 18:30:11 by mkuida            #+#    #+#             */
-/*   Updated: 2024/12/03 23:28:38 by mkuida           ###   ########.fr       */
+/*   Created: 2024/12/04 22:56:04 by mkuida            #+#    #+#             */
+/*   Updated: 2024/12/05 00:39:25 by mkuida           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#ifndef PUSH_SWAP_H
+# define PUSH_SWAP_H
 
-void	ft_bzero(void *s, size_t n)
-{
-	ft_memset(s, 0, n);
-}
+# include <unistd.h>
+# include <limits.h>
+# include <stdlib.h>
+
+// typedef struct int_list
+// {
+// 	void			*content;
+// 	struct int_list	*next;
+// }					t_ilist;
+
+//check_input.c
+int check_input(int argc,char **argv);
+//lstaddback_and_checkoverlap
+t_list *pushtostack_and_checkoverlap(int argc,char **argv);
+// utils.c
+int	ft_isspace(int c);
+
+#endif
