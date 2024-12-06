@@ -6,7 +6,7 @@
 /*   By: mkuida <reprise39@yahoo.co.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/03 23:37:45 by mkuida            #+#    #+#             */
-/*   Updated: 2024/12/05 00:49:56 by mkuida           ###   ########.fr       */
+/*   Updated: 2024/12/05 19:40:45 by mkuida           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,20 +20,24 @@ void print_error()
 	return;
 }
 
+
+//確認用だよ！
 void print_list(t_list *a)
 {
+	ft_printf("<print-start>\n");
 	while (a->next != NULL)
 	{
-		ft_printf("%d\n", (a->content));
+		ft_printf("%d\n", *(int*)(a->content));
 		a = a->next;
 	}
-	ft_printf("%d\n", (a->content));
+	ft_printf("%d\n", *(int*)(a->content));
+	ft_printf("<print--end>\n");
 }
 
 
 int main(int argc,char **argv)
 {
-	t_list *a;
+	t_list **a;
 	
 	if(argc == 1)
 		return (0);
@@ -42,12 +46,16 @@ int main(int argc,char **argv)
 		print_error();
 		return (0);
 	}
-	a = pushtostack_and_checkoverlap(argc,argv);
-	if(a == NULL)
+	a = malloc(sizeof(t_list **));
+	*a = pushtostack_and_checkoverlap(argc,argv);
+	if(*a == NULL)
 	{
 		print_error();
 		return (0);
 	}
-	print_list(a);
+	print_list(*a);// ←確認用
+	rra(a);
+	// sa(a);
+	print_list(*a);// ←確認用
 	return (0);
 }

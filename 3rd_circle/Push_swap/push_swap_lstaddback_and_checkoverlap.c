@@ -6,7 +6,7 @@
 /*   By: mkuida <reprise39@yahoo.co.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 23:08:04 by mkuida            #+#    #+#             */
-/*   Updated: 2024/12/05 00:49:18 by mkuida           ###   ########.fr       */
+/*   Updated: 2024/12/05 18:12:22 by mkuida           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 static int	ft_lstaddback_and_checkoverlap(t_list **lst, t_list *new)
 {
-	const int new_content = new->content;
+	const int new_content = *(int *)(new->content);
 	t_list *dest;
 	
 	if (!new)
@@ -30,10 +30,12 @@ static int	ft_lstaddback_and_checkoverlap(t_list **lst, t_list *new)
 		dest = *lst;
 		while (dest->next != NULL)
 		{
-			if(dest->content == new_content)
+			if(*(int *)(dest->content) == new_content)
 				return (-1);
 			dest = dest->next;
 		}
+		if(*(int *)(dest->content) == new_content)
+				return (-1);
 		dest->next = new;
 		return (1);
 	}
@@ -45,22 +47,22 @@ t_list *pushtostack_and_checkoverlap(int argc,char **argv)
 	int i;
 	t_list *list_top;
 	t_list *added_list;
-	int input;
+	int *input;
 
 	i = 1;
 	while(i < argc)
 	{
-		input = ft_atoi(argv[i]);
+		input = malloc(sizeof(int));
+		*input = ft_atoi(argv[i]);
+		ft_printf("argv[i]=%s : i = %d : atoi=%d\n",argv[i],i,ft_atoi(argv[i]));//確認
 		if(i == 1)
-		{
-			list_top = ft_lstnew(&input);
-		}
+			list_top = ft_lstnew(input);
 		else
 		{
-			added_list = ft_lstnew(&input);
-			if(ft_lstaddback_and_checkoverlap(list_top,added_list) == -1)
+			added_list = ft_lstnew(input);
+			if(ft_lstaddback_and_checkoverlap(&list_top,added_list) == -1)
 			{
-				ft_lstclear(&list_top,free); //あってるか心配
+				ft_lstclear(&list_top,free); //←あってるか心配
 				return (NULL);
 			}
 		}
