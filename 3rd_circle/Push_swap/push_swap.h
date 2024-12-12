@@ -6,7 +6,7 @@
 /*   By: mkuida <reprise39@yahoo.co.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 22:56:04 by mkuida            #+#    #+#             */
-/*   Updated: 2024/12/05 19:40:31 by mkuida           ###   ########.fr       */
+/*   Updated: 2024/12/12 15:40:42 by mkuida           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,5 +28,10 @@ int ra(t_list **a);
 int pa(t_list** a, t_list **b);
 int sa(t_list **a);
 int rra(t_list **a);
+//ft_qsort
+void ft_intswitch(int *a,int *b);
+int qsort_partition(int *array,int left,int right);
+void ft_qsort(int *array,int left,int right);
+
 
 #endif
