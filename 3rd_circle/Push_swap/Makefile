@@ -23,8 +23,14 @@ SRC_FILES = push_swap.c \
 			push_swap_check_input.c \
 			push_swap_lstaddback_and_checkoverlap.c \
 			push_swap_utils.c \
-			push_swap_comannd.c \
-			ft_qsort.c
+			push_swap_comannd_a.c \
+			push_swap_comannd_b.c \
+			push_swap_comannd_r.c \
+			push_swap_for_three.c \
+			push_swap_morethan_three.c \
+			push_swap_algo.c \
+			ft_qsort.c \
+			ft_binarysarch.c 
 
 SRCS = $(addprefix $(SRC_DIR)/, $(SRC_FILES))
 

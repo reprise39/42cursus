@@ -6,7 +6,7 @@
 /*   By: mkuida <reprise39@yahoo.co.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/03 23:37:45 by mkuida            #+#    #+#             */
-/*   Updated: 2024/12/12 15:52:36 by mkuida           ###   ########.fr       */
+/*   Updated: 2024/12/14 04:11:33 by mkuida           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,8 @@ void coodinatecompress(t_list *a,int size)
 	int *origin_num;
 	int *comp_num;
 	int i;
+	t_list *list_top = a;
+	t_list *listptr;
 	
 	i = 0;
 	origin_num = calloc(size,sizeof(int));
@@ -81,8 +83,18 @@ void coodinatecompress(t_list *a,int size)
 	ft_printf("\n<sorted arry check>\n");
 	for(int ma = 0 ; ma < size ; ma++)
 	{
-		ft_printf("%d ",comp_num[ma]); //??
+		ft_printf("%d ",comp_num[ma]); //確認
 	}
+	listptr = list_top;
+	ft_printf("\n<comp>\n");
+	while(listptr->next != NULL)
+	{
+		*(int *)(listptr->content) = ft_binarysarch(comp_num,size,*(int *)(listptr->content));
+		ft_printf("%d ",*(int *)listptr->content);
+		listptr = listptr->next;
+	}
+	*(int *)(listptr->content) = ft_binarysarch(comp_num,size,*(int *)(listptr->content));
+	ft_printf("%d ",*(int *)(listptr->content));
 	return;
 }
 
@@ -106,12 +118,13 @@ int main(int argc,char **argv)
 		print_error();
 		return (0);
 	}
-	ft_printf("\ninput check\n");
-	print_list(*a);// ←確認用
+	// ft_printf("\ninput check\n");
+	// print_list(*a);// ←確認用
 	coodinatecompress(*a,argc-1);
-	rra(a);
+	// rra(a,0);
 	// sa(a);
-	ft_printf("\nrra check\n");
+	// ft_printf("\nrra check\n");
+	push_swap_algo(a);
 	print_list(*a);// ←確認用
 	return (0);
 }
