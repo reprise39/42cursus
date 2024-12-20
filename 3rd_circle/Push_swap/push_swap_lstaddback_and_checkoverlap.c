@@ -6,7 +6,7 @@
 /*   By: mkuida <reprise39@yahoo.co.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 23:08:04 by mkuida            #+#    #+#             */
-/*   Updated: 2024/12/05 18:12:22 by mkuida           ###   ########.fr       */
+/*   Updated: 2024/12/20 02:05:02 by mkuida           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,11 +50,13 @@ t_list *pushtostack_and_checkoverlap(int argc,char **argv)
 	int *input;
 
 	i = 1;
+	ft_printf("1st : <into array>\n");//確認
 	while(i < argc)
 	{
 		input = malloc(sizeof(int));
 		*input = ft_atoi(argv[i]);
-		ft_printf("argv[i]=%s : i = %d : atoi=%d\n",argv[i],i,ft_atoi(argv[i]));//確認
+		
+		ft_printf(" -argv[i]=%s : i = %d : atoi=%d\n",argv[i],i,ft_atoi(argv[i]));//確認
 		if(i == 1)
 			list_top = ft_lstnew(input);
 		else

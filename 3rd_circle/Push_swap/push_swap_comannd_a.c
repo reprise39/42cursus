@@ -6,7 +6,7 @@
 /*   By: mkuida <reprise39@yahoo.co.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 16:58:40 by mkuida            #+#    #+#             */
-/*   Updated: 2024/12/14 03:30:58 by mkuida           ###   ########.fr       */
+/*   Updated: 2024/12/19 21:34:11 by mkuida           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,13 +32,20 @@ int sa(t_list **a,int ss_flag)
 	return (1);
 }
 
-int pa(t_list** a, t_list **b)
+int pa(t_list** a, t_list **b,int *a_init)
 {
 	t_list *atop;
+	t_list *btop;
 
-	atop = *a;	
+	atop = *a;
+	btop = *b;
+
+	int push_content;
+	
 	if (b == NULL || *b == NULL )
 		return (0);
+	push_content = *(int *)(btop->content);
+	a_init[push_content] = 1;
 
 	*a = (*b);
 	*b = (*b)->next;

@@ -20,6 +20,9 @@ INCLUDES = -I includes
 SRC_DIR = .
 
 SRC_FILES = push_swap.c \
+			push_swap_initlst.c \
+			push_swap_coodinatecompress.c \
+			push_swap_struct_command.c \
 			push_swap_check_input.c \
 			push_swap_lstaddback_and_checkoverlap.c \
 			push_swap_utils.c \

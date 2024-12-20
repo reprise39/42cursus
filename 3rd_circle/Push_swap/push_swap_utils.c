@@ -6,7 +6,7 @@
 /*   By: mkuida <reprise39@yahoo.co.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 23:05:54 by mkuida            #+#    #+#             */
-/*   Updated: 2024/12/05 00:09:10 by mkuida           ###   ########.fr       */
+/*   Updated: 2024/12/21 02:31:52 by mkuida           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,4 +24,33 @@ int	ft_isspace(int c)
 		return (1);
 	else
 		return (0);
+}
+
+int ft_min(int a,int b)
+{
+	if(a <= b)
+		return (a);
+	else
+		return (b);
+}
+
+int ft_max(int a,int b)
+{
+	if(a >= b)
+		return (a);
+	else
+		return (b);
+}
+
+//確認用だよ！
+void print_list(t_list *a)
+{
+	ft_printf("<printlist-start>\n");
+	while (a->next != NULL)
+	{
+		ft_printf("| %d\n", *(int*)(a->content));
+		a = a->next;
+	}
+	ft_printf("| %d\n", *(int*)(a->content));
+	ft_printf("<printlist--end>\n");
 }
