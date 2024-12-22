@@ -6,7 +6,7 @@
 /*   By: mkuida <reprise39@yahoo.co.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/19 16:07:12 by mkuida            #+#    #+#             */
-/*   Updated: 2024/12/21 02:26:57 by mkuida           ###   ########.fr       */
+/*   Updated: 2024/12/21 21:43:08 by mkuida           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,4 +121,15 @@ void print_t_com(t_command *command)
 	ft_printf(" brr = %d\n", command->brr);
 	ft_printf(" rr = %d\n", command->rr);
 	ft_printf(" rrr = %d\n", command->rrr);
+}
+
+void refrech_com_exceptnoc(t_command *next_com)
+{
+	next_com->number_of_command = INT_MAX;
+	next_com->ar = 0;
+	next_com->arr = 0;
+	next_com->br = 0;
+	next_com->brr = 0;
+	next_com->rr = 0;
+	next_com->rrr = 0;
 }

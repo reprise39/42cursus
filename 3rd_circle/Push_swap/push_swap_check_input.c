@@ -6,48 +6,83 @@
 /*   By: mkuida <reprise39@yahoo.co.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 22:58:55 by mkuida            #+#    #+#             */
-/*   Updated: 2024/12/04 23:04:56 by mkuida           ###   ########.fr       */
+/*   Updated: 2024/12/22 21:52:09 by mkuida           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 # include "libft_added_ftprintf/libft.h"
 # include "push_swap.h"
 
+static int check_number_of_digits_tendigit(char *numstart,int posi_or_nega)
+{
+	const char *intmax = "2147483647";
+	const char *intmin = "2147483648";
+	char *competi;
+	int i;
+	
+	i = 0;
+	if(posi_or_nega == 1)
+		competi = (char *)intmax;
+	else if(posi_or_nega == -1)
+		competi = (char *)intmin;
+	else 
+		return (-1);
+	while(competi[i] != '\0')
+	{
+		if(competi[i] < numstart[i])
+			return (0);
+		else if(competi[i] == numstart[i])
+			i++;
+		else
+			return (1);
+	}
+	return (1);
+}
+
+
 static int check_number_of_digits(char *numstart,int sign_flag)
 {
 	int i;
 	const int numsize = ft_strlen(numstart);
-	const char *intmax = "2147483647"; 
-	const char *intmin = "2147483648";
+	// const char *intmax = "2147483647"; 
+	// const char *intmin = "2147483648";
 	
 	i = 0;
 	if(numsize > 10)
 		return (0);
-	else if(numsize == 10 && sign_flag == 1)
-	{
-		while(numstart[i] != '\0')
-		{
-			if(intmax[i] < numstart[i])
-				return (0);
-			i++;
-		}
-	}
-	else if(numsize == 10 && sign_flag == -1)
-	{
-		while(numstart[i] != '\0')
-		{
-			if(intmin[i] < numstart[i])
-				return (0);
-			i++;
-		}
-	}
+	// else if(numsize == 10 && sign_flag == 1)
+	// {
+	// 	while(numstart[i] != '\0')
+	// 	{
+	// 		if(intmax[i] < numstart[i])
+	// 			return (0);
+	// 		else if(intmax[i] == numstart[i])
+	// 			i++;
+	// 		else
+	// 			break;
+	// 	}
+	// }
+	// else if(numsize == 10 && sign_flag == -1)
+	// {
+	// 	while(numstart[i] != '\0')
+	// 	{
+	// 		if(intmin[i] < numstart[i])
+	// 			return (0);
+	// 		else if(intmin[i] == numstart[i])
+	// 			i++;
+	// 		else
+	// 			break;
+	// 	}
+	// }
+	else if(numsize == 10)
+		return (check_number_of_digits_tendigit(numstart,sign_flag));
 	return (1);
 }
 
 static int check_isintnumber(char *str)
 {
 	int sign_flag;
-	char *numstart;
+	char *numstartptr;
 
 	sign_flag = 1;
 	while(ft_isspace(*str) == 1)
@@ -59,14 +94,14 @@ static int check_isintnumber(char *str)
 		str++;
 		sign_flag = -1;
 	}
-	numstart = str;
+	numstartptr = str;
 	while(*str != '\0')
 	{
 		if(ft_isdigit(*str) != 1)
 			return (0);
 		str++;
 	}
-	if(check_number_of_digits(numstart,sign_flag) == 1)
+	if(check_number_of_digits(numstartptr,sign_flag) == 1)
 		return (1);
 	else
 		return (0);

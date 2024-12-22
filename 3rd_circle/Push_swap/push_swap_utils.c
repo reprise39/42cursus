@@ -6,7 +6,7 @@
 /*   By: mkuida <reprise39@yahoo.co.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 23:05:54 by mkuida            #+#    #+#             */
-/*   Updated: 2024/12/21 02:31:52 by mkuida           ###   ########.fr       */
+/*   Updated: 2024/12/22 17:08:58 by mkuida           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,8 @@ int ft_max(int a,int b)
 //確認用だよ！
 void print_list(t_list *a)
 {
+	if(a == NULL)
+		return;
 	ft_printf("<printlist-start>\n");
 	while (a->next != NULL)
 	{
@@ -53,4 +55,17 @@ void print_list(t_list *a)
 	}
 	ft_printf("| %d\n", *(int*)(a->content));
 	ft_printf("<printlist--end>\n");
+}
+
+int serch_one(t_list **a)
+{
+	t_list *atop;
+	atop = *a;
+	int i = 0;
+	while(*(int *)(atop->content) != 1)
+	{
+		atop=(atop->next);
+		i++;
+	}
+	return i;
 }

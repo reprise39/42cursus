@@ -6,17 +6,29 @@
 /*   By: mkuida <reprise39@yahoo.co.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/03 23:37:45 by mkuida            #+#    #+#             */
-/*   Updated: 2024/12/19 23:18:15 by mkuida           ###   ########.fr       */
+/*   Updated: 2024/12/23 00:58:12 by mkuida           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 # include "libft_added_ftprintf/libft.h"
 # include "push_swap.h"
 
-void print_error()
+void print_error(int n)
 {
 	const char *str = "Error\n";
+	const char *error1 = "input_range_error : Please give number in int range\n";
+	const char *error2 = "marroc error : i dont know what to do\n";
+	const char *error3 = "input_deplicate_error : Please give unique arguments in int range\n";
+	char *error_message;
+	
+	if(n == 1)
+		error_message = (char *)error1;
+	else if(n == 2)
+		error_message = (char *)error2;
+	else if(n == 3)
+		error_message = (char *)error3;
 	write(STDERR_FILENO,str,ft_strlen(str));
+	write(STDERR_FILENO,error_message,ft_strlen(error_message));
 	return;
 }
 
@@ -29,23 +41,29 @@ int main(int argc,char **argv)
 		return (0);
 	if(check_input(argc,argv) == -1)
 	{
-		print_error();
-		return (0);
+		print_error(1);
+		return (-1);
 	}
 	a = malloc(sizeof(t_list **));
+	if(a == NULL)
+	{
+		print_error(2);
+		return (-1);
+	}
 	*a = pushtostack_and_checkoverlap(argc,argv);
 	if(*a == NULL)
 	{
-		print_error();
-		return (0);
+		print_error(3);
+		free(a);
+		return (-1);
 	}
 	// ft_printf("\ninput check\n");
 	// print_list(*a);// ←確認用
 	coodinatecompress(*a,argc-1);
-	// rra(a,0);
-	// sa(a);
-	// ft_printf("\nrra check\n");
 	push_swap_algo(a);
-	// print_list(*a);// ←確認用
+	
+	print_list(*a);// ←確認用
+	ft_lstclear(a,free);
+	free(a);
 	return (0);
 }

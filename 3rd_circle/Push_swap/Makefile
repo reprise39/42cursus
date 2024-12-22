@@ -33,7 +33,9 @@ SRC_FILES = push_swap.c \
 			push_swap_morethan_three.c \
 			push_swap_algo.c \
 			ft_qsort.c \
-			ft_binarysarch.c 
+			ft_binarysarch.c \
+			push_swap_morethan_three_algo_ab.c \
+			push_swap_morethan_three_algo_ba.c 
 
 SRCS = $(addprefix $(SRC_DIR)/, $(SRC_FILES))
 
