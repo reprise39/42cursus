@@ -6,7 +6,7 @@
 /*   By: mkuida <reprise39@yahoo.co.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/14 04:28:14 by mkuida            #+#    #+#             */
-/*   Updated: 2024/12/23 02:10:14 by mkuida           ###   ########.fr       */
+/*   Updated: 2024/12/23 10:29:33 by mkuida           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,7 @@ void morethan_three(t_list **a,t_list **b,t_command *next_com,int *a_init)
 		// print_list(*b);
 		i++;
 	}
+	// ft_printf("last lotate\n");
 	rotate_one_to_top(a);
 	free(b);
 	free(a_init);

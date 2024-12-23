@@ -6,7 +6,7 @@
 /*   By: mkuida <reprise39@yahoo.co.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/03 23:37:45 by mkuida            #+#    #+#             */
-/*   Updated: 2024/12/23 00:58:12 by mkuida           ###   ########.fr       */
+/*   Updated: 2024/12/23 11:19:41 by mkuida           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ int main(int argc,char **argv)
 	coodinatecompress(*a,argc-1);
 	push_swap_algo(a);
 	
-	print_list(*a);// ←確認用
+	// print_list(*a);// ←確認用
 	ft_lstclear(a,free);
 	free(a);
 	return (0);

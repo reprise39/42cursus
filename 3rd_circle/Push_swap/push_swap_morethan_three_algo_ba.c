@@ -6,7 +6,7 @@
 /*   By: mkuida <reprise39@yahoo.co.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/23 02:09:23 by mkuida            #+#    #+#             */
-/*   Updated: 2024/12/23 02:10:21 by mkuida           ###   ########.fr       */
+/*   Updated: 2024/12/23 10:30:53 by mkuida           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,19 +35,82 @@ void rev_pushcomset_firstlst_to_secondlst(t_list **a,t_list **b,int *a_init,t_co
 			rev_pushcostcheck_ifsmall_setcommand_base_r(*a,*b,a_init,i,next_com);
 		}
 		i++;
+		// print_t_com(next_com);
 	}
 
-	//　後で実装　＜＜ベース側のリストを逆回転＞＞
-	// i = 0;
-	// while(i < ft_lstsize(*a)); // ok
+	// 　後で実装　＜＜ベース側のリストを逆回転＞＞
+	i = 1;
+	while(i < ft_lstsize(*a)) // ok
+	{
+		cost = (next_com->number_of_command);
+		cost_min_possi = i;
+		if(cost > cost_min_possi)
+			rev_pushcostcheck_ifsmall_setcommand_base_rr(*a,*b,a_init,i,next_com);
+		i++;
+	}
+}
+
+void rev_pushcostcheck_ifsmall_setcommand_base_rr(t_list *a,t_list *b,int *a_init,int r_num,t_command *next_com)
+{
+	int i;
+	int target;
+	int in_a_nextnum;
+	int in_a_befnum;
+	int in_a_minnum;
+	int in_a_maxnum;
+	int lstsize;
+	
+	lstsize = ft_lstsize(a);
+	i = 0; //たぶんOK？
+	while(r_num + i < lstsize )
+	{
+		a = a->next;
+		i++;
+	}
+	target = *(int *)(a->content);
+	
+	// int j = 0; //確認
+	// while(j <= a_init[0])
 	// {
-	// 	cost = (next_com->number_of_command);
-	// 	cost_min_possi = i;
-	// 	if(cost > cost_min_possi)
-	// 		pushcostcheck_ifsmall_setcommand_base_rr(a,b,a_init,i,next_com);
-	// 	i++;
+	// 	ft_printf("list[%d] = %d \n",j,a_init[j]);
+	// 	j++;
+	// }
+
+	// ft_printf("target = %d \n",target);
+	//次の数字との依存関係
+	in_a_nextnum = sercharr_nextnum(target,a_init,SERCH_IN_A);
+	// ft_printf("in_b_next_num = %d \n",in_b_nextnum);
+	// ft_printf("\n checkpoint1 \n");
+	if(in_a_nextnum != -1)
+	{
+		// ft_printf("\n in_b_next_num = %d \n",in_b_nextnum);
+		rev_checkdef_rr(b,in_a_nextnum,r_num,next_com , SET_UPPER);
+		// ft_printf("\n checkpoint2 \n");
+	}
+	else if(in_a_nextnum == -1)
+	{
+		// ft_printf("\n in_b_next_num = %d \n",in_b_nextnum);
+		in_a_minnum = sercharr_minnum(lstsize,a_init,SERCH_IN_A);
+		// ft_printf("\n in_b_min_num = %d \n",in_b_minnum);
+
+		rev_checkdef_rr(b,in_a_minnum,r_num,next_com , SET_UPPER);
+	}
+	//前の数字との依存関係
+	// ft_printf("\n checkpoint2 \n");
+
+	// in_b_befnum = sercharr_beforenum(target,a_init,SERCH_IN_B);
+	// // printf("\n in_b_bef_num = %d \n",in_b_befnum);
+	// if(in_b_befnum != -1)
+	// {
+	// 	checkdef_r(b,in_b_befnum,r_num,next_com, SET_UPPER);
+	// }
+	// else if(in_b_befnum == -1)
+	// {
+	// 	in_b_maxnum = sercharr_maxnum(lstsize,a_init,SERCH_IN_B);
+	// 	checkdef_r(b,in_b_maxnum,r_num,next_com, SET_UPPER);
 	// }
 }
+
 
 
 void rev_pushcostcheck_ifsmall_setcommand_base_r(t_list *a,t_list *b,int *a_init,int r_num,t_command *next_com)
@@ -62,8 +125,11 @@ void rev_pushcostcheck_ifsmall_setcommand_base_r(t_list *a,t_list *b,int *a_init
 	
 	lstsize = ft_lstsize(a);
 	i = 0;
-	if(r_num > i)
+	while(r_num > i)
+	{
 		a = a->next;
+		i++;
+	}
 	target = *(int *)(a->content);
 	
 	int j = 0;
@@ -199,4 +265,77 @@ void rev_mk_com_r(t_command* competi,int a_r_num,int b_r_flag,int b_r_num)
 	}
 	// print_t_com(competi);
 	
+}
+
+
+void rev_checkdef_rr(t_list *b,int target ,int a_rr_num,t_command *competi,int setnext_or_bef)
+{
+	int bsize;
+	int def;
+	
+	bsize = ft_lstsize(b);
+	if(setnext_or_bef == 1)
+		def = 1;
+	else
+		def = 0;
+	// ft_printf("target = %d\n", target);
+	// ft_printf("btop = %d\n", *(int *)(b->content));
+
+	while(*(int *)(b->content) != target)
+	{
+		b = b->next;
+		def++;
+	}
+	// ft_printf("aa");
+	// def++;
+	// ft_printf("def == %d\n",def);
+	if(def == bsize)
+		rev_mk_com_rr(competi,a_rr_num,1,0);
+	else if(def <= (bsize/2))
+	{
+		rev_mk_com_rr(competi,a_rr_num,0,def);
+	}
+	else if(def > (bsize/2))
+	{
+		if(bsize - def > 0)
+			rev_mk_com_rr(competi,a_rr_num,1,bsize - def);
+		// else 
+		// 	mk_com_rr(competi,a_rr_num,1,def);
+	}
+}
+
+void rev_mk_com_rr(t_command* competi,int a_rr_num,int b_rr_flag,int b_rr_num)
+{
+	int rr;
+	int rrr;
+	
+	// ft_printf("a_rr_num = %d\n", a_rr_num);
+	// ft_printf("b_rr_num = %d\n", b_rr_num);
+	// ft_printf("b_rr_flag = %d\n", b_rr_flag);
+
+	if(b_rr_flag == 1)
+	{
+		if(ft_max(a_rr_num,b_rr_num) < (competi->number_of_command))
+		{
+			refrech_com_exceptnoc(competi);
+			rrr = ft_min(a_rr_num,b_rr_num);
+			rr = ft_max(a_rr_num,b_rr_num) - rrr;
+			(competi->number_of_command) = ft_max(a_rr_num,b_rr_num);
+			(competi->rrr) = rrr;
+			if(a_rr_num >= b_rr_num)
+				(competi->brr) =rr;
+			else
+				(competi->arr) =rr;
+		}
+	}
+	else if(b_rr_flag == 0)
+	{
+		if((a_rr_num + b_rr_num) < (competi->number_of_command))
+		{
+			refrech_com_exceptnoc(competi);
+			(competi->brr) = a_rr_num;
+			(competi->ar) = b_rr_num;
+			(competi->number_of_command) = a_rr_num + b_rr_num;
+		}
+	}
 }
