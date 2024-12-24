@@ -6,7 +6,7 @@
 /*   By: mkuida <reprise39@yahoo.co.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/23 02:06:06 by mkuida            #+#    #+#             */
-/*   Updated: 2024/12/23 10:30:14 by mkuida           ###   ########.fr       */
+/*   Updated: 2024/12/24 18:20:54 by mkuida           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void pushcomset_firstlst_to_secondlst(t_list **a,t_list **b,int *a_init,t_comman
 	while(i < ft_lstsize(*a))
 	{
 		// ft_printf(" lstsize \n");
-		// cost = (next_com->number_of_command);
+		cost = (next_com->number_of_command);
 		cost_min_possi = i;
 		if(cost > cost_min_possi)
 		{
@@ -39,6 +39,7 @@ void pushcomset_firstlst_to_secondlst(t_list **a,t_list **b,int *a_init,t_comman
 		i++;
 		//  ft_printf(" %d \n",i);
 	}
+	// ft_printf("printcom_half\n");
 	// print_t_com(next_com);
 	// 　後で実装　＜＜ベース側のリストを逆回転＞＞
 	i = 1;
@@ -51,6 +52,7 @@ void pushcomset_firstlst_to_secondlst(t_list **a,t_list **b,int *a_init,t_comman
 		i++;
 		// ft_printf(" %d \n",i);
 	}
+	// ft_printf("printcom_all\n");
 	// print_t_com(next_com);
 }
 
@@ -197,7 +199,7 @@ void checkdef_r(t_list *b,int target ,int a_r_num,t_command *competi,int setnext
 		def++;
 	}
 	// ft_printf("aa\n");
-	def++;
+	// def++;
 	// ft_printf("def == %d\n",def);
 	if(def == bsize)
 		mk_com_r(competi,a_r_num,1,0);
@@ -297,6 +299,11 @@ void mk_com_r(t_command* competi,int a_r_num,int b_r_flag,int b_r_num)
 {
 	int r;
 	int rr;
+
+	// ft_printf("a_rr_num = %d\n", a_r_num);
+	// ft_printf("b_rr_num = %d\n", b_r_num);
+	// ft_printf("b_rr_flag = %d\n", b_r_flag);
+
 
 	if(b_r_flag == 1)
 	{

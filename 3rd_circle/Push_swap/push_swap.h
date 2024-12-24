@@ -6,7 +6,7 @@
 /*   By: mkuida <reprise39@yahoo.co.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 22:56:04 by mkuida            #+#    #+#             */
-/*   Updated: 2024/12/23 10:01:03 by mkuida           ###   ########.fr       */
+/*   Updated: 2024/12/24 18:02:00 by mkuida           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,7 +108,7 @@ void rev_pushcostcheck_ifsmall_setcommand_base_r(t_list *a,t_list *b,int *a_init
 void rev_checkdef_r(t_list *b,int target ,int a_r_num,t_command *competi,int setnext_or_bef);
 void rev_mk_com_r(t_command* competi,int a_r_num,int b_r_flag,int b_r_num);
 void rev_mk_com_rr(t_command* competi,int a_rr_num,int b_rr_flag,int b_rr_num);
-
+void rev_pushcostcheck_ifsmall_setcommand_base_rr(t_list *a,t_list *b,int *a_init,int r_num,t_command *next_com);
 void rev_checkdef_rr(t_list *b,int target ,int a_rr_num,t_command *competi,int setnext_or_bef);
 
 // algo.c

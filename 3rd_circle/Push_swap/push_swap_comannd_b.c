@@ -6,7 +6,7 @@
 /*   By: mkuida <reprise39@yahoo.co.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/14 03:15:09 by mkuida            #+#    #+#             */
-/*   Updated: 2024/12/19 21:32:23 by mkuida           ###   ########.fr       */
+/*   Updated: 2024/12/24 15:29:46 by mkuida           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int sb(t_list **a,int ss_flag)
 	second->next = top;
 	*a = second;
 	if(ss_flag == 0)
-		printf("sb\n");
+		ft_printf("sb\n");
 	return (1);
 }
 
@@ -49,7 +49,7 @@ int pb(t_list** a, t_list **b,int *a_init)
 	*b = (*a);
 	*a = (*a)->next;
 	(*b)->next = btop;
-	printf("pb\n");
+	ft_printf("pb\n");
 	return (1);
 }
 
@@ -64,7 +64,7 @@ int rb(t_list **a,int rr_flag)
 	*a = atop->next;
 	atop->next = NULL;
 	if(rr_flag == 0)
-		printf("rb\n");
+		ft_printf("rb\n");
 	return (1);
 }
 
@@ -82,6 +82,6 @@ int rrb(t_list **a,int rrr_flag)
 	*a = list_ptr->next;
 	list_ptr->next = NULL;
 	if(rrr_flag == 0)
-		printf("rrb\n");
+		ft_printf("rrb\n");
 	return (1);
 }
