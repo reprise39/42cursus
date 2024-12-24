@@ -10,12 +10,13 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "libft_added_ftprintf/libft.h"
-# include "push_swap.h"
+#include "libft_added_ftprintf/libft.h"
+#include "push_swap.h"
 
-static t_list *free_and_return_null(t_list **list_top,int *int_ptr,t_list *added_list)
+static t_list	*free_and_return_null(t_list **list_top, int *int_ptr,
+		t_list *added_list)
 {
-	ft_lstclear(list_top,free);
+	ft_lstclear(list_top, free);
 	free(int_ptr);
 	free(added_list);
 	return (NULL);
@@ -23,9 +24,9 @@ static t_list *free_and_return_null(t_list **list_top,int *int_ptr,t_list *added
 
 static int	ft_lstaddback_and_checkoverlap(t_list **lst, t_list *new)
 {
-	const int new_content = *(int *)(new->content);
-	t_list *dest;
-	
+	const int	new_content = *(int *)(new->content);
+	t_list		*dest;
+
 	if (!new)
 		return (-1);
 	if (*lst == NULL)
@@ -38,41 +39,40 @@ static int	ft_lstaddback_and_checkoverlap(t_list **lst, t_list *new)
 		dest = *lst;
 		while (dest->next != NULL)
 		{
-			if(*(int *)(dest->content) == new_content)
+			if (*(int *)(dest->content) == new_content)
 				return (-1);
 			dest = dest->next;
 		}
-		if(*(int *)(dest->content) == new_content)
-				return (-1);
+		if (*(int *)(dest->content) == new_content)
+			return (-1);
 		dest->next = new;
 		return (1);
 	}
 }
 
-t_list *pushtostack_and_checkoverlap(int argc,char **argv)
+t_list	*pushtostack_and_checkoverlap(int argc, char **argv)
 {
-	int i;
-	int *int_ptr;
-	t_list *list_top;
-	t_list *added_list;
+	int		i;
+	int		*int_ptr;
+	t_list	*list_top;
+	t_list	*added_list;
 
 	i = 1;
-	while(i < argc)
+	while (i < argc)
 	{
 		int_ptr = malloc(sizeof(int));
-		if(int_ptr == NULL)
-			return NULL;
+		if (int_ptr == NULL)
+			return (NULL);
 		*int_ptr = ft_atoi(argv[i]);
-		if(i == 1)
+		if (i == 1)
 			list_top = ft_lstnew(int_ptr);
 		else
 		{
 			added_list = ft_lstnew(int_ptr);
-			if(ft_lstaddback_and_checkoverlap(&list_top,added_list) == -1)
-				return(free_and_return_null(&list_top,int_ptr,added_list));
+			if (ft_lstaddback_and_checkoverlap(&list_top, added_list) == -1)
+				return (free_and_return_null(&list_top, int_ptr, added_list));
 		}
 		i++;
 	}
 	return (list_top);
 }
-

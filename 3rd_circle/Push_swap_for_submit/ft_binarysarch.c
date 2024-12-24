@@ -10,28 +10,28 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "libft_added_ftprintf/libft.h"
-# include "push_swap.h"
+#include "libft_added_ftprintf/libft.h"
+#include "push_swap.h"
 
-int ft_binarysarch(int *arr,int arrsize,int target)
+int	ft_binarysarch(int *arr, int arrsize, int target)
 {
-	int left;
-	int right;
-	int mid;
-	int ans;
+	int	left;
+	int	right;
+	int	mid;
+	int	ans;
 
 	left = -1;
 	right = arrsize;
-	while(right - left > 1)
+	while (right - left > 1)
 	{
-		mid = left + (right - left)/2;
-		if(arr[mid] >= target)
+		mid = left + (right - left) / 2;
+		if (arr[mid] >= target)
 		{
-			if(arr[mid] == target)
+			if (arr[mid] == target)
 				ans = mid;
 			right = mid;
 		}
-		else if(arr[mid] < target)
+		else if (arr[mid] < target)
 			left = mid;
 	}
 	return (ans);

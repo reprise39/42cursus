@@ -10,26 +10,26 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "libft_added_ftprintf/libft.h"
-# include "push_swap.h"
+#include "libft_added_ftprintf/libft.h"
+#include "push_swap.h"
 
-int ss(t_list** a, t_list **b)
+int	ss(t_list **a, t_list **b)
 {
-	sa(a,1);
-	sb(b,1);
+	sa(a, 1);
+	sb(b, 1);
 	ft_printf("ss\n");
 }
 
-int rr(t_list **a, t_list **b)
+int	rr(t_list **a, t_list **b)
 {
-	ra(a,1);
-	rb(b,1);
+	ra(a, 1);
+	rb(b, 1);
 	ft_printf("rr\n");
 }
 
-int rrr(t_list** a, t_list **b)
+int	rrr(t_list **a, t_list **b)
 {
-	rra(a,1);
-	rrb(b,1);
+	rra(a, 1);
+	rrb(b, 1);
 	ft_printf("rrr\n");
 }
