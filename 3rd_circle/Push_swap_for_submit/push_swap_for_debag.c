@@ -13,7 +13,7 @@
 #include "libft_added_ftprintf/libft.h"
 #include "push_swap.h"
 
-void print_t_com(t_command *command)
+void	print_t_com(t_command *command)
 {
 	ft_printf("<print_t_com>\n");
 	ft_printf(" |number_of_command = %d\n", command->number_of_command);
@@ -25,16 +25,16 @@ void print_t_com(t_command *command)
 	ft_printf(" |rrr = %d\n", command->rrr);
 }
 
-void print_list(t_list *a)
+void	print_list(t_list *a)
 {
-	if(a == NULL)
-		return;
+	if (a == NULL)
+		return ;
 	ft_printf("<printlist-start>\n");
 	while (a->next != NULL)
 	{
-		ft_printf("| %d\n", *(int*)(a->content));
+		ft_printf("| %d\n", *(int *)(a->content));
 		a = a->next;
 	}
-	ft_printf("| %d\n", *(int*)(a->content));
+	ft_printf("| %d\n", *(int *)(a->content));
 	ft_printf("<printlist-end>\n");
 }
