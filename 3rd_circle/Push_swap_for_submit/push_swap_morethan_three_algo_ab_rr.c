@@ -6,7 +6,7 @@
 /*   By: mkuida <reprise39@yahoo.co.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/23 02:06:06 by mkuida            #+#    #+#             */
-/*   Updated: 2025/01/17 18:53:32 by mkuida           ###   ########.fr       */
+/*   Updated: 2025/01/17 19:28:29 by mkuida           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,8 @@ void	pushcostcheck_ifsmall_setcommand_base_rr(t_list *a, t_list *b,
 	int	target;
 	int	in_b_nextnum;
 	int	in_b_minnum;
-	int	lstsize;
+	const int	lstsize = ft_lstsize(a);;
 
-	lstsize = ft_lstsize(a);
 	i = 0;
 	while (r_num + i < lstsize)
 	{
@@ -34,7 +33,9 @@ void	pushcostcheck_ifsmall_setcommand_base_rr(t_list *a, t_list *b,
 	target = *(int *)(a->content);
 	in_b_nextnum = sercharr_nextnum(target, (next_com->a_in), SERCH_IN_B);
 	if (in_b_nextnum != -1)
+	{
 		checkdef_rr(b, in_b_nextnum, r_num, next_com, SET_UNDER);
+	}
 	else if (in_b_nextnum == -1)
 	{
 		in_b_minnum = sercharr_minnum(lstsize, (next_com->a_in), SERCH_IN_B);
