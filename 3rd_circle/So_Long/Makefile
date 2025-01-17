@@ -21,7 +21,13 @@ INCLUDES = -I includes
 SRC_DIR = .
 
 SRC_FILES = main.c \
-			check_maps.c
+			so_long_utils.c \
+			map_utils.c \
+			check_maps.c \
+			check_maps_second.c \
+			check_textures.c \
+			get_next_line.c \
+			get_next_line_utils.c 
 
 SRCS = $(addprefix $(SRC_DIR)/, $(SRC_FILES))
 

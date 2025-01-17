@@ -6,16 +6,16 @@
 /*   By: mkuida <reprise39@yahoo.co.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/23 02:06:06 by mkuida            #+#    #+#             */
-/*   Updated: 2024/12/24 21:41:26 by mkuida           ###   ########.fr       */
+/*   Updated: 2025/01/17 18:56:04 by mkuida           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft_added_ftprintf/libft.h"
 #include "push_swap.h"
 
-static void	mk_com_r_flag_off(t_command *competi, int a_r_num,int b_r_num);
+static void	mk_com_r_flag_off(t_command *competi, int a_r_num, int b_r_num);
 
-void	pushcomset_firstlst_to_secondlst(t_list **a, t_list **b, int *a_init,
+void	pushcomset_firstlst_to_secondlst(t_list **a, t_list **b,
 		t_command *next_com)
 {
 	int	i;
@@ -29,8 +29,7 @@ void	pushcomset_firstlst_to_secondlst(t_list **a, t_list **b, int *a_init,
 		cost = (next_com->number_of_command);
 		cost_min_possi = i;
 		if (cost > cost_min_possi)
-			pushcostcheck_ifsmall_setcommand_base_r(*a, *b, a_init, i,
-				next_com);
+			pushcostcheck_ifsmall_setcommand_base_r(*a, *b, i, next_com);
 		i++;
 	}
 	i = 1;
@@ -39,21 +38,18 @@ void	pushcomset_firstlst_to_secondlst(t_list **a, t_list **b, int *a_init,
 		cost = (next_com->number_of_command);
 		cost_min_possi = i;
 		if (cost > cost_min_possi)
-			pushcostcheck_ifsmall_setcommand_base_rr(*a, *b, a_init, i,
-				next_com);
+			pushcostcheck_ifsmall_setcommand_base_rr(*a, *b, i, next_com);
 		i++;
 	}
 }
 
-void	pushcostcheck_ifsmall_setcommand_base_r(t_list *a, t_list *b,
-		int *a_init, int r_num, t_command *next_com)
+void	pushcostcheck_ifsmall_setcommand_base_r(t_list *a, t_list *b, int r_num,
+		t_command *next_com)
 {
 	int	i;
 	int	target;
 	int	in_b_nextnum;
-	int	in_b_befnum;
 	int	in_b_minnum;
-	int	in_b_maxnum;
 	int	lstsize;
 
 	lstsize = ft_lstsize(a);
@@ -64,12 +60,12 @@ void	pushcostcheck_ifsmall_setcommand_base_r(t_list *a, t_list *b,
 		i++;
 	}
 	target = *(int *)(a->content);
-	in_b_nextnum = sercharr_nextnum(target, a_init, SERCH_IN_B);
+	in_b_nextnum = sercharr_nextnum(target, (next_com->a_in), SERCH_IN_B);
 	if (in_b_nextnum != -1)
 		checkdef_r(b, in_b_nextnum, r_num, next_com, SET_UNDER);
 	else if (in_b_nextnum == -1)
 	{
-		in_b_minnum = sercharr_minnum(lstsize, a_init, SERCH_IN_B);
+		in_b_minnum = sercharr_minnum(lstsize, (next_com->a_in), SERCH_IN_B);
 		checkdef_r(b, in_b_minnum, r_num, next_com, SET_UNDER);
 	}
 }
@@ -129,7 +125,7 @@ void	mk_com_r(t_command *competi, int a_r_num, int b_r_flag, int b_r_num)
 	}
 }
 
-static void	mk_com_r_flag_off(t_command *competi, int a_r_num,int b_r_num)
+static void	mk_com_r_flag_off(t_command *competi, int a_r_num, int b_r_num)
 {
 	if ((a_r_num + b_r_num) < (competi->number_of_command))
 	{

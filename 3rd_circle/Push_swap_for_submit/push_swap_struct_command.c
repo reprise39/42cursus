@@ -6,7 +6,7 @@
 /*   By: mkuida <reprise39@yahoo.co.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/19 16:07:12 by mkuida            #+#    #+#             */
-/*   Updated: 2024/12/24 20:29:29 by mkuida           ###   ########.fr       */
+/*   Updated: 2025/01/17 18:31:07 by mkuida           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 #include "push_swap.h"
 
 static void	exac_com_push_to_b_support(t_command *next_com, t_list **a,
-				t_list **b, int *a_init);
+				t_list **b);
 static void	exac_com_push_to_a_support(t_command *next_com, t_list **a,
-				t_list **b, int *a_init);
+				t_list **b);
 
 void	refrech_com(t_command *next_com)
 {
@@ -29,8 +29,7 @@ void	refrech_com(t_command *next_com)
 	next_com->rrr = 0;
 }
 
-void	exac_com_push_to_b(t_command *next_com, t_list **a, t_list **b,
-		int *a_init)
+void	exac_com_push_to_b(t_command *next_com, t_list **a, t_list **b)
 {
 	int	i;
 
@@ -52,11 +51,11 @@ void	exac_com_push_to_b(t_command *next_com, t_list **a, t_list **b,
 		rr(a, b);
 		i--;
 	}
-	exac_com_push_to_b_support(next_com, a, b, a_init);
+	exac_com_push_to_b_support(next_com, a, b);
 }
 
 static void	exac_com_push_to_b_support(t_command *next_com, t_list **a,
-		t_list **b, int *a_init)
+		t_list **b)
 {
 	int	i;
 
@@ -78,11 +77,10 @@ static void	exac_com_push_to_b_support(t_command *next_com, t_list **a,
 		rrb(b, 0);
 		i--;
 	}
-	pb(a, b, a_init);
+	pb(a, b, (next_com->a_in));
 }
 
-void	exac_com_push_to_a(t_command *next_com, t_list **a, t_list **b,
-		int *a_init)
+void	exac_com_push_to_a(t_command *next_com, t_list **a, t_list **b)
 {
 	int	i;
 
@@ -104,11 +102,11 @@ void	exac_com_push_to_a(t_command *next_com, t_list **a, t_list **b,
 		rr(a, b);
 		i--;
 	}
-	exac_com_push_to_a_support(next_com, a, b, a_init);
+	exac_com_push_to_a_support(next_com, a, b);
 }
 
 static void	exac_com_push_to_a_support(t_command *next_com, t_list **a,
-		t_list **b, int *a_init)
+		t_list **b)
 {
 	int	i;
 
@@ -130,5 +128,5 @@ static void	exac_com_push_to_a_support(t_command *next_com, t_list **a,
 		rra(a, 0);
 		i--;
 	}
-	pa(a, b, a_init);
+	pa(a, b, (next_com->a_in));
 }

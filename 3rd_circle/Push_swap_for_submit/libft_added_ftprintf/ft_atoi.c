@@ -64,7 +64,7 @@ int	ft_atoi(const char *nptr)
 	return ((int)(ans * sign));
 }
 
-	// if (ans * sign > INT_MAX)
-	// 	return (INT_MAX);
-	// if (ans * sign < INT_MIN)
-	// 	return (INT_MIN);
+// if (ans * sign > INT_MAX)
+// 	return (INT_MAX);
+// if (ans * sign < INT_MIN)
+// 	return (INT_MIN);

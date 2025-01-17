@@ -6,24 +6,23 @@
 /*   By: mkuida <reprise39@yahoo.co.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/23 02:09:23 by mkuida            #+#    #+#             */
-/*   Updated: 2024/12/24 21:44:17 by mkuida           ###   ########.fr       */
+/*   Updated: 2025/01/17 18:51:28 by mkuida           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft_added_ftprintf/libft.h"
 #include "push_swap.h"
 
-static void	rev_mk_com_rr_flag_off(t_command *competi, int a_rr_num, int b_rr_num);
+static void	rev_mk_com_rr_flag_off(t_command *competi, int a_rr_num,
+				int b_rr_num);
 
 void	rev_pushcostcheck_ifsmall_setcommand_base_rr(t_list *a, t_list *b,
-		int *a_init, int r_num, t_command *next_com)
+		int r_num, t_command *next_com)
 {
 	int	i;
 	int	target;
 	int	in_a_nextnum;
-	int	in_a_befnum;
 	int	in_a_minnum;
-	int	in_a_maxnum;
 	int	lstsize;
 
 	lstsize = ft_lstsize(a);
@@ -34,12 +33,12 @@ void	rev_pushcostcheck_ifsmall_setcommand_base_rr(t_list *a, t_list *b,
 		i++;
 	}
 	target = *(int *)(a->content);
-	in_a_nextnum = sercharr_nextnum(target, a_init, SERCH_IN_A);
+	in_a_nextnum = sercharr_nextnum(target, (next_com->a_in), SERCH_IN_A);
 	if (in_a_nextnum != -1)
 		rev_checkdef_rr(b, in_a_nextnum, r_num, next_com, SET_UPPER);
 	else if (in_a_nextnum == -1)
 	{
-		in_a_minnum = sercharr_minnum(lstsize, a_init, SERCH_IN_A);
+		in_a_minnum = sercharr_minnum(lstsize, (next_com->a_in), SERCH_IN_A);
 		rev_checkdef_rr(b, in_a_minnum, r_num, next_com, SET_UPPER);
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: mkuida <reprise39@yahoo.co.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/23 02:06:06 by mkuida            #+#    #+#             */
-/*   Updated: 2024/12/24 21:42:01 by mkuida           ###   ########.fr       */
+/*   Updated: 2025/01/17 18:53:32 by mkuida           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,14 +16,12 @@
 static void	mk_com_rr_flag_off(t_command *competi, int a_rr_num, int b_rr_num);
 
 void	pushcostcheck_ifsmall_setcommand_base_rr(t_list *a, t_list *b,
-		int *a_init, int r_num, t_command *next_com)
+		int r_num, t_command *next_com)
 {
 	int	i;
 	int	target;
 	int	in_b_nextnum;
-	int	in_b_befnum;
 	int	in_b_minnum;
-	int	in_b_maxnum;
 	int	lstsize;
 
 	lstsize = ft_lstsize(a);
@@ -34,12 +32,12 @@ void	pushcostcheck_ifsmall_setcommand_base_rr(t_list *a, t_list *b,
 		i++;
 	}
 	target = *(int *)(a->content);
-	in_b_nextnum = sercharr_nextnum(target, a_init, SERCH_IN_B);
+	in_b_nextnum = sercharr_nextnum(target, (next_com->a_in), SERCH_IN_B);
 	if (in_b_nextnum != -1)
 		checkdef_rr(b, in_b_nextnum, r_num, next_com, SET_UNDER);
 	else if (in_b_nextnum == -1)
 	{
-		in_b_minnum = sercharr_minnum(lstsize, a_init, SERCH_IN_B);
+		in_b_minnum = sercharr_minnum(lstsize, (next_com->a_in), SERCH_IN_B);
 		checkdef_rr(b, in_b_minnum, r_num, next_com, SET_UNDER);
 	}
 }
@@ -72,6 +70,7 @@ void	checkdef_rr(t_list *b, int target, int a_rr_num, t_command *competi,
 			mk_com_rr(competi, a_rr_num, 1, bsize - def);
 	}
 }
+
 void	mk_com_rr(t_command *competi, int a_rr_num, int b_rr_flag, int b_rr_num)
 {
 	int	rr;

@@ -6,7 +6,7 @@
 /*   By: mkuida <reprise39@yahoo.co.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 23:33:31 by mkuida            #+#    #+#             */
-/*   Updated: 2024/12/03 23:20:41 by mkuida           ###   ########.fr       */
+/*   Updated: 2025/01/17 16:59:52 by mkuida           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,14 +82,14 @@ t_list				*ft_lstmap(t_list *lst, void *(*f)(void *),
 						void (*del)(void *));
 
 //ft_printf
-int	ft_printf(const char *str, ...);
-int	ft_print_lowerx(va_list args, int words_counted);
-int	ft_print_upperx(va_list args, int words_counted);
-int	ft_printdi(va_list args, int words_counted);
-int	ft_printu(va_list args, int words_counted);
-int	ft_printc(va_list args, int words_counted);
-int	ft_prints(va_list args, int words_counted);
-int	ft_printp(va_list args, int words_counted);
-int	ft_printpercent(int words_counted);
+int					ft_printf(const char *str, ...);
+int					ft_print_lowerx(va_list args, int words_counted);
+int					ft_print_upperx(va_list args, int words_counted);
+int					ft_printdi(va_list args, int words_counted);
+int					ft_printu(va_list args, int words_counted);
+int					ft_printc(va_list args, int words_counted);
+int					ft_prints(va_list args, int words_counted);
+int					ft_printp(va_list args, int words_counted);
+int					ft_printpercent(int words_counted);
 
 #endif

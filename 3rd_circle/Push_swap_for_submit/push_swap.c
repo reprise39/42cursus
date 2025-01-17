@@ -6,20 +6,20 @@
 /*   By: mkuida <reprise39@yahoo.co.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/03 23:37:45 by mkuida            #+#    #+#             */
-/*   Updated: 2024/12/24 20:54:48 by mkuida           ###   ########.fr       */
+/*   Updated: 2025/01/17 18:58:04 by mkuida           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft_added_ftprintf/libft.h"
 #include "push_swap.h"
 
-void	print_error(int n)
+static void	print_error(int n)
 {
 	char		*error_message;
 	const char	*str = "Error\n";
+	const char	*error2 = "marroc error : i dont know what to do\n";
 	const char	*error1 = "input_range_error :"
 		"Please give number in int range\n";
-	const char	*error2 = "marroc error : i dont know what to do\n";
 	const char	*error3 = "input_deplicate_error :"
 		"Please give unique arguments in int range\n";
 
@@ -32,6 +32,13 @@ void	print_error(int n)
 	write(STDERR_FILENO, str, ft_strlen(str));
 	write(STDERR_FILENO, error_message, ft_strlen(error_message));
 	return ;
+}
+
+static void	push_swap_main_process(int argc, char **argv, t_list **a)
+{
+	coodinatecompress(*a, argc - 1);
+	push_swap_algo(a);
+	ft_lstclear(a, free);
 }
 
 int	main(int argc, char **argv)
@@ -58,9 +65,7 @@ int	main(int argc, char **argv)
 		free(a);
 		return (-1);
 	}
-	coodinatecompress(*a, argc - 1);
-	push_swap_algo(a);
-	ft_lstclear(a, free);
+	push_swap_main_process(argc, argv, a);
 	free(a);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: mkuida <reprise39@yahoo.co.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/14 04:28:14 by mkuida            #+#    #+#             */
-/*   Updated: 2024/12/24 19:12:38 by mkuida           ###   ########.fr       */
+/*   Updated: 2025/01/17 18:31:16 by mkuida           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 #include "push_swap.h"
 
 static void	push_twice_unless_asize_lessthanthree(t_list **a, t_list **b,
-				int *a_init);
+				t_command *next_com);
 static void	push_to_b_until_asize_three(t_list **a, t_list **b,
-				t_command *next_com, int *a_init);
+				t_command *next_com);
 static void	rotate_one_to_top(t_list **a);
 
 void	by_malloc_prep_morethan_three(t_list **a)
@@ -44,47 +44,48 @@ void	by_malloc_prep_morethan_three(t_list **a)
 		return ;
 	}
 	set_initlst(a_init, maxint);
-	morethan_three(a, b, next_com, a_init);
+	(next_com->a_in) = a_init;
+	morethan_three(a, b, next_com);
 }
 
-void	morethan_three(t_list **a, t_list **b, t_command *next_com, int *a_init)
+void	morethan_three(t_list **a, t_list **b, t_command *next_com)
 {
 	int			i;
 	const int	maxint = ft_lstsize(*a);
 	int			one_place;
 
 	i = 0;
-	push_twice_unless_asize_lessthanthree(a, b, a_init);
-	push_to_b_until_asize_three(a, b, next_com, a_init);
+	push_twice_unless_asize_lessthanthree(a, b, next_com);
+	push_to_b_until_asize_three(a, b, next_com);
 	three_lst(a);
 	while (*b != NULL)
 	{
 		refrech_com(next_com);
-		rev_pushcomset_firstlst_to_secondlst(b, a, a_init, next_com);
-		exac_com_push_to_a(next_com, a, b, a_init);
+		rev_pushcomset_firstlst_to_secondlst(b, a, next_com);
+		exac_com_push_to_a(next_com, a, b);
 		i++;
 	}
 	rotate_one_to_top(a);
 	free(b);
-	free(a_init);
+	free((next_com->a_in));
 	free(next_com);
 }
 
 static void	push_twice_unless_asize_lessthanthree(t_list **a, t_list **b,
-		int *a_init)
+		t_command *next_com)
 {
 	int	i;
 
 	i = 0;
 	while (i < 2 && ft_lstsize(*a) > 3)
 	{
-		pb(a, b, a_init);
+		pb(a, b, (next_com->a_in));
 		i++;
 	}
 }
 
 static void	push_to_b_until_asize_three(t_list **a, t_list **b,
-		t_command *next_com, int *a_init)
+		t_command *next_com)
 {
 	int	i;
 
@@ -92,8 +93,8 @@ static void	push_to_b_until_asize_three(t_list **a, t_list **b,
 	while (ft_lstsize(*a) > 3)
 	{
 		refrech_com(next_com);
-		pushcomset_firstlst_to_secondlst(a, b, a_init, next_com);
-		exac_com_push_to_b(next_com, a, b, a_init);
+		pushcomset_firstlst_to_secondlst(a, b, next_com);
+		exac_com_push_to_b(next_com, a, b);
 		i++;
 	}
 }
