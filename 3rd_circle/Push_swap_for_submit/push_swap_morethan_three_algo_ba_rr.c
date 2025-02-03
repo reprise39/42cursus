@@ -6,7 +6,7 @@
 /*   By: mkuida <reprise39@yahoo.co.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/23 02:09:23 by mkuida            #+#    #+#             */
-/*   Updated: 2025/01/17 19:29:49 by mkuida           ###   ########.fr       */
+/*   Updated: 2025/02/03 18:13:27 by mkuida           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,10 @@ static void	rev_mk_com_rr_flag_off(t_command *competi, int a_rr_num,
 void	rev_pushcostcheck_ifsmall_setcommand_base_rr(t_list *a, t_list *b,
 		int r_num, t_command *next_com)
 {
-	int	i;
-	int	target;
-	int	in_a_nextnum;
-	int	in_a_minnum;
+	int			i;
+	int			target;
+	int			in_a_nextnum;
+	int			in_a_minnum;
 	const int	lstsize = ft_lstsize(a);
 
 	i = 0;

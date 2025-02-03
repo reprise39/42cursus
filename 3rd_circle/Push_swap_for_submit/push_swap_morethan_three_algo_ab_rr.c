@@ -6,7 +6,7 @@
 /*   By: mkuida <reprise39@yahoo.co.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/23 02:06:06 by mkuida            #+#    #+#             */
-/*   Updated: 2025/01/17 19:28:29 by mkuida           ###   ########.fr       */
+/*   Updated: 2025/02/03 18:10:34 by mkuida           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,11 @@ static void	mk_com_rr_flag_off(t_command *competi, int a_rr_num, int b_rr_num);
 void	pushcostcheck_ifsmall_setcommand_base_rr(t_list *a, t_list *b,
 		int r_num, t_command *next_com)
 {
-	int	i;
-	int	target;
-	int	in_b_nextnum;
-	int	in_b_minnum;
-	const int	lstsize = ft_lstsize(a);;
+	int			i;
+	int			target;
+	int			in_b_nextnum;
+	int			in_b_minnum;
+	const int	lstsize = ft_lstsize(a);
 
 	i = 0;
 	while (r_num + i < lstsize)
