@@ -6,7 +6,7 @@
 /*   By: mkuida <reprise39@yahoo.co.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 22:56:04 by mkuida            #+#    #+#             */
-/*   Updated: 2025/02/03 18:14:13 by mkuida           ###   ########.fr       */
+/*   Updated: 2025/02/03 18:31:33 by mkuida           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,10 @@ typedef struct s_command
 	int	rr;
 	int	rrr;
 	int	*a_in;
+	int	r_setnext_or_bef;
+	int	rr_setnext_or_bef;
+	int	rev_r_setnext_or_bef;
+	int	rev_rr_setnext_or_bef;
 }		t_command;
 
 // initlst
@@ -92,14 +96,12 @@ void	pushcomset_firstlst_to_secondlst(t_list **a, t_list **b,
 void	pushcostcheck_ifsmall_setcommand_base_r(t_list *a, t_list *b, int r_num,
 			t_command *next_com);
 void	mk_com_r(t_command *competi, int a_r_num, int b_r_flag, int b_r_num);
-void	checkdef_r(t_list *b, int target, int a_r_num, t_command *competi,
-			int setnext_or_bef);
+void	checkdef_r(t_list *b, int target, int a_r_num, t_command *competi);
 
 // morethan_three_algo_ab_rr.c
 void	pushcostcheck_ifsmall_setcommand_base_rr(t_list *a, t_list *b,
 			int r_num, t_command *next_com);
-void	checkdef_rr(t_list *b, int target, int a_rr_num, t_command *competi,
-			int setnext_or_bef);
+void	checkdef_rr(t_list *b, int target, int a_rr_num, t_command *competi);
 void	mk_com_rr(t_command *competi, int a_rr_num, int b_rr_flag,
 			int b_rr_num);
 
@@ -108,16 +110,15 @@ void	rev_pushcomset_firstlst_to_secondlst(t_list **a, t_list **b,
 			t_command *next_com);
 void	rev_pushcostcheck_ifsmall_setcommand_base_r(t_list *a, t_list *b,
 			int r_num, t_command *next_com);
-void	rev_checkdef_r(t_list *b, int target, int a_r_num, t_command *competi,
-			int setnext_or_bef);
+void	rev_checkdef_r(t_list *b, int target, int a_r_num, t_command *competi);
 void	rev_mk_com_r(t_command *competi, int a_r_num, int b_r_flag,
 			int b_r_num);
 
 // morethan_three_algo_ba_rr.c
 void	rev_pushcostcheck_ifsmall_setcommand_base_rr(t_list *a, t_list *b,
 			int r_num, t_command *next_com);
-void	rev_checkdef_rr(t_list *b, int target, int a_rr_num, t_command *competi,
-			int setnext_or_bef);
+void	rev_checkdef_rr(t_list *b, int target, int a_rr_num,
+			t_command *competi);
 void	rev_mk_com_rr(t_command *competi, int a_rr_num, int b_rr_flag,
 			int b_rr_num);
 

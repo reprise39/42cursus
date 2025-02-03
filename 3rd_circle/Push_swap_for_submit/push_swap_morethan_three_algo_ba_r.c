@@ -6,7 +6,7 @@
 /*   By: mkuida <reprise39@yahoo.co.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/23 02:09:23 by mkuida            #+#    #+#             */
-/*   Updated: 2025/01/17 18:55:18 by mkuida           ###   ########.fr       */
+/*   Updated: 2025/02/03 18:34:07 by mkuida           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,23 +63,25 @@ void	rev_pushcostcheck_ifsmall_setcommand_base_r(t_list *a, t_list *b,
 	}
 	target = *(int *)(a->content);
 	in_b_nextnum = sercharr_nextnum(target, (next_com->a_in), SERCH_IN_A);
+	next_com->rev_r_setnext_or_bef = SET_UPPER;
 	if (in_b_nextnum != -1)
-		rev_checkdef_r(b, in_b_nextnum, r_num, next_com, SET_UPPER);
+	{
+		rev_checkdef_r(b, in_b_nextnum, r_num, next_com);
+	}
 	else if (in_b_nextnum == -1)
 	{
 		in_b_minnum = sercharr_minnum(lstsize, (next_com->a_in), SERCH_IN_A);
-		rev_checkdef_r(b, in_b_minnum, r_num, next_com, SET_UPPER);
+		rev_checkdef_r(b, in_b_minnum, r_num, next_com);
 	}
 }
 
-void	rev_checkdef_r(t_list *b, int target, int a_r_num, t_command *competi,
-		int setnext_or_bef)
+void	rev_checkdef_r(t_list *b, int target, int a_r_num, t_command *competi)
 {
 	int	bsize;
 	int	def;
 
 	bsize = ft_lstsize(b);
-	if (setnext_or_bef == 1)
+	if (competi->rev_r_setnext_or_bef == 1)
 		def = 1;
 	else
 		def = 0;
