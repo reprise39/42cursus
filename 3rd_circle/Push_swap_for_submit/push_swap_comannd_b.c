@@ -6,7 +6,7 @@
 /*   By: mkuida <reprise39@yahoo.co.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/14 03:15:09 by mkuida            #+#    #+#             */
-/*   Updated: 2024/12/24 15:29:46 by mkuida           ###   ########.fr       */
+/*   Updated: 2025/02/04 18:07:07 by mkuida           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,8 @@ int	pb(t_list **a, t_list **b, int *a_init)
 	if (a == NULL || atop == NULL)
 		return (0);
 	push_content = *(int *)(atop->content);
-	a_init[push_content] = 0;
+	if(a_init != NULL)
+		a_init[push_content] = 0;
 	*b = (*a);
 	*a = (*a)->next;
 	(*b)->next = btop;

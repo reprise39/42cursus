@@ -6,12 +6,13 @@
 /*   By: mkuida <reprise39@yahoo.co.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 18:54:53 by mkuida            #+#    #+#             */
-/*   Updated: 2025/02/03 21:14:49 by mkuida           ###   ########.fr       */
+/*   Updated: 2025/02/04 18:07:16 by mkuida           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft_added_ftprintf/libft.h"
 #include "push_swap.h"
+#include "get_next_line.h"
 
 int check_list_is_sorted(t_list *lst)
 {
@@ -48,8 +49,8 @@ void exec_command(int com_num,t_list **a,t_list **b)
 	if(com_num == 0) sa(a,0);
 	if(com_num == 1) sb(b,0);
 	if(com_num == 2) ss(a,b);
-	if(com_num == 3) pb(a,b,);
-	if(com_num == 4) pa(a,b,);
+	if(com_num == 3) pb(a,b,NULL);
+	if(com_num == 4) pa(a,b,NULL);
 	if(com_num == 5) ra(a,0);
 	if(com_num == 6) rb(b,0);
 	if(com_num == 7) rr(a,b);
