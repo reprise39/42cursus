@@ -12,9 +12,10 @@
 
 #define
 NAME = push_swap
+BONUS_NAME = checker
+
 CC = cc
-CFLAGS =
-# CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror
 INCLUDES = -I includes
 
 SRC_DIR = .
@@ -40,28 +41,49 @@ SRC_FILES = push_swap.c \
 			push_swap_morethan_three_algo_ba_rr.c \
 			push_swap_for_debag.c
 
+BONUS_SRC_FILES = bonus_make_checker.c \
+				  get_next_line.c \
+				  push_swap_initlst.c \
+				  push_swap_coodinatecompress.c \
+				  push_swap_struct_command.c \
+				  push_swap_check_input.c \
+				  push_swap_lstaddback_and_checkoverlap.c \
+				  push_swap_utils.c \
+				  push_swap_comannd_a.c \
+				  push_swap_comannd_b.c \
+				  push_swap_comannd_r.c \
+				  ft_qsort.c \
+				  ft_binarysarch.c
+
 SRCS = $(addprefix $(SRC_DIR)/, $(SRC_FILES))
+BONUS_SRCS = $(addprefix $(SRC_DIR)/, $(BONUS_SRC_FILES))
 
 OBJ_DIR = .
 
 OBJS = $(SRCS:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)
+BONUS_OBJS = $(BONUS_SRCS:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)
 
 LIBFT_DIR = ./libft_added_ftprintf
 LIBFT = $(LIBFT_DIR)/libft.a
-
-# BONUS_FLAG = .bonus_done
 
 .PHONY: all clean fclean re
 
 # defolt
 all: $(NAME)
 
-# make lib
-$(NAME): $(OBJS)
-	make -C $(LIBFT_DIR)
-#	cp $(LIBFT) $(NAME)
-#	ar rcs $(NAME) $(MAN_OBJS)
+# make mandatory
+$(NAME): $(OBJS) $(LIBFT)
 	$(CC) -o $(NAME) $(OBJS) -L$(LIBFT_DIR) -lft
+
+# make bonus
+bonus: $(BONUS_NAME) $(LIBFT)
+
+$(BONUS_NAME): $(BONUS_OBJS) $(LIBFT)
+	$(CC) -o $(BONUS_NAME) $(BONUS_OBJS) -L$(LIBFT_DIR) -lft
+
+# Make libft
+$(LIBFT):
+	make -C $(LIBFT_DIR)
 
 # make object files
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c | $(OBJ_DIR)
@@ -69,10 +91,10 @@ $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c | $(OBJ_DIR)
 
 clean:
 	make clean -C $(LIBFT_DIR)
-	rm -f $(OBJS)
+	rm -f $(OBJS) $(BONUS_OBJS)
 
 fclean: clean
 	make fclean -C $(LIBFT_DIR)
-	rm -f $(NAME)
+	rm -f $(NAME) $(BONUS_NAME)
 
 re: fclean all

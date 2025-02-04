@@ -6,7 +6,7 @@
 /*   By: mkuida <reprise39@yahoo.co.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/19 16:36:10 by mkuida            #+#    #+#             */
-/*   Updated: 2024/12/23 10:54:49 by mkuida           ###   ########.fr       */
+/*   Updated: 2025/02/04 18:50:11 by mkuida           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ void	coodinatecompress(t_list *a, int size)
 	return ;
 }
 
-void	*lst_to_arry(t_list *a, int *origin_num)
+void	lst_to_arry(t_list *a, int *origin_num)
 {
 	int	i;
 
@@ -70,4 +70,5 @@ void	*lst_to_arry(t_list *a, int *origin_num)
 		a = a->next;
 	}
 	origin_num[i] = *(int *)(a->content);
+	return ;
 }

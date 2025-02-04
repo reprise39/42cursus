@@ -6,7 +6,7 @@
 /*   By: mkuida <reprise39@yahoo.co.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 22:56:04 by mkuida            #+#    #+#             */
-/*   Updated: 2025/02/03 18:31:33 by mkuida           ###   ########.fr       */
+/*   Updated: 2025/02/04 19:23:40 by mkuida           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 # include <limits.h>
 # include <stdlib.h>
 # include <unistd.h>
+# include "libft_added_ftprintf/libft.h" //tamesituika
 
 typedef struct s_command
 {
@@ -42,8 +43,8 @@ typedef struct s_command
 void	set_initlst(int *a_init, int max);
 int		sercharr_nextnum(int target, int *x_init, int serchlst);
 int		sercharr_beforenum(int target, int *x_init, int serchlst);
-int		sercharr_minnum(int lstsize, int *a_init, int serchlst);
-int		sercharr_maxnum(int lstsize, int *a_init, int serchlst);
+int		sercharr_minnum(int *a_init, int serchlst);
+int		sercharr_maxnum(int *a_init, int serchlst);
 
 // struct_command
 void	refrech_com(t_command *next_com);
@@ -139,7 +140,7 @@ int		ft_binarysarch(int *arr, int arrsize, int target);
 // push_swap_coodinatecompress.c
 int		*ft_sort(int *origin_num, int size);
 void	coodinatecompress(t_list *a, int size);
-void	*lst_to_arry(t_list *a, int *origin_num);
+void	lst_to_arry(t_list *a, int *origin_num);
 
 // for_debag
 void	print_t_com(t_command *command);

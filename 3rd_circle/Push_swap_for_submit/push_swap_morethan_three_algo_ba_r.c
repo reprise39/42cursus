@@ -6,7 +6,7 @@
 /*   By: mkuida <reprise39@yahoo.co.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/23 02:09:23 by mkuida            #+#    #+#             */
-/*   Updated: 2025/02/03 18:34:07 by mkuida           ###   ########.fr       */
+/*   Updated: 2025/02/04 18:57:50 by mkuida           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@ void	rev_pushcomset_firstlst_to_secondlst(t_list **a, t_list **b,
 	int	i;
 	int	cost;
 	int	cost_min_possi;
-	int	cost_min;
 
 	i = 0;
 	while (i < ft_lstsize(*a))
@@ -52,9 +51,7 @@ void	rev_pushcostcheck_ifsmall_setcommand_base_r(t_list *a, t_list *b,
 	int	target;
 	int	in_b_nextnum;
 	int	in_b_minnum;
-	int	lstsize;
 
-	lstsize = ft_lstsize(a);
 	i = 0;
 	while (r_num > i)
 	{
@@ -70,7 +67,7 @@ void	rev_pushcostcheck_ifsmall_setcommand_base_r(t_list *a, t_list *b,
 	}
 	else if (in_b_nextnum == -1)
 	{
-		in_b_minnum = sercharr_minnum(lstsize, (next_com->a_in), SERCH_IN_A);
+		in_b_minnum = sercharr_minnum((next_com->a_in), SERCH_IN_A);
 		rev_checkdef_r(b, in_b_minnum, r_num, next_com);
 	}
 }

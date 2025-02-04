@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   bonus_make_tester.c                                :+:      :+:    :+:   */
+/*   bonus_make_checker.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mkuida <reprise39@yahoo.co.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 18:54:53 by mkuida            #+#    #+#             */
-/*   Updated: 2025/02/04 18:07:16 by mkuida           ###   ########.fr       */
+/*   Updated: 2025/02/04 19:14:35 by mkuida           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,12 +23,12 @@ int check_list_is_sorted(t_list *lst)
 	ans = 1;
 	if (lst == NULL)
 		return (ans);
-	temp = lst->content; 
+	temp = *(int *)(lst->content); 
 	check = lst->next;
 	while (check != NULL)
 	{
 		check = check->next;
-		if((check->content) <= temp)
+		if(*(int *)(check->content) <= temp)
 			ans = -1;
 	}
 	return (ans);
@@ -64,9 +64,10 @@ void exec_command(int com_num,t_list **a,t_list **b)
 int check_command_number(char *line)
 {
 	int i;
-	const int line_len = ft_strlen(line);
+	size_t line_len;
 	char **command;
 	command = malloc(sizeof(char **) * 11);
+	line_len = ft_strlen(line);
 
 	command[0] = "sa";
     command[1] = "sb";
@@ -83,7 +84,7 @@ int check_command_number(char *line)
 	i = 0;
 	while(i < 11)
 	{
-		if(line_len == strlen(command[i]))
+		if(line_len == ft_strlen(command[i]))
 		{
 			if(ft_strncmp(line, command[i], line_len) == 0)
 				return (i);

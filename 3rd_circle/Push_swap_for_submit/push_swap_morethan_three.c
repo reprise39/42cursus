@@ -6,7 +6,7 @@
 /*   By: mkuida <reprise39@yahoo.co.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/14 04:28:14 by mkuida            #+#    #+#             */
-/*   Updated: 2025/01/17 18:31:16 by mkuida           ###   ########.fr       */
+/*   Updated: 2025/02/04 18:52:44 by mkuida           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,8 +51,6 @@ void	by_malloc_prep_morethan_three(t_list **a)
 void	morethan_three(t_list **a, t_list **b, t_command *next_com)
 {
 	int			i;
-	const int	maxint = ft_lstsize(*a);
-	int			one_place;
 
 	i = 0;
 	push_twice_unless_asize_lessthanthree(a, b, next_com);

@@ -6,7 +6,7 @@
 /*   By: mkuida <reprise39@yahoo.co.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/23 02:09:23 by mkuida            #+#    #+#             */
-/*   Updated: 2025/02/03 18:35:27 by mkuida           ###   ########.fr       */
+/*   Updated: 2025/02/04 18:58:02 by mkuida           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ void	rev_pushcostcheck_ifsmall_setcommand_base_rr(t_list *a, t_list *b,
 	}
 	else if (in_a_nextnum == -1)
 	{
-		in_a_minnum = sercharr_minnum(lstsize, (next_com->a_in), SERCH_IN_A);
+		in_a_minnum = sercharr_minnum((next_com->a_in), SERCH_IN_A);
 		rev_checkdef_rr(b, in_a_minnum, r_num, next_com);
 	}
 }

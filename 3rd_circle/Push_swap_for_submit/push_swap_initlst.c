@@ -6,7 +6,7 @@
 /*   By: mkuida <reprise39@yahoo.co.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/19 16:12:53 by mkuida            #+#    #+#             */
-/*   Updated: 2024/12/21 20:40:40 by mkuida           ###   ########.fr       */
+/*   Updated: 2025/02/04 18:45:08 by mkuida           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ void	set_initlst(int *a_init, int max)
 	}
 }
 
-int	sercharr_minnum(int lstsize, int *a_init, int serchlst)
+int	sercharr_minnum(int *a_init, int serchlst)
 {
 	int	i;
 
@@ -68,7 +68,7 @@ int	sercharr_minnum(int lstsize, int *a_init, int serchlst)
 	return (-1);
 }
 
-int	sercharr_maxnum(int lstsize, int *a_init, int serchlst)
+int	sercharr_maxnum(int *a_init, int serchlst)
 {
 	int	i;
 

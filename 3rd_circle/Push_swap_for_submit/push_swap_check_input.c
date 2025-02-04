@@ -6,7 +6,7 @@
 /*   By: mkuida <reprise39@yahoo.co.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 22:58:55 by mkuida            #+#    #+#             */
-/*   Updated: 2024/12/24 18:50:37 by mkuida           ###   ########.fr       */
+/*   Updated: 2025/02/04 18:51:09 by mkuida           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,10 +41,8 @@ static int	check_number_of_digits_tendigit(char *numstart, int posi_or_nega)
 
 static int	check_number_of_digits(char *numstart, int sign_flag)
 {
-	int			i;
 	const int	numsize = ft_strlen(numstart);
 
-	i = 0;
 	if (numsize > 10)
 		return (0);
 	else if (numsize == 10)

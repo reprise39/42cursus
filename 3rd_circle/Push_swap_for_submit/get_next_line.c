@@ -6,11 +6,42 @@
 /*   By: mkuida <reprise39@yahoo.co.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/19 20:24:51 by mkuida            #+#    #+#             */
-/*   Updated: 2025/02/04 18:03:37 by mkuida           ###   ########.fr       */
+/*   Updated: 2025/02/04 19:24:59 by mkuida           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "push_swap.h"
 #include "get_next_line.h"
+#include "libft_added_ftprintf/libft.h"
+
+static char	*strjoin_and_free(char *freed_str, char const *added_str)
+{
+	char	*return_dest;
+	size_t	fr_len;
+	size_t	ad_len;
+
+	if (freed_str == NULL && added_str == NULL)
+		return (NULL);
+	else if (freed_str == NULL)
+		return (ft_strdup(added_str));
+	fr_len = ft_strlen(freed_str);
+	ad_len = ft_strlen(added_str);
+	if (fr_len + ad_len == 0 || fr_len > SIZE_MAX - ad_len)
+	{
+		free(freed_str);
+		return (ft_strdup(""));
+	}
+	return_dest = malloc((fr_len + ad_len) * sizeof(char) + 1);
+	if (return_dest == NULL)
+	{
+		free(freed_str);
+		return (NULL);
+	}
+	ft_strlcpy(return_dest, freed_str, fr_len + 1);
+	ft_strlcpy(return_dest + fr_len, added_str, ad_len + 1);
+	free(freed_str);
+	return (return_dest);
+}
 
 static char	*mem_update(int fd, char *saved_mem)
 {
@@ -92,34 +123,6 @@ static char	*cut_savedmem_before_linebreak(char *saved_mem)
 	return (dest);
 }
 
-static char	*strjoin_and_free(char *freed_str, char const *added_str)
-{
-	char	*return_dest;
-	size_t	fr_len;
-	size_t	ad_len;
-
-	if (freed_str == NULL && added_str == NULL)
-		return (NULL);
-	else if (freed_str == NULL)
-		return (ft_strdup(added_str));
-	fr_len = ft_strlen(freed_str);
-	ad_len = ft_strlen(added_str);
-	if (fr_len + ad_len == 0 || fr_len > SIZE_MAX - ad_len)
-	{
-		free(freed_str);
-		return (ft_strdup(""));
-	}
-	return_dest = malloc((fr_len + ad_len) * sizeof(char) + 1);
-	if (return_dest == NULL)
-	{
-		free(freed_str);
-		return (NULL);
-	}
-	ft_strlcpy(return_dest, freed_str, fr_len + 1);
-	ft_strlcpy(return_dest + fr_len, added_str, ad_len + 1);
-	free(freed_str);
-	return (return_dest);
-}
 
 
 char	*get_next_line(int fd)

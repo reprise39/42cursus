@@ -6,7 +6,7 @@
 /*   By: mkuida <reprise39@yahoo.co.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/03 23:37:45 by mkuida            #+#    #+#             */
-/*   Updated: 2025/01/17 18:58:04 by mkuida           ###   ########.fr       */
+/*   Updated: 2025/02/04 18:43:52 by mkuida           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ static void	print_error(int n)
 	return ;
 }
 
-static void	push_swap_main_process(int argc, char **argv, t_list **a)
+static void	push_swap_main_process(int argc, t_list **a)
 {
 	coodinatecompress(*a, argc - 1);
 	push_swap_algo(a);
@@ -65,7 +65,7 @@ int	main(int argc, char **argv)
 		free(a);
 		return (-1);
 	}
-	push_swap_main_process(argc, argv, a);
+	push_swap_main_process(argc, a);
 	free(a);
 	return (0);
 }
