@@ -18,7 +18,7 @@ CC = cc
 CFLAGS = -Wall -Wextra -Werror
 INCLUDES = -I includes
 
-SRC_DIR = .
+SRC_DIR = ./SRC
 
 SRC_FILES = push_swap.c \
 			push_swap_initlst.c \
@@ -27,9 +27,9 @@ SRC_FILES = push_swap.c \
 			push_swap_check_input.c \
 			push_swap_lstaddback_and_checkoverlap.c \
 			push_swap_utils.c \
-			push_swap_comannd_a.c \
-			push_swap_comannd_b.c \
-			push_swap_comannd_r.c \
+			push_swap_command_a.c \
+			push_swap_command_b.c \
+			push_swap_command_r.c \
 			push_swap_for_three.c \
 			push_swap_morethan_three.c \
 			push_swap_algo.c \
@@ -42,6 +42,8 @@ SRC_FILES = push_swap.c \
 			push_swap_for_debag.c
 
 BONUS_SRC_FILES = bonus_make_checker.c \
+				  bonus_push_swap_command_basic.c \
+				  bonus_push_swap_command_complex.c \
 				  get_next_line.c \
 				  push_swap_initlst.c \
 				  push_swap_coodinatecompress.c \
@@ -49,16 +51,16 @@ BONUS_SRC_FILES = bonus_make_checker.c \
 				  push_swap_check_input.c \
 				  push_swap_lstaddback_and_checkoverlap.c \
 				  push_swap_utils.c \
-				  push_swap_comannd_a.c \
-				  push_swap_comannd_b.c \
-				  push_swap_comannd_r.c \
+				  push_swap_command_a.c \
+				  push_swap_command_b.c \
+				  push_swap_command_r.c \
 				  ft_qsort.c \
 				  ft_binarysarch.c
 
 SRCS = $(addprefix $(SRC_DIR)/, $(SRC_FILES))
 BONUS_SRCS = $(addprefix $(SRC_DIR)/, $(BONUS_SRC_FILES))
 
-OBJ_DIR = .
+OBJ_DIR = ./OBJ
 
 OBJS = $(SRCS:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)
 BONUS_OBJS = $(BONUS_SRCS:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)

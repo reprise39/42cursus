@@ -6,7 +6,7 @@
 /*   By: mkuida <reprise39@yahoo.co.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 22:56:04 by mkuida            #+#    #+#             */
-/*   Updated: 2025/02/04 19:23:40 by mkuida           ###   ########.fr       */
+/*   Updated: 2025/02/05 16:07:57 by mkuida           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -145,5 +145,19 @@ void	lst_to_arry(t_list *a, int *origin_num);
 // for_debag
 void	print_t_com(t_command *command);
 void	print_list(t_list *a);
+
+// bonus //
+// make_checker
+
+//push_swap_comannd_basic
+int	bonus_swap(t_list **a);
+int	bonus_push(t_list **a, t_list **b);
+int	bonus_rotate(t_list **a);
+int	bonus_rev_rotate(t_list **a);
+
+//push_swap_comannd_complex
+int	bonus_ss(t_list **a, t_list **b);
+int	bonus_rr(t_list **a, t_list **b);
+int	bonus_rrr(t_list **a, t_list **b);
 
 #endif
