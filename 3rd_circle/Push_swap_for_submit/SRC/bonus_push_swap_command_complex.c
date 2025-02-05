@@ -17,19 +17,19 @@ int	bonus_ss(t_list **a, t_list **b)
 {
 	bonus_swap(a);
 	bonus_swap(b);
-	return 1;
+	return (1);
 }
 
 int	bonus_rr(t_list **a, t_list **b)
 {
 	bonus_rotate(a);
 	bonus_rotate(b);
-	return 1;
+	return (1);
 }
 
 int	bonus_rrr(t_list **a, t_list **b)
 {
 	bonus_rev_rotate(a);
 	bonus_rev_rotate(b);
-	return 1;
+	return (1);
 }

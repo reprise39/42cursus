@@ -6,7 +6,7 @@
 /*   By: mkuida <reprise39@yahoo.co.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/19 20:24:51 by mkuida            #+#    #+#             */
-/*   Updated: 2025/02/05 15:47:37 by mkuida           ###   ########.fr       */
+/*   Updated: 2025/02/05 17:23:12 by mkuida           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,8 +122,6 @@ static char	*cut_savedmem_before_linebreak(char *saved_mem)
 	free(saved_mem);
 	return (dest);
 }
-
-
 
 char	*get_next_line(int fd)
 {

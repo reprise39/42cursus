@@ -6,7 +6,7 @@
 /*   By: mkuida <reprise39@yahoo.co.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 22:56:04 by mkuida            #+#    #+#             */
-/*   Updated: 2025/02/05 16:53:53 by mkuida           ###   ########.fr       */
+/*   Updated: 2025/02/05 17:17:05 by mkuida           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -155,7 +155,7 @@ int tester_main_process(t_list **a, t_list **b);
 
 // make_checker_utils
 int check_list_is_sorted(t_list *lst);
-int check_list_is_ok(t_list **a,t_list **b);
+void print_list_is_ok_or_ko(t_list **a,t_list **b);
 
 //push_swap_comannd_basic
 int	bonus_swap(t_list **a);

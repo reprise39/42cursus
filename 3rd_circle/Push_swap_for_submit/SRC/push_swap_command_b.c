@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap_comannd_b.c                              :+:      :+:    :+:   */
+/*   push_swap_command_b.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mkuida <reprise39@yahoo.co.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/14 03:15:09 by mkuida            #+#    #+#             */
-/*   Updated: 2025/02/05 15:48:04 by mkuida           ###   ########.fr       */
+/*   Updated: 2025/02/05 17:23:23 by mkuida           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ int	pb(t_list **a, t_list **b, int *a_init)
 	if (a == NULL || atop == NULL)
 		return (0);
 	push_content = *(int *)(atop->content);
-	if(a_init != NULL)
+	if (a_init != NULL)
 		a_init[push_content] = 0;
 	*b = (*a);
 	*a = (*a)->next;

@@ -6,72 +6,79 @@
 /*   By: mkuida <reprise39@yahoo.co.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 18:54:53 by mkuida            #+#    #+#             */
-/*   Updated: 2025/02/05 17:11:37 by mkuida           ###   ########.fr       */
+/*   Updated: 2025/02/05 17:25:16 by mkuida           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "../get_next_line.h"
 #include "../libft_added_ftprintf/libft.h"
 #include "../push_swap.h"
-#include "../get_next_line.h"
 
-void exec_command(int com_num,t_list **a,t_list **b)
+void	exec_command(int com_num, t_list **a, t_list **b)
 {
-	if(com_num == 0) bonus_swap(a);
-	if(com_num == 1) bonus_swap(b);
-	if(com_num == 2) bonus_ss(a,b);
-	if(com_num == 3) bonus_push(a,b);
-	if(com_num == 4) bonus_push(b,a);
-	if(com_num == 5) bonus_rotate(a);
-	if(com_num == 6) bonus_rotate(b);
-	if(com_num == 7) bonus_rr(a,b);
-	if(com_num == 8) bonus_rev_rotate(a);
-	if(com_num == 9) bonus_rev_rotate(b);
-	if(com_num == 10) bonus_rrr(a,b);
+	if (com_num == 0)
+		bonus_swap(a);
+	if (com_num == 1)
+		bonus_swap(b);
+	if (com_num == 2)
+		bonus_ss(a, b);
+	if (com_num == 3)
+		bonus_push(a, b);
+	if (com_num == 4)
+		bonus_push(b, a);
+	if (com_num == 5)
+		bonus_rotate(a);
+	if (com_num == 6)
+		bonus_rotate(b);
+	if (com_num == 7)
+		bonus_rr(a, b);
+	if (com_num == 8)
+		bonus_rev_rotate(a);
+	if (com_num == 9)
+		bonus_rev_rotate(b);
+	if (com_num == 10)
+		bonus_rrr(a, b);
 }
 
-
-int check_command_number(char *line)
+int	check_command_number(char *line)
 {
-	int i;
-	size_t line_len;
-	const char *command[] = {
-		"sa\n", "sb\n", "ss\n", "pa\n", "pb\n", 
-		"ra\n", "rb\n", "rr\n", "rra\n", "rrb\n", "rrr\n"
-	};
+	int			i;
+	size_t		line_len;
+	const char	*command[] = {"sa\n", "sb\n", "ss\n", "pa\n", "pb\n", "ra\n",
+		"rb\n", "rr\n", "rra\n", "rrb\n", "rrr\n"};
+
 	line_len = ft_strlen(line);
 	i = 0;
-	
-	while(i < 11)
+	while (i < 11)
 	{
-		if(line_len == ft_strlen(command[i]))
+		if (line_len == ft_strlen(command[i]))
 		{
-			if(ft_strncmp(line, command[i], line_len) == 0)
+			if (ft_strncmp(line, command[i], line_len) == 0)
 			{
 				return (i);
 			}
 		}
-		i++;		
+		i++;
 	}
 	return (-1);
 }
 
-int tester_main_process(t_list **a, t_list **b)
+int	tester_main_process(t_list **a, t_list **b)
 {
-	char *line;
-	int com_num;
+	char	*line;
+	int		com_num;
 
-	while((line = get_next_line(STDIN_FILENO)) != NULL)
+	line = get_next_line(STDIN_FILENO);
+	while (line != NULL)
 	{
-        if (ft_strlen(line) == 1 && line[0] == '\n')
-        {
-            free(line);
-            break;
-        }
-		com_num = check_command_number(line);
-		if(com_num != -1)
+		if (ft_strlen(line) == 1 && line[0] == '\n')
 		{
-			exec_command(com_num,a,b);
+			free(line);
+			break ;
 		}
+		com_num = check_command_number(line);
+		if (com_num != -1)
+			exec_command(com_num, a, b);
 		else
 		{
 			ft_printf("Error\n");
@@ -79,16 +86,13 @@ int tester_main_process(t_list **a, t_list **b)
 			return (-1);
 		}
 		free(line);
+		line = get_next_line(STDIN_FILENO);
 	}
-	if(check_list_is_ok(a,b) == 1)
-		ft_printf("OK\n");
-	else
-		ft_printf("KO\n");
+	print_list_is_ok_or_ko(a, b);
 	return (1);
 }
 
-
-static void	print_error()
+static void	print_error(void)
 {
 	const char	*str = "Error\n";
 
@@ -119,4 +123,3 @@ int	main(int argc, char **argv)
 	ft_lstclear(&b, free);
 	return (0);
 }
-
