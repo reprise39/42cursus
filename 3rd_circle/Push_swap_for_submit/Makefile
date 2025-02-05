@@ -42,6 +42,7 @@ SRC_FILES = push_swap.c \
 			push_swap_for_debag.c
 
 BONUS_SRC_FILES = bonus_make_checker.c \
+				  bonus_make_checker_utils.c \
 				  bonus_push_swap_command_basic.c \
 				  bonus_push_swap_command_complex.c \
 				  get_next_line.c \

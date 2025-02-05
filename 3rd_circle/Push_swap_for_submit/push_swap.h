@@ -6,7 +6,7 @@
 /*   By: mkuida <reprise39@yahoo.co.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 22:56:04 by mkuida            #+#    #+#             */
-/*   Updated: 2025/02/05 16:07:57 by mkuida           ###   ########.fr       */
+/*   Updated: 2025/02/05 16:53:53 by mkuida           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -147,7 +147,15 @@ void	print_t_com(t_command *command);
 void	print_list(t_list *a);
 
 // bonus //
+
 // make_checker
+void exec_command(int com_num,t_list **a,t_list **b);
+int check_command_number(char *line);
+int tester_main_process(t_list **a, t_list **b);
+
+// make_checker_utils
+int check_list_is_sorted(t_list *lst);
+int check_list_is_ok(t_list **a,t_list **b);
 
 //push_swap_comannd_basic
 int	bonus_swap(t_list **a);
