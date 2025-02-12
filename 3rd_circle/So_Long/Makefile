@@ -18,7 +18,7 @@ CFLAGS =
 LDFLAGS = -L$(LIBFT_DIR) -lft -L/usr/local/lib -lmlx -lXext -lX11 -lm
 INCLUDES = -I includes
 
-SRC_DIR = .
+SRC_DIR = ./SRCS
 
 SRC_FILES = main.c \
 			so_long_utils.c \
@@ -31,7 +31,7 @@ SRC_FILES = main.c \
 
 SRCS = $(addprefix $(SRC_DIR)/, $(SRC_FILES))
 
-OBJ_DIR = .
+OBJ_DIR = ./OBJS
 
 OBJS = $(SRCS:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)
 
@@ -50,7 +50,7 @@ $(NAME): $(OBJS)
 	make -C $(LIBFT_DIR)
 #	cp $(LIBFT) $(NAME)
 #	ar rcs $(NAME) $(MAN_OBJS)
-	$(CC) -o $(NAME) $(OBJS) $(LDFLAGS)
+	$(CC) $(incluses) -o $(NAME) $(OBJS) $(LDFLAGS)
 
 # make object files
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c | $(OBJ_DIR)

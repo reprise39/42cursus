@@ -6,7 +6,7 @@
 /*   By: mkuida <reprise39@yahoo.co.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/26 15:50:31 by mkuida            #+#    #+#             */
-/*   Updated: 2024/12/28 23:32:09 by mkuida           ###   ########.fr       */
+/*   Updated: 2025/02/12 16:33:55 by mkuida           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@
 # include <stdint.h>
 # include <fcntl.h>
 # include "mlx.h"
-# include "./libft_added_ftprintf/libft.h"
+# include "libft.h"
 
 
 # define BUFFER_SIZE 42
