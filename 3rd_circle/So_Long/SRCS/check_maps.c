@@ -6,7 +6,7 @@
 /*   By: mkuida <reprise39@yahoo.co.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/26 19:49:30 by mkuida            #+#    #+#             */
-/*   Updated: 2025/02/12 16:28:15 by mkuida           ###   ########.fr       */
+/*   Updated: 2025/02/12 18:20:29 by mkuida           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,8 @@ int check_maps()
 		return (ERROR_MAP_INWALL);
 	if(map_check_number_of_elements() == -1)
 		return (ERROR_MAP_ELEMENTS);
-	// if(map_check_isplayable() == -1)
-	// 	return (ERROR_MAP_CANT_PLAY);	
+	if(map_check_isplayable() == -1)
+		return (ERROR_MAP_CANT_PLAY);	
 	return (0);
 }
 
@@ -67,31 +67,13 @@ int map_check_charactor()
 
 int map_check_shape()
 {
-	int map_fd;
-	int linewidth;
-	int lineheight;
-	int return_val;
-	char *line;
+	const int h = get_map_height();
+	const int w = get_map_width();
 
-	return_val = 1;
-	lineheight = 0;
-	map_fd = open(MAP_PATH, O_RDONLY);
-	if (map_fd < 0)
+	if(h < 3 || h == w)
 		return (-1);
-	line = get_next_line(map_fd);
-	while(line != NULL)
-	{		
-		lineheight++;
-		if(lineheight == 1)
-			linewidth = ft_strlen(line);
-		else if(linewidth != ft_strlen(line))
-			return_val = -1;
-		free(line);
-		line = get_next_line(map_fd);
-	}
-	if(linewidth == lineheight)
-		return_val = -1;
-	close(map_fd);
-	return (return_val);
+	else
+		return (1);
 }
+
 

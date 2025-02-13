@@ -6,7 +6,7 @@
 /*   By: mkuida <reprise39@yahoo.co.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/28 23:19:47 by mkuida            #+#    #+#             */
-/*   Updated: 2025/02/12 16:28:41 by mkuida           ###   ########.fr       */
+/*   Updated: 2025/02/12 18:18:21 by mkuida           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,21 +15,28 @@
 int get_map_width()
 {
 	int map_fd;
-	int map_width;
+	int same_width_flag;
+	int linewidth;
 	char *line;
 
+	same_width_flag = 1;
 	map_fd = open(MAP_PATH, O_RDONLY);
 	if (map_fd < 0)
 		return (-1);
 	line = get_next_line(map_fd);
-	map_width = ft_strlen(line);
+	linewidth = ft_strlen(line);
 	while(line != NULL)
-	{
+	{		
+		if(linewidth != ft_strlen(line))
+			same_width_flag = -1;
+		free(line);
 		line = get_next_line(map_fd);
 	}
-	free(line);
 	close(map_fd);
-	return (map_width);
+	if(same_width_flag == 1)
+		return (linewidth);
+	else
+		return (-1);
 }
 
 int get_map_height()
