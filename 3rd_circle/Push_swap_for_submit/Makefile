@@ -79,7 +79,7 @@ $(NAME): $(OBJS) $(LIBFT)
 	$(CC) -o $(NAME) $(OBJS) -L$(LIBFT_DIR) -lft
 
 # make bonus
-bonus: $(BONUS_NAME) $(LIBFT)
+bonus: $(BONUS_NAME)
 
 $(BONUS_NAME): $(BONUS_OBJS) $(LIBFT)
 	$(CC) -o $(BONUS_NAME) $(BONUS_OBJS) -L$(LIBFT_DIR) -lft
@@ -90,6 +90,9 @@ $(LIBFT):
 
 # make object files
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c | $(OBJ_DIR)
+	$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
+
+$(OBJ_DIR)/%.o: $(BONUS_SRC_DIR)/%.c | $(OBJ_DIR)
 	$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
 
 clean:
