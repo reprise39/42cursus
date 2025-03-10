@@ -6,7 +6,7 @@
 /*   By: mkuida <reprise39@yahoo.co.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 22:56:04 by mkuida            #+#    #+#             */
-/*   Updated: 2025/02/05 17:17:05 by mkuida           ###   ########.fr       */
+/*   Updated: 2025/03/10 16:41:29 by mkuida           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -149,23 +149,23 @@ void	print_list(t_list *a);
 // bonus //
 
 // make_checker
-void exec_command(int com_num,t_list **a,t_list **b);
-int check_command_number(char *line);
-int tester_main_process(t_list **a, t_list **b);
+void	exec_command(int com_num, t_list **a, t_list **b);
+int		check_command_number(char *line);
+int		tester_main_process(t_list **a, t_list **b);
 
 // make_checker_utils
-int check_list_is_sorted(t_list *lst);
-void print_list_is_ok_or_ko(t_list **a,t_list **b);
+int		check_list_is_sorted(t_list *lst);
+void	print_list_is_ok_or_ko(t_list **a, t_list **b);
 
 //push_swap_comannd_basic
-int	bonus_swap(t_list **a);
-int	bonus_push(t_list **a, t_list **b);
-int	bonus_rotate(t_list **a);
-int	bonus_rev_rotate(t_list **a);
+int		bonus_swap(t_list **a);
+int		bonus_push(t_list **a, t_list **b);
+int		bonus_rotate(t_list **a);
+int		bonus_rev_rotate(t_list **a);
 
 //push_swap_comannd_complex
-int	bonus_ss(t_list **a, t_list **b);
-int	bonus_rr(t_list **a, t_list **b);
-int	bonus_rrr(t_list **a, t_list **b);
+int		bonus_ss(t_list **a, t_list **b);
+int		bonus_rr(t_list **a, t_list **b);
+int		bonus_rrr(t_list **a, t_list **b);
 
 #endif

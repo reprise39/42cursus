@@ -6,7 +6,7 @@
 /*   By: mkuida <reprise39@yahoo.co.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 18:54:53 by mkuida            #+#    #+#             */
-/*   Updated: 2025/02/13 20:29:55 by mkuida           ###   ########.fr       */
+/*   Updated: 2025/03/10 16:40:39 by mkuida           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ int	check_list_is_sorted(t_list *lst)
 void	print_list_is_ok_or_ko(t_list **a, t_list **b)
 {
 	if (ft_lstsize(*b) != 0)
-		return;
+		return ;
 	if (check_list_is_sorted(*a) == 1)
 		ft_printf("OK\n");
 	else

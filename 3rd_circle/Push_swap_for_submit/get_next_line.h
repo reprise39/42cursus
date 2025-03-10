@@ -6,13 +6,12 @@
 /*   By: mkuida <reprise39@yahoo.co.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/19 20:54:25 by mkuida            #+#    #+#             */
-/*   Updated: 2025/02/04 19:24:05 by mkuida           ###   ########.fr       */
+/*   Updated: 2025/03/10 16:38:59 by mkuida           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef GET_NEXT_LINE_H
 # define GET_NEXT_LINE_H
-
 
 # include "libft_added_ftprintf/libft.h"
 //buffer_size
