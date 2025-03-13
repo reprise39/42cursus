@@ -6,7 +6,7 @@
 /*   By: mkuida <reprise39@yahoo.co.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 18:54:53 by mkuida            #+#    #+#             */
-/*   Updated: 2025/02/05 17:25:16 by mkuida           ###   ########.fr       */
+/*   Updated: 2025/03/13 21:30:15 by mkuida           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,7 +103,7 @@ static void	print_error(void)
 int	main(int argc, char **argv)
 {
 	t_list	*a;
-	t_list	*b;
+	t_list	**b;
 
 	if (argc == 1)
 		return (0);
@@ -118,8 +118,13 @@ int	main(int argc, char **argv)
 		print_error();
 		return (-1);
 	}
-	tester_main_process(&a, &b);
+	b = malloc(sizeof(t_list *));
+	if (b == NULL)
+		return (-1);
+	*b = NULL;
+	tester_main_process(&a, b);
 	ft_lstclear(&a, free);
-	ft_lstclear(&b, free);
+	ft_lstclear(b, free);
+	free(b);
 	return (0);
 }

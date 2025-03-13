@@ -88,11 +88,14 @@ $(BONUS_NAME): $(BONUS_OBJS) $(LIBFT)
 $(LIBFT):
 	make -C $(LIBFT_DIR)
 
-# make object files
-$(OBJ_DIR)/%.o: $(SRC_DIR)/%.c | $(OBJ_DIR)
+# make object files(man)
+$(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
+	mkdir -p $(OBJ_DIR)
 	$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
 
-$(OBJ_DIR)/%.o: $(BONUS_SRC_DIR)/%.c | $(OBJ_DIR)
+# make object files(bonus)
+$(OBJ_DIR)/%.o: $(BONUS_SRC_DIR)/%.c
+	mkdir -p $(OBJ_DIR)
 	$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
 
 clean:

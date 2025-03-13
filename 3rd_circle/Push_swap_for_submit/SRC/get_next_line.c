@@ -6,7 +6,7 @@
 /*   By: mkuida <reprise39@yahoo.co.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/19 20:24:51 by mkuida            #+#    #+#             */
-/*   Updated: 2025/02/05 17:23:12 by mkuida           ###   ########.fr       */
+/*   Updated: 2025/03/13 21:30:35 by mkuida           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,7 +117,9 @@ static char	*cut_savedmem_before_linebreak(char *saved_mem)
 	}
 	dest = malloc(sizeof(char) * (ft_strlen(saved_mem) - i + 1));
 	if (dest == NULL)
+	{
 		return (NULL);
+	}
 	ft_strlcpy(dest, saved_mem + i + 1, ft_strlen(saved_mem) - i);
 	free(saved_mem);
 	return (dest);

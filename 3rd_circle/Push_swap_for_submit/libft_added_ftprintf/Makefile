@@ -44,7 +44,8 @@ $(NAME): $(OBJS)
 	ar rcs $(NAME) $(OBJS)
 
 # make object files
-$(OBJ_DIR)/%.o: $(SRC_DIR)/%.c | $(OBJ_DIR)
+$(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
+	mkdir -p $(OBJ_DIR)
 	$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
 
 clean:
