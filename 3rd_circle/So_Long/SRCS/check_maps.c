@@ -6,13 +6,12 @@
 /*   By: mkuida <reprise39@yahoo.co.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/26 19:49:30 by mkuida            #+#    #+#             */
-/*   Updated: 2025/02/12 18:20:29 by mkuida           ###   ########.fr       */
+/*   Updated: 2025/03/21 15:26:48 by mkuida           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 # include "so_long.h"
 # include <errno.h>
-
 
 int check_maps()
 {
@@ -75,5 +74,3 @@ int map_check_shape()
 	else
 		return (1);
 }
-
-

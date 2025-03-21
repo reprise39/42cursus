@@ -6,7 +6,7 @@
 /*   By: mkuida <reprise39@yahoo.co.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/28 23:28:34 by mkuida            #+#    #+#             */
-/*   Updated: 2025/02/12 16:28:14 by mkuida           ###   ########.fr       */
+/*   Updated: 2025/03/21 15:03:19 by mkuida           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,7 @@ int map_check_wall_at(int map_height,int map_width)
 		line = get_next_line(map_fd);
 	}
 	free(line);
+	close(map_fd);
 	return (1);
 }
 

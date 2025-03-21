@@ -6,7 +6,7 @@
 /*   By: mkuida <reprise39@yahoo.co.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/26 15:50:31 by mkuida            #+#    #+#             */
-/*   Updated: 2025/02/12 16:33:55 by mkuida           ###   ########.fr       */
+/*   Updated: 2025/03/21 15:23:59 by mkuida           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,10 @@ typedef struct s_rect
     int color;
 }	t_rect;
 
+# ifndef MAP_H
+#  include "map.h"
+#  define MAP_H
+# endif
 
 //map_utils
 int get_map_width();
@@ -94,7 +98,10 @@ int map_check_wall_at(int map_height,int map_width);
 int map_check_wall();
 int map_check_number_of_elements();
 
-
+// check_maps_third
+t_map* mk_map_ptr(int x,int y);
+t_map* install_map(t_map* map_ptr,int x,int y);
+int map_check_isplayable();
 
 // check_textures
 int check_textures(void);
