@@ -1,37 +1,13 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   queue.h                                            :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mkuida <reprise39@yahoo.co.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/12 17:14:06 by mkuida            #+#    #+#             */
-/*   Updated: 2025/03/23 15:30:01 by mkuida           ###   ########.fr       */
+/*   Created: 2025/04/03 03:01:09 by mkuida            #+#    #+#             */
+/*   Updated: 2025/04/03 03:01:18 by mkuida           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef QUEUE_H
-# define QUEUE_H
-
-# define queue_maxsize 1000000
-
-# ifndef MAP_H
-#  include "map.h"
-#  define MAP_H
-# endif
-
-typedef struct s_queue_point
-{
-    int	top;
-    int tail;
-	t_point point[queue_maxsize];
-}	t_queue_point;
-
-typedef struct s_queue_int
-{
-    int	top;
-    int tail;
-	int n[queue_maxsize];
-}	t_queue_int;
-
-# endif
+int 

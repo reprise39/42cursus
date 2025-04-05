@@ -1,37 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   queue.h                                            :+:      :+:    :+:   */
+/*   pipex_main.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mkuida <reprise39@yahoo.co.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/12 17:14:06 by mkuida            #+#    #+#             */
-/*   Updated: 2025/03/23 15:30:01 by mkuida           ###   ########.fr       */
+/*   Created: 2025/04/02 20:06:10 by mkuida            #+#    #+#             */
+/*   Updated: 2025/04/02 21:09:04 by mkuida           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef QUEUE_H
-# define QUEUE_H
+# include "pipex.h"
 
-# define queue_maxsize 1000000
-
-# ifndef MAP_H
-#  include "map.h"
-#  define MAP_H
-# endif
-
-typedef struct s_queue_point
-{
-    int	top;
-    int tail;
-	t_point point[queue_maxsize];
-}	t_queue_point;
-
-typedef struct s_queue_int
-{
-    int	top;
-    int tail;
-	int n[queue_maxsize];
-}	t_queue_int;
-
-# endif
+int main() {
+    char *args[] = {"/bin/s", "-l", NULL};
+    execve(args[0], args, NULL);
+    perror("execve failed");
+    return 1;
+}

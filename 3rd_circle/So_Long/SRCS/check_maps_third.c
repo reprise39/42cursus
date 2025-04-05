@@ -6,7 +6,7 @@
 /*   By: mkuida <reprise39@yahoo.co.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 16:43:46 by mkuida            #+#    #+#             */
-/*   Updated: 2025/03/21 18:05:18 by mkuida           ###   ########.fr       */
+/*   Updated: 2025/03/23 15:28:56 by mkuida           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include "map.h"
 #include "so_long.h"
 
-t_point get_start(t_map *map_ptr)
+t_point get_startpoint(t_map *map_ptr)
 {
 	t_point start;
 	int i;
@@ -26,19 +26,34 @@ t_point get_start(t_map *map_ptr)
 	}
 	start.y = i / (map_ptr->map_x);
 	start.x = i % (map_ptr->map_x);
+	ft_printf("get_startpoint\n");
+	ft_printf("x=%d y=%d\n",start.x,start.y);
+	ft_printf("\n");
 	return (start);
+}
+
+void bfs(t_map_queue *avaiable_flag_ptr,t_map *map_ptr,t_point start)
+{
+	t_map *explored_map;
+	
+	explored_map = mk_map_ptr(map_ptr->map_x,map_ptr->map_y);
+	if(map_ptr == NULL)
+		return (-1);
 }
 
 t_map_queue *enque_avaiable_flag(t_map *map_ptr,t_point start)
 {
 	//tukuru!
-	t_map_queue *dest;
-	dest = malloc(sizeof(t_map*));
-	if(dest == NULL)
+	t_map_queue *avaiable_flag_ptr;
+
+	avaiable_flag_ptr = malloc(sizeof(t_map_queue*));
+	if(avaiable_flag_ptr == NULL)
 		return (NULL);
+	queue_init(avaiable_flag_ptr);
+	bfs(avaiable_flag_ptr,map_ptr,start);
 	
 	
-	return(dest);
+	return(avaiable_flag_ptr);
 }
 
 t_map_queue *enque_goal(t_map *map_ptr,t_point start)
@@ -57,7 +72,7 @@ int check_isplayable_by_bfs(t_map *map_ptr)
 	t_map_queue *flag_ptr;
 	t_map_queue *goal_ptr;
 	
-	start = get_start(map_ptr);
+	start = get_startpoint(map_ptr);
 	flag_ptr = enque_avaiable_flag(map_ptr,start);
 	if(flag_ptr == NULL)
 		return(-1);

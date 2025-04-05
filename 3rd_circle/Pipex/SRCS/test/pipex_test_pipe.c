@@ -1,37 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   queue.h                                            :+:      :+:    :+:   */
+/*   pipex_main.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mkuida <reprise39@yahoo.co.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/12 17:14:06 by mkuida            #+#    #+#             */
-/*   Updated: 2025/03/23 15:30:01 by mkuida           ###   ########.fr       */
+/*   Created: 2025/04/02 20:06:10 by mkuida            #+#    #+#             */
+/*   Updated: 2025/04/02 21:06:31 by mkuida           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef QUEUE_H
-# define QUEUE_H
+# include "pipex.h"
 
-# define queue_maxsize 1000000
-
-# ifndef MAP_H
-#  include "map.h"
-#  define MAP_H
-# endif
-
-typedef struct s_queue_point
+int main()
 {
-    int	top;
-    int tail;
-	t_point point[queue_maxsize];
-}	t_queue_point;
+	int pid;
+	int fd[2];
 
-typedef struct s_queue_int
-{
-    int	top;
-    int tail;
-	int n[queue_maxsize];
-}	t_queue_int;
+	pipe(fd);
+	pid = fork();
+	if(pid == 0)
+	{
+		close(fd[0]); //0は読み
+		write(fd[1], "Hello, pipe!\n", 13);
+		close(fd[1]);
+	}
+	else
+	{
+		char buf[100];
+		close(fd[1]); //1は書き
+		read(fd[0], buf, 100);
+		printf("Received: %s", buf);
+		close(fd[0]);  // 0読み取り
+	}
 
-# endif
+
+	return 0;
+}
