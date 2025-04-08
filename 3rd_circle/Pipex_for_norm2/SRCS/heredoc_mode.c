@@ -6,7 +6,7 @@
 /*   By: mkuida <reprise39@yahoo.co.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/08 21:40:28 by mkuida            #+#    #+#             */
-/*   Updated: 2025/04/08 23:20:20 by mkuida           ###   ########.fr       */
+/*   Updated: 2025/04/09 01:23:15 by mkuida           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,9 +31,13 @@ int	heredoc_mode(int argc, char **argv, char *envp[])
 		return (-1);
 	heredoc(argv[2]);
 	if (exec_pipe(argc, argv, envp, pipe_input) != 0)
+	{
+		unlink(HEREDOC_TXT);
 		return (-1);
+	}
 	if (pipe_input != NULL)
 		free_struct(pipe_input);
+	unlink(HEREDOC_TXT);
 	return (0);
 }
 

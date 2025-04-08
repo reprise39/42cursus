@@ -6,7 +6,7 @@
 /*   By: mkuida <reprise39@yahoo.co.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/05 00:58:03 by mkuida            #+#    #+#             */
-/*   Updated: 2025/04/08 23:16:31 by mkuida           ###   ########.fr       */
+/*   Updated: 2025/04/09 01:49:41 by mkuida           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ int	exec_pipe(int argc, char **argv, char *envp[], t_input *pipe_input)
 	if (pipe_fd == NULL)
 	{
 		perror("exec_pipe");
+		unlink(HEREDOC_TXT);
 		exit(-1);
 	}
 	set_pipe_fd(pipe_fd, pipe_input->pipe_num);
@@ -45,6 +46,7 @@ static void	set_pipe_fd(int pipe_fd[][2], int pipe_num)
 		if (pipe(pipe_fd[i]) == -1)
 		{
 			perror("set_pipe_fd(pipe)");
+			unlink(HEREDOC_TXT);
 			exit(-1);
 		}
 		i++;
@@ -65,6 +67,7 @@ void	exec_cmds(char **argv, char *envp[], int pipe_fd[][2],
 		if (pid == -1)
 		{
 			perror("exec_cmds(fork_error)");
+			unlink(HEREDOC_TXT);
 			exit(-1);
 		}
 		if (pid == 0)
