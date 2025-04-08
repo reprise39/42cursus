@@ -6,7 +6,7 @@
 /*   By: mkuida <reprise39@yahoo.co.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/09 03:56:07 by mkuida            #+#    #+#             */
-/*   Updated: 2025/04/09 03:59:19 by mkuida           ###   ########.fr       */
+/*   Updated: 2025/04/09 04:35:50 by mkuida           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,9 @@
 
 char	**make_cmd_fullpaths(int cmd_num, char ***cmd_phrase, char *envp[])
 {
-	int		i;
 	char	**dest;
 	char	*path;
 
-	i = 0;
 	path = getpath_from_env(envp);
 	if (path == NULL)
 		return (NULL);

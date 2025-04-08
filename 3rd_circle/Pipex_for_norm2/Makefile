@@ -13,8 +13,7 @@
 #define
 NAME = pipex
 CC = cc
-CFLAGS = 
-# CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror
 LDFLAGS = -L$(LIBFT_DIR) -lft
 INCLUDES = -I includes
 
@@ -55,8 +54,6 @@ all: $(NAME)
 # make lib
 $(NAME): $(OBJS)
 	make -C $(LIBFT_DIR)
-#	cp $(LIBFT) $(NAME)
-#	ar rcs $(NAME) $(MAN_OBJS)
 	$(CC) $(INCLUDES) -o $(NAME) $(OBJS) $(LDFLAGS)
 
 # make object files
