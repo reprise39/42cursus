@@ -6,22 +6,23 @@
 /*   By: mkuida <reprise39@yahoo.co.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/04 18:56:12 by mkuida            #+#    #+#             */
-/*   Updated: 2025/04/08 20:00:32 by mkuida           ###   ########.fr       */
+/*   Updated: 2025/04/08 23:51:45 by mkuida           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-t_input	*set_struct(int argc, char **argv, char *envp[])
+t_input	*set_struct(int argc, char **argv, char *envp[], int is_heredoc)
 {
 	t_input	*dest;
 
 	dest = malloc(sizeof(t_input));
 	if (dest == NULL)
 		return (NULL);
-	dest->cmd_num = argc - 3;
-	dest->pipe_num = argc - 4;
-	dest->cmd_phrase = make_cmd_phrase(dest->cmd_num, argv);
+	dest->mode = is_heredoc;
+	dest->cmd_num = (argc - 3) - is_heredoc;
+	dest->pipe_num = (argc - 4) - is_heredoc;
+	dest->cmd_phrase = make_cmd_phrase(dest->cmd_num, argv, is_heredoc);
 	if (dest->cmd_phrase == NULL)
 	{
 		free(dest);

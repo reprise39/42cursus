@@ -6,7 +6,7 @@
 /*   By: mkuida <reprise39@yahoo.co.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/26 15:50:31 by mkuida            #+#    #+#             */
-/*   Updated: 2025/04/08 20:01:06 by mkuida           ###   ########.fr       */
+/*   Updated: 2025/04/08 23:14:07 by mkuida           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,13 +22,16 @@
 # include <unistd.h>
 
 // mode
+# define PIPE_MODE 0
+# define HEREDOC_MODE 1
 # define INPUT_FORMAT_ERROR 0
 # define EXEC_HEREDOC_MODE 10
 # define EXEC_PIPE_MODE 20
-
+# define HEREDOC_TXT ".heredoc_tmp"
 // struck
 typedef struct s_input
 {
+	int		mode;
 	int		cmd_num;
 	int		pipe_num;
 	int		exec_i_num;
@@ -39,6 +42,9 @@ typedef struct s_input
 // pipe_mode.c
 int			pipe_mode(int argc, char **argv, char *envp[]);
 
+// heredoc_mode.c
+int			heredoc_mode(int argc, char **argv, char *envp[]);
+
 // check_pipemode_input_file.c
 int			file1_unexist(char *path);
 int			file2_unexist(int argc, char **argv);
@@ -48,11 +54,14 @@ int			file2_no_write_auth(char *path);
 // check_pipemode_input_cmd.c
 int			cmd_unexit(int argc, char **argv, char *env_path);
 
+// check_heredocmode_input_cmd.c
+int			cmd_unexit_heredoc(int argc, char **argv, char *env_path);
+
 // set_struct.c
-t_input		*set_struct(int argc, char **argv, char *envp[]);
+t_input		*set_struct(int argc, char **argv, char *envp[],int is_heredoc);
 
 // set_struct_pats.c
-char		***make_cmd_phrase(int cmd_num, char **argv);
+char		***make_cmd_phrase(int cmd_num, char **argv, int is_heredoc);
 char		**make_cmd_fullpaths(int cmd_num, char ***cmd_phrase, char *envp[]);
 char		*make_cmd_fullpath(char **cmd, char *pathtop);
 void		free_cmd_fullpath(int upper, char **dest);
@@ -86,5 +95,8 @@ char		*ft_strcat_threewords(char *dest, char *one, char *two,
 				char *three);
 void		free_ft_split(char **dest);
 void		free_cmd_phrase(char ***cmd_phrase);
+
+// get_next_libe.c
+char	*get_next_line(int fd);
 
 #endif

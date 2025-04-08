@@ -6,7 +6,7 @@
 /*   By: mkuida <reprise39@yahoo.co.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/03 03:24:07 by mkuida            #+#    #+#             */
-/*   Updated: 2025/04/08 20:16:51 by mkuida           ###   ########.fr       */
+/*   Updated: 2025/04/08 23:59:31 by mkuida           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,14 +19,18 @@ int	pipe_mode(int argc, char **argv, char *envp[])
 	t_input	*pipe_input;
 	char	*env_path;
 
+	pipe_input = NULL;
 	env_path = getpath_from_env(envp);
 	if (env_path == NULL)
 		return (-1);
 	if (check_pipemode_input(argc, argv, env_path) != 0)
 		return (-1);
-	pipe_input = set_struct(argc, argv, envp);
+	pipe_input = set_struct(argc, argv, envp, PIPE_MODE);
 	if (pipe_input == NULL)
+	{
+		perror("pipe_mode(set_structure)");
 		return (-1);
+	}
 	if (exec_pipe(argc, argv, envp, pipe_input) != 0)
 		return (-1);
 	if (pipe_input != NULL)
@@ -34,7 +38,7 @@ int	pipe_mode(int argc, char **argv, char *envp[])
 	return (0);
 }
 
-int	check_pipemode_input(int argc, char **argv, char *env_path)
+static int	check_pipemode_input(int argc, char **argv, char *env_path)
 {
 	if (file1_unexist(argv[1]) == 1)
 	{

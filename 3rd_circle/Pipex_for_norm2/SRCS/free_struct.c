@@ -6,7 +6,7 @@
 /*   By: mkuida <reprise39@yahoo.co.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/06 03:36:21 by mkuida            #+#    #+#             */
-/*   Updated: 2025/04/08 19:21:26 by mkuida           ###   ########.fr       */
+/*   Updated: 2025/04/08 23:57:18 by mkuida           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	free_struct(t_input *input)
 	while (i < (input->cmd_num))
 	{
 		j = 0;
-		while (input->cmd_phrase[i][j])
+		while (input->cmd_phrase[i][j] != NULL)
 		{
 			free(input->cmd_phrase[i][j]);
 			j++;

@@ -6,7 +6,7 @@
 /*   By: mkuida <reprise39@yahoo.co.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/05 00:58:03 by mkuida            #+#    #+#             */
-/*   Updated: 2025/04/08 21:35:33 by mkuida           ###   ########.fr       */
+/*   Updated: 2025/04/08 23:16:31 by mkuida           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int	exec_pipe(int argc, char **argv, char *envp[], t_input *pipe_input)
 	pipe_fd = malloc(sizeof(int) * 2 * (pipe_input->pipe_num));
 	if (pipe_fd == NULL)
 	{
-		perror(exec_pipe);
+		perror("exec_pipe");
 		exit(-1);
 	}
 	set_pipe_fd(pipe_fd, pipe_input->pipe_num);

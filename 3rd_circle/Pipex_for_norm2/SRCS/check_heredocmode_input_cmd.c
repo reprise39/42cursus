@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check_pipemode_input_cmd.c                         :+:      :+:    :+:   */
+/*   check_heredocmode_input_cmd.c                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mkuida <reprise39@yahoo.co.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/06 05:32:10 by mkuida            #+#    #+#             */
-/*   Updated: 2025/04/08 21:46:57 by mkuida           ###   ########.fr       */
+/*   Updated: 2025/04/08 21:51:16 by mkuida           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,14 +16,14 @@ static int	checkcmd_unexist_from_path(char *argv, char *pathtop);
 static char	*make_fullpath_candidate_for_icheck(char **path_candidate,
 				char *argv, int i);
 
-int	cmd_unexit(int argc, char **argv, char *env_path)
+int	cmd_unexit_heredoc(int argc, char **argv, char *env_path)
 {
 	int		i;
 	int		unexist_flag;
 	char	**cmd;
 
 	unexist_flag = 0;
-	i = 2;
+	i = 3;
 	while (i < (argc - 1))
 	{
 		cmd = ft_split(argv[i], ' ');

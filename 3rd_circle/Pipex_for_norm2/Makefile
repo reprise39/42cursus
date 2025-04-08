@@ -22,15 +22,18 @@ SRC_DIR = ./SRCS
 
 SRC_FILES = pipex_main.c\
 			pipe_mode.c\
+			heredoc_mode.c\
 			check_pipemode_input_file.c\
 			check_pipemode_input_cmd.c\
+			check_heredocmode_input_cmd.c\
 			set_struct.c\
 			set_struct_parts.c\
 			print_struct.c\
 			free_struct.c\
 			exec_pipe.c\
 			exec_cmds.c\
-			utils.c
+			utils.c\
+			get_next_line.c
 
 SRCS = $(addprefix $(SRC_DIR)/, $(SRC_FILES))
 

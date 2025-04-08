@@ -6,13 +6,13 @@
 /*   By: mkuida <reprise39@yahoo.co.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/08 19:59:55 by mkuida            #+#    #+#             */
-/*   Updated: 2025/04/08 20:01:38 by mkuida           ###   ########.fr       */
+/*   Updated: 2025/04/08 23:54:59 by mkuida           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-char	***make_cmd_phrase(int cmd_num, char **argv)
+char	***make_cmd_phrase(int cmd_num, char **argv, int is_heredoc)
 {
 	int		i;
 	char	***dest;
@@ -23,7 +23,10 @@ char	***make_cmd_phrase(int cmd_num, char **argv)
 		return (NULL);
 	while (i < cmd_num)
 	{
-		dest[i] = ft_split(argv[i + 2], ' ');
+		if(is_heredoc == 0)
+			dest[i] = ft_split(argv[i + 2], ' ');
+		else if(is_heredoc == 1)
+			dest[i] = ft_split(argv[i + 3], ' ');
 		i++;
 	}
 	dest[i] = NULL;
@@ -66,7 +69,10 @@ char	*make_cmd_fullpath(char **cmd, char *pathtop)
 	i = 0;
 	path_candidate = ft_split(pathtop, ':');
 	if (path_candidate == NULL)
+	{
+		free_ft_split(path_candidate); //足した。いるのか！？
 		return (NULL);
+	}
 	while (path_candidate[i] != NULL)
 	{
 		fullpath_candidate = make_fullpath_candidate(path_candidate, cmd, i);
