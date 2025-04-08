@@ -28,6 +28,7 @@ SRC_FILES = pipex_main.c\
 			print_struct.c\
 			free_struct.c\
 			exec_pipe.c\
+			exec_cmds.c\
 			utils.c
 
 SRCS = $(addprefix $(SRC_DIR)/, $(SRC_FILES))

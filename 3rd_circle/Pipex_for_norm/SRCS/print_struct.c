@@ -6,22 +6,23 @@
 /*   By: mkuida <reprise39@yahoo.co.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/06 03:29:10 by mkuida            #+#    #+#             */
-/*   Updated: 2025/04/06 03:51:35 by mkuida           ###   ########.fr       */
+/*   Updated: 2025/04/08 19:31:58 by mkuida           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "pipex.h"
+#include "pipex.h"
 
-void print_struct(t_input *print)
+void	print_struct(t_input *print)
 {
-	if(print == NULL)
+	if (print == NULL)
 	{
 		ft_printf("struct is NULLLLLLLLLLL\n");
 		return ;
 	}
 	ft_printf(" \n ============== start print struct ======== \n");
-	ft_printf(" cmd_num  = %d \n",print->cmd_num);
-	ft_printf(" pipe_num = %d \n",print->pipe_num);
+	ft_printf(" cmd_num    = %d \n", print->cmd_num);
+	ft_printf(" pipe_num   = %d \n", print->pipe_num);
+	ft_printf(" exec_i_num = %d \n", print->exec_i_num);
 	for (int i = 0; i < print->cmd_num; i++)
 	{
 		ft_printf("  cmd %d: ", i);
@@ -31,7 +32,6 @@ void print_struct(t_input *print)
 		}
 		ft_printf("\n");
 	}
-
 	ft_printf("\n[cmd_fullpath]\n");
 	for (int i = 0; i < print->cmd_num; i++)
 	{
