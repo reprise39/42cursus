@@ -6,7 +6,7 @@
 /*   By: mkuida <reprise39@yahoo.co.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/06 05:32:10 by mkuida            #+#    #+#             */
-/*   Updated: 2025/04/09 03:01:34 by mkuida           ###   ########.fr       */
+/*   Updated: 2025/04/09 03:38:03 by mkuida           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 static int	checkcmd_unexist_from_path(char *argv, char *pathtop);
 static char	*make_fullpath_candidate_for_icheck(char **path_candidate,
 				char *argv, int i);
+static int	checkcmd_unexist(char *cmd);
 
 int	cmd_unexit(int argc, char **argv, char *env_path)
 {
@@ -29,10 +30,13 @@ int	cmd_unexit(int argc, char **argv, char *env_path)
 		cmd = ft_split(argv[i], ' ');
 		if (cmd == NULL)
 			return (1);
-		unexist_flag = checkcmd_unexist_from_path(cmd[0], env_path);
-		free_ft_split(cmd);
-		if (unexist_flag == 1)
-			return (1);
+		if (checkcmd_unexist(cmd[0]) == 1)
+		{
+			unexist_flag = checkcmd_unexist_from_path(cmd[0], env_path);
+			free_ft_split(cmd);
+			if (unexist_flag == 1)
+				return (1);
+		}
 		i++;
 	}
 	return (0);
@@ -82,4 +86,11 @@ static char	*make_fullpath_candidate_for_icheck(char **path_candidate,
 	fullpath_candidate = ft_strcat_threewords(fullpath_candidate,
 			path_candidate[i], "/", argv);
 	return (fullpath_candidate);
+}
+
+static int	checkcmd_unexist(char *cmd)
+{
+	if (access(cmd, X_OK) == 0)
+		return (0);
+	return (1);
 }

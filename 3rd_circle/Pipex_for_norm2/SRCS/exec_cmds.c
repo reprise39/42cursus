@@ -54,9 +54,9 @@ void	exec_first_cmd(char **argv, char *envp[], int pipe_fd[][2],
 	int	infile_fd;
 
 	i = (pipe_input->exec_i_num);
-	if(pipe_input->mode == PIPE_MODE)
+	if (pipe_input->mode == PIPE_MODE)
 		infile_fd = open(argv[1], O_RDONLY);
-	else if(pipe_input->mode == HEREDOC_MODE)
+	else if (pipe_input->mode == HEREDOC_MODE)
 		infile_fd = open(HEREDOC_TXT, O_RDONLY);
 	if (infile_fd < 0)
 	{
@@ -80,12 +80,12 @@ void	exec_last_cmd(char **argv, char *envp[], int pipe_fd[][2],
 	int	outfile_fd;
 
 	i = (pipe_input->exec_i_num);
-	if(pipe_input->mode == PIPE_MODE)
+	if (pipe_input->mode == PIPE_MODE)
 		outfile_fd = open(argv[(pipe_input->cmd_num) + 2],
 				O_WRONLY | O_CREAT | O_TRUNC, 0644);
-	else if(pipe_input->mode == HEREDOC_MODE)
+	else if (pipe_input->mode == HEREDOC_MODE)
 		outfile_fd = open(argv[(pipe_input->cmd_num) + 3],
-		O_WRONLY | O_CREAT | O_APPEND, 0644);
+				O_WRONLY | O_CREAT | O_APPEND, 0644);
 	if (outfile_fd < 0)
 	{
 		perror("exex_cmds(open_outfile_error)");

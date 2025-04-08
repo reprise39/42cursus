@@ -6,7 +6,7 @@
 /*   By: mkuida <reprise39@yahoo.co.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/26 15:50:31 by mkuida            #+#    #+#             */
-/*   Updated: 2025/04/08 23:14:07 by mkuida           ###   ########.fr       */
+/*   Updated: 2025/04/09 03:57:45 by mkuida           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,14 +58,17 @@ int			cmd_unexit(int argc, char **argv, char *env_path);
 int			cmd_unexit_heredoc(int argc, char **argv, char *env_path);
 
 // set_struct.c
-t_input		*set_struct(int argc, char **argv, char *envp[],int is_heredoc);
+t_input		*set_struct(int argc, char **argv, char *envp[], int is_heredoc);
 
-// set_struct_pats.c
+// set_struct_phrase.c
 char		***make_cmd_phrase(int cmd_num, char **argv, int is_heredoc);
+
+// set struct_cmd_fullpaths.c
 char		**make_cmd_fullpaths(int cmd_num, char ***cmd_phrase, char *envp[]);
 char		*make_cmd_fullpath(char **cmd, char *pathtop);
 void		free_cmd_fullpath(int upper, char **dest);
 char		*make_fullpath_candidate(char **path_candidate, char **cmd, int i);
+void		set_dest(char **dest, int cmd_num, char ***cmd_phrase, char *path);
 
 // print_struct.c
 void		print_struct(t_input *print);
@@ -97,6 +100,6 @@ void		free_ft_split(char **dest);
 void		free_cmd_phrase(char ***cmd_phrase);
 
 // get_next_libe.c
-char	*get_next_line(int fd);
+char		*get_next_line(int fd);
 
 #endif

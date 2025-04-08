@@ -6,7 +6,7 @@
 /*   By: mkuida <reprise39@yahoo.co.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 20:06:10 by mkuida            #+#    #+#             */
-/*   Updated: 2025/04/09 02:02:20 by mkuida           ###   ########.fr       */
+/*   Updated: 2025/04/09 03:39:36 by mkuida           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ int	main(int argc, char **argv, char *envp[])
 		return (-1);
 	else if (mode == EXEC_HEREDOC_MODE)
 	{
-		if (heredoc_mode(argc,argv,envp) != 0)
+		if (heredoc_mode(argc, argv, envp) != 0)
 			return (-1);
 	}
 	else if (mode == EXEC_PIPE_MODE)

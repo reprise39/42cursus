@@ -27,7 +27,8 @@ SRC_FILES = pipex_main.c\
 			check_pipemode_input_cmd.c\
 			check_heredocmode_input_cmd.c\
 			set_struct.c\
-			set_struct_parts.c\
+			set_struct_cmd_phrase.c\
+			set_struct_cmd_fullpaths.c\
 			print_struct.c\
 			free_struct.c\
 			exec_pipe.c\

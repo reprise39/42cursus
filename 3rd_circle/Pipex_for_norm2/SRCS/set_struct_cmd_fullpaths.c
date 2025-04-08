@@ -1,37 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   set_struct_parts.c                                 :+:      :+:    :+:   */
+/*   set_struct_cmd_fullpaths.c                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mkuida <reprise39@yahoo.co.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/08 19:59:55 by mkuida            #+#    #+#             */
-/*   Updated: 2025/04/08 23:54:59 by mkuida           ###   ########.fr       */
+/*   Created: 2025/04/09 03:56:07 by mkuida            #+#    #+#             */
+/*   Updated: 2025/04/09 03:59:19 by mkuida           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
-
-char	***make_cmd_phrase(int cmd_num, char **argv, int is_heredoc)
-{
-	int		i;
-	char	***dest;
-
-	i = 0;
-	dest = malloc(sizeof(char **) * (cmd_num + 1));
-	if (dest == NULL)
-		return (NULL);
-	while (i < cmd_num)
-	{
-		if(is_heredoc == 0)
-			dest[i] = ft_split(argv[i + 2], ' ');
-		else if(is_heredoc == 1)
-			dest[i] = ft_split(argv[i + 3], ' ');
-		i++;
-	}
-	dest[i] = NULL;
-	return (dest);
-}
 
 char	**make_cmd_fullpaths(int cmd_num, char ***cmd_phrase, char *envp[])
 {
@@ -46,17 +25,7 @@ char	**make_cmd_fullpaths(int cmd_num, char ***cmd_phrase, char *envp[])
 	dest = malloc(sizeof(char *) * (cmd_num + 1));
 	if (dest == NULL)
 		return (NULL);
-	while (i < cmd_num)
-	{
-		dest[i] = make_cmd_fullpath(cmd_phrase[i], path);
-		if (dest[i] == NULL)
-		{
-			free_cmd_fullpath(i, dest);
-			return (NULL);
-		}
-		i++;
-	}
-	dest[cmd_num] = NULL;
+	set_dest(dest, cmd_num, cmd_phrase, path);
 	return (dest);
 }
 
@@ -69,10 +38,7 @@ char	*make_cmd_fullpath(char **cmd, char *pathtop)
 	i = 0;
 	path_candidate = ft_split(pathtop, ':');
 	if (path_candidate == NULL)
-	{
-		free_ft_split(path_candidate); //足した。いるのか！？
 		return (NULL);
-	}
 	while (path_candidate[i] != NULL)
 	{
 		fullpath_candidate = make_fullpath_candidate(path_candidate, cmd, i);
@@ -117,4 +83,25 @@ char	*make_fullpath_candidate(char **path_candidate, char **cmd, int i)
 	fullpath_candidate = ft_strcat_threewords(fullpath_candidate,
 			path_candidate[i], "/", cmd[0]);
 	return (fullpath_candidate);
+}
+
+void	set_dest(char **dest, int cmd_num, char ***cmd_phrase, char *path)
+{
+	int	i;
+
+	i = 0;
+	while (i < cmd_num)
+	{
+		if (access(cmd_phrase[i][0], X_OK) == 0)
+			dest[i] = ft_strdup((const char *)cmd_phrase[i][0]);
+		else
+			dest[i] = make_cmd_fullpath(cmd_phrase[i], path);
+		if (dest[i] == NULL)
+		{
+			free_cmd_fullpath(i, dest);
+			return ;
+		}
+		i++;
+	}
+	dest[cmd_num] = NULL;
 }

@@ -6,15 +6,15 @@
 /*   By: mkuida <reprise39@yahoo.co.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/08 21:40:28 by mkuida            #+#    #+#             */
-/*   Updated: 2025/04/09 01:23:15 by mkuida           ###   ########.fr       */
+/*   Updated: 2025/04/09 03:40:55 by mkuida           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "pipex.h"
+#include "pipex.h"
 
 static int	check_heredocmode_input(int argc, char **argv, char *env_path);
-static void heredoc(char *limitter);
-static int is_same_str(char* str_one, char* str_two);
+static void	heredoc(char *limitter);
+static int	is_same_str(char *str_one, char *str_two);
 
 int	heredoc_mode(int argc, char **argv, char *envp[])
 {
@@ -56,29 +56,28 @@ static int	check_heredocmode_input(int argc, char **argv, char *env_path)
 	return (0);
 }
 
-static void heredoc(char *limitter)
+static void	heredoc(char *limitter)
 {
-	int fd;
-	char *line;
-	ssize_t read_len;
+	int		fd;
+	char	*line;
+	ssize_t	read_len;
 
 	fd = open(HEREDOC_TXT, O_WRONLY | O_CREAT | O_TRUNC, 0644);
-	if(fd < 0)
+	if (fd < 0)
 	{
 		perror("heredoc");
 		exit(-1);
 	}
-
 	while (1)
 	{
 		write(1, "> ", 3);
 		line = get_next_line(STDIN_FILENO);
 		if (line == NULL)
-			break;
-		if (is_same_str(line,limitter) == 1)
+			break ;
+		if (is_same_str(line, limitter) == 1)
 		{
 			free(line);
-			break;
+			break ;
 		}
 		write(fd, line, ft_strlen(line));
 		free(line);
@@ -86,12 +85,11 @@ static void heredoc(char *limitter)
 	close(fd);
 }
 
-
-static int is_same_str(char *line, char *limiter)
+static int	is_same_str(char *line, char *limiter)
 {
-	size_t len;
-	len = ft_strlen(limiter);
+	size_t	len;
 
+	len = ft_strlen(limiter);
 	if (ft_strncmp(line, limiter, len) == 0 && line[len] == '\n')
 		return (1);
 	return (0);
