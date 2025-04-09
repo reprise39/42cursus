@@ -1,35 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pipex_main.c                                       :+:      :+:    :+:   */
+/*   set_struct_cmd_phrase_bonus.c                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mkuida <reprise39@yahoo.co.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/02 20:06:10 by mkuida            #+#    #+#             */
-/*   Updated: 2025/04/09 05:31:01 by mkuida           ###   ########.fr       */
+/*   Created: 2025/04/08 19:59:55 by mkuida            #+#    #+#             */
+/*   Updated: 2025/04/09 05:05:13 by mkuida           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pipex.h"
+#include "pipex_bonus.h"
 
-static int	check_input(int argc)
+char	***make_cmd_phrase(int cmd_num, char **argv, int is_heredoc)
 {
-	if (argc != 5)
+	int		i;
+	char	***dest;
+
+	i = 0;
+	dest = malloc(sizeof(char **) * (cmd_num + 1));
+	if (dest == NULL)
+		return (NULL);
+	while (i < cmd_num)
 	{
-		ft_printf("Input Error : give just 5 arguments\n");
-		return (INPUT_FORMAT_ERROR);
+		if (is_heredoc == 0)
+			dest[i] = ft_split(argv[i + 2], ' ');
+		else if (is_heredoc == 1)
+			dest[i] = ft_split(argv[i + 3], ' ');
+		i++;
 	}
-	return (EXEC_PIPE_MODE);
-}
-
-int	main(int argc, char **argv, char *envp[])
-{
-	int	mode;
-
-	mode = check_input(argc);
-	if (mode == INPUT_FORMAT_ERROR)
-		return (-1);
-	if (pipe_mode(argc, argv, envp) != 0)
-		return (-1);
-	return (0);
+	dest[i] = NULL;
+	return (dest);
 }

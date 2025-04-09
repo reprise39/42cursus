@@ -1,35 +1,46 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pipex_main.c                                       :+:      :+:    :+:   */
+/*   pipex_main_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mkuida <reprise39@yahoo.co.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 20:06:10 by mkuida            #+#    #+#             */
-/*   Updated: 2025/04/09 05:31:01 by mkuida           ###   ########.fr       */
+/*   Updated: 2025/04/09 05:05:04 by mkuida           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pipex.h"
+#include "pipex_bonus.h"
 
-static int	check_input(int argc)
+static int	check_input(int argc, char **argv)
 {
-	if (argc != 5)
+	if (argc < 5)
 	{
-		ft_printf("Input Error : give just 5 arguments\n");
+		ft_printf("Input Error : too few arguments\n");
 		return (INPUT_FORMAT_ERROR);
 	}
-	return (EXEC_PIPE_MODE);
+	else if (ft_strncmp(argv[1], "here_doc", 8) == 0)
+		return (EXEC_HEREDOC_MODE);
+	else
+		return (EXEC_PIPE_MODE);
 }
 
 int	main(int argc, char **argv, char *envp[])
 {
 	int	mode;
 
-	mode = check_input(argc);
+	mode = check_input(argc, argv);
 	if (mode == INPUT_FORMAT_ERROR)
 		return (-1);
-	if (pipe_mode(argc, argv, envp) != 0)
-		return (-1);
+	else if (mode == EXEC_HEREDOC_MODE)
+	{
+		if (heredoc_mode(argc, argv, envp) != 0)
+			return (-1);
+	}
+	else if (mode == EXEC_PIPE_MODE)
+	{
+		if (pipe_mode(argc, argv, envp) != 0)
+			return (-1);
+	}
 	return (0);
 }

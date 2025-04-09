@@ -11,14 +11,15 @@
 # **************************************************************************** #
 
 #define
-NAME = push_swap
-BONUS_NAME = checker
+NAME = pipex
+BONUS_NAME = pipex
 
 CC = cc
 CFLAGS = -Wall -Wextra -Werror
 INCLUDES = -I includes
 
 SRC_DIR = ./SRC
+BONUS_SRC_DIR = ./BONUS_SRC
 
 SRC_FILES = push_swap.c \
 			push_swap_initlst.c \
@@ -62,6 +63,7 @@ SRCS = $(addprefix $(SRC_DIR)/, $(SRC_FILES))
 BONUS_SRCS = $(addprefix $(SRC_DIR)/, $(BONUS_SRC_FILES))
 
 OBJ_DIR = ./OBJ
+BONUS_OBJ_DIR = ./BONUS_OBJ
 
 OBJS = $(SRCS:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)
 BONUS_OBJS = $(BONUS_SRCS:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)

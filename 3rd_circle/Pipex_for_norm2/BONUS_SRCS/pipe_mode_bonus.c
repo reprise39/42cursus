@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pipe_mode.c                                        :+:      :+:    :+:   */
+/*   pipe_mode_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mkuida <reprise39@yahoo.co.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/03 03:24:07 by mkuida            #+#    #+#             */
-/*   Updated: 2025/04/09 05:15:25 by mkuida           ###   ########.fr       */
+/*   Updated: 2025/04/09 05:11:58 by mkuida           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pipex.h"
+#include "pipex_bonus.h"
 
 static int	check_pipemode_input(int argc, char **argv, char *env_path);
 

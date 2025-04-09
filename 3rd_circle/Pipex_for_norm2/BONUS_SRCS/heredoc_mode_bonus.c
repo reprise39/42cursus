@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   heredoc_mode.c                                     :+:      :+:    :+:   */
+/*   heredoc_mode_bonus.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mkuida <reprise39@yahoo.co.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/08 21:40:28 by mkuida            #+#    #+#             */
-/*   Updated: 2025/04/09 05:18:11 by mkuida           ###   ########.fr       */
+/*   Updated: 2025/04/09 05:32:28 by mkuida           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pipex.h"
+#include "pipex_bonus.h"
 
 static int	check_heredocmode_input(int argc, char **argv, char *env_path);
 static void	heredoc(char *limitter);

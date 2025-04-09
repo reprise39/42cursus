@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   exec_pipe.c                                        :+:      :+:    :+:   */
+/*   exec_pipe_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mkuida <reprise39@yahoo.co.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/05 00:58:03 by mkuida            #+#    #+#             */
-/*   Updated: 2025/04/09 05:14:42 by mkuida           ###   ########.fr       */
+/*   Updated: 2025/04/09 05:12:08 by mkuida           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pipex.h"
+#include "pipex_bonus.h"
 
 static void	set_pipe_fd(int pipe_fd[][2], int pipe_num);
 void		exec_cmds(char **argv, char *envp[], int pipe_fd[][2],
