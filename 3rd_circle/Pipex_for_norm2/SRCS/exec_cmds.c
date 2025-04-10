@@ -6,7 +6,7 @@
 /*   By: mkuida <reprise39@yahoo.co.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/06 08:08:24 by mkuida            #+#    #+#             */
-/*   Updated: 2025/04/09 05:17:14 by mkuida           ###   ########.fr       */
+/*   Updated: 2025/04/09 17:45:11 by mkuida           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ void	exec_first_cmd(char **argv, char *envp[], int pipe_fd[][2],
 	i = (pipe_input->exec_i_num);
 	if (pipe_input->mode == PIPE_MODE)
 		infile_fd = open(argv[1], O_RDONLY);
-	else if (pipe_input->mode == HEREDOC_MODE)
+	else
 		infile_fd = open(HEREDOC_TXT, O_RDONLY);
 	if (infile_fd < 0)
 	{

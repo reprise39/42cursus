@@ -6,7 +6,7 @@
 /*   By: mkuida <reprise39@yahoo.co.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/28 22:42:56 by mkuida            #+#    #+#             */
-/*   Updated: 2025/02/12 16:28:20 by mkuida           ###   ########.fr       */
+/*   Updated: 2025/04/11 08:48:49 by mkuida           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ static int file_exists(char *filepath)
 
 int textures_exists()
 {
-	if(file_exists(TEXTURES_MAP_PATH) == -1)
+	if(file_exists(TEXTURES_FLOOR_PATH) == -1)
 		return (-1);
 	if(file_exists(TEXTURES_PLAYER_PATH) == -1)
 		return (-1);
