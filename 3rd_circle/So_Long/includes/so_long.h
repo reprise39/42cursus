@@ -6,7 +6,7 @@
 /*   By: mkuida <reprise39@yahoo.co.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/26 15:50:31 by mkuida            #+#    #+#             */
-/*   Updated: 2025/04/11 08:56:31 by mkuida           ###   ########.fr       */
+/*   Updated: 2025/04/11 09:03:54 by mkuida           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -143,5 +143,8 @@ int exec_mlx(void);
 
 // make_data.c
 t_data *make_data(void);
+
+// set_mlx_hook.c
+void set_mlx_hook(t_data *data);
 
 #endif

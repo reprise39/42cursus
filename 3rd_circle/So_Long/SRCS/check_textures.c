@@ -6,7 +6,7 @@
 /*   By: mkuida <reprise39@yahoo.co.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/28 22:42:56 by mkuida            #+#    #+#             */
-/*   Updated: 2025/04/11 08:48:49 by mkuida           ###   ########.fr       */
+/*   Updated: 2025/04/11 10:45:53 by mkuida           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,13 +23,17 @@ static int file_exists(char *filepath)
 }
 
 
-int textures_exists()
+static int textures_exists()
 {
 	if(file_exists(TEXTURES_FLOOR_PATH) == -1)
 		return (-1);
 	if(file_exists(TEXTURES_PLAYER_PATH) == -1)
 		return (-1);
 	if(file_exists(TEXTURES_ASSET_PATH) == -1)
+		return (-1);
+	if(file_exists(TEXTURES_GOAL_PATH) == -1)
+		return (-1);
+	if(file_exists(TEXTURES_WALL_PATH) == -1)
 		return (-1);
 	return (0);
 }

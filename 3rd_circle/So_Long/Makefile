@@ -29,7 +29,8 @@ SRC_FILES = main.c \
 			get_next_line.c \
 			get_next_line_utils.c \
 			mlx_exec.c \
-			make_data.c
+			make_data.c \
+			set_mlx_hook.c
 #			check_maps_third.c \
 
 SRCS = $(addprefix $(SRC_DIR)/, $(SRC_FILES))
