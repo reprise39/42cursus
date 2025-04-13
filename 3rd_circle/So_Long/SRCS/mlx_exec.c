@@ -6,7 +6,7 @@
 /*   By: mkuida <reprise39@yahoo.co.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/11 04:14:19 by mkuida            #+#    #+#             */
-/*   Updated: 2025/04/11 10:52:34 by mkuida           ###   ########.fr       */
+/*   Updated: 2025/04/14 07:11:58 by mkuida           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,19 @@
 int exec_mlx()
 {
 	t_data *data;
+
 	data = make_data();
 	if(data == NULL)
 	{
 		perror("make_data");
 		exit(EXIT_FAILURE);
 	}
-	
+	data->map = make_map();
+	if(data->map == NULL)
+	{
+		perror("make_map");
+		exit(EXIT_FAILURE);
+	}	
 	
 
 	// test

@@ -6,7 +6,7 @@
 /*   By: mkuida <reprise39@yahoo.co.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/11 04:32:12 by mkuida            #+#    #+#             */
-/*   Updated: 2025/04/11 08:55:27 by mkuida           ###   ########.fr       */
+/*   Updated: 2025/04/14 07:19:21 by mkuida           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,10 +25,11 @@ t_data *make_data()
 	if (!data)
 	{
 		perror("ft_calloc");
-		exit(1);
+		return(NULL);
 	}
 	set_data_mlx(data);
 	set_data_img(data);
+	data->state = PLAYING;
 	return (data);
 }
 

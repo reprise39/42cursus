@@ -6,7 +6,7 @@
 /*   By: mkuida <reprise39@yahoo.co.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/28 23:28:34 by mkuida            #+#    #+#             */
-/*   Updated: 2025/03/21 15:03:19 by mkuida           ###   ########.fr       */
+/*   Updated: 2025/04/11 18:55:32 by mkuida           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,6 @@ int map_check_wall_at(int map_height,int map_width)
 	if (map_fd < 0)
 		return (-1);
 	line = get_next_line(map_fd);
-	ft_printf("%s\n",line);
 	while(line != NULL)
 	{		
 		my_height++;
@@ -67,7 +66,6 @@ int map_check_wall()
 	const int map_height = get_map_height();
 	const int map_width = get_map_width();
 	
-	printf("map_height=%d\nmap_width = %d\n",map_height,map_width);
 	if(map_height < 0 || map_width < 0)
 		return (-1);
 	if(map_check_wall_at(map_height,map_width) == -1)

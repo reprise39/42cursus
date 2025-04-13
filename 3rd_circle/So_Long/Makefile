@@ -22,6 +22,8 @@ SRC_DIR = ./SRCS
 
 SRC_FILES = main.c \
 			so_long_utils.c \
+			make_map.c \
+			free_map.c \
 			map_utils.c \
 			check_maps.c \
 			check_maps_second.c \

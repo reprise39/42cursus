@@ -6,7 +6,7 @@
 /*   By: mkuida <reprise39@yahoo.co.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/28 23:19:47 by mkuida            #+#    #+#             */
-/*   Updated: 2025/03/21 15:02:43 by mkuida           ###   ########.fr       */
+/*   Updated: 2025/04/11 18:58:08 by mkuida           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,6 @@ int check_map_number_of_char(char c)
 	if (map_fd < 0)
 		return (-1);
 	line = get_next_line(map_fd);
-	ft_printf("%s\n",line);
 	while(line != NULL)
 	{	
 		i = 0;

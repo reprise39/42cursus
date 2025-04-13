@@ -6,7 +6,7 @@
 /*   By: mkuida <reprise39@yahoo.co.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/26 15:50:31 by mkuida            #+#    #+#             */
-/*   Updated: 2025/04/11 09:03:54 by mkuida           ###   ########.fr       */
+/*   Updated: 2025/04/14 07:07:34 by mkuida           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,12 @@
 # define CUT_FOR_WALL {0,205,TILE_SIZE,TILE_SIZE}
 # define CUT_FOR_FLOOR {25,25,TILE_SIZE,TILE_SIZE}
 
+# ifndef MAP_H
+#  include "map.h"
+#  define MAP_H
+# endif
+
+
 typedef struct s_img
 {
     void	*mlx_img;
@@ -76,6 +82,12 @@ typedef struct s_img
     int		endian;
 }	t_img;
 
+typedef enum e_game_state
+{
+	PLAYING,
+	GAME_CLEARED
+} t_game_state;
+
 typedef struct s_data
 {
     void	*mlx_ptr;
@@ -84,7 +96,9 @@ typedef struct s_data
 	t_img	asset_img;
 	t_img	goal_img;
 	t_img 	wall_img;
-	t_img	floor_img;	
+	t_img	floor_img;
+	t_map	*map;
+	t_game_state	state;
 }	t_data;
 
 typedef struct s_rect
@@ -96,10 +110,6 @@ typedef struct s_rect
     int color;
 }	t_rect;
 
-# ifndef MAP_H
-#  include "map.h"
-#  define MAP_H
-# endif
 
 //map_utils
 int get_map_width();
@@ -123,8 +133,15 @@ t_map* mk_map_ptr(int x,int y);
 t_map* install_map(t_map* map_ptr,int x,int y);
 int map_check_isplayable();
 
+//make_map.c
+t_map *make_map(void);
+
+// free_map.c
+void free_map(t_map *map);
+
 // check_textures
 int check_textures(void);
+
 
 //so_long_utils
 int ft_in_charptr(char *ch,const char *charset);
