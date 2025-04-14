@@ -30,6 +30,7 @@ SRC_FILES = main.c \
 			check_textures.c \
 			get_next_line.c \
 			get_next_line_utils.c \
+			mlx_put_image.c \
 			mlx_exec.c \
 			make_data.c \
 			set_mlx_hook.c

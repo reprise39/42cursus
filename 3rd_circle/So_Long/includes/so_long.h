@@ -6,7 +6,7 @@
 /*   By: mkuida <reprise39@yahoo.co.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/26 15:50:31 by mkuida            #+#    #+#             */
-/*   Updated: 2025/04/14 07:07:34 by mkuida           ###   ########.fr       */
+/*   Updated: 2025/04/14 07:33:20 by mkuida           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -154,6 +154,9 @@ char	*get_next_line(int fd);
 size_t	ft_strlen(const char *s);
 char	*strjoin_and_free(char *freed_str, char const *added_str);
 char	*ft_strdup(const char *s);
+
+// mlx_put_image.c
+void mlx_put_image_start(t_data *data);
 
 // mlx_exec.c
 int exec_mlx(void);
