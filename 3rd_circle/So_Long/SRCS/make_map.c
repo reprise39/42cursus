@@ -6,7 +6,7 @@
 /*   By: mkuida <reprise39@yahoo.co.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 18:59:24 by mkuida            #+#    #+#             */
-/*   Updated: 2025/04/14 07:20:04 by mkuida           ###   ########.fr       */
+/*   Updated: 2025/04/15 04:45:09 by mkuida           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,22 +110,22 @@ void set_map_contents(t_map *map, char c, int y, int x)
 		exit(EXIT_FAILURE);
 	}
 	if (c == '1')
-		map->contents[y][x].type = WALL;
+		map->contents[y][x].floor_type = WALL;
 	else if (c == '0')
-		map->contents[y][x].type = EMPTY;
+		map->contents[y][x].floor_type = EMPTY;
 	else if (c == 'C')
 	{
-		map->contents[y][x].type = COLLECTIBLE;
+		map->contents[y][x].floor_type = COLLECTIBLE;
 		map->collectible_count_total++;
 	}
 	else if (c == 'P')
 	{
-		map->contents[y][x].type = PLAYER;
+		map->contents[y][x].floor_type = EMPTY;
 		map->player_x = x;
 		map->player_y = y;
 	}
 	else if (c == 'E')
-		map->contents[y][x].type = EXIT;
+		map->contents[y][x].floor_type = EXIT;
 	else
 	{
 		perror("set_map_contents");

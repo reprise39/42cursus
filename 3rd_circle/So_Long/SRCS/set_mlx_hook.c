@@ -6,13 +6,14 @@
 /*   By: mkuida <reprise39@yahoo.co.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/11 09:02:38 by mkuida            #+#    #+#             */
-/*   Updated: 2025/04/14 07:23:21 by mkuida           ###   ########.fr       */
+/*   Updated: 2025/04/15 05:14:52 by mkuida           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
 static int handle_close(t_data *data);
+static int key_handle(int keysym ,t_data *data);
 
 static int destroy_image_before_close(t_data *data)
 {
@@ -48,18 +49,27 @@ static int handle_close(t_data *data)
 	exit (0);
 }
 
-
-static int	handle_keypress(int keysym, t_data *data)
-{
-	if (keysym == XK_Escape)
-		handle_close(data);
-	return (0);
-}
-
-
 void set_mlx_hook(t_data *data)
 {
+	// to_fin
 	mlx_hook(data->win_ptr, Expose, ExposureMask, &expose_hook, data);
-	mlx_hook(data->win_ptr, KeyPress, KeyPressMask, &handle_keypress, data);
 	mlx_hook(data->win_ptr, DestroyNotify, StructureNotifyMask , &handle_close, data);
+	
+	// to_move
+	mlx_hook(data->win_ptr, KeyPress ,KeyPressMask, &key_handle, data);
+}
+
+static int key_handle(int keysym ,t_data *data)
+{
+	if (keysym == KEY_W && data->state == PLAYING)
+		move_player(data,1,0);
+	else if (keysym == KEY_A && data->state == PLAYING)
+		move_player(data,0,-1);
+	else if (keysym == KEY_S && data->state == PLAYING)
+		move_player(data,-1,0);
+	else if (keysym == KEY_D && data->state == PLAYING)
+		move_player(data,0,1);
+	else if (keysym == XK_Escape)
+		handle_close(data);
+	return (0);
 }

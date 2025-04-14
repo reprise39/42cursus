@@ -6,7 +6,7 @@
 /*   By: mkuida <reprise39@yahoo.co.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/26 15:50:31 by mkuida            #+#    #+#             */
-/*   Updated: 2025/04/14 07:33:20 by mkuida           ###   ########.fr       */
+/*   Updated: 2025/04/15 04:30:37 by mkuida           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,14 @@
 # define CUT_FOR_WALL {0,205,TILE_SIZE,TILE_SIZE}
 # define CUT_FOR_FLOOR {25,25,TILE_SIZE,TILE_SIZE}
 
+
+//keypress
+# define KEY_W 119
+# define KEY_A 97
+# define KEY_S 115
+# define KEY_D 100
+
+
 # ifndef MAP_H
 #  include "map.h"
 #  define MAP_H
@@ -100,15 +108,6 @@ typedef struct s_data
 	t_map	*map;
 	t_game_state	state;
 }	t_data;
-
-typedef struct s_rect
-{
-    int	x;
-    int	y;
-    int width;
-    int height;
-    int color;
-}	t_rect;
 
 
 //map_utils
@@ -166,5 +165,8 @@ t_data *make_data(void);
 
 // set_mlx_hook.c
 void set_mlx_hook(t_data *data);
+
+//move_player.c
+void move_player(t_data* data,int y ,int x);
 
 #endif

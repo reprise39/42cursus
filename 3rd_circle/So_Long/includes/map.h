@@ -6,25 +6,27 @@
 /*   By: mkuida <reprise39@yahoo.co.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 18:59:44 by mkuida            #+#    #+#             */
-/*   Updated: 2025/04/14 07:02:48 by mkuida           ###   ########.fr       */
+/*   Updated: 2025/04/14 22:09:34 by mkuida           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MAP_H
 # define MAP_H
 
+typedef enum e_map_type
+{
+	EMPTY,
+	WALL,
+	COLLECTIBLE,
+	PLAYER,
+	EXIT,
+} t_floor_state;
+
 typedef struct s_point
 {
 	int x;
 	int y;
-	enum e_map_type
-	{
-		EMPTY,
-		WALL,
-		COLLECTIBLE,
-		PLAYER,
-		EXIT,
-	} type;
+	t_floor_state floor_type;
 }	t_point;
 
 typedef struct s_map
