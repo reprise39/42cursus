@@ -6,7 +6,7 @@
 /*   By: mkuida <reprise39@yahoo.co.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/11 09:02:38 by mkuida            #+#    #+#             */
-/*   Updated: 2025/04/15 05:14:52 by mkuida           ###   ########.fr       */
+/*   Updated: 2025/04/15 06:17:22 by mkuida           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ static int destroy_image_before_close(t_data *data)
 	mlx_destroy_image(data->mlx_ptr, data->goal_img.mlx_img);
 	mlx_destroy_image(data->mlx_ptr, data->wall_img.mlx_img);
 	mlx_destroy_image(data->mlx_ptr, data->floor_img.mlx_img);
+	mlx_destroy_image(data->mlx_ptr, data->goal_on_player_img.mlx_img);
 }
 
 static int expose_hook(t_data *data)

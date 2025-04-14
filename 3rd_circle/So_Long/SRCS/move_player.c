@@ -6,7 +6,7 @@
 /*   By: mkuida <reprise39@yahoo.co.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/14 21:40:24 by mkuida            #+#    #+#             */
-/*   Updated: 2025/04/15 05:08:36 by mkuida           ###   ########.fr       */
+/*   Updated: 2025/04/15 06:21:56 by mkuida           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,7 +109,18 @@ static void display_player_releave(t_data* data , t_map* map , int bef_y ,int be
 
 static void display_player_exist(t_data *data,t_map *map,int y,int x)
 {
-	mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->player_img.mlx_img, x * TILE_SIZE, y * TILE_SIZE);
+	t_floor_state floor_type;
+	floor_type = check_floor_type(map,y,x);
+	
+	if(floor_type == EMPTY)
+		mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->player_img.mlx_img, x * TILE_SIZE, y * TILE_SIZE);
+	else if(floor_type == EXIT)
+		mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->goal_on_player_img.mlx_img, x * TILE_SIZE, y * TILE_SIZE);
+	else
+	{
+		perror("display_player_exist");
+		exit(1);
+	}
 }
 
 static void get_collectible(t_map *map,int y,int x)

@@ -6,7 +6,7 @@
 /*   By: mkuida <reprise39@yahoo.co.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/26 15:50:31 by mkuida            #+#    #+#             */
-/*   Updated: 2025/04/15 04:30:37 by mkuida           ###   ########.fr       */
+/*   Updated: 2025/04/15 06:12:57 by mkuida           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,6 +103,7 @@ typedef struct s_data
 	t_img	player_img;
 	t_img	asset_img;
 	t_img	goal_img;
+	t_img	goal_on_player_img;
 	t_img 	wall_img;
 	t_img	floor_img;
 	t_map	*map;
@@ -168,5 +169,8 @@ void set_mlx_hook(t_data *data);
 
 //move_player.c
 void move_player(t_data* data,int y ,int x);
+
+//combine_picture.c
+void combine_images(void *mlx, t_img *under_img, t_img *upper_img);
 
 #endif

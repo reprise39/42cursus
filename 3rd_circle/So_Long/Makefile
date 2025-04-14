@@ -34,7 +34,8 @@ SRC_FILES = main.c \
 			mlx_exec.c \
 			make_data.c \
 			set_mlx_hook.c\
-			move_player.c
+			move_player.c\
+			combine_picture.c\
 #			check_maps_third.c \
 
 SRCS = $(addprefix $(SRC_DIR)/, $(SRC_FILES))

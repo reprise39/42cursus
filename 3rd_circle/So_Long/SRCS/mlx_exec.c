@@ -6,7 +6,7 @@
 /*   By: mkuida <reprise39@yahoo.co.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/11 04:14:19 by mkuida            #+#    #+#             */
-/*   Updated: 2025/04/14 21:42:33 by mkuida           ###   ########.fr       */
+/*   Updated: 2025/04/15 06:15:55 by mkuida           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,17 @@ int exec_mlx()
 		exit(EXIT_FAILURE);
 	}	
 	
+	//combine
+	combine_images(data->mlx_ptr, data->wall_img.mlx_img, data->floor_img.mlx_img);
+	combine_images(data->mlx_ptr, data->player_img.mlx_img, data->floor_img.mlx_img);
+	combine_images(data->mlx_ptr, data->asset_img.mlx_img, data->floor_img.mlx_img);
+	combine_images(data->mlx_ptr, data->goal_img.mlx_img, data->floor_img.mlx_img);
+	//try
+	combine_images(data->mlx_ptr, data->goal_on_player_img.mlx_img, data->goal_img.mlx_img);
 
+	
 	mlx_put_image_start(data);
+
 	
 	set_mlx_hook(data);
 	mlx_loop(data->mlx_ptr);

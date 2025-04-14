@@ -6,7 +6,7 @@
 /*   By: mkuida <reprise39@yahoo.co.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/11 04:32:12 by mkuida            #+#    #+#             */
-/*   Updated: 2025/04/14 07:19:21 by mkuida           ###   ########.fr       */
+/*   Updated: 2025/04/15 06:16:29 by mkuida           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,7 @@ static void set_data_img(t_data *data)
 	set_data_img_x(data , TEXTURES_PLAYER_PATH , &data->player_img , cutinfo_player);
 	set_data_img_x(data , TEXTURES_ASSET_PATH , &data->asset_img , cutinfo_asset);
 	set_data_img_x(data , TEXTURES_GOAL_PATH , &data->goal_img , cutinfo_goal);
+	set_data_img_x(data , TEXTURES_PLAYER_PATH , &data->goal_on_player_img , cutinfo_player);
 	set_data_img_x(data , TEXTURES_WALL_PATH , &data->wall_img , cutinfo_wall);
 	set_data_img_x(data , TEXTURES_FLOOR_PATH , &data->floor_img , cutinfo_floor);
 }
