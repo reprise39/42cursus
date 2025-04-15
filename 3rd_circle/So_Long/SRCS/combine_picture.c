@@ -6,30 +6,44 @@
 /*   By: mkuida <reprise39@yahoo.co.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/15 05:31:34 by mkuida            #+#    #+#             */
-/*   Updated: 2025/04/15 06:02:53 by mkuida           ###   ########.fr       */
+/*   Updated: 2025/04/16 03:49:27 by mkuida           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void combine_images(void *mlx, t_img *base_img, t_img *added_img)
+void	combine_image_group(t_data *data)
 {
-    int x, y;
-    int bpp, line_length, endian;
-    char *base_pixels = mlx_get_data_addr(base_img, &bpp, &line_length, &endian);
-    char *added_pixels = mlx_get_data_addr(added_img, &bpp, &line_length, &endian);
+	combine_images(data->mlx_ptr, &data->wall_img, &data->floor_img);
+	combine_images(data->mlx_ptr, &data->player_img, &data->floor_img);
+	combine_images(data->mlx_ptr, &data->asset_img, &data->floor_img);
+	combine_images(data->mlx_ptr, &data->goal_img, &data->floor_img);
+	combine_images(data->mlx_ptr, &data->goal_on_player_img, &data->goal_img);
+}
 
-    for (y = 0; y < TILE_SIZE; y++)
-    {
-        for (x = 0; x < TILE_SIZE; x++)
-        {
-            int pixel_offset = y * line_length + x * (bpp / 8);
-            unsigned int added_color = *(unsigned int *)(added_pixels + pixel_offset);
-            unsigned int base_color = *(unsigned int *)(base_pixels + pixel_offset);
-            if (base_color == 0xFF000000 )
-            {
-                *(unsigned int *)(base_pixels + pixel_offset) = added_color;
-            }
-        }
-    }
+void	combine_images(void *mlx, t_img *b_img, t_img *a_img)
+{
+	int				base_offset;
+	int				added_offset;
+	unsigned int	base_color;
+	int				x;
+	int				y;
+
+	y = 0;
+	while (y < TILE_SIZE)
+	{
+		x = 0;
+		while (x < TILE_SIZE)
+		{
+			base_offset = y * (b_img->line_len) + x * ((b_img->bpp) / 8);
+			added_offset = y * (a_img->line_len) + x * ((a_img->bpp) / 8);
+			base_color = *(unsigned int *)((b_img->img_addr) + base_offset);
+			if (base_color == 0xFF000000)
+				*(unsigned int *)((b_img->img_addr)
+						+ base_offset) = *(unsigned int *)((a_img->img_addr)
+						+ added_offset);
+			x++;
+		}
+		y++;
+	}
 }

@@ -10,28 +10,26 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
-#include "map.h"
 #include "libft.h"
+#include "map.h"
+#include "so_long.h"
 
-void free_map(t_map *map)
+void	free_map(t_map *map)
 {
-    int i;
+	int	i;
 
-    if (!map)
-        return;
-
-    if (map->contents)
-    {
-        i = 0;
-        while (i < map->map_height)
-        {
-            if (map->contents[i])
-                free(map->contents[i]);
-            i++;
-        }
-        free(map->contents);
-    }
-    free(map);
+	if (!map)
+		return ;
+	if (map->contents)
+	{
+		i = 0;
+		while (i < map->map_height)
+		{
+			if (map->contents[i])
+				free(map->contents[i]);
+			i++;
+		}
+		free(map->contents);
+	}
+	free(map);
 }
-

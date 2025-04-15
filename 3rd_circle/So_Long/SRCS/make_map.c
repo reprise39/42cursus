@@ -6,23 +6,24 @@
 /*   By: mkuida <reprise39@yahoo.co.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 18:59:24 by mkuida            #+#    #+#             */
-/*   Updated: 2025/04/15 04:45:09 by mkuida           ###   ########.fr       */
+/*   Updated: 2025/04/16 03:21:01 by mkuida           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
-#include "map.h"
 #include "libft.h"
+#include "map.h"
+#include "so_long.h"
 
-static t_map *make_map_ptr(int map_width,int map_height);
-static void install_map_struct(t_map *map);
-static void set_map_contents(t_map *map, char c, int x, int y);
+static t_map	*make_map_ptr(int map_width, int map_height);
+static void		install_map_struct(t_map *map);
+static void		set_map_contents(t_map *map, char c, int x, int y);
+static int		make_map_contents(t_map *map, int map_width, int map_height);
 
-t_map *make_map(void)
+t_map	*make_map(void)
 {
-	t_map *map;
-	const int map_width = get_map_width();
-	const int map_height = get_map_height();
+	t_map		*map;
+	const int	map_width = get_map_width();
+	const int	map_height = get_map_height();
 
 	map = make_map_ptr(map_width, map_height);
 	if (!map)
@@ -31,13 +32,13 @@ t_map *make_map(void)
 		return (NULL);
 	}
 	install_map_struct(map);
-
 	return (map);
 }
 
-static t_map *make_map_ptr(int map_width,int map_height)
+static t_map	*make_map_ptr(int map_width, int map_height)
 {
-	t_map *map;
+	t_map	*map;
+	int		i;
 
 	map = ft_calloc(sizeof(t_map), 1);
 	if (!map)
@@ -50,59 +51,63 @@ static t_map *make_map_ptr(int map_width,int map_height)
 	map->contents = ft_calloc(sizeof(t_point *), map_height);
 	if (!map->contents)
 	{
-		//	途中までマロックした分フリーする。
 		perror("make_map_ptr(ft_calloc)");
 		exit(EXIT_FAILURE);
 	}
-	int i = 0;
+	make_map_contents(map, map_width, map_height);
+	return (map);
+}
+
+static int	make_map_contents(t_map *map, int map_width, int map_height)
+{
+	int	i;
+
+	i = 0;
 	while (i < map_height)
 	{
 		map->contents[i] = ft_calloc(sizeof(t_point), map_width);
 		if (!map->contents[i])
 		{
-			//	途中までマロックした分フリーする。
+			while (--i >= 0)
+				free(map->contents[i]);
+			free(map->contents);
+			free(map);
 			perror("make_map_ptr(ft_calloc)");
-			exit(EXIT_FAILURE);
+			exit(-1);
 		}
 		i++;
 	}
-	return (map);
+	return (0);
 }
 
-void install_map_struct (t_map *map)
+static void	install_map_struct(t_map *map)
 {
-	int map_fd;
-	char *line;
-	int i;
-	int j;
+	const int	map_fd = open(MAP_PATH, O_RDONLY);
+	char		*line;
+	int			i;
+	int			j;
 
 	i = 0;
-	map_fd = open(MAP_PATH, O_RDONLY);
 	if (map_fd < 0)
-	{
-		perror("open");
 		exit(EXIT_FAILURE);
-	}
 	line = get_next_line(map_fd);
-	while(line != NULL)
-	{	
+	while (line != NULL)
+	{
 		j = 0;
-		while(j < (map->map_width) && line[j] != '\0')
+		while (j < (map->map_width) && line[j] != '\0')
 		{
 			set_map_contents(map, line[j], i, j);
 			j++;
 		}
-	free(line);
-	line = get_next_line(map_fd);
-	i++;
+		free(line);
+		line = get_next_line(map_fd);
+		i++;
 	}
 	free(line);
 	close(map_fd);
-	return ;
 }
 
-
-void set_map_contents(t_map *map, char c, int y, int x)
+void	set_map_contents(t_map *map, char c, int y, int x)
 {
 	if (x >= (map->map_width) || y >= (map->map_height))
 	{
@@ -126,15 +131,4 @@ void set_map_contents(t_map *map, char c, int y, int x)
 	}
 	else if (c == 'E')
 		map->contents[y][x].floor_type = EXIT;
-	else
-	{
-		perror("set_map_contents");
-		exit(EXIT_FAILURE);
-	}
 }
-
-// 後始末パーツ
-// while (--i >= 0)
-// 	free(map->contents[i]);
-// free(map->contents);
-// free(map);

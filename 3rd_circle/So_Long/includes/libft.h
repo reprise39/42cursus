@@ -15,12 +15,11 @@
 
 # include <limits.h>
 # include <stdarg.h>
-# include <stdio.h>
-# include <stdint.h>
-# include <limits.h>
-# include <unistd.h>
 # include <stddef.h>
+# include <stdint.h>
+# include <stdio.h>
 # include <stdlib.h>
+# include <unistd.h>
 
 // Part 1 - Libc functions
 int					ft_isalpha(int c);
@@ -81,15 +80,15 @@ void				ft_lstiter(t_list *lst, void (*f)(void *));
 t_list				*ft_lstmap(t_list *lst, void *(*f)(void *),
 						void (*del)(void *));
 
-//ft_printf
-int	ft_printf(const char *str, ...);
-int	ft_print_lowerx(va_list args, int words_counted);
-int	ft_print_upperx(va_list args, int words_counted);
-int	ft_printdi(va_list args, int words_counted);
-int	ft_printu(va_list args, int words_counted);
-int	ft_printc(va_list args, int words_counted);
-int	ft_prints(va_list args, int words_counted);
-int	ft_printp(va_list args, int words_counted);
-int	ft_printpercent(int words_counted);
+// ft_printf
+int					ft_printf(const char *str, ...);
+int					ft_print_lowerx(va_list args, int words_counted);
+int					ft_print_upperx(va_list args, int words_counted);
+int					ft_printdi(va_list args, int words_counted);
+int					ft_printu(va_list args, int words_counted);
+int					ft_printc(va_list args, int words_counted);
+int					ft_prints(va_list args, int words_counted);
+int					ft_printp(va_list args, int words_counted);
+int					ft_printpercent(int words_counted);
 
 #endif

@@ -35,6 +35,7 @@ SRC_FILES = main.c \
 			make_data.c \
 			set_mlx_hook.c\
 			move_player.c\
+			move_player_util.c\
 			combine_picture.c\
 #			check_maps_third.c \
 

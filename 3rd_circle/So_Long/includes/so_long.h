@@ -6,7 +6,7 @@
 /*   By: mkuida <reprise39@yahoo.co.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/26 15:50:31 by mkuida            #+#    #+#             */
-/*   Updated: 2025/04/15 06:12:57 by mkuida           ###   ########.fr       */
+/*   Updated: 2025/04/16 04:01:41 by mkuida           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,17 +15,16 @@
 
 # define BUFFER_SIZE 42
 
-# include <stdio.h>
-# include <unistd.h>
-# include <stdlib.h>
-# include <X11/X.h>
-# include <X11/keysym.h>
-# include <X11/Xlib.h> // iro?
-# include <stdint.h>
-# include <fcntl.h>
-# include "mlx.h"
 # include "libft.h"
-
+# include "mlx.h"
+# include <X11/X.h>
+# include <X11/Xlib.h> // iro?
+# include <X11/keysym.h>
+# include <fcntl.h>
+# include <stdint.h>
+# include <stdio.h>
+# include <stdlib.h>
+# include <unistd.h>
 
 # define BUFFER_SIZE 42
 
@@ -35,8 +34,7 @@
 # define GREEN_PIXEL 0xFF00
 # define WHITE_PIXEL 0xFFFF
 
-
-//for_error
+// for_error
 # define ERROR_MAP_EXISTS 1
 # define ERROR_MAP_CHARACTOR 2
 # define ERROR_MAP_SHAPE 3
@@ -45,6 +43,7 @@
 # define ERROR_MAP_CANT_PLAY 6
 
 # define ERROR_TEXTURES_EXISTS 10
+# define ERROR_TEXTURES_UNREADABLE 11
 
 # define MLX_ERROR 50
 
@@ -58,119 +57,109 @@
 
 # define TILE_SIZE 32
 
-// x_ofset,y_ofset,cut_width,cut_height
-# define CUT_FOR_PLAYER {0,0,TILE_SIZE,TILE_SIZE}
-# define CUT_FOR_ASSET {295,210,TILE_SIZE,TILE_SIZE}
-# define CUT_FOR_GOAL {984,120,TILE_SIZE,TILE_SIZE}
-# define CUT_FOR_WALL {0,205,TILE_SIZE,TILE_SIZE}
-# define CUT_FOR_FLOOR {25,25,TILE_SIZE,TILE_SIZE}
-
-
-//keypress
-# define KEY_W 119
-# define KEY_A 97
-# define KEY_S 115
-# define KEY_D 100
-
-
 # ifndef MAP_H
 #  include "map.h"
 #  define MAP_H
 # endif
 
-
 typedef struct s_img
 {
-    void	*mlx_img;
-    char	*img_addr;
-	int 	img_width;
-	int 	img_height;
-    int		bpp;
-    int		line_len;
-    int		endian;
-}	t_img;
+	void			*mlx_img;
+	char			*img_addr;
+	int				img_width;
+	int				img_height;
+	int				bpp;
+	int				line_len;
+	int				endian;
+}					t_img;
 
 typedef enum e_game_state
 {
 	PLAYING,
 	GAME_CLEARED
-} t_game_state;
+}					t_game_state;
 
 typedef struct s_data
 {
-    void	*mlx_ptr;
-    void	*win_ptr;
-	t_img	player_img;
-	t_img	asset_img;
-	t_img	goal_img;
-	t_img	goal_on_player_img;
-	t_img 	wall_img;
-	t_img	floor_img;
-	t_map	*map;
+	void			*mlx_ptr;
+	void			*win_ptr;
+	t_img			player_img;
+	t_img			asset_img;
+	t_img			goal_img;
+	t_img			goal_on_player_img;
+	t_img			wall_img;
+	t_img			floor_img;
+	t_map			*map;
 	t_game_state	state;
-}	t_data;
+}					t_data;
 
-
-//map_utils
-int get_map_width();
-int get_map_height();
-int check_map_number_of_char(char c);
+// map_utils
+int					get_map_width(void);
+int					get_map_height(void);
+int					check_map_number_of_char(char c);
 
 // check_maps
-int check_maps(void);
-int map_check_exists();
-int map_check_charactor();
-int map_check_shape();
+int					check_maps(void);
+int					map_check_exists(void);
+int					map_check_charactor(void);
+int					map_check_shape(void);
 
 // check_maps_second
-int check_line(char *line,int my_height,int map_height,int map_width);
-int map_check_wall_at(int map_height,int map_width);
-int map_check_wall();
-int map_check_number_of_elements();
+int					check_line(char *line, int my_height, int map_height,
+						int map_width);
+int					map_check_wall_at(int map_height, int map_width);
+int					map_check_wall(void);
+int					map_check_number_of_elements(void);
 
 // check_maps_third
-t_map* mk_map_ptr(int x,int y);
-t_map* install_map(t_map* map_ptr,int x,int y);
-int map_check_isplayable();
+t_map				*mk_map_ptr(int x, int y);
+t_map				*install_map(t_map *map_ptr, int x, int y);
+int					map_check_isplayable(void);
 
-//make_map.c
-t_map *make_map(void);
+// make_map.c
+t_map				*make_map(void);
 
 // free_map.c
-void free_map(t_map *map);
+void				free_map(t_map *map);
 
 // check_textures
-int check_textures(void);
+int					check_textures(void);
 
+// so_long_utils
+int					ft_in_charptr(char *ch, const char *charset);
+int					ft_strchr_int(const char *s, int c);
+void				initialize_int_ptr_array(int **ptr, int size);
 
-//so_long_utils
-int ft_in_charptr(char *ch,const char *charset);
-int	ft_strchr_int(const char *s, int c);
-void initialize_int_ptr_array(int **ptr,int size);
-
-//get_next_line main function
-char	*get_next_line(int fd);
-//get_next_line util functions
-size_t	ft_strlen(const char *s);
-char	*strjoin_and_free(char *freed_str, char const *added_str);
-char	*ft_strdup(const char *s);
+// get_next_line main function
+char				*get_next_line(int fd);
+// get_next_line util functions
+size_t				ft_strlen(const char *s);
+char				*strjoin_and_free(char *freed_str, char const *added_str);
+char				*ft_strdup(const char *s);
 
 // mlx_put_image.c
-void mlx_put_image_start(t_data *data);
+void				mlx_put_image_start(t_data *data);
 
 // mlx_exec.c
-int exec_mlx(void);
+int					exec_mlx(void);
 
 // make_data.c
-t_data *make_data(void);
+t_data				*make_data(void);
+void				cp_pixel(t_img full_data, t_img *cut_data, const int *cut);
 
 // set_mlx_hook.c
-void set_mlx_hook(t_data *data);
+void				set_mlx_hook(t_data *data);
 
-//move_player.c
-void move_player(t_data* data,int y ,int x);
+// move_player.c
+void				move_player(t_data *data, int y, int x);
 
-//combine_picture.c
-void combine_images(void *mlx, t_img *under_img, t_img *upper_img);
+// move_player_util.c
+void				get_collectible(t_map *map, int y, int x);
+void				goal(t_data *data);
+
+// combine_picture.c
+void				combine_image_group(t_data *data);
+void				combine_images(void *mlx, t_img *under_img,
+						t_img *upper_img);
 
 #endif

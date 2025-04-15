@@ -20,26 +20,24 @@ typedef enum e_map_type
 	COLLECTIBLE,
 	PLAYER,
 	EXIT,
-} t_floor_state;
+}					t_floor_state;
 
 typedef struct s_point
 {
-	int x;
-	int y;
-	t_floor_state floor_type;
-}	t_point;
+	int				x;
+	int				y;
+	t_floor_state	floor_type;
+}					t_point;
 
 typedef struct s_map
 {
-	t_point **contents;
-	int map_width;
-	int map_height;
-	int player_x;
-	int player_y;
-	int collectible_count_current;
-	int collectible_count_total;
-}	t_map;
+	t_point			**contents;
+	int				map_width;
+	int				map_height;
+	int				player_x;
+	int				player_y;
+	int				collectible_count_current;
+	int				collectible_count_total;
+}					t_map;
 
-
-
-# endif
+#endif

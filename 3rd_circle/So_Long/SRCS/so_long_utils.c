@@ -12,15 +12,15 @@
 
 #include "so_long.h"
 
-int ft_in_charptr(char *ch,const char *charset)
+int	ft_in_charptr(char *ch, const char *charset)
 {
-	const int charsetsize = ft_strlen(charset);
-	int i;
+	const int	charsetsize = ft_strlen(charset);
+	int			i;
 
-	i=0;
-	while(i < charsetsize)
+	i = 0;
+	while (i < charsetsize)
 	{
-		if(*ch == charset[i])
+		if (*ch == charset[i])
 			return (1);
 		i++;
 	}
@@ -29,7 +29,7 @@ int ft_in_charptr(char *ch,const char *charset)
 
 int	ft_strchr_int(const char *s, int c)
 {
-	int			i;
+	int				i;
 	unsigned char	uc;
 
 	if (s == NULL)
@@ -47,12 +47,12 @@ int	ft_strchr_int(const char *s, int c)
 	return (0);
 }
 
-void initialize_int_ptr_array(int **ptr,int size)
+void	initialize_int_ptr_array(int **ptr, int size)
 {
-	int i;
+	int	i;
 
 	i = 0;
-	while(i < size)
+	while (i < size)
 	{
 		*ptr[i] = 0;
 		i++;
