@@ -28,6 +28,7 @@ SRC_FILES = main.c \
 			check_maps.c \
 			check_maps_second.c \
 			check_maps_third.c \
+			bfs_utils.c \
 			queue_utils.c \
 			check_textures.c \
 			get_next_line.c \

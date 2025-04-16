@@ -6,7 +6,7 @@
 /*   By: mkuida <reprise39@yahoo.co.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/26 15:50:31 by mkuida            #+#    #+#             */
-/*   Updated: 2025/04/16 16:46:05 by mkuida           ###   ########.fr       */
+/*   Updated: 2025/04/16 18:35:01 by mkuida           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -173,5 +173,14 @@ t_queue				*init_queue(void);
 void				enqueue(t_queue *queue, int x, int y);
 t_queue_point		*dequeue(t_queue *queue);
 int					is_queue_empty(t_queue *queue);
+
+// bfs_utils.c
+void				free_visited(int **visited, int height);
+int					**make_visited(int height, int width);
+void				bfs_loop(t_map *map, t_queue *queue, int **visited,
+						int *goal_found);
+void				enqueue_bfs(t_queue *queue, t_map *map, int **visited,
+						t_xy xy);
+int					check_playable(t_map *map, int goal_found);
 
 #endif
