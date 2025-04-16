@@ -6,7 +6,7 @@
 /*   By: mkuida <reprise39@yahoo.co.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/14 21:40:24 by mkuida            #+#    #+#             */
-/*   Updated: 2025/04/16 00:34:33 by mkuida           ###   ########.fr       */
+/*   Updated: 2025/04/16 19:58:54 by mkuida           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ static void	move_to(t_data *data, int y, int x, t_floor_state next_floor_type)
 	map->player_x += x;
 	map->player_y += y;
 	if (next_floor_type == COLLECTIBLE)
-		get_collectible(map, y, x);
+		get_collectible(map);
 	display_player_exist(data, map, map->player_y, map->player_x);
 }
 

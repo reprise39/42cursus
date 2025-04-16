@@ -6,7 +6,7 @@
 /*   By: mkuida <reprise39@yahoo.co.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/15 05:31:34 by mkuida            #+#    #+#             */
-/*   Updated: 2025/04/16 03:49:27 by mkuida           ###   ########.fr       */
+/*   Updated: 2025/04/16 20:00:17 by mkuida           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,14 @@
 
 void	combine_image_group(t_data *data)
 {
-	combine_images(data->mlx_ptr, &data->wall_img, &data->floor_img);
-	combine_images(data->mlx_ptr, &data->player_img, &data->floor_img);
-	combine_images(data->mlx_ptr, &data->asset_img, &data->floor_img);
-	combine_images(data->mlx_ptr, &data->goal_img, &data->floor_img);
-	combine_images(data->mlx_ptr, &data->goal_on_player_img, &data->goal_img);
+	combine_images(&data->wall_img, &data->floor_img);
+	combine_images(&data->player_img, &data->floor_img);
+	combine_images(&data->asset_img, &data->floor_img);
+	combine_images(&data->goal_img, &data->floor_img);
+	combine_images(&data->goal_on_player_img, &data->goal_img);
 }
 
-void	combine_images(void *mlx, t_img *b_img, t_img *a_img)
+void	combine_images(t_img *b_img, t_img *a_img)
 {
 	int				base_offset;
 	int				added_offset;

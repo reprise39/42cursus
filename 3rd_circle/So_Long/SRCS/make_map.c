@@ -6,7 +6,7 @@
 /*   By: mkuida <reprise39@yahoo.co.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 18:59:24 by mkuida            #+#    #+#             */
-/*   Updated: 2025/04/16 03:21:01 by mkuida           ###   ########.fr       */
+/*   Updated: 2025/04/16 19:47:12 by mkuida           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,6 @@ t_map	*make_map(void)
 static t_map	*make_map_ptr(int map_width, int map_height)
 {
 	t_map	*map;
-	int		i;
 
 	map = ft_calloc(sizeof(t_map), 1);
 	if (!map)

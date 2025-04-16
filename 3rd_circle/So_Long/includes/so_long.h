@@ -6,7 +6,7 @@
 /*   By: mkuida <reprise39@yahoo.co.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/26 15:50:31 by mkuida            #+#    #+#             */
-/*   Updated: 2025/04/16 19:44:39 by mkuida           ###   ########.fr       */
+/*   Updated: 2025/04/16 20:00:34 by mkuida           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -160,12 +160,12 @@ void				set_mlx_hook(t_data *data);
 void				move_player(t_data *data, int y, int x);
 
 // move_player_util.c
-void				get_collectible(t_map *map, int y, int x);
+void				get_collectible(t_map *map);
 void				goal(t_data *data);
 
 // combine_picture.c
 void				combine_image_group(t_data *data);
-void				combine_images(void *mlx, t_img *under_img,
+void				combine_images(t_img *under_img,
 						t_img *upper_img);
 
 // queue_utils.c

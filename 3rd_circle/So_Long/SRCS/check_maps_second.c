@@ -6,7 +6,7 @@
 /*   By: mkuida <reprise39@yahoo.co.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/28 23:28:34 by mkuida            #+#    #+#             */
-/*   Updated: 2025/04/15 06:33:07 by mkuida           ###   ########.fr       */
+/*   Updated: 2025/04/16 19:48:39 by mkuida           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,10 +77,7 @@ int	map_check_wall(void)
 
 int	map_check_number_of_elements(void)
 {
-	int		map_fd;
 	int		number_of_char;
-	int		i;
-	char	*line;
 
 	number_of_char = check_map_number_of_char('C');
 	if (number_of_char < 1)

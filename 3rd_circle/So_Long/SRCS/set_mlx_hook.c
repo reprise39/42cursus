@@ -6,7 +6,7 @@
 /*   By: mkuida <reprise39@yahoo.co.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/11 09:02:38 by mkuida            #+#    #+#             */
-/*   Updated: 2025/04/16 01:02:37 by mkuida           ###   ########.fr       */
+/*   Updated: 2025/04/16 19:57:24 by mkuida           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 static int	handle_close(t_data *data);
 static int	key_handle(int keysym, t_data *data);
 
-static int	destroy_image_before_close(t_data *data)
+static void	destroy_image_before_close(t_data *data)
 {
 	mlx_destroy_image(data->mlx_ptr, data->player_img.mlx_img);
 	mlx_destroy_image(data->mlx_ptr, data->asset_img.mlx_img);
@@ -35,6 +35,7 @@ static int	expose_hook(t_data *data)
 		return (0);
 	}
 	handle_close(data);
+	return (0);
 }
 
 static int	handle_close(t_data *data)

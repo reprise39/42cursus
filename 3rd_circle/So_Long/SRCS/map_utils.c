@@ -6,7 +6,7 @@
 /*   By: mkuida <reprise39@yahoo.co.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/28 23:19:47 by mkuida            #+#    #+#             */
-/*   Updated: 2025/04/15 02:55:36 by mkuida           ###   ########.fr       */
+/*   Updated: 2025/04/16 19:48:01 by mkuida           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int	get_map_width(void)
 	linewidth = ft_strlen(line);
 	while (line != NULL)
 	{
-		if (linewidth != ft_strlen(line))
+		if (linewidth != (int)ft_strlen(line))
 			same_width_flag = -1;
 		free(line);
 		line = get_next_line(map_fd);
@@ -75,7 +75,7 @@ int	check_map_number_of_char(char c)
 	while (line != NULL)
 	{
 		i = 0;
-		while (i < ft_strlen(line))
+		while (i < (int)ft_strlen(line))
 		{
 			if (line[i] == c)
 				number_of_char++;

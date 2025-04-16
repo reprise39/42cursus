@@ -13,8 +13,7 @@
 #define
 NAME = so_long
 CC = cc
-CFLAGS = 
-# CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror
 LDFLAGS = -L$(LIBFT_DIR) -lft -L/usr/local/lib -lmlx -lXext -lX11 -lm
 INCLUDES = -I includes
 
