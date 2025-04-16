@@ -6,170 +6,126 @@
 /*   By: mkuida <reprise39@yahoo.co.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 16:43:46 by mkuida            #+#    #+#             */
-/*   Updated: 2025/04/09 18:11:03 by mkuida           ###   ########.fr       */
+/*   Updated: 2025/04/16 17:37:36 by mkuida           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "queue.h"
-#include "map.h"
 #include "so_long.h"
 
-t_point get_startpoint(t_map *map_ptr)
+static int check_playable(t_map *map, int collect_count, int goal_found)
 {
-	t_point start;
-	int i;
-
-	i = 0;
-	while(map_ptr->contents[i] != 'P')
-	{
-		i++;
-	}
-	start.y = i / (map_ptr->map_x);
-	start.x = i % (map_ptr->map_x);
-	ft_printf("get_startpoint\n");
-	ft_printf("x=%d y=%d\n",start.x,start.y);
-	ft_printf("\n");
-	return (start);
-}
-
-void bfs(t_map_queue *avaiable_flag_ptr,t_map *map_ptr,t_point start)
-{
-	t_map *explored_map;
-	
-	explored_map = mk_map_ptr(map_ptr->map_x,map_ptr->map_y);
-	if(map_ptr == NULL)
+	if(map->collectible_count_total == collect_count && goal_found)
+		return (1);
+	else
 		return (-1);
 }
 
-t_map_queue *enque_avaiable_flag(t_map *map_ptr,t_point start)
+
+static int **make_visited(int height, int width)
 {
-	//tukuru!
-	t_map_queue *avaiable_flag_ptr;
-
-	avaiable_flag_ptr = malloc(sizeof(t_map_queue*));
-	if(avaiable_flag_ptr == NULL)
-		return (NULL);
-	queue_init(avaiable_flag_ptr);
-	bfs(avaiable_flag_ptr,map_ptr,start);
-	
-	
-	return(avaiable_flag_ptr);
-}
-
-t_map_queue *enque_goal(t_map *map_ptr,t_point start)
-{
-	//tukuru!
-}
-
-int check_reachable(t_map_queue *flag_ptr,t_map_queue *goal_ptr)
-{
-	//tukuru!
-}
-
-int check_isplayable_by_bfs(t_map *map_ptr)
-{
-	t_point start;
-	t_map_queue *flag_ptr;
-	t_map_queue *goal_ptr;
-	
-	start = get_startpoint(map_ptr);
-	flag_ptr = enque_avaiable_flag(map_ptr,start);
-	if(flag_ptr == NULL)
-		return(-1);
-	while(!isEmpty(flag_ptr))
-	{
-		goal_ptr = enque_goal(map_ptr,start);
-		if(goal_ptr == NULL)
-			return(-1);
-		while(!isEmpty(goal_ptr))
-		{
-			if(check_reachable(flag_ptr,goal_ptr))
-			{
-				//free
-				return (1);
-			}
-			dequeue(goal_ptr);
-		}
-		dequeue(flag_ptr);
-	}
-	//free
-	return (-1);
-}
-
-
-// void output_maps(t_map *map_ptr)
-// {
-// 	int i;
-// 	int j;
-
-// 	i = 0;
-// 	while(i < map_ptr->map_y)
-// 	{
-// 		j = 0;
-// 		while(j < map_ptr->map_x)
-// 		{
-// 			write(STDOUT_FILENO,map_ptr->contents[(i*(map_ptr->map_x))+j],1);
-// 		}
-// 	}
-// }
-
-
-t_map* install_map(t_map* map_ptr,int x,int y)
-{
-	int map_fd;
-	char *line;
+	int **visited;
 	int i;
-	map_fd = open(MAP_PATH, O_RDONLY);
-	if (map_fd < 0)
-		return (NULL);
-	map_ptr->map_x = x;
-	map_ptr->map_y = y;
-	line = get_next_line(map_fd);
+
 	i = 0;
-	ft_printf("\n");
-	while(i < y)
+	visited = ft_calloc(height , sizeof(int *));
+	if (!visited)
+		return (NULL);
+	while(i < height)
 	{
-		ft_strlcpy(&(map_ptr->contents[0 + (i*x)]),line,x);
-		ft_printf("%s\n",line);
-		free(line);
-		line = get_next_line(map_fd);
+		visited[i] = ft_calloc(width , sizeof(int));
+		if (!visited[i])
+		{
+			while(i > 0)
+			{
+				free(visited[i - 1]);
+				i--;
+			}
+			free(visited);
+			return (NULL);
+		}
 		i++;
 	}
-	// free(line);
-	close(map_fd);
-	return(map_ptr);
+	return (visited);
 }
 
-t_map* mk_map_ptr(int x,int y)
+void free_visited(int **visited, int height)
 {
-	t_map* map_ptr;
-	char* line;
 	int i;
-	int map_fd;
 
-	map_ptr = malloc(sizeof(t_map));
-	if(map_ptr == NULL)
-		return (NULL);
-	map_ptr = install_map(map_ptr,x,y);
-	if(map_ptr == NULL)
+	if (!visited)
+		return;
+	i = 0;
+	while (i < height)
 	{
-		free(map_ptr);
-		return (NULL);
+		free(visited[i]);  // 各行を解放
+		i++;
 	}
-	return (map_ptr);
+	free(visited);  // 最後にポインタ配列本体を解放
+}
+
+static int check_isplayable_by_bfs(t_map *map, t_queue *queue)
+{
+	int **visited;
+	int collect_count = 0;
+	int goal_found = 0;
+
+	visited = make_visited(map->map_height, map->map_width);
+	if(visited == NULL)
+		return (-1);
+	enqueue(queue, map->player_x, map->player_y);
+	visited[map->player_y][map->player_x] = 1;
+
+	while(!is_queue_empty(queue))
+	{
+		t_queue_point *node = dequeue(queue);
+        int x = node->x;
+        int y = node->y;
+        free(node);
+
+        t_floor_state tile = map->contents[y][x].floor_type;
+        if (tile == COLLECTIBLE)
+            collect_count++;
+        if (tile == EXIT)
+            goal_found = 1;
+		int dx[4] = {0, 0, 1, -1};
+		int dy[4] = {1, -1, 0, 0};
+
+		for (int i = 0; i < 4; i++)
+		{
+			int nx = x + dx[i];
+			int ny = y + dy[i];
+			
+			if (nx >= 0 && ny >= 0 && nx < (map->map_width) && ny < (map->map_height))
+			{
+				if (!visited[ny][nx] && map->contents[ny][nx].floor_type != WALL)
+				{
+					enqueue(queue, nx, ny);
+					visited[ny][nx] = 1;
+				}
+			}
+		}
+	}
+	free_visited(visited,map->map_height);
+	return(check_playable(map, collect_count, goal_found));
 }
 
 int map_check_isplayable()
 {
 	t_map *map_ptr;
+	t_queue *queue_ptr;
 	int is_playable;
-	const int w = get_map_width();
-	const int h = get_map_height();
 
-	map_ptr = mk_map_ptr(w,h);
+	map_ptr = make_map();
 	if(map_ptr == NULL)
 		return (-1);
-	is_playable = check_isplayable_by_bfs(map_ptr);
-	free(map_ptr);
+	queue_ptr = init_queue();
+	if(queue_ptr == NULL)
+	{
+		free_map(map_ptr);
+		return (-1);
+	}
+	is_playable = check_isplayable_by_bfs(map_ptr,queue_ptr);
+	free_map(map_ptr);
+	free(queue_ptr);
 	return(is_playable);
 }

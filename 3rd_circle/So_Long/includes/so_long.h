@@ -6,7 +6,7 @@
 /*   By: mkuida <reprise39@yahoo.co.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/26 15:50:31 by mkuida            #+#    #+#             */
-/*   Updated: 2025/04/16 04:01:41 by mkuida           ###   ########.fr       */
+/*   Updated: 2025/04/16 16:46:05 by mkuida           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@
 # include <stdio.h>
 # include <stdlib.h>
 # include <unistd.h>
+# include <string.h> // memset
 
 # define BUFFER_SIZE 42
 
@@ -56,6 +57,11 @@
 # define TEXTURES_FLOOR_PATH "./textures/cobblestone_tiles_brown.xpm"
 
 # define TILE_SIZE 32
+
+# ifndef QUEUE_H
+#  include "queue.h"
+#  define QUEUE_H
+# endif
 
 # ifndef MAP_H
 #  include "map.h"
@@ -161,5 +167,12 @@ void				goal(t_data *data);
 void				combine_image_group(t_data *data);
 void				combine_images(void *mlx, t_img *under_img,
 						t_img *upper_img);
+
+// queue_utils.c
+t_queue *init_queue(void);
+void enqueue(t_queue *queue, int x, int y);
+t_queue_point *dequeue(t_queue *queue);
+int is_queue_empty(t_queue *queue);
+
 
 #endif

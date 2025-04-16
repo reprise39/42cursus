@@ -27,6 +27,8 @@ SRC_FILES = main.c \
 			map_utils.c \
 			check_maps.c \
 			check_maps_second.c \
+			check_maps_third.c \
+			queue_utils.c \
 			check_textures.c \
 			get_next_line.c \
 			get_next_line_utils.c \
@@ -37,7 +39,7 @@ SRC_FILES = main.c \
 			move_player.c\
 			move_player_util.c\
 			combine_picture.c\
-#			check_maps_third.c \
+
 
 SRCS = $(addprefix $(SRC_DIR)/, $(SRC_FILES))
 
@@ -47,8 +49,6 @@ OBJS = $(SRCS:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)
 
 LIBFT_DIR = ./libft_added_ftprintf
 LIBFT = $(LIBFT_DIR)/libft.a
-
-# BONUS_FLAG = .bonus_done
 
 .PHONY: all clean fclean re
 

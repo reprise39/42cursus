@@ -6,7 +6,7 @@
 /*   By: mkuida <reprise39@yahoo.co.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/26 16:02:41 by mkuida            #+#    #+#             */
-/*   Updated: 2025/04/16 03:03:42 by mkuida           ###   ########.fr       */
+/*   Updated: 2025/04/16 17:37:56 by mkuida           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ const char	*get_error_message(int error_num)
 		"Map error : Map is need to be rector",
 		"Map error : Map is need to be grounded wall (in map 1 indicate wall )",
 		"Map error : Map is need to one {E,P} and at least one {C}",
-		"Map error : Map is need to playable"};
+		"Map error : Map is needed to be playable"};
 	static const int	num_errors = sizeof(error_messages)
 		/ sizeof(error_messages[0]);
 

@@ -6,7 +6,7 @@
 /*   By: mkuida <reprise39@yahoo.co.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 17:14:06 by mkuida            #+#    #+#             */
-/*   Updated: 2025/03/23 15:30:01 by mkuida           ###   ########.fr       */
+/*   Updated: 2025/04/16 16:46:50 by mkuida           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,16 +22,15 @@
 
 typedef struct s_queue_point
 {
-    int	top;
-    int tail;
-	t_point point[queue_maxsize];
+	int x;
+	int y;
+	struct s_queue_point	*next;
 }	t_queue_point;
 
-typedef struct s_queue_int
+typedef struct s_queue
 {
-    int	top;
-    int tail;
-	int n[queue_maxsize];
-}	t_queue_int;
+	t_queue_point	*top;
+	t_queue_point	*tail;
+}	t_queue;
 
 # endif
