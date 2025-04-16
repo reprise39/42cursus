@@ -6,7 +6,7 @@
 /*   By: mkuida <reprise39@yahoo.co.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/26 16:02:41 by mkuida            #+#    #+#             */
-/*   Updated: 2025/04/16 17:37:56 by mkuida           ###   ########.fr       */
+/*   Updated: 2025/04/16 19:43:33 by mkuida           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,14 +42,14 @@ int	main(void)
 	error_num = check_maps();
 	if (error_num != 0)
 	{
-		ft_printf("errornum = %d\n", error_num);
+		ft_printf("Error\n");
 		print_error_message(error_num);
 		return (-1);
 	}
 	error_num = check_textures();
 	if (error_num != 0)
 	{
-		ft_printf("errornum = %d\n", error_num);
+		ft_printf("Error%d\n", error_num);
 		ft_printf("Textures error : Texture no exist or cant read\n");
 		return (-1);
 	}

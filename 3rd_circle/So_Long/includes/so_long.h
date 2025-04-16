@@ -6,7 +6,7 @@
 /*   By: mkuida <reprise39@yahoo.co.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/26 15:50:31 by mkuida            #+#    #+#             */
-/*   Updated: 2025/04/16 18:35:01 by mkuida           ###   ########.fr       */
+/*   Updated: 2025/04/16 19:44:39 by mkuida           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@
 
 # define MLX_ERROR 50
 
-# define MAP_PATH "./maps/map1.txt"
+# define MAP_PATH "./maps/map.ber"
 
 # define TEXTURES_PLAYER_PATH "./textures/food_merchant_spritesheet.xpm"
 # define TEXTURES_ASSET_PATH "./textures/market_assets.xpm"
