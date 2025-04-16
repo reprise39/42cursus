@@ -24,8 +24,8 @@
 # include <stdint.h>
 # include <stdio.h>
 # include <stdlib.h>
-# include <unistd.h>
 # include <string.h> // memset
+# include <unistd.h>
 
 # define BUFFER_SIZE 42
 
@@ -169,10 +169,9 @@ void				combine_images(void *mlx, t_img *under_img,
 						t_img *upper_img);
 
 // queue_utils.c
-t_queue *init_queue(void);
-void enqueue(t_queue *queue, int x, int y);
-t_queue_point *dequeue(t_queue *queue);
-int is_queue_empty(t_queue *queue);
-
+t_queue				*init_queue(void);
+void				enqueue(t_queue *queue, int x, int y);
+t_queue_point		*dequeue(t_queue *queue);
+int					is_queue_empty(t_queue *queue);
 
 #endif

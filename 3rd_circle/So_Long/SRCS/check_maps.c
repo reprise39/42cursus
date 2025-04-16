@@ -6,7 +6,7 @@
 /*   By: mkuida <reprise39@yahoo.co.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/26 19:49:30 by mkuida            #+#    #+#             */
-/*   Updated: 2025/04/16 04:08:44 by mkuida           ###   ########.fr       */
+/*   Updated: 2025/04/16 17:39:43 by mkuida           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int	check_maps(void)
 		return (ERROR_MAP_INWALL);
 	if (map_check_number_of_elements() == -1)
 		return (ERROR_MAP_ELEMENTS);
-	if(map_check_isplayable() == -1)
+	if (map_check_isplayable() == -1)
 		return (ERROR_MAP_CANT_PLAY);
 	return (0);
 }
