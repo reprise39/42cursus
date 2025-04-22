@@ -6,19 +6,19 @@
 /*   By: mkuida <reprise39@yahoo.co.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/11 04:32:12 by mkuida            #+#    #+#             */
-/*   Updated: 2025/04/16 04:00:58 by mkuida           ###   ########.fr       */
+/*   Updated: 2025/04/21 18:33:51 by mkuida           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-static void	set_data_mlx(t_data *data);
+static void	set_data_mlx(t_data *data, char *map_path);
 static void	set_data_img(t_data *data);
 static void	set_data_img_x(t_data *data, char *xpm_path, t_img *img,
 				const int *cutinfo);
 void		cp_pixel(t_img full_data, t_img *cut_data, const int *cut);
 
-t_data	*make_data(void)
+t_data	*make_data(char *map_path)
 {
 	t_data	*data;
 
@@ -28,16 +28,16 @@ t_data	*make_data(void)
 		perror("ft_calloc");
 		return (NULL);
 	}
-	set_data_mlx(data);
+	set_data_mlx(data, map_path);
 	set_data_img(data);
 	data->state = PLAYING;
 	return (data);
 }
 
-static void	set_data_mlx(t_data *data)
+static void	set_data_mlx(t_data *data, char *map_path)
 {
-	const int	map_height = get_map_height();
-	const int	map_width = get_map_width();
+	const int	map_height = get_map_height(map_path);
+	const int	map_width = get_map_width(map_path);
 	const int	window_width = map_width * TILE_SIZE;
 	const int	window_height = map_height * TILE_SIZE;
 

@@ -6,7 +6,7 @@
 /*   By: mkuida <reprise39@yahoo.co.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/26 15:50:31 by mkuida            #+#    #+#             */
-/*   Updated: 2025/04/16 21:01:57 by mkuida           ###   ########.fr       */
+/*   Updated: 2025/04/21 20:53:57 by mkuida           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,28 +26,24 @@
 # include <stdlib.h>
 # include <unistd.h>
 
-# define BUFFER_SIZE 42
-
-# define WINDOW_WIDTH 1200
-# define WINDOW_HEIGHT 900
-# define RED_PIXEL 0xFF0000
-# define GREEN_PIXEL 0xFF00
-# define WHITE_PIXEL 0xFFFF
-
 // for_error
-# define ERROR_MAP_EXISTS 1
-# define ERROR_MAP_CHARACTOR 2
-# define ERROR_MAP_SHAPE 3
-# define ERROR_MAP_INWALL 4
-# define ERROR_MAP_ELEMENTS 5
-# define ERROR_MAP_CANT_PLAY 6
+# define ERROR_ARGS 1
+# define ERROR_MAP_EXISTS 2
+# define ERROR_MAP_CHARACTOR 3
+# define ERROR_MAP_SHAPE 4
+# define ERROR_MAP_SIZE 5
+# define ERROR_MAP_INWALL 6
+# define ERROR_MAP_ELEMENTS 7
+# define ERROR_MAP_CANT_PLAY 8
 
 # define ERROR_TEXTURES_EXISTS 10
 # define ERROR_TEXTURES_UNREADABLE 11
 
 # define MLX_ERROR 50
 
-# define MAP_PATH "./maps/map.ber"
+//# define MAP_PATH "./maps/map.ber"
+# define MAP_MAXHEIGHT 64
+# define MAP_MAXWIDETH 120
 
 # define TEXTURES_PLAYER_PATH "./textures/food_merchant_spritesheet.xpm"
 # define TEXTURES_ASSET_PATH "./textures/market_assets.xpm"
@@ -99,30 +95,32 @@ typedef struct s_data
 }					t_data;
 
 // map_utils
-int					get_map_width(void);
-int					get_map_height(void);
-int					check_map_number_of_char(char c);
+int					get_map_width(char *map_path);
+int					get_map_height(char *map_path);
+int					check_map_number_of_char(char *map_path, char c);
 
 // check_maps
-int					check_maps(void);
-int					map_check_exists(void);
-int					map_check_charactor(void);
-int					map_check_shape(void);
+int					check_maps(int argc, char **argv);
+int					map_check_exists(char *map_path);
+int					map_check_charactor(char *map_path);
+int					map_check_shape(char *map_path);
 
 // check_maps_second
 int					check_line(char *line, int my_height, int map_height,
 						int map_width);
-int					map_check_wall_at(int map_height, int map_width);
-int					map_check_wall(void);
-int					map_check_number_of_elements(void);
+int					map_check_wall_at(char *map_path, int map_height,
+						int map_width);
+int					map_check_wall(char *map_path);
+int					map_check_number_of_elements(char *map_path);
+int					map_check_insize(char *map_path);
 
 // check_maps_third
 t_map				*mk_map_ptr(int x, int y);
 t_map				*install_map(t_map *map_ptr, int x, int y);
-int					map_check_isplayable(void);
+int					map_check_isplayable(char *map_path);
 
 // make_map.c
-t_map				*make_map(void);
+t_map				*make_map(char *map_path);
 
 // free_map.c
 void				free_map(t_map *map);
@@ -146,10 +144,10 @@ char				*ft_strdup(const char *s);
 void				mlx_put_image_start(t_data *data);
 
 // mlx_exec.c
-int					exec_mlx(void);
+int					exec_mlx(char *map_path);
 
 // make_data.c
-t_data				*make_data(void);
+t_data				*make_data(char *map_path);
 void				cp_pixel(t_img full_data, t_img *cut_data, const int *cut);
 
 // set_mlx_hook.c
@@ -164,12 +162,11 @@ void				goal(t_data *data);
 
 // combine_picture.c
 void				combine_image_group(t_data *data);
-void				combine_images(t_img *under_img,
-						t_img *upper_img);
+void				combine_images(t_img *under_img, t_img *upper_img);
 
 // queue_utils.c
 t_queue				*init_queue(void);
-void				enqueue(t_queue *queue, int x, int y);
+int					enqueue(t_queue *queue, int x, int y);
 t_queue_point		*dequeue(t_queue *queue);
 int					is_queue_empty(t_queue *queue);
 

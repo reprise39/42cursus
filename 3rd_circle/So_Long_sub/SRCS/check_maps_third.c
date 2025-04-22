@@ -6,7 +6,7 @@
 /*   By: mkuida <reprise39@yahoo.co.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 16:43:46 by mkuida            #+#    #+#             */
-/*   Updated: 2025/04/16 18:35:33 by mkuida           ###   ########.fr       */
+/*   Updated: 2025/04/21 19:46:16 by mkuida           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,20 +21,24 @@ static int	check_isplayable_by_bfs(t_map *map, t_queue *queue)
 	visited = make_visited(map->map_height, map->map_width);
 	if (visited == NULL)
 		return (-1);
-	enqueue(queue, map->player_x, map->player_y);
+	if (enqueue(queue, map->player_x, map->player_y) == -1)
+	{
+		perror("check_isplayable_by_bfs : enqueue");
+		exit(EXIT_FAILURE);
+	}
 	visited[map->player_y][map->player_x] = 1;
 	bfs_loop(map, queue, visited, &goal_found);
 	free_visited(visited, map->map_height);
 	return (check_playable(map, goal_found));
 }
 
-int	map_check_isplayable(void)
+int	map_check_isplayable(char *map_path)
 {
 	t_map	*map_ptr;
 	t_queue	*queue_ptr;
 	int		is_playable;
 
-	map_ptr = make_map();
+	map_ptr = make_map(map_path);
 	if (map_ptr == NULL)
 		return (-1);
 	queue_ptr = init_queue();

@@ -6,13 +6,13 @@
 /*   By: mkuida <reprise39@yahoo.co.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/28 23:19:47 by mkuida            #+#    #+#             */
-/*   Updated: 2025/04/16 19:48:01 by mkuida           ###   ########.fr       */
+/*   Updated: 2025/04/21 17:57:28 by mkuida           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-int	get_map_width(void)
+int	get_map_width(char *map_path)
 {
 	int		map_fd;
 	int		same_width_flag;
@@ -20,7 +20,7 @@ int	get_map_width(void)
 	char	*line;
 
 	same_width_flag = 1;
-	map_fd = open(MAP_PATH, O_RDONLY);
+	map_fd = open(map_path, O_RDONLY);
 	if (map_fd < 0)
 		return (-1);
 	line = get_next_line(map_fd);
@@ -39,14 +39,14 @@ int	get_map_width(void)
 		return (-1);
 }
 
-int	get_map_height(void)
+int	get_map_height(char *map_path)
 {
 	int		map_fd;
 	int		lineheight;
 	char	*line;
 
 	lineheight = 0;
-	map_fd = open(MAP_PATH, O_RDONLY);
+	map_fd = open(map_path, O_RDONLY);
 	if (map_fd < 0)
 		return (-1);
 	line = get_next_line(map_fd);
@@ -60,7 +60,7 @@ int	get_map_height(void)
 	return (lineheight);
 }
 
-int	check_map_number_of_char(char c)
+int	check_map_number_of_char(char *map_path, char c)
 {
 	int		map_fd;
 	char	*line;
@@ -68,7 +68,7 @@ int	check_map_number_of_char(char c)
 	int		number_of_char;
 
 	number_of_char = 0;
-	map_fd = open(MAP_PATH, O_RDONLY);
+	map_fd = open(map_path, O_RDONLY);
 	if (map_fd < 0)
 		return (-1);
 	line = get_next_line(map_fd);

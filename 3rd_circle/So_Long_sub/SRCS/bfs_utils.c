@@ -6,7 +6,7 @@
 /*   By: mkuida <reprise39@yahoo.co.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/16 18:29:04 by mkuida            #+#    #+#             */
-/*   Updated: 2025/04/16 18:34:00 by mkuida           ###   ########.fr       */
+/*   Updated: 2025/04/21 19:46:36 by mkuida           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,11 @@ void	enqueue_bfs(t_queue *queue, t_map *map, int **visited, t_xy xy)
 		{
 			if (!visited[ny][nx] && map->contents[ny][nx].floor_type != WALL)
 			{
-				enqueue(queue, nx, ny);
+				if (enqueue(queue, nx, ny) == -1)
+				{
+					perror("enqueue_bfs : enqueue");
+					exit(EXIT_FAILURE);
+				}
 				visited[ny][nx] = 1;
 			}
 		}

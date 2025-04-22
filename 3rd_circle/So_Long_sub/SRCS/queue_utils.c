@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   map_queue.c                                        :+:      :+:    :+:   */
+/*   queue_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mkuida <reprise39@yahoo.co.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 17:12:08 by mkuida            #+#    #+#             */
-/*   Updated: 2025/04/16 16:18:57 by mkuida           ###   ########.fr       */
+/*   Updated: 2025/04/21 18:40:24 by mkuida           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,13 +25,13 @@ t_queue	*init_queue(void)
 	return (queue);
 }
 
-void	enqueue(t_queue *queue, int x, int y)
+int	enqueue(t_queue *queue, int x, int y)
 {
 	t_queue_point	*new_node;
 
 	new_node = malloc(sizeof(t_queue_point));
 	if (!new_node)
-		return ;
+		return (-1);
 	new_node->x = x;
 	new_node->y = y;
 	new_node->next = NULL;
@@ -45,6 +45,7 @@ void	enqueue(t_queue *queue, int x, int y)
 		queue->tail->next = new_node;
 		queue->tail = new_node;
 	}
+	return (0);
 }
 
 t_queue_point	*dequeue(t_queue *queue)

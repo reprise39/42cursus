@@ -6,7 +6,7 @@
 /*   By: mkuida <reprise39@yahoo.co.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 18:59:24 by mkuida            #+#    #+#             */
-/*   Updated: 2025/04/16 21:48:50 by mkuida           ###   ########.fr       */
+/*   Updated: 2025/04/21 18:34:11 by mkuida           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,15 +15,15 @@
 #include "so_long.h"
 
 static t_map	*make_map_ptr(int map_width, int map_height);
-static void		install_map_struct(t_map *map);
+static void		install_map_struct(t_map *map, char *map_path);
 static void		set_map_contents(t_map *map, char c, int x, int y);
 static int		make_map_contents(t_map *map, int map_width, int map_height);
 
-t_map	*make_map(void)
+t_map	*make_map(char *map_path)
 {
 	t_map		*map;
-	const int	map_width = get_map_width();
-	const int	map_height = get_map_height();
+	const int	map_width = get_map_width(map_path);
+	const int	map_height = get_map_height(map_path);
 
 	map = make_map_ptr(map_width, map_height);
 	if (!map)
@@ -31,7 +31,7 @@ t_map	*make_map(void)
 		perror("make_map_ptr");
 		return (NULL);
 	}
-	install_map_struct(map);
+	install_map_struct(map, map_path);
 	return (map);
 }
 
@@ -42,7 +42,7 @@ static t_map	*make_map_ptr(int map_width, int map_height)
 	map = ft_calloc(sizeof(t_map), 1);
 	if (!map)
 	{
-		perror("make_map_ptr(ft_calloc)");
+		perror("make_map_ptr1(ft_calloc)");
 		exit(EXIT_FAILURE);
 	}
 	map->map_width = map_width;
@@ -50,7 +50,7 @@ static t_map	*make_map_ptr(int map_width, int map_height)
 	map->contents = ft_calloc(sizeof(t_point *), map_height);
 	if (!map->contents)
 	{
-		perror("make_map_ptr(ft_calloc)");
+		perror("make_map_ptr2(ft_calloc)");
 		exit(EXIT_FAILURE);
 	}
 	make_map_contents(map, map_width, map_height);
@@ -79,13 +79,14 @@ static int	make_map_contents(t_map *map, int map_width, int map_height)
 	return (0);
 }
 
-static void	install_map_struct(t_map *map)
+static void	install_map_struct(t_map *map, char *map_path)
 {
-	const int	map_fd = open(MAP_PATH, O_RDONLY);
+	const int	map_fd = open(map_path, O_RDONLY);
 	char		*line;
 	int			i;
 	int			j;
 
+	map->map_path = map_path;
 	i = 0;
 	if (map_fd < 0)
 		exit(EXIT_FAILURE);
