@@ -69,7 +69,6 @@ static int check_over_intmax(const char *str)
 	}
 }
 
-
 int ft_isposiint_str(const char *str)
 {
 	int i;

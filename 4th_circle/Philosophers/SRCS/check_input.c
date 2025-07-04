@@ -18,7 +18,7 @@ int check_argc_num(int argc)
 	{
 		printf("input error : wrong number of arguments\n");
 		printf("this app accept only 5 or 6 arguments (include appname)\n");
-		printf("[1] ./philosophers\n[2] <number_of_philosophers>\n [3]");
+		printf("[1] ./philosophers\n[2] <number_of_philosophers>\n[3] ");
 		printf("<time_to_die> \n[4] <time_to_eat> \n[5] <time_to_sleep>\n");
 		printf("[6] {optionbal}<number_of_times_each_philosopher_must_eat>\n");
 		return (1);

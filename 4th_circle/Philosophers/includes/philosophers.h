@@ -6,7 +6,7 @@
 /*   By: mkuida <reprise39@yahoo.co.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/26 15:50:31 by mkuida            #+#    #+#             */
-/*   Updated: 2025/07/04 09:07:31 by mkuida           ###   ########.fr       */
+/*   Updated: 2025/07/04 10:06:47 by mkuida           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@
 # include <string.h> // memset
 # include <unistd.h>
 # include <stdbool.h>
+# include <pthread.h>
 
 # define BUFFER_SIZE 42
 
@@ -91,5 +92,8 @@ int 				ft_atoi(const char *str);
 
 // for_debag.c
 void				print_condition(t_condition *condition);
+
+// philosophers.c
+int philosophers(t_thread_manage *thread_manage,t_condition *condition);
 
 #endif

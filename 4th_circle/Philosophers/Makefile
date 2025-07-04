@@ -23,7 +23,8 @@ SRC_FILES =	main.c\
 			check_input.c\
 			ft_is_int.c\
 			utils.c\
-			for_debag.c
+			for_debag.c\
+			philosophers.c\
 
 SRCS = $(addprefix $(SRC_DIR)/, $(SRC_FILES))
 
