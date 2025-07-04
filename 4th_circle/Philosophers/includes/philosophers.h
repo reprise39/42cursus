@@ -6,7 +6,7 @@
 /*   By: mkuida <reprise39@yahoo.co.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/26 15:50:31 by mkuida            #+#    #+#             */
-/*   Updated: 2025/07/04 10:06:47 by mkuida           ###   ########.fr       */
+/*   Updated: 2025/07/04 15:04:30 by mkuida           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,9 +70,14 @@ typedef struct s_philosopher
 	int				id;
 	int				num_of_eat_times;
 	suseconds_t		last_eat_time;
-	t_thread_manage	*manager;		// 管理構造体へのポインタ
-	t_condition		*condition;		// 条件へのポインタ
 }					t_philosopher;
+
+typedef struct s_symulation
+{
+	t_thread_manage	thread_manage;	// スレッド管理構造体
+	t_condition		condition;		// 条件構造体
+	t_philosopher	*philosophers;	// 哲学者の配列
+}					t_simulation;
 
 // check_input.c
 int					check_argc_num(int argc);
@@ -94,6 +99,6 @@ int 				ft_atoi(const char *str);
 void				print_condition(t_condition *condition);
 
 // philosophers.c
-int philosophers(t_thread_manage *thread_manage,t_condition *condition);
+int					philosophers(t_simulation *simulration);
 
 #endif

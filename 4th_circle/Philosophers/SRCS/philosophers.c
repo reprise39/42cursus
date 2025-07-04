@@ -12,51 +12,106 @@
 
 #include "philosophers.h"
 
-static void	init_philo(t_philosopher *philo, int i, t_condition *condition, t_thread_manage *thread_manage)
+int set_reft_fork(int i, t_simulation *sim)
 {
-	philo->id = i;
-	philo->last_eat_time = 0; // Initialize last meal time
-	philo->num_of_eat_times = 0; // Initialize eat count
-	// Additional initialization if needed
-	philo->manager = thread_manage;
-	philo->condition = condition;
+	if (i == 0)
+		return (sim->condition.num_of_philos - 1);
+	else
+		return (i - 1);
+}
+
+static void take_forks(t_simulation *sim, t_philosopher *philosopher)
+{
+	int right_fork;
+	int left_fork;
+	int first_fork;
+	int last_fork;
+
+	right_fork = ((philosopher->id)-1);
+	left_fork = set_reft_fork((philosopher->id)-1, sim);
+	if (((philosopher->id)-1) % 2 == 0)
+	{
+		first_fork = right_fork;
+		last_fork = left_fork;
+	}
+	else
+	{
+		first_fork = left_fork;
+		last_fork = right_fork;
+	}
+	pthread_mutex_lock(&sim->thread_manage.forks_mutex[first_fork]);
+	printf("Philosopher %d has taken (%d) fork\n", philosopher->id , first_fork);
+	pthread_mutex_lock(&sim->thread_manage.forks_mutex[last_fork]);
+	printf("Philosopher %d has taken (%d) fork\n", philosopher->id ,last_fork);
+}
+static void eating(t_simulation *sim, t_philosopher *philosopher)
+{
+	int right_fork;
+	int left_fork;
+	int first_fork;
+	int last_fork;
+
+	right_fork = ((philosopher->id)-1);
+	left_fork = set_reft_fork((philosopher->id)-1, sim);
+	if (((philosopher->id)-1) % 2 == 0)
+	{
+		first_fork = right_fork;
+		last_fork = left_fork;
+	}
+	else
+	{
+		first_fork = left_fork;
+		last_fork = right_fork;
+	}
+	printf("Philosopher %d is eating\n", philosopher->id);
+	usleep(sim->condition.time_to_eat); // Simulate eating time
+	pthread_mutex_unlock(&sim->thread_manage.forks_mutex[first_fork]);
+	pthread_mutex_unlock(&sim->thread_manage.forks_mutex[last_fork]);
+}
+
+static void sleeping(t_simulation *sim, t_philosopher *philosopher)
+{
+	printf("Philosopher %d is sleeping\n", philosopher->id);
+	usleep(sim->condition.time_to_sleep); // Simulate sleeping time
+}
+
+static void thinking(t_philosopher *philosopher)
+{
+	printf("Philosopher %d is thinking\n", philosopher->id);
+	usleep(200); // Simulate thinking time
+}
+
+static void	do_cicle(t_simulation *sim, t_philosopher *philosopher)
+{
+	while (1)
+	{
+		take_forks(sim, philosopher);
+		eating(sim, philosopher);
+		sleeping(sim, philosopher);
+		thinking(philosopher);
+	}
 }
 
 void	*philosopher_routine(void *arg)
 {
-	t_philosopher *philo = (t_philosopher *)arg;
-	printf("I am philosopher %d\n", philo->id);
-	return NULL; // Return type should match the thread function signature
+	static int i = -1;
+
+	i++;
+	t_simulation *sim = (t_simulation *)arg;
+	// printf("I am philosopher %d\n", i);
+	// printf(" %d\n", sim->condition.num_of_philos);
+	do_cicle(sim,&(sim->philosophers[i]));
+	return (NULL);
 }
 
-int mk_philosopher(t_philosopher *philo)
-{
-	philo = malloc(sizeof(t_philosopher));
-	if (!philo)
-	{
-		perror("malloc error");
-		return (EXIT_FAILURE);
-	}
-	philo->id = 0; // Initialize id to 0
-	philo->last_eat_time = 0; // Initialize last meal time
-	philo->num_of_eat_times = 0; // Initialize eat count
-	// Additional initialization if needed
-	philo->manager = NULL; // Set manager to NULL initially
-	philo->condition = NULL; // Set condition to NULL initially
-	return (EXIT_SUCCESS);
-}
-
-int philosophers(t_thread_manage *thread_manage,t_condition *condition)
+int philosophers(t_simulation *sim)
 {
 	int i;
-	t_philosopher philo;
 
-	i = 1;
-	while (i <= (thread_manage->num_of_philos))
+	i = 0;
+	while (i < (sim->condition.num_of_philos))
 	{
-		mk_philosopher(&philo);
-		init_philo(&philo, i, condition , thread_manage);
-		if (pthread_create(&thread_manage->thread_id[i], NULL, &philosopher_routine, &philo) != 0)
+		if (pthread_create(&sim->thread_manage.thread_id[i], NULL, &philosopher_routine, sim) != 0)
 		{
 			perror("pthread_create error");
 			return (EXIT_FAILURE);

@@ -6,7 +6,7 @@
 /*   By: mkuida <reprise39@yahoo.co.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/26 16:02:41 by mkuida            #+#    #+#             */
-/*   Updated: 2025/07/04 10:35:01 by mkuida           ###   ########.fr       */
+/*   Updated: 2025/07/04 15:14:55 by mkuida           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ static void	init_thread_manage_mutex_initialize(t_thread_manage *thread_manage)
 	}
 }
 
-static void	init_thread_manage(t_thread_manage *thread_manage ,t_condition *condition)
+static void	set_thread_manage(t_thread_manage *thread_manage ,t_condition *condition)
 {
 	thread_manage->num_of_philos = condition->num_of_philos;
 	thread_manage->thread_id = (pthread_t *)malloc(sizeof(pthread_t) * condition->num_of_philos);
@@ -51,6 +51,7 @@ static void	init_thread_manage(t_thread_manage *thread_manage ,t_condition *cond
 	}
 	thread_manage->left_forks = condition->num_of_philos;
 	init_thread_manage_mutex_initialize(thread_manage);
+	
 }
 
 static void	set_condition(t_condition *condition ,int argc, char **argv)
@@ -82,20 +83,40 @@ static int	check_args(int argc, char **argv)
 	return (0);
 }
 
+void set_philosophers(t_simulation *simulation)
+{
+	int i;
+	int philo_num;
+
+	i = 0;
+	philo_num = simulation->condition.num_of_philos;
+	simulation->philosophers = (t_philosopher *)malloc(sizeof(t_philosopher) * philo_num);
+	if(!simulation->philosophers)
+	{
+		perror("malloc error");
+		exit(EXIT_FAILURE);
+	}
+	while(i < philo_num)
+	{
+		simulation->philosophers[i].id = i + 1; // Philosopher IDs start from 1
+		simulation->philosophers[i].num_of_eat_times = 0; // Initialize eat count
+		simulation->philosophers[i].last_eat_time = 0; // Initialize last meal time
+		i++;
+	}
+}
+
 int	main(int argc, char **argv)
 {
-	t_thread_manage	thread_manage;
-	t_condition	condition;
+	t_simulation	simulation;
 
 	if (check_args(argc,argv) == 1)
 		return (1);
-	set_condition(&condition, argc, argv);
-	// print_condition(&condition);
-	init_thread_manage(&thread_manage , &condition);
-	if (philosophers(&thread_manage, &condition) == 1)
+	set_condition(&(simulation.condition), argc, argv);
+	print_condition(&simulation.condition);//
+	set_thread_manage(&(simulation.thread_manage) , &(simulation.condition));
+	set_philosophers(&simulation);
+	if (philosophers(&simulation) == 1)
 	{
-		free(thread_manage.thread_id);
-		free(thread_manage.forks_mutex);
 		return (1);
 	}
 	usleep(5000000);

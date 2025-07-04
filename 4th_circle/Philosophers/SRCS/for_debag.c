@@ -14,6 +14,7 @@
 
 void	print_condition(t_condition *condition)
 {
+	printf("\n");
 	printf("number_of_philosophers: %d\n", condition->num_of_philos);
 	printf("time_to_die: %ld\n", condition->time_to_die);
 	printf("time_to_eat: %ld\n", condition->time_to_eat);
@@ -23,4 +24,5 @@ void	print_condition(t_condition *condition)
 			condition->num_of_eat_times);
 	else
 		printf("number_of_times_each_philosopher_must_eat: not set\n");
+	printf("\n");
 }
