@@ -6,7 +6,7 @@
 /*   By: mkuida <reprise39@yahoo.co.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/26 15:50:31 by mkuida            #+#    #+#             */
-/*   Updated: 2025/07/06 01:34:00 by mkuida           ###   ########.fr       */
+/*   Updated: 2025/07/06 01:54:04 by mkuida           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,6 @@ typedef struct s_thread_manage
 	int				num_of_philos;
 	pthread_t		*thread_id;
 	pthread_mutex_t	*forks_mutex;
-	int				left_forks;
-	pthread_mutex_t	left_forks_mutex;
 }					t_thread_manage;
 
 typedef struct s_condition

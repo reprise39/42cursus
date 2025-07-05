@@ -6,7 +6,7 @@
 /*   By: mkuida <reprise39@yahoo.co.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/05 20:05:31 by mkuida            #+#    #+#             */
-/*   Updated: 2025/07/06 00:33:46 by mkuida           ###   ########.fr       */
+/*   Updated: 2025/07/06 02:01:32 by mkuida           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,11 +25,6 @@ static void	init_thread_manage_mutex_initialize(t_thread_manage *thread_manage)
 			exit(EXIT_FAILURE);
 		}
 		i++;
-	}
-	if (pthread_mutex_init(&thread_manage->left_forks_mutex, NULL) != 0)
-	{
-		perror("pthread_mutex_init error");
-		exit(EXIT_FAILURE);
 	}
 }
 
@@ -70,7 +65,6 @@ static void	set_thread_manage(t_thread_manage *thread_manage,
 		free(thread_manage->thread_id);
 		exit(EXIT_FAILURE);
 	}
-	thread_manage->left_forks = condition->num_of_philos;
 	init_thread_manage_mutex_initialize(thread_manage);
 }
 
@@ -92,6 +86,7 @@ static void	set_philosophers(t_simulation *simulation)
 	{
 		simulation->philosophers[i].id = i + 1;
 		simulation->philosophers[i].num_of_eat_times = 0;
+		pthread_mutex_init(&(simulation->philosophers[i].last_eat_time_mutex), NULL);
 		i++;
 	}
 }
