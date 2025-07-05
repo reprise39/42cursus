@@ -12,9 +12,9 @@
 
 #include "philosophers.h"
 
-void wait_all_thread(t_simulation *simulation , pthread_t *monitor_thread_id)
+void	wait_all_thread(t_simulation *simulation, pthread_t *monitor_thread_id)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (i < simulation->condition.num_of_philos)

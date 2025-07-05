@@ -12,18 +12,19 @@
 
 #include "philosophers.h"
 
-int ft_is_spase(const char c)
+int	ft_is_spase(const char c)
 {
-	if (c == ' ' || c == '\t' || c == '\n' || c == '\v' || c == '\f' || c == '\r')
+	if (c == ' ' || c == '\t' || c == '\n' || c == '\v' || c == '\f'
+		|| c == '\r')
 		return (1);
 	return (0);
 }
 
-int ft_is_digit(const char str)
+int	ft_is_digit(const char str)
 {
 	if (str == '\0')
 		return (0);
-	if('0' <= str && str <= '9')
+	if ('0' <= str && str <= '9')
 		return (1);
 	else
 		return (0);
@@ -31,20 +32,20 @@ int ft_is_digit(const char str)
 
 int	ft_strlen(const char *str)
 {
-	int len;
+	int	len;
 
 	len = 0;
-	if(str == NULL)
+	if (str == NULL)
 		return (0);
 	while (str[len] != '\0')
 		len++;
 	return (len);
 }
 
-int	ft_atoi(const char	*str)
+int	ft_atoi(const char *str)
 {
-	int i;
-	int ans;
+	int	i;
+	int	ans;
 
 	i = 0;
 	ans = 0;
@@ -52,7 +53,7 @@ int	ft_atoi(const char	*str)
 		i++;
 	if (str[i] == '+')
 		i++;
-	while(str[i] != '\0')
+	while (str[i] != '\0')
 	{
 		ans *= 10;
 		ans += (str[i] - '0');

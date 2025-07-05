@@ -19,24 +19,25 @@ static int	check_args(int argc, char **argv)
 	if (check_input_is_num(argc, argv) == 1)
 		return (1);
 	if ((check_input_is_posi_int(argc, argv)) == 1)
-		return (1); 
+		return (1);
 	return (0);
 }
 
 int	main(int argc, char **argv)
 {
 	t_simulation	simulation;
-	pthread_t	monitor_thread_id;
+	pthread_t		monitor_thread_id;
 
-	if (check_args(argc,argv) == 1)
+	if (check_args(argc, argv) == 1)
 		return (1);
 	start_simulatuon(&simulation, argc, argv);
 	if (philosophers(&simulation) == 1)
 	{
-		//thread syori
+		// thread syori
 		return (EXIT_FAILURE);
 	}
-	if (pthread_create(&monitor_thread_id, NULL, &monitor_thread, &simulation) != 0)
+	if (pthread_create(&monitor_thread_id, NULL, &monitor_thread,
+			&simulation) != 0)
 	{
 		return (EXIT_FAILURE);
 	}

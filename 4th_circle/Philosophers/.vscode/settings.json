@@ -4,5 +4,6 @@
 		"keysym.h": "c",
 		"x.h": "c",
 		"xlib.h": "c"
-	}
+	},
+	"C_Cpp.default.compilerPath": ""
 }

@@ -6,7 +6,7 @@
 /*   By: mkuida <reprise39@yahoo.co.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/05 12:47:32 by mkuida            #+#    #+#             */
-/*   Updated: 2025/07/05 21:42:12 by mkuida           ###   ########.fr       */
+/*   Updated: 2025/07/05 22:23:02 by mkuida           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 long	cal_mili_sec_time_now(struct timeval *start)
 {
-	long	seconds;
-	long	microseconds;
-	long	total_sec;
+	long			seconds;
+	long			microseconds;
+	long			total_sec;
 	struct timeval	end;
 
 	gettimeofday(&end, NULL);
