@@ -28,7 +28,8 @@ SRC_FILES =	main.c\
 			utils.c\
 			for_debag.c\
 			philosophers.c\
-			philo_behave.c\
+			philo_behave_1.c\
+			philo_behave_2.c\
 			monitoring.c\
 			cal_time.c\
 

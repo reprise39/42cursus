@@ -6,7 +6,7 @@
 /*   By: mkuida <reprise39@yahoo.co.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/26 15:50:31 by mkuida            #+#    #+#             */
-/*   Updated: 2025/07/05 20:35:40 by mkuida           ###   ########.fr       */
+/*   Updated: 2025/07/05 23:11:42 by mkuida           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,15 +15,15 @@
 
 # define BUFFER_SIZE 42
 
-# include <sys/time.h> // gettimeofday
 # include <fcntl.h>
+# include <pthread.h>
+# include <stdbool.h>
 # include <stdint.h>
 # include <stdio.h>
 # include <stdlib.h>
-# include <string.h> // memset
+# include <string.h>   // memset
+# include <sys/time.h> // gettimeofday
 # include <unistd.h>
-# include <stdbool.h>
-# include <pthread.h>
 
 # define THINK_INTERVAL 200
 # define MONITOR_INTERVAL 200
@@ -58,12 +58,12 @@ typedef struct s_philosopher
 
 typedef struct s_simulation
 {
-	t_thread_manage	thread_manage;	// スレッド管理構造体
-	t_condition		condition;		// 条件構造体
-	t_philosopher	*philosophers;	// 哲学者の配列
-	struct timeval	start_time;	// シミュレーション開始時間
-	bool			is_dead;	// シミュレーションの実行状態
-	pthread_mutex_t	is_dead_mutex;	// 死亡状態の保護用ミューテックス
+	t_thread_manage		thread_manage;
+	t_condition			condition;
+	t_philosopher		*philosophers;
+	struct timeval		start_time;
+	bool				is_dead;
+	pthread_mutex_t		is_dead_mutex;
 }					t_simulation;
 
 // check_input.c
@@ -72,13 +72,15 @@ int					check_input_is_num(int argc, char **argv);
 int					check_input_is_posi_int(int argc, char **argv);
 
 // start_simulation.c
-void start_simulatuon(t_simulation *simulation, int argc, char **argv);
+void				start_simulatuon(t_simulation *simulation, int argc,
+						char **argv);
 
 // end_simulation.c
 void				end_simulation(t_simulation *simulation);
 
 // wait_all_thread.c
-void				wait_all_thread(t_simulation *simulation, pthread_t *monitor_thread_id);
+void				wait_all_thread(t_simulation *simulation,
+						pthread_t *monitor_thread_id);
 
 // ft_is_int.c
 int					ft_isdigit_str(const char *str);
@@ -89,7 +91,7 @@ int					ft_is_spase(char c);
 int					ft_is_digit(const char str);
 int					ft_strlen(const char *str);
 void				ft_hyper_usleep(useconds_t timer);
-int 				ft_atoi(const char *str);
+int					ft_atoi(const char *str);
 
 // for_debag.c
 void				print_condition(t_condition *condition);
@@ -97,19 +99,25 @@ void				print_condition(t_condition *condition);
 // philosophers.c
 int					philosophers(t_simulation *simulration);
 
-//philo_behave.c
-bool take_forks(t_simulation *sim, t_philosopher *philosopher);
-bool eating(t_simulation *sim, t_philosopher *philosopher);
-bool sleeping(t_simulation *sim, t_philosopher *philosopher);
-bool thinking(t_simulation *sim, t_philosopher *philosopher);
+// philo_behave_1.c
+bool				take_forks(t_simulation *sim, t_philosopher *philosopher);
+bool				eating(t_simulation *sim, t_philosopher *philosopher);
 
-//monitoring.c
-void *monitor_thread(void *arg);
-bool is_dead(t_simulation *sim);
+// philo_behave_2.c
+bool				sleeping(t_simulation *sim, t_philosopher *philosopher);
+bool				thinking(t_simulation *sim, t_philosopher *philosopher);
+bool				check_end_must_eat(t_simulation *sim, int num_of_eat);
+
+// monitoring.c
+void				*monitor_thread(void *arg);
+bool				is_dead(t_simulation *sim);
 
 // cal_time.c
-long cal_mili_sec_time(struct timeval *start, struct timeval *end);
-long cal_miq_sec_time(struct timeval *start, struct timeval *end);
-bool usleep_with_check(long miq_sec ,t_simulation *sim);
+long				cal_mili_sec_time_now(struct timeval *start);
+long				cal_mili_sec_time(struct timeval *start,
+						struct timeval *end);
+long				cal_miq_sec_time(struct timeval *start,
+						struct timeval *end);
+bool				usleep_with_check(long miq_sec, t_simulation *sim);
 
 #endif
