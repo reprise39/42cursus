@@ -10,9 +10,9 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "philosophers.h"
+#include "philosophers.h"
 
-static void end_thread_manage(t_thread_manage *thread_manage)
+static void	end_thread_manage(t_thread_manage *thread_manage)
 {
 	int	i;
 
@@ -35,12 +35,12 @@ static void end_thread_manage(t_thread_manage *thread_manage)
 	free(thread_manage->thread_id);
 }
 
-static void end_philosophers(t_simulation *sim)
+static void	end_philosophers(t_simulation *sim)
 {
 	free(sim->philosophers);
 }
 
-void end_simulation(t_simulation *simulation)
+void	end_simulation(t_simulation *simulation)
 {
 	end_thread_manage(&simulation->thread_manage);
 	end_philosophers(simulation);

@@ -12,9 +12,9 @@
 
 #include "philosophers.h"
 
-int check_argc_num(int argc)
+int	check_argc_num(int argc)
 {
-	if(argc != 5 && argc != 6)
+	if (argc != 5 && argc != 6)
 	{
 		printf("input error : wrong number of arguments\n");
 		printf("this app accept only 5 or 6 arguments (include appname)\n");
@@ -26,14 +26,14 @@ int check_argc_num(int argc)
 	return (0);
 }
 
-int check_input_is_num(int argc, char **argv)
+int	check_input_is_num(int argc, char **argv)
 {
-	int i;
+	int	i;
 
 	i = 1;
 	while (i < argc)
 	{
-		if (ft_isdigit_str((const char*)argv[i]) == 1)
+		if (ft_isdigit_str((const char *)argv[i]) == 1)
 		{
 			printf("input error : argument %d is not number\n", i);
 			return (1);
@@ -43,9 +43,9 @@ int check_input_is_num(int argc, char **argv)
 	return (0);
 }
 
-int check_input_is_posi_int(int argc, char **argv)
+int	check_input_is_posi_int(int argc, char **argv)
 {
-	int i;
+	int	i;
 
 	i = 1;
 	while (i < argc)

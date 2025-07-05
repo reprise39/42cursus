@@ -36,9 +36,9 @@ static void	init_thread_manage_mutex_initialize(t_thread_manage *thread_manage)
 static void	set_condition(t_condition *condition ,int argc, char **argv)
 {
 	condition->num_of_philos = ft_atoi((const char*)argv[1]);
-	condition->time_to_die = ft_atoi((const char*)argv[2]);
-	condition->time_to_eat = ft_atoi((const char*)argv[3]);
-	condition->time_to_sleep = ft_atoi((const char*)argv[4]);
+	condition->time_to_die = ft_atoi((const char*)argv[2])*1000;
+	condition->time_to_eat = ft_atoi((const char*)argv[3])*1000;
+	condition->time_to_sleep = ft_atoi((const char*)argv[4])*1000;
 	if (argc == 6)
 	{
 		condition->num_of_eat_times = ft_atoi((const char*)argv[5]);
@@ -87,8 +87,8 @@ void set_philosophers(t_simulation *simulation)
 	}
 	while(i < philo_num)
 	{
-		simulation->philosophers[i].id = i + 1; // Philosopher IDs start from 1
-		simulation->philosophers[i].num_of_eat_times = 0; // Initialize eat count
+		simulation->philosophers[i].id = i + 1;
+		simulation->philosophers[i].num_of_eat_times = 0;
 		i++;
 	}
 }
@@ -107,7 +107,6 @@ void set_simulation(t_simulation *simulation)
 void start_simulatuon(t_simulation *simulation, int argc, char **argv)
 {
 	set_condition(&(simulation->condition), argc, argv);
-	// print_condition(&simulation.condition);
 	set_thread_manage(&(simulation->thread_manage) , &(simulation->condition));
 	set_philosophers(simulation);
 	set_simulation(simulation);
