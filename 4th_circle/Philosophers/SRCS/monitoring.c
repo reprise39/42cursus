@@ -6,7 +6,7 @@
 /*   By: mkuida <reprise39@yahoo.co.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/05 11:35:24 by mkuida            #+#    #+#             */
-/*   Updated: 2025/07/05 21:43:30 by mkuida           ###   ########.fr       */
+/*   Updated: 2025/07/06 01:33:22 by mkuida           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,11 +24,21 @@ static long	cal_nomeal_miq_sec(t_philosopher *philo)
 	return (total_sec);
 }
 
-static void	is_dead_set(t_simulation *sim)
+void	is_dead_set(t_simulation *sim)
 {
 	pthread_mutex_lock(&sim->is_dead_mutex);
 	sim->is_dead = true;
 	pthread_mutex_unlock(&sim->is_dead_mutex);
+}
+
+bool	is_dead(t_simulation *sim)
+{
+	bool	dead;
+
+	pthread_mutex_lock(&sim->is_dead_mutex);
+	dead = sim->is_dead;
+	pthread_mutex_unlock(&sim->is_dead_mutex);
+	return (dead);
 }
 
 void	*monitor_thread(void *arg)
@@ -48,24 +58,14 @@ void	*monitor_thread(void *arg)
 			no_meal_miq_time = cal_nomeal_miq_sec(philo);
 			if (no_meal_miq_time > (sim->condition.time_to_die))
 			{
-				printf("%ld_in_ms %d died\n",
-					cal_mili_sec_time_now(&sim->start_time), philo->id);
+				print_die(sim, philo->id);
 				is_dead_set(sim);
 				return (NULL);
 			}
+			if (is_dead(sim))
+				return (NULL);
 		}
 		usleep(MONITOR_INTERVAL);
 		i++;
 	}
-	return (NULL);
-}
-
-bool	is_dead(t_simulation *sim)
-{
-	bool	dead;
-
-	pthread_mutex_lock(&sim->is_dead_mutex);
-	dead = sim->is_dead;
-	pthread_mutex_unlock(&sim->is_dead_mutex);
-	return (dead);
 }

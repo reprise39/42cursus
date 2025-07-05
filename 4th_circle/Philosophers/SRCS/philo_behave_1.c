@@ -6,7 +6,7 @@
 /*   By: mkuida <reprise39@yahoo.co.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/05 10:15:34 by mkuida            #+#    #+#             */
-/*   Updated: 2025/07/05 23:10:04 by mkuida           ###   ########.fr       */
+/*   Updated: 2025/07/06 01:30:36 by mkuida           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,15 +48,20 @@ bool	take_forks(t_simulation *sim, t_philosopher *philosopher)
 	if (is_dead(sim))
 		return (false);
 	pthread_mutex_lock(&sim->thread_manage.forks_mutex[first_fork]);
-	printf("%ld_in_ms %d has taken (%d) fork\n",
-		cal_mili_sec_time_now(&sim->start_time), philosopher->id, first_fork);
+	print_take_fork(sim, philosopher->id);
 	if (is_dead(sim))
+	{
+		pthread_mutex_unlock(&sim->thread_manage.forks_mutex[first_fork]);
 		return (false);
+	}
 	pthread_mutex_lock(&sim->thread_manage.forks_mutex[last_fork]);
-	printf("%ld_in_ms %d has taken (%d) fork\n",
-		cal_mili_sec_time_now(&sim->start_time), philosopher->id, last_fork);
+	print_take_fork(sim, philosopher->id);
 	if (is_dead(sim))
+	{
+		pthread_mutex_unlock(&sim->thread_manage.forks_mutex[first_fork]);
+		pthread_mutex_unlock(&sim->thread_manage.forks_mutex[last_fork]);
 		return (false);
+	}
 	return (true);
 }
 
@@ -74,10 +79,13 @@ bool	eating(t_simulation *sim, t_philosopher *philosopher)
 	pthread_mutex_lock(&philosopher->last_eat_time_mutex);
 	gettimeofday(&philosopher->last_eat_time, NULL);
 	pthread_mutex_unlock(&philosopher->last_eat_time_mutex);
-	printf("%ld_in_ms %d is eating\n", cal_mili_sec_time_now(&sim->start_time),
-		philosopher->id);
+	print_eat(sim, philosopher->id);
 	if (usleep_with_check(sim->condition.time_to_eat, sim) == false)
+	{
+		pthread_mutex_unlock(&sim->thread_manage.forks_mutex[first_fork]);
+		pthread_mutex_unlock(&sim->thread_manage.forks_mutex[last_fork]);
 		return (false);
+	}
 	pthread_mutex_unlock(&sim->thread_manage.forks_mutex[first_fork]);
 	pthread_mutex_unlock(&sim->thread_manage.forks_mutex[last_fork]);
 	philosopher->num_of_eat_times++;

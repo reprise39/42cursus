@@ -23,6 +23,7 @@ SRC_FILES =	main.c\
 			check_input.c\
 			start_simulation.c\
 			end_simulation.c\
+			print_info.c\
 			wait_all_thread.c\
 			ft_is_int.c\
 			utils.c\

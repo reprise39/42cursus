@@ -6,7 +6,7 @@
 /*   By: mkuida <reprise39@yahoo.co.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/26 15:50:31 by mkuida            #+#    #+#             */
-/*   Updated: 2025/07/05 23:11:42 by mkuida           ###   ########.fr       */
+/*   Updated: 2025/07/06 01:34:00 by mkuida           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@
 
 # define THINK_INTERVAL 200
 # define MONITOR_INTERVAL 200
-# define IN_USLEEP_CHECK_INTERVAL 75
+# define IN_USLEEP_CHECK_INTERVAL 100
 
 typedef struct s_thread_manage
 {
@@ -64,6 +64,7 @@ typedef struct s_simulation
 	struct timeval		start_time;
 	bool				is_dead;
 	pthread_mutex_t		is_dead_mutex;
+	pthread_mutex_t		is_print_mutex;
 }					t_simulation;
 
 // check_input.c
@@ -93,6 +94,13 @@ int					ft_strlen(const char *str);
 void				ft_hyper_usleep(useconds_t timer);
 int					ft_atoi(const char *str);
 
+// print_info.c
+void				print_take_fork(t_simulation *sim, int philo_num);
+void				print_eat(t_simulation *sim, int philo_num);
+void				print_sleep(t_simulation *sim, int philo_num);
+void				print_think(t_simulation *sim, int philo_num);
+void				print_die(t_simulation *sim, int philo_num);
+
 // for_debag.c
 void				print_condition(t_condition *condition);
 
@@ -111,6 +119,7 @@ bool				check_end_must_eat(t_simulation *sim, int num_of_eat);
 // monitoring.c
 void				*monitor_thread(void *arg);
 bool				is_dead(t_simulation *sim);
+void				is_dead_set(t_simulation *sim);
 
 // cal_time.c
 long				cal_mili_sec_time_now(struct timeval *start);

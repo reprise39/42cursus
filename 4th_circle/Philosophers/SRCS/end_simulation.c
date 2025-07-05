@@ -6,7 +6,7 @@
 /*   By: mkuida <reprise39@yahoo.co.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/05 20:18:26 by mkuida            #+#    #+#             */
-/*   Updated: 2025/07/05 20:18:26 by mkuida           ###   ########.fr       */
+/*   Updated: 2025/07/06 00:34:05 by mkuida           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,11 @@ void	end_simulation(t_simulation *simulation)
 	end_thread_manage(&simulation->thread_manage);
 	end_philosophers(simulation);
 	if (pthread_mutex_destroy(&simulation->is_dead_mutex) != 0)
+	{
+		perror("pthread_mutex_destroy error");
+		exit(EXIT_FAILURE);
+	}
+	if (pthread_mutex_destroy(&simulation->is_print_mutex) != 0)
 	{
 		perror("pthread_mutex_destroy error");
 		exit(EXIT_FAILURE);

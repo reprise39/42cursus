@@ -6,7 +6,7 @@
 /*   By: mkuida <reprise39@yahoo.co.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/05 20:05:31 by mkuida            #+#    #+#             */
-/*   Updated: 2025/07/05 22:21:47 by mkuida           ###   ########.fr       */
+/*   Updated: 2025/07/06 00:33:46 by mkuida           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,6 +103,11 @@ void	start_simulatuon(t_simulation *simulation, int argc, char **argv)
 	set_philosophers(simulation);
 	simulation->is_dead = false;
 	if (pthread_mutex_init(&simulation->is_dead_mutex, NULL) != 0)
+	{
+		perror("pthread_mutex_init error");
+		exit(EXIT_FAILURE);
+	}
+	if (pthread_mutex_init(&simulation->is_print_mutex, NULL) != 0)
 	{
 		perror("pthread_mutex_init error");
 		exit(EXIT_FAILURE);
