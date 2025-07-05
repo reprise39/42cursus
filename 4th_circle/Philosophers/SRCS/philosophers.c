@@ -12,83 +12,21 @@
 
 #include "philosophers.h"
 
-int set_reft_fork(int i, t_simulation *sim)
-{
-	if (i == 0)
-		return (sim->condition.num_of_philos - 1);
-	else
-		return (i - 1);
-}
-
-static void take_forks(t_simulation *sim, t_philosopher *philosopher)
-{
-	int right_fork;
-	int left_fork;
-	int first_fork;
-	int last_fork;
-
-	right_fork = ((philosopher->id)-1);
-	left_fork = set_reft_fork((philosopher->id)-1, sim);
-	if (((philosopher->id)-1) % 2 == 0)
-	{
-		first_fork = right_fork;
-		last_fork = left_fork;
-	}
-	else
-	{
-		first_fork = left_fork;
-		last_fork = right_fork;
-	}
-	pthread_mutex_lock(&sim->thread_manage.forks_mutex[first_fork]);
-	printf("Philosopher %d has taken (%d) fork\n", philosopher->id , first_fork);
-	pthread_mutex_lock(&sim->thread_manage.forks_mutex[last_fork]);
-	printf("Philosopher %d has taken (%d) fork\n", philosopher->id ,last_fork);
-}
-static void eating(t_simulation *sim, t_philosopher *philosopher)
-{
-	int right_fork;
-	int left_fork;
-	int first_fork;
-	int last_fork;
-
-	right_fork = ((philosopher->id)-1);
-	left_fork = set_reft_fork((philosopher->id)-1, sim);
-	if (((philosopher->id)-1) % 2 == 0)
-	{
-		first_fork = right_fork;
-		last_fork = left_fork;
-	}
-	else
-	{
-		first_fork = left_fork;
-		last_fork = right_fork;
-	}
-	printf("Philosopher %d is eating\n", philosopher->id);
-	usleep(sim->condition.time_to_eat); // Simulate eating time
-	pthread_mutex_unlock(&sim->thread_manage.forks_mutex[first_fork]);
-	pthread_mutex_unlock(&sim->thread_manage.forks_mutex[last_fork]);
-}
-
-static void sleeping(t_simulation *sim, t_philosopher *philosopher)
-{
-	printf("Philosopher %d is sleeping\n", philosopher->id);
-	usleep(sim->condition.time_to_sleep); // Simulate sleeping time
-}
-
-static void thinking(t_philosopher *philosopher)
-{
-	printf("Philosopher %d is thinking\n", philosopher->id);
-	usleep(200); // Simulate thinking time
-}
-
 static void	do_cicle(t_simulation *sim, t_philosopher *philosopher)
 {
+	pthread_mutex_lock(&philosopher->last_eat_time_mutex);
+	gettimeofday(&philosopher->last_eat_time, NULL);
+	pthread_mutex_unlock(&philosopher->last_eat_time_mutex);
 	while (1)
 	{
-		take_forks(sim, philosopher);
-		eating(sim, philosopher);
-		sleeping(sim, philosopher);
-		thinking(philosopher);
+		if(take_forks(sim, philosopher) == false)
+			return ;
+		if(eating(sim, philosopher) == false)
+			return ;
+		if(sleeping(sim, philosopher) == false)
+			return ;
+		if(thinking(sim, philosopher) == false)
+			return ;
 	}
 }
 
@@ -114,7 +52,7 @@ int philosophers(t_simulation *sim)
 		if (pthread_create(&sim->thread_manage.thread_id[i], NULL, &philosopher_routine, sim) != 0)
 		{
 			perror("pthread_create error");
-			return (EXIT_FAILURE);
+			exit (EXIT_FAILURE);
 		}
 		i++;
 	}

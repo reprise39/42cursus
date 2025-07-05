@@ -41,29 +41,6 @@ int	ft_strlen(const char *str)
 	return (len);
 }
 
-void ft_hyper_usleep(useconds_t timer)
-{
-	struct timeval	start;
-	struct timeval	current;
-
-	if (gettimeofday(&start,NULL) == -1 )
-	{
-		perror("gettimeofday");
-		exit(EXIT_FAILURE);
-	}
-	while (1)
-	{
-		if (gettimeofday(&current, NULL) == -1)
-		{
-			perror("gettimeofday");
-			exit(EXIT_FAILURE);
-		}
-		if ((current.tv_sec - start.tv_sec) * 1000000 + (current.tv_usec - start.tv_usec) >= timer)
-			break ;
-		usleep(100);
-	}
-}
-
 int	ft_atoi(const char	*str)
 {
 	int i;

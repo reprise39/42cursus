@@ -21,10 +21,16 @@ SRC_DIR = ./SRCS
 
 SRC_FILES =	main.c\
 			check_input.c\
+			start_simulation.c\
+			end_simulation.c\
+			wait_all_thread.c\
 			ft_is_int.c\
 			utils.c\
 			for_debag.c\
 			philosophers.c\
+			philo_behave.c\
+			monitoring.c\
+			cal_time.c\
 
 SRCS = $(addprefix $(SRC_DIR)/, $(SRC_FILES))
 
