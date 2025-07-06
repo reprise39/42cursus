@@ -6,7 +6,7 @@
 /*   By: mkuida <reprise39@yahoo.co.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/05 20:05:31 by mkuida            #+#    #+#             */
-/*   Updated: 2025/07/06 18:09:51 by mkuida           ###   ########.fr       */
+/*   Updated: 2025/07/06 19:56:52 by mkuida           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ static void	set_condition(t_condition *condition, int argc, char **argv)
 	}
 }
 
-static void	set_thread_manage(t_thread_manage *thread_manage,
+static int	set_thread_manage(t_thread_manage *thread_manage,
 		t_condition *condition)
 {
 	thread_manage->num_of_philos = condition->num_of_philos;

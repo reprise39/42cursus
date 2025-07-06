@@ -6,7 +6,7 @@
 /*   By: mkuida <reprise39@yahoo.co.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/05 11:35:24 by mkuida            #+#    #+#             */
-/*   Updated: 2025/07/06 18:22:36 by mkuida           ###   ########.fr       */
+/*   Updated: 2025/07/06 19:29:02 by mkuida           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ bool	is_dead(t_simulation *sim)
 static bool	check_all_philo_ate(t_simulation *sim)
 {
 	pthread_mutex_lock(&sim->fin_philo_num_mutex);
-	if(sim->fin_philo_num == sim->condition.num_of_philos)
+	if (sim->fin_philo_num == sim->condition.num_of_philos)
 	{
 		pthread_mutex_unlock(&sim->fin_philo_num_mutex);
 		return (true);
@@ -62,7 +62,8 @@ void	*monitor_thread(void *arg)
 		i = 0;
 		while (i < (sim->condition.num_of_philos))
 		{
-			if (cal_nomeal_miq_sec(&sim->philosophers[i]) > (sim->condition.time_to_die))
+			if (cal_nomeal_miq_sec(&sim->philosophers[i]) > \
+				(sim->condition.time_to_die))
 			{
 				print_die(sim, sim->philosophers[i].id);
 				is_dead_set(sim);
@@ -73,7 +74,7 @@ void	*monitor_thread(void *arg)
 		{
 			is_dead_set(sim);
 			return (NULL);
-		}		
+		}
 		usleep(MONITOR_INTERVAL);
 		i++;
 	}

@@ -57,15 +57,15 @@ typedef struct s_philosopher
 
 typedef struct s_simulation
 {
-	t_thread_manage		thread_manage;
-	t_condition			condition;
-	t_philosopher		*philosophers;
-	struct timeval		start_time;
-	bool				is_dead;
-	pthread_mutex_t		is_dead_mutex;
-	int 				fin_philo_num;
-	pthread_mutex_t		fin_philo_num_mutex;
-	pthread_mutex_t		is_print_mutex;
+	t_thread_manage	thread_manage;
+	t_condition		condition;
+	t_philosopher	*philosophers;
+	struct timeval	start_time;
+	bool			is_dead;
+	pthread_mutex_t	is_dead_mutex;
+	int				fin_philo_num;
+	pthread_mutex_t	fin_philo_num_mutex;
+	pthread_mutex_t	is_print_mutex;
 }					t_simulation;
 
 // check_input.c
@@ -112,8 +112,11 @@ int					philosophers(t_simulation *simulration);
 int					set_left_fork(int i, t_simulation *sim);
 int					set_first_fork(int philo_id, int right_fork, int left_fork);
 int					set_last_fork(int philo_id, int right_fork, int left_fork);
-bool				take_first_fork(t_simulation *sim, t_philosopher *philosopher,int first_fork);
-bool				take_last_fork(t_simulation *sim, t_philosopher *philosopher,int first_fork,int last_fork);
+bool				take_first_fork(t_simulation *sim,
+						t_philosopher *philosopher, int first_fork);
+bool				take_last_fork(t_simulation *sim,
+						t_philosopher *philosopher, int first_fork,
+						int last_fork);
 
 // philo_behave_1.c
 bool				take_forks(t_simulation *sim, t_philosopher *philosopher);

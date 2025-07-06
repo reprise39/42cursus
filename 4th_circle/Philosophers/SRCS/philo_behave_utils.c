@@ -34,7 +34,8 @@ int	set_last_fork(int philo_id, int right_fork, int left_fork)
 	return (right_fork);
 }
 
-bool	take_first_fork(t_simulation *sim, t_philosopher *philosopher,int first_fork)
+bool	take_first_fork(t_simulation *sim, t_philosopher *philosopher,
+		int first_fork)
 {
 	if (is_dead(sim))
 		return (false);
@@ -53,7 +54,8 @@ bool	take_first_fork(t_simulation *sim, t_philosopher *philosopher,int first_for
 	return (true);
 }
 
-bool	take_last_fork(t_simulation *sim, t_philosopher *philosopher,int first_fork,int last_fork)
+bool	take_last_fork(t_simulation *sim, t_philosopher *philosopher,
+		int first_fork, int last_fork)
 {
 	if (is_dead(sim))
 	{

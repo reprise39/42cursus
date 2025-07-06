@@ -12,7 +12,7 @@
 
 #include "philosophers.h"
 
-static void	mutex_unlock_forks(t_simulation *sim,int fork_a ,int fork_b)
+static void	mutex_unlock_forks(t_simulation *sim, int fork_a, int fork_b)
 {
 	pthread_mutex_unlock(&sim->thread_manage.forks_mutex[fork_a]);
 	pthread_mutex_unlock(&sim->thread_manage.forks_mutex[fork_b]);
@@ -21,7 +21,7 @@ static void	mutex_unlock_forks(t_simulation *sim,int fork_a ,int fork_b)
 static void	set_ate_time(t_philosopher *philo)
 {
 	pthread_mutex_lock(&philo->last_eat_time_mutex);
-	gettimeofday(&philo->last_eat_time,NULL);
+	gettimeofday(&philo->last_eat_time, NULL);
 	pthread_mutex_unlock(&philo->last_eat_time_mutex);
 }
 
@@ -40,15 +40,15 @@ bool	eating(t_simulation *sim, t_philosopher *philosopher)
 	print_eat(sim, philosopher->id);
 	if (usleep_with_check(sim->condition.time_to_eat, sim) == false)
 	{
-		mutex_unlock_forks(sim,first_fork,last_fork);
+		mutex_unlock_forks(sim, first_fork, last_fork);
 		return (false);
 	}
-	mutex_unlock_forks(sim,first_fork,last_fork);
+	mutex_unlock_forks(sim, first_fork, last_fork);
 	philosopher->num_of_eat_times++;
 	check_end_must_eat(sim, (philosopher->num_of_eat_times));
 	if (is_dead(sim))
 	{
-		mutex_unlock_forks(sim,first_fork,last_fork);
+		mutex_unlock_forks(sim, first_fork, last_fork);
 		return (false);
 	}
 	return (true);
@@ -59,19 +59,18 @@ bool	take_forks_solo(t_simulation *sim, t_philosopher *philosopher)
 	if (is_dead(sim))
 		return (false);
 	print_take_fork(sim, philosopher->id);
-	while(1)
+	while (1)
 	{
 		pthread_mutex_lock(&sim->is_dead_mutex);
-		if(sim->is_dead == true)
+		if (sim->is_dead == true)
 		{
 			pthread_mutex_unlock(&sim->is_dead_mutex);
-			return (false);			
+			return (false);
 		}
 		pthread_mutex_unlock(&sim->is_dead_mutex);
 		usleep(SOLO_MONITOR_INTERVAL);
 	}
 }
-
 
 bool	take_forks(t_simulation *sim, t_philosopher *philosopher)
 {
@@ -84,11 +83,11 @@ bool	take_forks(t_simulation *sim, t_philosopher *philosopher)
 	left_fork = set_left_fork((philosopher->id) - 1, sim);
 	first_fork = set_first_fork((philosopher->id), right_fork, left_fork);
 	last_fork = set_last_fork((philosopher->id), right_fork, left_fork);
-	if(first_fork == last_fork)
+	if (first_fork == last_fork)
 		return (take_forks_solo(sim, philosopher));
-	if(take_first_fork(sim, philosopher,first_fork) == false)
+	if (take_first_fork(sim, philosopher, first_fork) == false)
 		return (false);
-	if (take_last_fork(sim, philosopher,first_fork,last_fork) == false)
+	if (take_last_fork(sim, philosopher, first_fork, last_fork) == false)
 		return (false);
 	return (true);
 }

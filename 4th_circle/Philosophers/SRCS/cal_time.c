@@ -6,7 +6,7 @@
 /*   By: mkuida <reprise39@yahoo.co.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/05 12:47:32 by mkuida            #+#    #+#             */
-/*   Updated: 2025/07/06 17:27:53 by mkuida           ###   ########.fr       */
+/*   Updated: 2025/07/06 19:29:42 by mkuida           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ long	cal_mili_sec_time_now(struct timeval *start)
 	long			seconds;
 	long			microseconds;
 	long			total_sec;
-	struct			timeval	end;
+	struct timeval	end;
 
 	if (start->tv_sec == 0 && start->tv_usec == 0)
 		return (0);

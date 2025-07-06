@@ -6,7 +6,7 @@
 /*   By: mkuida <reprise39@yahoo.co.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/26 16:02:41 by mkuida            #+#    #+#             */
-/*   Updated: 2025/07/05 20:42:32 by mkuida           ###   ########.fr       */
+/*   Updated: 2025/07/06 19:54:04 by mkuida           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,11 @@
 static int	check_args(int argc, char **argv)
 {
 	if (check_argc_num(argc) == 1)
-		return (1);
+		return (EXIT_FAILURE);
 	if (check_input_is_num(argc, argv) == 1)
-		return (1);
+		return (EXIT_FAILURE);
 	if ((check_input_is_posi_int(argc, argv)) == 1)
-		return (1);
+		return (EXIT_FAILURE);
 	return (0);
 }
 
@@ -28,8 +28,8 @@ int	main(int argc, char **argv)
 	t_simulation	simulation;
 	pthread_t		monitor_thread_id;
 
-	if (check_args(argc, argv) == 1)
-		return (1);
+	if (check_args(argc, argv) == EXIT_FAILURE)
+		return (EXIT_FAILURE);
 	start_simulatuon(&simulation, argc, argv);
 	if (philosophers(&simulation) == 1)
 	{
