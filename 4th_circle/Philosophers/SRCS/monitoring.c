@@ -6,7 +6,7 @@
 /*   By: mkuida <reprise39@yahoo.co.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/05 11:35:24 by mkuida            #+#    #+#             */
-/*   Updated: 2025/07/06 01:33:22 by mkuida           ###   ########.fr       */
+/*   Updated: 2025/07/06 18:22:36 by mkuida           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,9 @@
 static long	cal_nomeal_miq_sec(t_philosopher *philo)
 {
 	long			total_sec;
-	struct timeval	now;
 
-	gettimeofday(&now, NULL);
 	pthread_mutex_lock(&philo->last_eat_time_mutex);
-	total_sec = cal_miq_sec_time(&philo->last_eat_time, &now);
+	total_sec = cal_miq_sec_time_now(&philo->last_eat_time);
 	pthread_mutex_unlock(&philo->last_eat_time_mutex);
 	return (total_sec);
 }
@@ -41,11 +39,21 @@ bool	is_dead(t_simulation *sim)
 	return (dead);
 }
 
+static bool	check_all_philo_ate(t_simulation *sim)
+{
+	pthread_mutex_lock(&sim->fin_philo_num_mutex);
+	if(sim->fin_philo_num == sim->condition.num_of_philos)
+	{
+		pthread_mutex_unlock(&sim->fin_philo_num_mutex);
+		return (true);
+	}
+	pthread_mutex_unlock(&sim->fin_philo_num_mutex);
+	return (false);
+}
+
 void	*monitor_thread(void *arg)
 {
 	t_simulation	*sim;
-	long			no_meal_miq_time;
-	t_philosopher	*philo;
 	int				i;
 
 	sim = (t_simulation *)arg;
@@ -54,17 +62,18 @@ void	*monitor_thread(void *arg)
 		i = 0;
 		while (i < (sim->condition.num_of_philos))
 		{
-			philo = &(sim->philosophers[i]);
-			no_meal_miq_time = cal_nomeal_miq_sec(philo);
-			if (no_meal_miq_time > (sim->condition.time_to_die))
+			if (cal_nomeal_miq_sec(&sim->philosophers[i]) > (sim->condition.time_to_die))
 			{
-				print_die(sim, philo->id);
+				print_die(sim, sim->philosophers[i].id);
 				is_dead_set(sim);
 				return (NULL);
 			}
-			if (is_dead(sim))
-				return (NULL);
 		}
+		if (check_all_philo_ate(sim) == true)
+		{
+			is_dead_set(sim);
+			return (NULL);
+		}		
 		usleep(MONITOR_INTERVAL);
 		i++;
 	}

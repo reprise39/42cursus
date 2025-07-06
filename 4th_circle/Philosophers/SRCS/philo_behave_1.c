@@ -6,63 +6,16 @@
 /*   By: mkuida <reprise39@yahoo.co.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/05 10:15:34 by mkuida            #+#    #+#             */
-/*   Updated: 2025/07/06 01:30:36 by mkuida           ###   ########.fr       */
+/*   Updated: 2025/07/06 18:57:54 by mkuida           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
 
-static int	set_left_fork(int i, t_simulation *sim)
+static void	mutex_unlock_forks(t_simulation *sim,int fork_a ,int fork_b)
 {
-	if (i == 0)
-		return (sim->condition.num_of_philos - 1);
-	else
-		return (i - 1);
-}
-
-static int	set_first_fork(int philo_id, int right_fork, int left_fork)
-{
-	if ((philo_id - 1) % 2 == 0)
-		return (right_fork);
-	return (left_fork);
-}
-
-static int	set_last_fork(int philo_id, int right_fork, int left_fork)
-{
-	if ((philo_id - 1) % 2 == 0)
-		return (left_fork);
-	return (right_fork);
-}
-
-bool	take_forks(t_simulation *sim, t_philosopher *philosopher)
-{
-	int	right_fork;
-	int	left_fork;
-	int	first_fork;
-	int	last_fork;
-
-	right_fork = ((philosopher->id) - 1);
-	left_fork = set_left_fork((philosopher->id) - 1, sim);
-	first_fork = set_first_fork((philosopher->id), right_fork, left_fork);
-	last_fork = set_last_fork((philosopher->id), right_fork, left_fork);
-	if (is_dead(sim))
-		return (false);
-	pthread_mutex_lock(&sim->thread_manage.forks_mutex[first_fork]);
-	print_take_fork(sim, philosopher->id);
-	if (is_dead(sim))
-	{
-		pthread_mutex_unlock(&sim->thread_manage.forks_mutex[first_fork]);
-		return (false);
-	}
-	pthread_mutex_lock(&sim->thread_manage.forks_mutex[last_fork]);
-	print_take_fork(sim, philosopher->id);
-	if (is_dead(sim))
-	{
-		pthread_mutex_unlock(&sim->thread_manage.forks_mutex[first_fork]);
-		pthread_mutex_unlock(&sim->thread_manage.forks_mutex[last_fork]);
-		return (false);
-	}
-	return (true);
+	pthread_mutex_unlock(&sim->thread_manage.forks_mutex[fork_a]);
+	pthread_mutex_unlock(&sim->thread_manage.forks_mutex[fork_b]);
 }
 
 bool	eating(t_simulation *sim, t_philosopher *philosopher)
@@ -76,20 +29,19 @@ bool	eating(t_simulation *sim, t_philosopher *philosopher)
 	left_fork = set_left_fork((philosopher->id) - 1, sim);
 	first_fork = set_first_fork((philosopher->id), right_fork, left_fork);
 	last_fork = set_last_fork((philosopher->id), right_fork, left_fork);
-	pthread_mutex_lock(&philosopher->last_eat_time_mutex);
-	gettimeofday(&philosopher->last_eat_time, NULL);
-	pthread_mutex_unlock(&philosopher->last_eat_time_mutex);
 	print_eat(sim, philosopher->id);
 	if (usleep_with_check(sim->condition.time_to_eat, sim) == false)
 	{
-		pthread_mutex_unlock(&sim->thread_manage.forks_mutex[first_fork]);
-		pthread_mutex_unlock(&sim->thread_manage.forks_mutex[last_fork]);
+		mutex_unlock_forks(sim,first_fork,last_fork);
 		return (false);
 	}
-	pthread_mutex_unlock(&sim->thread_manage.forks_mutex[first_fork]);
-	pthread_mutex_unlock(&sim->thread_manage.forks_mutex[last_fork]);
+	mutex_unlock_forks(sim,first_fork,last_fork);
 	philosopher->num_of_eat_times++;
-	if (check_end_must_eat(sim, (philosopher->num_of_eat_times)) == true)
+	check_end_must_eat(sim, (philosopher->num_of_eat_times));
+	if (is_dead(sim))
+	{
+		mutex_unlock_forks(sim,first_fork,last_fork);
 		return (false);
+	}
 	return (true);
 }

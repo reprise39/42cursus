@@ -6,7 +6,7 @@
 /*   By: mkuida <reprise39@yahoo.co.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/05 12:47:32 by mkuida            #+#    #+#             */
-/*   Updated: 2025/07/05 22:23:02 by mkuida           ###   ########.fr       */
+/*   Updated: 2025/07/06 17:27:53 by mkuida           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,10 @@ long	cal_mili_sec_time_now(struct timeval *start)
 	long			seconds;
 	long			microseconds;
 	long			total_sec;
-	struct timeval	end;
+	struct			timeval	end;
 
+	if (start->tv_sec == 0 && start->tv_usec == 0)
+		return (0);
 	gettimeofday(&end, NULL);
 	seconds = end.tv_sec - start->tv_sec;
 	microseconds = end.tv_usec - start->tv_usec;
@@ -48,14 +50,35 @@ long	cal_mili_sec_time(struct timeval *start, struct timeval *end)
 	return (total_sec);
 }
 
+long	cal_miq_sec_time_now(struct timeval *start)
+{
+	long			seconds;
+	long			microseconds;
+	long			total_sec;
+	struct timeval	end;
+
+	if (start->tv_sec == 0 && start->tv_usec == 0)
+		return (0);
+	gettimeofday(&end, NULL);
+	seconds = (end.tv_sec) - (start->tv_sec);
+	microseconds = (end.tv_usec) - (start->tv_usec);
+	if (microseconds < 0)
+	{
+		seconds--;
+		microseconds += 1000000;
+	}
+	total_sec = (seconds * 1000000) + (microseconds);
+	return (total_sec);
+}
+
 long	cal_miq_sec_time(struct timeval *start, struct timeval *end)
 {
 	long	seconds;
 	long	microseconds;
 	long	total_sec;
 
-	seconds = end->tv_sec - start->tv_sec;
-	microseconds = end->tv_usec - start->tv_usec;
+	seconds = (end->tv_sec) - (start->tv_sec);
+	microseconds = (end->tv_usec) - (start->tv_usec);
 	if (microseconds < 0)
 	{
 		seconds--;

@@ -6,7 +6,7 @@
 /*   By: mkuida <reprise39@yahoo.co.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/05 20:05:31 by mkuida            #+#    #+#             */
-/*   Updated: 2025/07/06 02:01:32 by mkuida           ###   ########.fr       */
+/*   Updated: 2025/07/06 18:09:51 by mkuida           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,8 @@ static void	set_philosophers(t_simulation *simulation)
 	{
 		simulation->philosophers[i].id = i + 1;
 		simulation->philosophers[i].num_of_eat_times = 0;
-		pthread_mutex_init(&(simulation->philosophers[i].last_eat_time_mutex), NULL);
+		pthread_mutex_init
+			(&(simulation->philosophers[i].last_eat_time_mutex), NULL);
 		i++;
 	}
 }
@@ -103,6 +104,11 @@ void	start_simulatuon(t_simulation *simulation, int argc, char **argv)
 		exit(EXIT_FAILURE);
 	}
 	if (pthread_mutex_init(&simulation->is_print_mutex, NULL) != 0)
+	{
+		perror("pthread_mutex_init error");
+		exit(EXIT_FAILURE);
+	}
+	if (pthread_mutex_init(&simulation->fin_philo_num_mutex, NULL) != 0)
 	{
 		perror("pthread_mutex_init error");
 		exit(EXIT_FAILURE);

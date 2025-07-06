@@ -6,7 +6,7 @@
 /*   By: mkuida <reprise39@yahoo.co.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/05 20:18:26 by mkuida            #+#    #+#             */
-/*   Updated: 2025/07/06 02:03:30 by mkuida           ###   ########.fr       */
+/*   Updated: 2025/07/06 18:10:43 by mkuida           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,11 +32,14 @@ static void	end_thread_manage(t_thread_manage *thread_manage)
 
 static void	end_philosophers(t_simulation *sim)
 {
-	int i;
+	int	i;
+
 	i = 0;
 	while (i < (sim->condition.num_of_philos))
 	{
-		if(pthread_mutex_destroy(&(sim->philosophers[i].last_eat_time_mutex)) != 0){
+		if (pthread_mutex_destroy
+			(&(sim->philosophers[i].last_eat_time_mutex)) != 0)
+		{
 			perror("pthread_mutex_destroy error");
 			exit(EXIT_FAILURE);
 		}
@@ -55,6 +58,11 @@ void	end_simulation(t_simulation *simulation)
 		exit(EXIT_FAILURE);
 	}
 	if (pthread_mutex_destroy(&simulation->is_print_mutex) != 0)
+	{
+		perror("pthread_mutex_destroy error");
+		exit(EXIT_FAILURE);
+	}
+	if (pthread_mutex_destroy(&simulation->fin_philo_num_mutex) != 0)
 	{
 		perror("pthread_mutex_destroy error");
 		exit(EXIT_FAILURE);
