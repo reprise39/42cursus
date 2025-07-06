@@ -6,7 +6,7 @@
 /*   By: mkuida <reprise39@yahoo.co.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/26 15:50:31 by mkuida            #+#    #+#             */
-/*   Updated: 2025/07/06 18:59:10 by mkuida           ###   ########.fr       */
+/*   Updated: 2025/07/06 19:25:33 by mkuida           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@
 # include <sys/time.h> // gettimeofday
 # include <unistd.h>
 
+# define SOLO_MONITOR_INTERVAL 200
 # define THINK_INTERVAL 200
 # define MONITOR_INTERVAL 200
 # define IN_USLEEP_CHECK_INTERVAL 100
@@ -107,14 +108,15 @@ void				print_condition(t_condition *condition);
 // philosophers.c
 int					philosophers(t_simulation *simulration);
 
-// philo_behave_takeforks.c
+// philo_behave_utils.c
 int					set_left_fork(int i, t_simulation *sim);
 int					set_first_fork(int philo_id, int right_fork, int left_fork);
 int					set_last_fork(int philo_id, int right_fork, int left_fork);
-bool				take_forks(t_simulation *sim, t_philosopher *philosopher);
+bool				take_first_fork(t_simulation *sim, t_philosopher *philosopher,int first_fork);
+bool				take_last_fork(t_simulation *sim, t_philosopher *philosopher,int first_fork,int last_fork);
 
 // philo_behave_1.c
-
+bool				take_forks(t_simulation *sim, t_philosopher *philosopher);
 bool				eating(t_simulation *sim, t_philosopher *philosopher);
 
 // philo_behave_2.c

@@ -34,7 +34,7 @@ int	set_last_fork(int philo_id, int right_fork, int left_fork)
 	return (right_fork);
 }
 
-static bool	take_first_fork(t_simulation *sim, t_philosopher *philosopher,int first_fork)
+bool	take_first_fork(t_simulation *sim, t_philosopher *philosopher,int first_fork)
 {
 	if (is_dead(sim))
 		return (false);
@@ -53,7 +53,7 @@ static bool	take_first_fork(t_simulation *sim, t_philosopher *philosopher,int fi
 	return (true);
 }
 
-static bool	take_last_fork(t_simulation *sim, t_philosopher *philosopher,int first_fork,int last_fork)
+bool	take_last_fork(t_simulation *sim, t_philosopher *philosopher,int first_fork,int last_fork)
 {
 	if (is_dead(sim))
 	{
@@ -74,51 +74,5 @@ static bool	take_last_fork(t_simulation *sim, t_philosopher *philosopher,int fir
 		pthread_mutex_unlock(&sim->thread_manage.forks_mutex[last_fork]);
 		return (false);
 	}
-	return (true);
-}
-
-bool	take_forks(t_simulation *sim, t_philosopher *philosopher)
-{
-	int	right_fork;
-	int	left_fork;
-	int	first_fork;
-	int	last_fork;
-
-	right_fork = ((philosopher->id) - 1);
-	left_fork = set_left_fork((philosopher->id) - 1, sim);
-	first_fork = set_first_fork((philosopher->id), right_fork, left_fork);
-	last_fork = set_last_fork((philosopher->id), right_fork, left_fork);
-	// if (is_dead(sim))
-	// 	return (false);
-	// pthread_mutex_lock(&sim->thread_manage.forks_mutex[first_fork]);
-	// if (is_dead(sim))
-	// {
-	// 	pthread_mutex_unlock(&sim->thread_manage.forks_mutex[first_fork]);
-	// 	return (false);
-	// }
-	// print_take_fork(sim, philosopher->id);
-	// if (is_dead(sim))
-	// {
-	// 	pthread_mutex_unlock(&sim->thread_manage.forks_mutex[first_fork]);
-	// 	return (false);
-	// }
-	if(take_first_fork(sim, philosopher,first_fork) == false)
-		return (false);
-	// pthread_mutex_lock(&sim->thread_manage.forks_mutex[last_fork]);
-	// if (is_dead(sim))
-	// {
-	// 	pthread_mutex_unlock(&sim->thread_manage.forks_mutex[first_fork]);
-	// 	pthread_mutex_unlock(&sim->thread_manage.forks_mutex[last_fork]);
-	// 	return (false);
-	// }
-	// print_take_fork(sim, philosopher->id);
-	// if (is_dead(sim))
-	// {
-	// 	pthread_mutex_unlock(&sim->thread_manage.forks_mutex[first_fork]);
-	// 	pthread_mutex_unlock(&sim->thread_manage.forks_mutex[last_fork]);
-	// 	return (false);
-	// }
-	if (take_last_fork(sim, philosopher,first_fork,last_fork) == false)
-		return (false);
 	return (true);
 }
