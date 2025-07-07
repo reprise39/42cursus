@@ -6,7 +6,7 @@
 /*   By: mkuida <reprise39@yahoo.co.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/04 09:34:56 by mkuida            #+#    #+#             */
-/*   Updated: 2025/07/07 22:33:21 by mkuida           ###   ########.fr       */
+/*   Updated: 2025/07/08 00:08:38 by mkuida           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,14 +24,43 @@ static bool	set_philo_born_time(t_philosopher *philosopher)
 	return (true);
 }
 
+static bool	wait_ready_start(t_simulation *sim)
+{
+	while (1)
+	{
+		if (pthread_mutex_lock_s(&sim->start_flag_mutex) == EXIT_FAILURE)
+			return (false);
+		if (sim->start_flag == true)
+		{
+			if (pthread_mutex_unlock_s(&sim->start_flag_mutex) == EXIT_FAILURE)
+			{
+				is_dead_set(sim);
+				return (false);
+			}
+			return (true);
+		}
+		if (pthread_mutex_unlock_s(&sim->start_flag_mutex) == EXIT_FAILURE)
+		{
+			is_dead_set(sim);
+			return (false);
+		}
+		if (is_dead(sim) == true)
+			return (false);
+		usleep(START_CHECK_INTERVAL);
+	}
+}
+
 static void	do_cicle(t_simulation *sim, t_philosopher *philosopher)
 {
+	wait_ready_start(sim);
 	if (set_philo_born_time(philosopher) == false)
 	{
 		printf("do_cicle initialize error\n");
 		is_dead_set(sim);
 		return ;
 	}
+	if (philosopher->id % 2 == 0)
+		usleep(ODD_EVEN_START_DIFF);
 	while (1)
 	{
 		if (take_forks(sim, philosopher) == false)

@@ -6,7 +6,7 @@
 /*   By: mkuida <reprise39@yahoo.co.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/05 20:05:31 by mkuida            #+#    #+#             */
-/*   Updated: 2025/07/07 22:49:57 by mkuida           ###   ########.fr       */
+/*   Updated: 2025/07/07 23:45:55 by mkuida           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,6 +112,9 @@ int	start_simulatuon(t_simulation *simulation, int argc, char **argv)
 		return (EXIT_FAILURE);
 	if (pthread_mutex_init_s(&simulation->fin_philo_num_mutex,
 			NULL) == EXIT_FAILURE)
+		return (EXIT_FAILURE);
+	simulation->start_flag = false;
+	if (pthread_mutex_init_s(&simulation->start_flag_mutex, NULL) == EXIT_FAILURE)
 		return (EXIT_FAILURE);
 	if (gettimeofday_s(&simulation->start_time, NULL) == EXIT_FAILURE)
 		return (EXIT_FAILURE);
