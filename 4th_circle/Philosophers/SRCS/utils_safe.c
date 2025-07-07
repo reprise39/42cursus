@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philosopher.h"
+#include "philosophers.h"
 
 int	gettimeofday_s(struct timeval *tv, struct timezone *tz)
 {
@@ -42,11 +42,21 @@ int	pthread_mutex_unlock_s(pthread_mutex_t *mutex)
 	return (EXIT_SUCCESS);
 }
 
-void	pthread_mutex_destroy_s(pthread_mutex_t *mutex)
+int	pthread_mutex_destroy_s(pthread_mutex_t *mutex)
 {
 	if (pthread_mutex_destroy(mutex) != 0)
 	{
 		printf ("pthread_mutex_destory error");
+		return (EXIT_FAILURE);
+	}
+	return (EXIT_SUCCESS);
+}
+
+int	pthread_mutex_init_s(pthread_mutex_t *mutex, const pthread_mutexattr_t *mutexattr)
+{
+	if (pthread_mutex_init(mutex, mutexattr) != 0)
+	{
+		printf ("pthread_mutex_init error");
 		return (EXIT_FAILURE);
 	}
 	return (EXIT_SUCCESS);

@@ -1,22 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   filosophers.c                                      :+:      :+:    :+:   */
+/*   philosophers.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mkuida <reprise39@yahoo.co.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/04 09:34:56 by mkuida            #+#    #+#             */
-/*   Updated: 2025/07/04 09:34:56 by mkuida           ###   ########.fr       */
+/*   Updated: 2025/07/07 18:48:03 by mkuida           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
 
+static bool	set_philo_born_time(t_philosopher *philosopher)
+{
+	if (pthread_mutex_lock_s(&philosopher->last_eat_time_mutex) == EXIT_FAILURE)
+		return (false);
+	if (gettimeofday_s(&philosopher->last_eat_time, NULL) == EXIT_FAILURE)
+		return (false);
+	if (pthread_mutex_unlock_s(&philosopher->last_eat_time_mutex) == EXIT_FAILURE)
+		return (false);
+	return (true);
+}
+
 static void	do_cicle(t_simulation *sim, t_philosopher *philosopher)
 {
-	pthread_mutex_lock(&philosopher->last_eat_time_mutex);
-	gettimeofday(&philosopher->last_eat_time, NULL);
-	pthread_mutex_unlock(&philosopher->last_eat_time_mutex);
+	if(set_philo_born_time(philosopher) == false)
+	{
+		printf("do_cicle initialize error\n");
+		is_dead_set(sim);
+		return ;
+	}
 	while (1)
 	{
 		if (take_forks(sim, philosopher) == false)
@@ -51,8 +65,8 @@ int	philosophers(t_simulation *sim)
 		if (pthread_create(&sim->thread_manage.thread_id[i], NULL,
 				&philosopher_routine, sim) != 0)
 		{
-			perror("pthread_create error");
-			exit(EXIT_FAILURE);
+			printf("pthread_create error");
+			return (EXIT_FAILURE);
 		}
 		i++;
 	}

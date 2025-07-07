@@ -27,6 +27,7 @@ SRC_FILES =	main.c\
 			wait_all_thread.c\
 			ft_is_int.c\
 			utils.c\
+			utils_safe.c\
 			for_debag.c\
 			philosophers.c\
 			philo_behave_utils.c\

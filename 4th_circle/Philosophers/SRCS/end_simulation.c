@@ -6,7 +6,7 @@
 /*   By: mkuida <reprise39@yahoo.co.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/05 20:18:26 by mkuida            #+#    #+#             */
-/*   Updated: 2025/07/06 18:10:43 by mkuida           ###   ########.fr       */
+/*   Updated: 2025/07/07 18:47:19 by mkuida           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,8 @@ static void	end_thread_manage(t_thread_manage *thread_manage)
 	{
 		if (pthread_mutex_destroy(&thread_manage->forks_mutex[i]) != 0)
 		{
-			perror("pthread_mutex_destroy error");
-			exit(EXIT_FAILURE);
+			printf("pthread_mutex_destroy error : ");
+			printf("at thread_manage fork_mutex[%d]\n", i);
 		}
 		i++;
 	}
@@ -40,8 +40,8 @@ static void	end_philosophers(t_simulation *sim)
 		if (pthread_mutex_destroy
 			(&(sim->philosophers[i].last_eat_time_mutex)) != 0)
 		{
-			perror("pthread_mutex_destroy error");
-			exit(EXIT_FAILURE);
+			printf("pthread_mutex_destroy error : ");
+			printf("at philosofers[%d] last_eat_time_mutex\n", i);
 		}
 		i++;
 	}
@@ -54,17 +54,17 @@ void	end_simulation(t_simulation *simulation)
 	end_philosophers(simulation);
 	if (pthread_mutex_destroy(&simulation->is_dead_mutex) != 0)
 	{
-		perror("pthread_mutex_destroy error");
-		exit(EXIT_FAILURE);
+		printf("pthread_mutex_destroy error : ");
+		printf("at simulation is_dead_mutex\n");
 	}
 	if (pthread_mutex_destroy(&simulation->is_print_mutex) != 0)
 	{
-		perror("pthread_mutex_destroy error");
-		exit(EXIT_FAILURE);
+		printf("pthread_mutex_destroy error : ");
+		printf("at simulation is_print_mutex\n");
 	}
 	if (pthread_mutex_destroy(&simulation->fin_philo_num_mutex) != 0)
 	{
-		perror("pthread_mutex_destroy error");
-		exit(EXIT_FAILURE);
+		printf("pthread_mutex_destroy error : ");
+		printf("at simulation fin_philo_num_mutex\n");
 	}
 }

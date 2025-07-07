@@ -6,7 +6,7 @@
 /*   By: mkuida <reprise39@yahoo.co.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/26 15:50:31 by mkuida            #+#    #+#             */
-/*   Updated: 2025/07/06 19:25:33 by mkuida           ###   ########.fr       */
+/*   Updated: 2025/07/07 18:46:41 by mkuida           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ int					check_input_is_num(int argc, char **argv);
 int					check_input_is_posi_int(int argc, char **argv);
 
 // start_simulation.c
-void				start_simulatuon(t_simulation *simulation, int argc,
+int				start_simulatuon(t_simulation *simulation, int argc,
 						char **argv);
 
 // end_simulation.c
@@ -94,6 +94,13 @@ int					ft_is_digit(const char str);
 int					ft_strlen(const char *str);
 void				ft_hyper_usleep(useconds_t timer);
 int					ft_atoi(const char *str);
+
+// utils_safe.c
+int					gettimeofday_s(struct timeval *tv, struct timezone *tz);
+int					pthread_mutex_lock_s(pthread_mutex_t *mutex);
+int					pthread_mutex_unlock_s(pthread_mutex_t *mutex);
+int					pthread_mutex_destroy_s(pthread_mutex_t *mutex);
+int					pthread_mutex_init_s(pthread_mutex_t *mutex, const pthread_mutexattr_t *mutexattr);
 
 // print_info.c
 void				print_take_fork(t_simulation *sim, int philo_num);
