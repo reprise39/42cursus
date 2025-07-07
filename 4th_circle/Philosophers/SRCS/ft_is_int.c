@@ -6,7 +6,7 @@
 /*   By: mkuida <reprise39@yahoo.co.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/03 08:05:26 by mkuida            #+#    #+#             */
-/*   Updated: 2025/07/03 08:05:26 by mkuida           ###   ########.fr       */
+/*   Updated: 2025/07/07 18:59:57 by mkuida           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ static int	check_over_intmanx_corner(const char *str)
 		else
 		{
 			printf("souteigai\n");
-			exit(1);
+			return (777);
 		}
 	}
 	return (0);

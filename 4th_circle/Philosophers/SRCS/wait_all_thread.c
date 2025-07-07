@@ -6,7 +6,7 @@
 /*   By: mkuida <reprise39@yahoo.co.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/05 20:01:59 by mkuida            #+#    #+#             */
-/*   Updated: 2025/07/06 00:03:40 by mkuida           ###   ########.fr       */
+/*   Updated: 2025/07/07 18:59:49 by mkuida           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,14 +21,16 @@ void	wait_all_thread(t_simulation *simulation, pthread_t *monitor_thread_id)
 	{
 		if (pthread_join(simulation->thread_manage.thread_id[i], NULL) != 0)
 		{
-			perror("pthread_join error");
-			exit(EXIT_FAILURE);
+			printf("pthread_join error\n");
+			printf("at : thread %d\n",i);
+			return ;
 		}
 		i++;
 	}
 	if (pthread_join(*monitor_thread_id, NULL) != 0)
 	{
-		perror("pthread_join error");
-		exit(EXIT_FAILURE);
+		printf("pthread_join error\n");
+		printf("at : monitor_thread\n");
+		return ;
 	}
 }
