@@ -6,7 +6,7 @@
 /*   By: mkuida <reprise39@yahoo.co.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/26 16:02:41 by mkuida            #+#    #+#             */
-/*   Updated: 2025/07/07 18:55:41 by mkuida           ###   ########.fr       */
+/*   Updated: 2025/07/07 22:40:06 by mkuida           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,5 @@ int	main(int argc, char **argv)
 		return (EXIT_FAILURE);
 	wait_all_thread(&simulation, &monitor_thread_id);
 	end_simulation(&simulation);
-	printf("Simulation ended successfully.\n");
 	return (0);
 }

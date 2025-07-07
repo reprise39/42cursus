@@ -6,14 +6,12 @@
 /*   By: mkuida <reprise39@yahoo.co.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/26 15:50:31 by mkuida            #+#    #+#             */
-/*   Updated: 2025/07/07 18:46:41 by mkuida           ###   ########.fr       */
+/*   Updated: 2025/07/07 22:32:27 by mkuida           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PHILOSOPHERS_H
 # define PHILOSOPHERS_H
-
-# define BUFFER_SIZE 42
 
 # include <fcntl.h>
 # include <pthread.h>
@@ -26,9 +24,11 @@
 # include <unistd.h>
 
 # define SOLO_MONITOR_INTERVAL 200
-# define THINK_INTERVAL 200
+# define THINK_INTERVAL 5
 # define MONITOR_INTERVAL 200
 # define IN_USLEEP_CHECK_INTERVAL 100
+
+# define PRINT_BUFF_SIZE 60
 
 typedef struct s_thread_manage
 {
@@ -74,7 +74,7 @@ int					check_input_is_num(int argc, char **argv);
 int					check_input_is_posi_int(int argc, char **argv);
 
 // start_simulation.c
-int				start_simulatuon(t_simulation *simulation, int argc,
+int					start_simulatuon(t_simulation *simulation, int argc,
 						char **argv);
 
 // end_simulation.c
@@ -88,19 +88,24 @@ void				wait_all_thread(t_simulation *simulation,
 int					ft_isdigit_str(const char *str);
 int					ft_isposiint_str(const char *str);
 
-// utils.c
+// utils_1.c
 int					ft_is_spase(char c);
 int					ft_is_digit(const char str);
 int					ft_strlen(const char *str);
 void				ft_hyper_usleep(useconds_t timer);
 int					ft_atoi(const char *str);
 
+// utils_2.c
+int					ft_set_ltoa(long input, char *dest);
+void				*ft_memcpy(void *dest, const void *src, size_t n);
+
 // utils_safe.c
 int					gettimeofday_s(struct timeval *tv, struct timezone *tz);
 int					pthread_mutex_lock_s(pthread_mutex_t *mutex);
 int					pthread_mutex_unlock_s(pthread_mutex_t *mutex);
 int					pthread_mutex_destroy_s(pthread_mutex_t *mutex);
-int					pthread_mutex_init_s(pthread_mutex_t *mutex, const pthread_mutexattr_t *mutexattr);
+int					pthread_mutex_init_s(pthread_mutex_t *mutex,
+						const pthread_mutexattr_t *mutexattr);
 
 // print_info.c
 void				print_take_fork(t_simulation *sim, int philo_num);

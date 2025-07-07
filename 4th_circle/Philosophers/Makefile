@@ -11,7 +11,7 @@
 # **************************************************************************** #
 
 #define
-NAME = philosophers
+NAME = philo
 CC = cc
 CFLAGS = -Wall -Wextra -Werror
 LDFLAGS =
@@ -26,7 +26,8 @@ SRC_FILES =	main.c\
 			print_info.c\
 			wait_all_thread.c\
 			ft_is_int.c\
-			utils.c\
+			utils_1.c\
+			utils_2.c\
 			utils_safe.c\
 			for_debag.c\
 			philosophers.c\

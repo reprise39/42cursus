@@ -6,7 +6,7 @@
 /*   By: mkuida <reprise39@yahoo.co.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/04 09:34:56 by mkuida            #+#    #+#             */
-/*   Updated: 2025/07/07 18:48:03 by mkuida           ###   ########.fr       */
+/*   Updated: 2025/07/07 22:33:21 by mkuida           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,14 +18,15 @@ static bool	set_philo_born_time(t_philosopher *philosopher)
 		return (false);
 	if (gettimeofday_s(&philosopher->last_eat_time, NULL) == EXIT_FAILURE)
 		return (false);
-	if (pthread_mutex_unlock_s(&philosopher->last_eat_time_mutex) == EXIT_FAILURE)
+	if (pthread_mutex_unlock_s(&philosopher->last_eat_time_mutex)
+		== EXIT_FAILURE)
 		return (false);
 	return (true);
 }
 
 static void	do_cicle(t_simulation *sim, t_philosopher *philosopher)
 {
-	if(set_philo_born_time(philosopher) == false)
+	if (set_philo_born_time(philosopher) == false)
 	{
 		printf("do_cicle initialize error\n");
 		is_dead_set(sim);

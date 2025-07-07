@@ -6,7 +6,7 @@
 /*   By: mkuida <reprise39@yahoo.co.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/05 20:05:31 by mkuida            #+#    #+#             */
-/*   Updated: 2025/07/07 18:55:24 by mkuida           ###   ########.fr       */
+/*   Updated: 2025/07/07 22:49:57 by mkuida           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,8 @@ static bool	init_thread_manage_mutex_initialize(t_thread_manage *thread_manage)
 		if (pthread_mutex_init(&thread_manage->forks_mutex[i], NULL) != 0)
 		{
 			printf("pthread_mutex_init error : ");
-			printf("at thread_manage forks_mutex[%d]\n",i);
-			return(false);
+			printf("at thread_manage forks_mutex[%d]\n", i);
+			return (false);
 		}
 		i++;
 	}
@@ -83,14 +83,15 @@ static bool	set_philosophers(t_simulation *simulation)
 	if (!simulation->philosophers)
 	{
 		printf("malloc error");
-		return(false);
+		return (false);
 	}
 	while (i < philo_num)
 	{
 		simulation->philosophers[i].id = i + 1;
 		simulation->philosophers[i].num_of_eat_times = 0;
-		if(pthread_mutex_init_s(&(simulation->philosophers[i].last_eat_time_mutex), NULL) == EXIT_FAILURE)
-			return(false);
+		if (pthread_mutex_init_s(&(simulation->philosophers[i].\
+			last_eat_time_mutex), NULL) == EXIT_FAILURE)
+			return (false);
 		i++;
 	}
 	return (true);
@@ -99,17 +100,19 @@ static bool	set_philosophers(t_simulation *simulation)
 int	start_simulatuon(t_simulation *simulation, int argc, char **argv)
 {
 	set_condition(&(simulation->condition), argc, argv);
-	if(set_thread_manage(&(simulation->thread_manage), &(simulation->condition)) == false)
+	if (set_thread_manage(&(simulation->thread_manage),
+			&(simulation->condition)) == false)
 		return (EXIT_FAILURE);
-	if(set_philosophers(simulation) == false)
+	if (set_philosophers(simulation) == false)
 		return (EXIT_FAILURE);
 	simulation->is_dead = false;
 	if (pthread_mutex_init_s(&simulation->is_dead_mutex, NULL) == EXIT_FAILURE)
-		return(EXIT_FAILURE);
+		return (EXIT_FAILURE);
 	if (pthread_mutex_init_s(&simulation->is_print_mutex, NULL) == EXIT_FAILURE)
-		return(EXIT_FAILURE);
-	if (pthread_mutex_init_s(&simulation->fin_philo_num_mutex, NULL) == EXIT_FAILURE)
-		return(EXIT_FAILURE);
+		return (EXIT_FAILURE);
+	if (pthread_mutex_init_s(&simulation->fin_philo_num_mutex,
+			NULL) == EXIT_FAILURE)
+		return (EXIT_FAILURE);
 	if (gettimeofday_s(&simulation->start_time, NULL) == EXIT_FAILURE)
 		return (EXIT_FAILURE);
 	return (EXIT_SUCCESS);

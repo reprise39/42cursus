@@ -14,9 +14,9 @@
 
 int	gettimeofday_s(struct timeval *tv, struct timezone *tz)
 {
-	if (gettimeofday(tv,tz) != 0)
+	if (gettimeofday(tv, tz) != 0)
 	{
-		printf ("gettimeofday error");
+		printf("gettimeofday error");
 		return (EXIT_FAILURE);
 	}
 	return (EXIT_SUCCESS);
@@ -52,7 +52,8 @@ int	pthread_mutex_destroy_s(pthread_mutex_t *mutex)
 	return (EXIT_SUCCESS);
 }
 
-int	pthread_mutex_init_s(pthread_mutex_t *mutex, const pthread_mutexattr_t *mutexattr)
+int	pthread_mutex_init_s(pthread_mutex_t *mutex,
+	const pthread_mutexattr_t *mutexattr)
 {
 	if (pthread_mutex_init(mutex, mutexattr) != 0)
 	{
