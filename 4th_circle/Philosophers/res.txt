@@ -1,0 +1,201 @@
+0_in_ms 3 has taken a fork
+0_in_ms 3 has taken a fork
+0_in_ms 3 is eating
+0_in_ms 1 has taken a fork
+0_in_ms 1 has taken a fork
+0_in_ms 1 is eating
+200_in_ms 3 is sleeping
+200_in_ms 4 has taken a fork
+201_in_ms 1 is sleeping
+201_in_ms 4 has taken a fork
+201_in_ms 4 is eating
+201_in_ms 2 has taken a fork
+201_in_ms 2 has taken a fork
+201_in_ms 2 is eating
+400_in_ms 3 is thinking
+401_in_ms 1 is thinking
+401_in_ms 4 is sleeping
+401_in_ms 3 has taken a fork
+401_in_ms 2 is sleeping
+401_in_ms 1 has taken a fork
+401_in_ms 1 has taken a fork
+402_in_ms 1 is eating
+402_in_ms 3 has taken a fork
+402_in_ms 3 is eating
+601_in_ms 4 is thinking
+601_in_ms 2 is thinking
+602_in_ms 1 is sleeping
+602_in_ms 2 has taken a fork
+602_in_ms 4 has taken a fork
+602_in_ms 4 has taken a fork
+602_in_ms 4 is eating
+602_in_ms 2 has taken a fork
+602_in_ms 2 is eating
+602_in_ms 3 is sleeping
+802_in_ms 1 is thinking
+802_in_ms 4 is sleeping
+802_in_ms 2 is sleeping
+802_in_ms 1 has taken a fork
+803_in_ms 1 has taken a fork
+803_in_ms 1 is eating
+803_in_ms 3 is thinking
+803_in_ms 3 has taken a fork
+803_in_ms 3 has taken a fork
+803_in_ms 3 is eating
+1002_in_ms 4 is thinking
+1003_in_ms 2 is thinking
+1003_in_ms 1 is sleeping
+1003_in_ms 2 has taken a fork
+1003_in_ms 3 is sleeping
+1003_in_ms 4 has taken a fork
+1003_in_ms 4 has taken a fork
+1003_in_ms 4 is eating
+1003_in_ms 2 has taken a fork
+1004_in_ms 2 is eating
+1203_in_ms 1 is thinking
+1203_in_ms 3 is thinking
+1203_in_ms 4 is sleeping
+1204_in_ms 3 has taken a fork
+1204_in_ms 2 is sleeping
+1204_in_ms 3 has taken a fork
+1204_in_ms 3 is eating
+1204_in_ms 1 has taken a fork
+1204_in_ms 1 has taken a fork
+1204_in_ms 1 is eating
+1404_in_ms 4 is thinking
+1404_in_ms 2 is thinking
+1404_in_ms 4 has taken a fork
+1404_in_ms 3 is sleeping
+1404_in_ms 1 is sleeping
+1404_in_ms 2 has taken a fork
+1404_in_ms 2 has taken a fork
+1405_in_ms 2 is eating
+1405_in_ms 4 has taken a fork
+1405_in_ms 4 is eating
+1604_in_ms 3 is thinking
+1604_in_ms 1 is thinking
+1605_in_ms 2 is sleeping
+1605_in_ms 1 has taken a fork
+1605_in_ms 3 has taken a fork
+1605_in_ms 3 has taken a fork
+1605_in_ms 3 is eating
+1605_in_ms 4 is sleeping
+1605_in_ms 1 has taken a fork
+1605_in_ms 1 is eating
+1805_in_ms 2 is thinking
+1805_in_ms 3 is sleeping
+1805_in_ms 4 is thinking
+1805_in_ms 1 is sleeping
+1805_in_ms 2 has taken a fork
+1805_in_ms 2 has taken a fork
+1806_in_ms 2 is eating
+1806_in_ms 4 has taken a fork
+1806_in_ms 4 has taken a fork
+1806_in_ms 4 is eating
+2005_in_ms 3 is thinking
+2005_in_ms 1 is thinking
+2006_in_ms 2 is sleeping
+2006_in_ms 1 has taken a fork
+2006_in_ms 4 is sleeping
+2006_in_ms 3 has taken a fork
+2006_in_ms 3 has taken a fork
+2006_in_ms 3 is eating
+2006_in_ms 1 has taken a fork
+2006_in_ms 1 is eating
+2206_in_ms 2 is thinking
+2206_in_ms 4 is thinking
+2206_in_ms 3 is sleeping
+2206_in_ms 4 has taken a fork
+2207_in_ms 4 has taken a fork
+2207_in_ms 4 is eating
+2207_in_ms 1 is sleeping
+2207_in_ms 2 has taken a fork
+2207_in_ms 2 has taken a fork
+2207_in_ms 2 is eating
+2406_in_ms 3 is thinking
+2407_in_ms 4 is sleeping
+2407_in_ms 1 is thinking
+2407_in_ms 3 has taken a fork
+2407_in_ms 2 is sleeping
+2407_in_ms 1 has taken a fork
+2407_in_ms 1 has taken a fork
+2407_in_ms 1 is eating
+2407_in_ms 3 has taken a fork
+2408_in_ms 3 is eating
+2607_in_ms 4 is thinking
+2607_in_ms 2 is thinking
+2607_in_ms 1 is sleeping
+2608_in_ms 2 has taken a fork
+2608_in_ms 2 has taken a fork
+2608_in_ms 2 is eating
+2608_in_ms 3 is sleeping
+2608_in_ms 4 has taken a fork
+2608_in_ms 4 has taken a fork
+2608_in_ms 4 is eating
+2808_in_ms 1 is thinking
+2808_in_ms 2 is sleeping
+2808_in_ms 3 is thinking
+2808_in_ms 1 has taken a fork
+2808_in_ms 4 is sleeping
+2808_in_ms 1 has taken a fork
+2808_in_ms 1 is eating
+2808_in_ms 3 has taken a fork
+2809_in_ms 3 has taken a fork
+2809_in_ms 3 is eating
+3008_in_ms 2 is thinking
+3008_in_ms 4 is thinking
+3008_in_ms 1 is sleeping
+3009_in_ms 2 has taken a fork
+3009_in_ms 3 is sleeping
+3009_in_ms 2 has taken a fork
+3009_in_ms 2 is eating
+3009_in_ms 4 has taken a fork
+3009_in_ms 4 has taken a fork
+3009_in_ms 4 is eating
+3209_in_ms 1 is thinking
+3209_in_ms 3 is thinking
+3209_in_ms 2 is sleeping
+3209_in_ms 1 has taken a fork
+3209_in_ms 3 has taken a fork
+3210_in_ms 3 has taken a fork
+3210_in_ms 3 is eating
+3210_in_ms 4 is sleeping
+3210_in_ms 1 has taken a fork
+3210_in_ms 1 is eating
+3409_in_ms 2 is thinking
+3410_in_ms 3 is sleeping
+3410_in_ms 4 is thinking
+3410_in_ms 4 has taken a fork
+3410_in_ms 4 has taken a fork
+3410_in_ms 4 is eating
+3410_in_ms 1 is sleeping
+3410_in_ms 2 has taken a fork
+3410_in_ms 2 has taken a fork
+3411_in_ms 2 is eating
+3610_in_ms 3 is thinking
+3610_in_ms 4 is sleeping
+3610_in_ms 3 has taken a fork
+3610_in_ms 1 is thinking
+3611_in_ms 3 has taken a fork
+3611_in_ms 3 is eating
+3611_in_ms 2 is sleeping
+3611_in_ms 1 has taken a fork
+3611_in_ms 1 has taken a fork
+3611_in_ms 1 is eating
+3810_in_ms 4 is thinking
+3811_in_ms 3 is sleeping
+3811_in_ms 4 has taken a fork
+3811_in_ms 2 is thinking
+3811_in_ms 1 is sleeping
+3811_in_ms 4 has taken a fork
+3811_in_ms 4 is eating
+3811_in_ms 2 has taken a fork
+3812_in_ms 2 has taken a fork
+3812_in_ms 2 is eating
+4011_in_ms 3 is thinking
+4011_in_ms 1 is thinking
+4012_in_ms 3 has taken a fork
+4012_in_ms 4 is sleeping
+4012_in_ms 2 is sleeping
+4012_in_ms 3 has taken a fork
+4012_in_ms 1 has taken a fork

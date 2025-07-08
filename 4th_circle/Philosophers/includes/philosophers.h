@@ -6,7 +6,7 @@
 /*   By: mkuida <reprise39@yahoo.co.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/26 15:50:31 by mkuida            #+#    #+#             */
-/*   Updated: 2025/07/08 00:08:52 by mkuida           ###   ########.fr       */
+/*   Updated: 2025/07/08 10:31:04 by mkuida           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@
 # define MONITOR_INTERVAL 75
 # define IN_USLEEP_CHECK_INTERVAL 50
 # define START_CHECK_INTERVAL 50
+# define PRINT_INTERVAL 5
 # define ODD_EVEN_START_DIFF 50
 
 # define PRINT_BUFF_SIZE 60
