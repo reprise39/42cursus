@@ -6,7 +6,7 @@
 /*   By: mkuida <reprise39@yahoo.co.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/05 11:35:24 by mkuida            #+#    #+#             */
-/*   Updated: 2025/07/07 18:43:10 by mkuida           ###   ########.fr       */
+/*   Updated: 2025/07/08 10:13:46 by mkuida           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,7 @@ void	*monitor_thread(void *arg)
 				is_dead_set(sim);
 				return (NULL);
 			}
+			i++;
 		}
 		if (check_all_philo_ate(sim) == true)
 		{
@@ -76,6 +77,5 @@ void	*monitor_thread(void *arg)
 			return (NULL);
 		}
 		usleep(MONITOR_INTERVAL);
-		i++;
 	}
 }
