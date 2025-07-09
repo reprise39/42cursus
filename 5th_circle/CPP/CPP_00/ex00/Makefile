@@ -24,7 +24,7 @@ SRCS = $(addprefix $(SRC_DIR)/, $(SRC_FILES))
 
 OBJ_DIR = .
 
-OBJS = $(SRCS:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)
+OBJS = $(SRCS:$(SRC_DIR)/%.cpp=$(OBJ_DIR)/%.o)
 
 .PHONY: all clean fclean re
 
@@ -33,12 +33,10 @@ all: $(NAME)
 
 # make lib
 $(NAME): $(OBJS)
-#	cp $(LIBFT) $(NAME)
-#	ar rcs $(NAME) $(MAN_OBJS)
 	$(CC) $(INCLUDES) -o $(NAME) $(OBJS) $(LDFLAGS)
 
 # make object files
-$(OBJ_DIR)/%.o: $(SRC_DIR)/%.c | $(OBJ_DIR)
+$(OBJ_DIR)/%.o: $(SRC_DIR)/%.cpp | $(OBJ_DIR)
 	$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
 
 $(OBJ_DIR):
