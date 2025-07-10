@@ -19,7 +19,7 @@ std::string get_str(std::string print_word)
 	{
 		std::cout << "   " << std::right << "prease type : " << print_word << " : ";
 		std::getline(std::cin,input);
-		if(input != "")
+		if(str_is_space(input) == false)
 			return (input);
 		else
 			std::cout << red("      ! blank_inpt is forbidden !") << std::endl;

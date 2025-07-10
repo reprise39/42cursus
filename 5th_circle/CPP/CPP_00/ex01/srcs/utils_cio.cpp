@@ -25,21 +25,6 @@ void cin_all_clear(void)
 		std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 }
 
-int str_to_int(const std::string str, bool* success = NULL)
-{
-	std::istringstream iss(str);
-	int result;
-
-	iss >> result;
-	if (iss.fail() || !iss.eof()) {
-		if (success) *success = false;
-		return (0);
-	}
-
-	if (success) *success = true;
-	return (result);
-}
-
 std::string red(const std::string& text)
 {
 	return ("\033[31m" + text + "\033[0m");

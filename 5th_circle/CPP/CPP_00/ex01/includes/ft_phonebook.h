@@ -50,12 +50,14 @@ void search(Phonebook &phonebook);
 // utils_cio.cpp
 void cin_line_clear(void);
 void cin_all_clear(void);
-int str_to_int(const std::string s, bool* success);
+
 std::string red(const std::string& text);
 std::string yellow(const std::string& text);
 std::string blue(const std::string& text);
 
 //utils.c
-bool str_is_space(std::str);
+bool str_is_space(std::string str);
+int str_to_int(const std::string s, bool* success);
+std::string int_to_str(int val);
 
 #endif

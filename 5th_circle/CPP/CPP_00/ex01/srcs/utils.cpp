@@ -12,13 +12,34 @@
 
 #include "ft_phonebook.h"
 
-bool str_is_space(std::str)
+bool str_is_space(std::string str)
 {
-	for(int i = 0 ; i < str.length() ; i++)
+	for(size_t i = 0 ; i < str.length() ; i++)
 	{
 		if(std::isspace(str[i]) == false)
-			return (false):
+			return (false);
 	}
 	return (true);
 }
 
+int str_to_int(const std::string str, bool* success = NULL)
+{
+	std::istringstream iss(str);
+	int result;
+
+	iss >> result;
+	if (iss.fail() || !iss.eof()) {
+		if (success) *success = false;
+		return (0);
+	}
+
+	if (success) *success = true;
+	return (result);
+}
+
+std::string int_to_str(int val)
+{
+	std::ostringstream oss;
+	oss << val;
+	return (oss.str());
+}
