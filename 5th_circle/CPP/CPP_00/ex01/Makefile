@@ -10,15 +10,17 @@
 #                                                                              #
 # **************************************************************************** #
 
-NAME = megaphone
+NAME = ft_phonbook
 CC = c++
 CFLAGS = -Wall -Wextra -Werror -std=c++98
 LDFLAGS =
-INCLUDES = -I includes
+INCLUDES =
 
 SRC_DIR = .
 
-SRC_FILES =	megaphone.cpp
+SRC_FILES =	main.cpp\
+			search.cpp\
+			utils_cio.cpp
 
 SRCS = $(addprefix $(SRC_DIR)/, $(SRC_FILES))
 
