@@ -14,17 +14,18 @@ NAME = ft_phonbook
 CC = c++
 CFLAGS = -Wall -Wextra -Werror -std=c++98
 LDFLAGS =
-INCLUDES =
+INCLUDES = -I includes
 
-SRC_DIR = .
+SRC_DIR = ./srcs
 
 SRC_FILES =	main.cpp\
 			search.cpp\
-			utils_cio.cpp
+			utils_cio.cpp\
+			utils.cpp
 
 SRCS = $(addprefix $(SRC_DIR)/, $(SRC_FILES))
 
-OBJ_DIR = .
+OBJ_DIR = ./objs
 
 OBJS = $(SRCS:$(SRC_DIR)/%.cpp=$(OBJ_DIR)/%.o)
 

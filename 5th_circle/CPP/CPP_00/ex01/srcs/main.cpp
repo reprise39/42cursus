@@ -60,7 +60,6 @@ int main()
 
 	while(1)
 	{
-		// cin_all_clear();
 		std::cout << "cmd_prompt_mode > ";
 		std::getline(std::cin,input_str);
 		if (input_str == "ADD")

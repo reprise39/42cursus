@@ -13,7 +13,7 @@
 #ifndef FT_PHONBOOK_H
 # define FT_PHONBOOK_H
 
-//
+// include
 # include <string>
 # include <iostream>
 # include <iomanip>
@@ -21,12 +21,10 @@
 # include <cstdio>
 # include <sstream>
 
-//
+// macro
 # define BOOK_SIZE 9
 
-//
-
-
+// class
 class Contact
 {
 	public:
@@ -56,5 +54,8 @@ int str_to_int(const std::string s, bool* success);
 std::string red(const std::string& text);
 std::string yellow(const std::string& text);
 std::string blue(const std::string& text);
+
+//utils.c
+bool str_is_space(std::str);
 
 #endif
