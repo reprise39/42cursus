@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "ft_phonebook.h"
+# include "ft_phonebook.hpp"
 
 std::string get_str(std::string print_word)
 {

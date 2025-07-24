@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_phonebook.h"
+#include "ft_phonebook.hpp"
 
 bool str_is_space(std::string str)
 {

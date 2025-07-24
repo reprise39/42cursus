@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "ft_phonebook.h"
+# include "ft_phonebook.hpp"
 
 static void search_x(Phonebook &phonebook, int index_num)
 {
