@@ -26,7 +26,7 @@ static void print_line(std::string str)
 {
 	std::cout << "|";
 	if(str.length() < 10)
-		std::cout << std::setw(10)  << std::right << str;
+		std::cout << std::setw(10) << std::right << str;
 	else
 	{
 		for (int i = 0 ; i < 9 ; i++)

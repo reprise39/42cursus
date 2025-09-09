@@ -12,7 +12,7 @@
 
 NAME = The_Job_Of_Your_Dreams
 CC = c++
-CFLAGS = -Wall -Wextra -Werror -std=c++98 -pedantic
+CFLAGS = -Wall -Wextra -Werror -std=c++98 -pedantic -g
 LDFLAGS =
 INCLUDES = -I includes
 
