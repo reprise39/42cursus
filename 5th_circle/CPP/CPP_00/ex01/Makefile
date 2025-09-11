@@ -10,7 +10,7 @@
 #                                                                              #
 # **************************************************************************** #
 
-NAME = ft_phonbook
+NAME = ft_phonebook
 CC = c++
 CFLAGS = -Wall -Wextra -Werror -std=c++98 -pedantic -g
 LDFLAGS =
@@ -21,7 +21,8 @@ SRC_DIR = ./srcs
 SRC_FILES =	main.cpp\
 			search.cpp\
 			utils_cio.cpp\
-			utils.cpp
+			utils.cpp\
+			Contact.cpp
 
 SRCS = $(addprefix $(SRC_DIR)/, $(SRC_FILES))
 

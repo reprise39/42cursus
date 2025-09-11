@@ -15,10 +15,12 @@
 static void search_x(Phonebook &phonebook, int index_num)
 {
 	std::cout << std::endl;
-	std::cout << "   index      : " << index_num << std::endl;
-	std::cout << "   first_name : " << phonebook.contact[index_num].first_name << std::endl;
-	std::cout << "   last_name  : " << phonebook.contact[index_num].last_name << std::endl;
-	std::cout << "   nickname   : " << phonebook.contact[index_num].nickname << std::endl;
+	std::cout << "   index         : " << index_num << std::endl;
+	std::cout << "   first_name    : " << phonebook.contact[index_num].get_first_name() << std::endl;
+	std::cout << "   last_name     : " << phonebook.contact[index_num].get_last_name() << std::endl;
+	std::cout << "   nickname      : " << phonebook.contact[index_num].get_nickname() << std::endl;
+	std::cout << "   phone_number  : " << phonebook.contact[index_num].get_phone_number() << std::endl;
+	std::cout << "   darkest_secret: " << phonebook.contact[index_num].get_darkest_seclet() << std::endl;
 	std::cout << std::endl;
 }
 
@@ -46,9 +48,9 @@ static void print_list(Phonebook &phonebook)
 	{
 		std::cout << "   ";
 		print_line(int_to_str(i));
-		print_line(phonebook.contact[i].first_name);
-		print_line(phonebook.contact[i].last_name);
-		print_line(phonebook.contact[i].nickname);
+		print_line(phonebook.contact[i].get_first_name());
+		print_line(phonebook.contact[i].get_last_name());
+		print_line(phonebook.contact[i].get_nickname());
 		std::cout << "|" << std::endl;
 	}
 	std::cout << "   ---------------------------------------------" << std::endl;
@@ -75,7 +77,7 @@ static void search_list(Phonebook &phonebook)
 			}
 			else if(input_num == 0)
 			{
-				std::cout << "   exit seach" << std::endl;
+				std::cout << "   exit search" << std::endl;
 				return ;
 			}
 			else

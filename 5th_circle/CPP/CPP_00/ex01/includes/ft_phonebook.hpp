@@ -10,10 +10,10 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_PHONBOOK_H
-# define FT_PHONBOOK_H
+#ifndef FT_PHONBOOK_HPP
+# define FT_PHONBOOK_HPP
 
-// include
+// lib
 # include <string>
 # include <iostream>
 # include <iomanip>
@@ -21,28 +21,14 @@
 # include <cstdio>
 # include <sstream>
 
-// macro
-# define BOOK_SIZE 9
+// my_class
+# ifndef CONCAT_HPP
+#  include "Contact.hpp"
+# endif
 
-// class
-class Contact
-{
-	public:
-		std::string	first_name;
-		std::string	last_name;
-		std::string	nickname;
-		std::string phone_number;
-		std::string darkest_seclet;
-	private:
-};
-
-class Phonebook
-{
-	public:
-		void init_phonebook();
-		Contact contact[BOOK_SIZE + 1];
-	private:
-};
+# ifndef PHONEBOOK_HPP
+#  include "Phonebook.hpp"
+# endif
 
 // sarch.cpp
 void search(Phonebook &phonebook);
