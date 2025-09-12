@@ -43,3 +43,18 @@ std::string int_to_str(int val)
 	oss << val;
 	return (oss.str());
 }
+
+void print_line(std::string str)
+{
+	std::cout << "|";
+	if(str.length() < 10)
+		std::cout << std::setw(10) << std::right << str;
+	else
+	{
+		for (int i = 0 ; i < 9 ; i++)
+		{
+			std::cout << str[i];
+		}
+		std::cout << '.';
+	}
+}

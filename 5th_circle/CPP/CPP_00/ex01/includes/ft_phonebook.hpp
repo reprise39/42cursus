@@ -45,5 +45,6 @@ std::string blue(const std::string& text);
 bool str_is_space(std::string str);
 int str_to_int(const std::string s, bool* success);
 std::string int_to_str(int val);
+void print_line(std::string str);
 
 #endif

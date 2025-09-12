@@ -19,7 +19,7 @@ INCLUDES = -I includes
 SRC_DIR = ./srcs
 
 SRC_FILES =	main.cpp\
-			search.cpp\
+			Phonebook.cpp\
 			utils_cio.cpp\
 			utils.cpp\
 			Contact.cpp

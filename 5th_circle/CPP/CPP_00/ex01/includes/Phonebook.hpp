@@ -11,9 +11,14 @@
 class Phonebook
 {
 	public:
-		void init_phonebook();
-		Contact contact[BOOK_SIZE + 1];
+		void add(void);
+		void search(void);
 	private:
+		Contact contact[BOOK_SIZE + 1];
+		void move(void);
+		void print_list(void);
+		void search_list(void);
+		void search_x(int index_num);
 };
 
 #endif
