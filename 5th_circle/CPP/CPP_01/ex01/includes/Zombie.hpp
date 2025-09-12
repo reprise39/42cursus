@@ -36,11 +36,11 @@ class Zombie
 		std::string name;
 };
 
-// newZombie.cpp
-Zombie* newZombie(std::string name );
 
-// ramdomChump.cpp
-void randomChump(std::string name);
+// main.cpp
+std::ostream& red(std::ostream& os);
+std::ostream& blue(std::ostream& os);
+std::ostream& reset(std::ostream& os);
 
 // zombieHorde.cpp
 Zombie* zombieHorde( int N, std::string name );

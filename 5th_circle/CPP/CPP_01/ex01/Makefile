@@ -10,17 +10,16 @@
 #                                                                              #
 # **************************************************************************** #
 
-NAME = Zombie
+NAME = ex01
 CC = c++
-CFLAGS = -Wall -Wextra -Werror -std=c++98
+CFLAGS = -Wall -Wextra -Werror -std=c++98 -pedantic -g
 LDFLAGS =
 INCLUDES = -I includes
 
 SRC_DIR = ./srcs
 
-SRC_FILES =	Zombie.cpp\
-			newZombie.cpp\
-			randomChump.cpp\
+SRC_FILES =	main.cpp\
+			Zombie.cpp\
 			zombieHorde.cpp
 
 SRCS = $(addprefix $(SRC_DIR)/, $(SRC_FILES))

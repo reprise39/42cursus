@@ -19,39 +19,21 @@ void Zombie::announce()
 
 Zombie::Zombie()
 {
-	std::cout << "no_name" << " is now created" << std::endl;
+	std::cout << blue << "no_name" << " is now created" << reset << std::endl;
 }
 
 Zombie::Zombie(std::string input)
 {
 	name = input;
-	std::cout << this->name << " is now created" << std::endl;
+	std::cout << blue << this->name << " is now created" << reset << std::endl;
 }
 
 Zombie::~Zombie()
 {
-	std::cout << "Zombie " << name << " is destroyed" << std::endl;
+	std::cout << red << "Zombie " << name << " is destroyed" << reset << std::endl;
 }
 
 void Zombie::setname(std::string namae)
 {
 	this->name = namae;
-}
-
-int main()
-{
-	Zombie *zonp;
-	// Zombie *new_test1 = newZombie("new_test1");
-	// Zombie *new_test2 = newZombie("new_test2");
-	// new_test1->announce();
-	// delete (new_test1);
-	// new_test2->announce();
-	// randomChump("random_test1");
-	// randomChump("random_test2");
-	// delete (new_test2);
-
-	zonp = zombieHorde( 5 , "5_bro" );
-	delete[] zonp;
-
-	return (0);
 }
