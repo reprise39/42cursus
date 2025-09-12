@@ -46,5 +46,6 @@ bool str_is_space(std::string str);
 int str_to_int(const std::string s, bool* success);
 std::string int_to_str(int val);
 void print_line(std::string str);
+std::string get_str(std::string print_word);
 
 #endif

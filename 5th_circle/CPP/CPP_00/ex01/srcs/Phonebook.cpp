@@ -6,7 +6,7 @@
 /*   By: mkuida <reprise39@yahoo.co.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/12 19:05:49 by mkuida            #+#    #+#             */
-/*   Updated: 2025/09/12 19:06:19 by mkuida           ###   ########.fr       */
+/*   Updated: 2025/09/12 19:15:29 by mkuida           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,6 @@ void Phonebook::search_x(int index_num)
 	std::cout << "   darkest_secret: " << this->contact[index_num].get_darkest_seclet() << std::endl;
 	std::cout << std::endl;
 }
-
-
 
 void Phonebook::print_list(void)
 {
@@ -63,9 +61,9 @@ void Phonebook::search_list(void)
 		input_num = str_to_int(input_str, &to_str_ok);
 		if(to_str_ok == true)
 		{
-			if(input_num < 0 || input_num > 9)
+			if(input_num < 0 || input_num > 8)
 			{
-				std::cout << red("   out_of_rage int") << std::endl;
+				std::cout << red("   out_of_rage int ") << std::endl;
 				std::cout << blue("   please type index_number to print detail (to exit , type 0)") << std::endl;
 			}
 			else if(input_num == 0)
@@ -85,4 +83,30 @@ void Phonebook::search_list(void)
 			std::cout << blue("   please type index_number to print detail (to exit , type 0)") << std::endl;
 		}
 	}
+}
+
+void Phonebook::move(void)
+{
+	std::string str;
+
+	for (int i = 1 ; i < BOOK_SIZE ; i++)
+	{
+		this->contact[BOOK_SIZE - i].set_first_name(this->contact[BOOK_SIZE - 1 - i].get_first_name());
+		this->contact[BOOK_SIZE - i].set_last_name(this->contact[BOOK_SIZE - 1 - i].get_last_name());
+		this->contact[BOOK_SIZE - i].set_nickname(this->contact[BOOK_SIZE - 1 - i].get_nickname());
+		this->contact[BOOK_SIZE - i].set_phone_number(this->contact[BOOK_SIZE - 1 - i].get_phone_number());
+		this->contact[BOOK_SIZE - i].set_darkest_seclet(this->contact[BOOK_SIZE - 1 - i].get_darkest_seclet());
+	}
+}
+
+void Phonebook::add(void)
+{
+	this->contact[0].set_first_name(get_str("1_first name    "));
+	this->contact[0].set_last_name(get_str("2_last name     "));
+	this->contact[0].set_nickname(get_str("3_nickname      "));
+	this->contact[0].set_phone_number(get_str("4_phone number  "));
+	this->contact[0].set_darkest_seclet(get_str("5_darkest secret"));
+
+	Phonebook::move();
+	std::cout << "   exit add" << std::endl;
 }

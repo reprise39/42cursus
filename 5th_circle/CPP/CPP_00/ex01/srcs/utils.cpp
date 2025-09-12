@@ -58,3 +58,17 @@ void print_line(std::string str)
 		std::cout << '.';
 	}
 }
+
+std::string get_str(std::string print_word)
+{
+	std::string input;
+	while(1)
+	{
+		std::cout << "   " << std::right << "prease type : " << print_word << " : ";
+		std::getline(std::cin,input);
+		if(str_is_space(input) == false)
+			return (input);
+		else
+			std::cout << red("      ! blank_inpt is forbidden !") << std::endl;
+	}
+}
