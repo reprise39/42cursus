@@ -14,29 +14,16 @@
 
 void Zombie::announce()
 {
-	std::cout << this->name << ": " << "BraiiiiiiinnnzzzZ..." << std::endl;
+	std::cout << this->name << ": " << "BraiiiiiiinnnzzzZ..." <<std::endl;
 }
 
 Zombie::Zombie(std::string input)
 {
 	name = input;
-	std::cout << this->name << "is now created" << std::endl;
+	std::cout << blue << this->name << " is now created" << reset << std::endl;
 }
 
 Zombie::~Zombie()
 {
-	std::cout << "Zombie " << name << " is destroyed" << std::endl;
-}
-
-int main()
-{
-	Zombie *new_test1 = newZombie("new_test1");
-	Zombie *new_test2 = newZombie("new_test2");
-	new_test1->announce();
-	delete (new_test1);
-	new_test2->announce();
-	randomChump("random_test1");
-	randomChump("random_test2");
-	delete (new_test2);
-	return (0);
+	std::cout << red << "Zombie " << name << " is destroyed" << reset << std::endl;
 }

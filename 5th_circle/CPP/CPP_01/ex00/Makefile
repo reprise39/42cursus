@@ -10,15 +10,16 @@
 #                                                                              #
 # **************************************************************************** #
 
-NAME = Zombie
+NAME = ex00
 CC = c++
-CFLAGS = -Wall -Wextra -Werror -std=c++98
+CFLAGS = -Wall -Wextra -Werror -std=c++98 -pedantic -g
 LDFLAGS =
 INCLUDES = -I includes
 
 SRC_DIR = ./srcs
 
-SRC_FILES =	Zombie.cpp\
+SRC_FILES =	main.cpp\
+			Zombie.cpp\
 			newZombie.cpp\
 			randomChump.cpp
 

@@ -21,15 +21,15 @@ int main()
 	std::string &stringREF = str;
 
 	std::cout << "~~ print_address ~~" << std::endl;
-	std::cout << "| str_ptr   = " << &str << std::endl;
-	std::cout << "| stringPTR = " << stringPTR << std::endl;
-	std::cout << "| stringREF = " << stringREF << std::endl;
+	std::cout << "|- str_ptr   = " << &str << std::endl;
+	std::cout << "|- stringPTR = " << stringPTR << std::endl;
+	std::cout << "|- stringREF = " << &stringREF << std::endl;
 
 	std::cout << std::endl;
 	std::cout << "~~ print_valiable ~~" << std::endl;
-	std::cout << "| str         = " << str << std::endl;
-	std::cout << "| stringPTR-> = " << *stringPTR << std::endl;
-	std::cout << "| stringREF-> = " << stringREF << std::endl;
+	std::cout << "|- str         = " << str << std::endl;
+	std::cout << "|- stringPTR-> = " << *stringPTR << std::endl;
+	std::cout << "|- stringREF-> = " << stringREF << std::endl;
 
 	return (0);
 }

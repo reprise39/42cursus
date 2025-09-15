@@ -23,12 +23,12 @@
 class HumanB
 {
 	public:
-		std::string name;
-		Weapon *bring_wep;
 		void attack();
 		HumanB(std::string str);
 		void setWeapon(Weapon &new_wep);
 	private:
+		std::string name;
+		Weapon *bring_wep;
 };
 
 #endif

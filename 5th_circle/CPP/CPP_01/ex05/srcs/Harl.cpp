@@ -14,39 +14,40 @@
 
 void Harl::debug()
 {
-	std::cout << "| MODE : DEBUG" << std::endl;
-	std::cout << "| I love having extra bacon for my ";
-	std::cout << "| 7XL-double-cheese-triple-pickle-specialketchupburger. ";
-	std::cout << "| I really do!" << std::endl;
+	std::cout << "| LEVEL : DEBUG" << std::endl;
+	std::cout << "| I love having extra bacon for my";
+	std::cout << " 7XL-double-cheese-triple-pickle-specialketchupburger.";
+	std::cout << " I really do!" << std::endl;
 }
 
 void Harl::info()
 {
-	std::cout << "| MODE : INFO" << std::endl;
-	std::cout << "| I cannot believe adding extra bacon costs more money. ";
-	std::cout << "| You didn’t put enough bacon in my burger! ";
-	std::cout << "| If you did, I wouldn’t be asking for more!" << std::endl;
+	std::cout << "| LEVEL : INFO" << std::endl;
+	std::cout << "| I cannot believe adding extra bacon costs more money.";
+	std::cout << " You didn’t put enough bacon in my burger!";
+	std::cout << " If you did, I wouldn’t be asking for more!" << std::endl;
 }
 
 void Harl::warning()
 {
-	std::cout << "| MODE : WARNING" << std::endl;
-	std::cout << "| I think I deserve to have some extra bacon for free. ";
-	std::cout << "| I’ve been coming for years, ";
-	std::cout << "| whereas you started working here just last month." << std::endl;
+	std::cout << "| LEVEL : WARNING" << std::endl;
+	std::cout << "| I think I deserve to have some extra bacon for free.";
+	std::cout << " I’ve been coming for years,";
+	std::cout << " whereas you started working here just last month." << std::endl;
 }
 
 void Harl::error()
 {
-	std::cout << "| MODE : ERROR" << std::endl;
-	std::cout << "| This is unacceptable! ";
-	std::cout << "| I want to speak to the manager now." << std::endl;
+	std::cout << "| LEVEL : ERROR" << std::endl;
+	std::cout << "| This is unacceptable!";
+	std::cout << " I want to speak to the manager now." << std::endl;
 }
 
 void Harl::complain(std::string str)
 {
 	std::string svec[] = {"DEBUG", "INFO", "WARNING", "ERROR"};
-	void (Harl::*hafunc[])() = {
+	void (Harl::*hafunc_ptr[])() = 
+	{
 		&Harl::debug,
 		&Harl::info,
 		&Harl::warning,
@@ -57,31 +58,19 @@ void Harl::complain(std::string str)
 	{
 		if(str == svec[i])
 		{
-			(this->*hafunc[i])();
+			(this->*hafunc_ptr[i])();
 			return ;
 		}
 	}
 	return ;
 }
 
-void Harl::test(std::string str)
+void Harl::formatprint(std::string str)
 {
-	std::cout << "------------ start --------------" << std::endl;
+	std::cout << "↓----------- start -------------↓" << std::endl;
 	std::cout << "||input = " << str << std::endl;
+	std::cout << "|" << std::endl;
 	this->complain(str);
-	std::cout << "------------  end  --------------" << std::endl;
+	std::cout << "↑-----------  end  -------------↑" << std::endl;
 	std::cout << std::endl;
 }
-
-int main()
-{
-	Harl h;
-
-	h.test(" ");
-	h.test("a");
-	h.test("DEBUG");
-	h.test("ERROR");
-	h.test("WARNING");
-	return (0);
-}
-

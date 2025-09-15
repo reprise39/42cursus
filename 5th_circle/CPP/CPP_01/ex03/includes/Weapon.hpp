@@ -22,12 +22,11 @@
 class Weapon
 {
 	public:
-		std::string type;
-		std::string gettype();
+		std::string getType();
 		void setType(std::string);
 		Weapon(std::string wep_type);
 	private:
-
+		std::string type;
 };
 
 #endif

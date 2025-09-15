@@ -10,15 +10,16 @@
 #                                                                              #
 # **************************************************************************** #
 
-NAME = Harl
+NAME = ex05
 CC = c++
-CFLAGS = -Wall -Wextra -Werror -std=c++98
+CFLAGS = -Wall -Wextra -Werror -std=c++98 -pedantic
 LDFLAGS =
 INCLUDES = -I includes
 
 SRC_DIR = ./srcs
 
-SRC_FILES =	Harl.cpp
+SRC_FILES =	main.cpp\
+			Harl.cpp
 
 SRCS = $(addprefix $(SRC_DIR)/, $(SRC_FILES))
 

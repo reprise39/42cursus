@@ -10,7 +10,7 @@
 #                                                                              #
 # **************************************************************************** #
 
-NAME = Main
+NAME = ex04_sed_is_losers
 CC = c++
 CFLAGS = -Wall -Wextra -Werror -std=c++98
 LDFLAGS =
@@ -18,7 +18,8 @@ INCLUDES = -I includes
 
 SRC_DIR = ./srcs
 
-SRC_FILES =	main.cpp
+SRC_FILES =	main.cpp\
+			utils_sio.cpp
 
 SRCS = $(addprefix $(SRC_DIR)/, $(SRC_FILES))
 

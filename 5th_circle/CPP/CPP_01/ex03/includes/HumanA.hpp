@@ -24,11 +24,11 @@
 class HumanA
 {
 	public:
-		std::string name;
-		Weapon& bring_wep;
 		void attack();
 		HumanA(std::string str,Weapon &wep);
 	private:
+		std::string name;
+		Weapon& bring_wep;
 };
 
 #endif

@@ -10,7 +10,7 @@
 #                                                                              #
 # **************************************************************************** #
 
-NAME = Harl_filter
+NAME = ex06
 CC = c++
 CFLAGS = -Wall -Wextra -Werror -std=c++98
 LDFLAGS =
@@ -18,7 +18,8 @@ INCLUDES = -I includes
 
 SRC_DIR = ./srcs
 
-SRC_FILES =	Harl.cpp
+SRC_FILES =	main.cpp\
+			Harl.cpp
 
 SRCS = $(addprefix $(SRC_DIR)/, $(SRC_FILES))
 

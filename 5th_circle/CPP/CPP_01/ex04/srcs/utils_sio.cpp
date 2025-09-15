@@ -12,22 +12,15 @@
 
 #include "Sed.hpp"
 
-int check_arg(int argc, char **argv)
+std::ostream& red(std::ostream& os)
 {
-	if(argc != 3)
-	{
-		std::cout << "Error : This program needs 3 parameters" << std::endl;
-		std::cout << "1st : filename" << std::endl;
-		std::cout << "2nd : replacrd word" << std::endl;
-		std::cout << "3rd : convert new word(from 2nd words)" << std::endl;
-		std::cout << std::endl;
-	}
-	if(strlen(argv[1]) == 0)
-	{
-		std::cout << "Error : No filename" << std::endl;
-		std::cout << "1st : filename" << std::endl;
-		std::cout << "2nd : replacrd word" << std::endl;
-		std::cout << "3rd : convert new word(from 2nd words)" << std::endl;
-		std::cout << std::endl;
-	}
+	return os << "\033[31m";
+}
+std::ostream& blue(std::ostream& os)
+{
+	return os << "\033[34m";
+}
+std::ostream& reset(std::ostream& os)
+{
+	return os << "\033[0m";
 }

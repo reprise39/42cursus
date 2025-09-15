@@ -29,12 +29,15 @@
 class Harl
 {
 	public:
-		void complain( std::string level );
+		void complain( std::string level ) const;
+		void set_level( std::string str );
+		int get_level( void ) const;
 	private:
-		void debug( void );
-		void info( void );
-		void warning( void );
-		void error( void );
+		void debug( void ) const;
+		void info( void ) const;
+		void warning( void ) const;
+		void error( void ) const;
+		int level;
 };
 
 // kansu-^^

@@ -18,5 +18,5 @@ HumanA::HumanA(std::string str, Weapon& wep) : name(str),bring_wep(wep)
 
 void HumanA::attack()
 {
-	std::cout << this->name << " attacks with their " << this->bring_wep.type << std::endl;
+	std::cout << this->name << " attacks with their " << this->bring_wep.getType() << std::endl;
 }

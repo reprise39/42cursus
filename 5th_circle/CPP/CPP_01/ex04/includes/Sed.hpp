@@ -20,9 +20,16 @@
 # include <limits>
 # include <cstdio>
 # include <sstream>
+# include <fstream>
+# include <cstdlib>
 
 // macro
 
 // class
+
+//utils.ios
+std::ostream& red(std::ostream& os);
+std::ostream& blue(std::ostream& os);
+std::ostream& reset(std::ostream& os);
 
 #endif

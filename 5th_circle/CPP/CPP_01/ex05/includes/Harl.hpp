@@ -30,7 +30,7 @@ class Harl
 {
 	public:
 		void complain( std::string level );
-		void test(std::string str);
+		void formatprint(std::string str);
 	private:
 		void debug( void );
 		void info( void );

@@ -35,6 +35,11 @@ class Zombie
 		std::string name;
 };
 
+//main.cpp
+std::ostream& red(std::ostream& os);
+std::ostream& blue(std::ostream& os);
+std::ostream& reset(std::ostream& os);
+
 // newZombie.cpp
 Zombie* newZombie(std::string name );
 
