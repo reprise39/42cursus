@@ -10,7 +10,7 @@
 #                                                                              #
 # **************************************************************************** #
 
-NAME = ex04_sed_is_losers
+NAME = ex04
 CC = c++
 CFLAGS = -Wall -Wextra -Werror -std=c++98
 LDFLAGS =

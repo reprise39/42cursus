@@ -16,10 +16,14 @@ static std::string getstring(std::ifstream& ifs)
 {
 	std::string line;
 	std::string dest;
+	bool first = true;
+
 	while(std::getline(ifs,line))
 	{
+		if(!first)
+			dest += "\n";
 		dest += line;
-		dest += "\n";
+		first = false;
 	}
 	return (dest);
 }
@@ -31,8 +35,15 @@ static int check_arg(int argc, char **argv)
 	{
 		std::cout << red << "Error : This program needs 3 parameters" << reset << std::endl;
 		std::cout << "  1st : filename" << std::endl;
-		std::cout << "  2nd : replacrd word" << std::endl;
+		std::cout << "  2nd : replaced word" << std::endl;
 		std::cout << "  3rd : convert new word(from 2nd words)" << std::endl;
+		std::cout << std::endl;
+		return (1);
+	}
+	if(std::string(argv[2]).length() == 0)
+	{
+		std::cout << red << "Error : replaced word" << reset << std::endl;
+		std::cout << "need replaced word length > 0" << std::endl;
 		std::cout << std::endl;
 		return (1);
 	}
@@ -68,7 +79,6 @@ std::string get_input(char *argv)
 		exit (1);
 	}
 	std::string dest = getstring(rdfile);
-	// std::cout << raw_string << std::endl;
 	rdfile.close();
 	return (dest);
 }
