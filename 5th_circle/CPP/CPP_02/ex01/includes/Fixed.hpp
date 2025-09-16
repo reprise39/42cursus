@@ -1,0 +1,60 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_phonbook.h                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mkuida <reprise39@yahoo.co.jp>             +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/07/09 17:43:30 by mkuida            #+#    #+#             */
+/*   Updated: 2025/07/09 17:43:30 by mkuida           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#ifndef FIXED_HPP
+# define FIXED_HPP
+
+// include
+# include <string>
+# include <iostream>
+# include <iomanip>
+# include <limits>
+# include <cstdio>
+# include <sstream>
+#include  <cmath>
+
+// macro
+
+// class
+class Fixed
+{
+	public:
+
+		//structor
+		Fixed();
+		Fixed(int i);
+		Fixed(float f);
+		Fixed(const Fixed& c);
+		~Fixed();
+
+		//function
+		int getRawBits( void ) const;
+		void setRawBits( int const raw );
+		float toFloat( void ) const;
+		int toInt( void ) const;
+
+		//operatir
+		Fixed& operator=(const Fixed& other);
+	private:
+		int _fp_n;
+		static const int _fractional_bit = 8;
+};
+
+std::ostream& operator<<(std::ostream& os, const Fixed& fixed);
+
+// xxx.cpp
+std::ostream& reset(std::ostream& os);
+std::ostream& red(std::ostream& os);
+std::ostream& blue(std::ostream& os);
+std::ostream& yellow(std::ostream& os);
+
+#endif
