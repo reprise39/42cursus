@@ -68,16 +68,135 @@ int Fixed::toInt( void ) const
 	return (roundf((getRawBits() >> 8)));
 }
 
+const Fixed& Fixed::min(const Fixed& a, const Fixed& b)
+{
+	if(a.getRawBits() <= b.getRawBits())
+		return (a);
+	return (b);
+}
+
+const Fixed& Fixed::max(const Fixed& a, const Fixed& b)
+{
+	if(a.getRawBits() >= b.getRawBits())
+		return (a);
+	return (b);
+}
+
+Fixed& Fixed::min(Fixed& a, Fixed& b)
+{
+	if(a.getRawBits() <= b.getRawBits())
+		return (a);
+	return (b);
+}
+Fixed& Fixed::max(Fixed& a, Fixed& b)
+{
+	if(a.getRawBits() >= b.getRawBits())
+		return (a);
+	return (b);
+}
+
 //operator
 Fixed& Fixed::operator=(const Fixed& other)
 {
-	std::cout << "Copy assignment operator called" << std::endl;
+	// std::cout << "Copy assignment operator called" << std::endl;
 	//kansyu : memory,soket ... else
-	if(this != &other)
+	if (this != &other)
 	{
 		this->_fp_n = other.getRawBits();
 	}
 	return (*this);
+}
+
+Fixed& Fixed::operator+(const Fixed& other)
+{
+	this->_fp_n += other.getRawBits();
+	return (*this);
+}
+
+Fixed& Fixed::operator-(const Fixed& other)
+{
+	this->_fp_n -= other.getRawBits();
+	return (*this);
+}
+
+Fixed& Fixed::operator*(const Fixed& other)
+{
+	this->_fp_n *= other.getRawBits();
+	return (*this);
+}
+
+Fixed& Fixed::operator/(const Fixed& other)
+{
+	this->_fp_n /= other.getRawBits();
+	return (*this);
+}
+
+Fixed& Fixed::operator++()
+{
+	(this->_fp_n)++;
+	return (*this);
+}
+
+Fixed Fixed::operator++(int)
+{
+	Fixed tmp = *this;
+	this->_fp_n++;
+	return (tmp);
+}
+
+Fixed& Fixed::operator--()
+{
+	(this->_fp_n)--;
+	return (*this);
+}
+
+Fixed Fixed::operator--(int)
+{
+	Fixed tmp = *this;
+	this->_fp_n--;
+	return (tmp);
+}
+
+bool Fixed::operator<(const Fixed& other) const
+{
+	if(this->getRawBits() < other.getRawBits())
+		return (true);
+	return (false);
+}
+
+bool Fixed::operator>(const Fixed& other) const
+{
+	if(this->getRawBits() > other.getRawBits())
+		return (true);
+	return (false);
+}
+
+bool Fixed::operator<=(const Fixed& other) const
+{
+	if(this->getRawBits() <= other.getRawBits())
+		return (true);
+	return (false);
+}
+
+bool Fixed::operator>=(const Fixed& other) const
+{
+	if(this->getRawBits() >= other.getRawBits())
+		return (true);
+	return (false);
+}
+
+bool Fixed::operator==(const Fixed& other) const
+{
+	if(this->getRawBits() == other.getRawBits())
+		return (true);
+	return (false);
+}
+
+bool Fixed::operator!=(const Fixed& other) const
+{
+	if(this->getRawBits() != other.getRawBits())
+		return (true);
+	return (false);
 }
 
 std::ostream& operator<<(std::ostream& os,const Fixed& fixed)
