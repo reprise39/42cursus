@@ -26,11 +26,13 @@ static void print_rule()
 
 bool is_same(const Point &a, const Point &b, const Point &c)
 {
+	std::cout << "start : is_same" << std::endl;
 	if (a == b || b == c || c == a)
 	{
 		std::cout << "this is not rectangle ( give same point )" << std::endl;
 		return (true);
 	}
+	std::cout << "end : is_same" << std::endl;
 	return (false);
 }
 
@@ -63,9 +65,28 @@ bool is_triangle(const Point &a, const Point &b, const Point &c)
 
 bool isin_triangle(const Point &a, const Point &b, const Point &c, const Point &p)
 {
-	float cp_a = get_cross_product(a, p);
-	float cp_b = get_cross_product(b, p);
-	float cp_c = get_cross_product(c, p);
+	Point a_to_b(b-a);
+	a_to_b.print();
+
+	Point a_to_p(p-a);
+	a_to_p.print();
+
+	Point b_to_c(c-b);
+	b_to_c.print();
+
+	Point b_to_p(p-b);
+	b_to_p.print();
+
+	Point c_to_a(a-c);
+	c_to_a.print();
+
+	Point c_to_p(p-c);
+	c_to_p.print();
+
+
+	float cp_a = get_cross_product(a_to_b, a_to_p);
+	float cp_b = get_cross_product(b_to_c, b_to_p);
+	float cp_c = get_cross_product(c_to_a, c_to_p);
 
 	if (cp_a < 0 && cp_b < 0 && cp_c < 0)
 		return (true);
@@ -76,8 +97,10 @@ bool isin_triangle(const Point &a, const Point &b, const Point &c, const Point &
 
 bool bsp(const Point &a, const Point &b, const Point &c, const Point &p)
 {
+	std::cout << "start : bsp" << std::endl;	
 	if (is_triangle(a, b, c) == false)
 		return (false);
+	std::cout << "end : is_tri" << std::endl;
 	if (isin_triangle(a, b, c, p) == false)
 		return (false);
 	return (true);
@@ -92,17 +115,19 @@ int main(void)
 	// Point const c;
 	// Point const point;
 
-	Point a(1, 1);
-	Point b(3, 3);
-	Point c(3, 1);
-	Point point(2, 2.25);
+	Point a(0, 0);
+	Point b(4, 0);
+	Point c(4, 4);
+	Point point(2.00f, 1.5f);
+
+	std::cout << "end : junbi" << std::endl;
 
 	bool ans = bsp(a, b, c, point);
 
 	if (ans == true)
-		std::cout << blue << "in rectangle!" << reset << std::endl;
+		std::cout << yellow << "in rectangle!" << reset << std::endl;
 	else
-		std::cout << red << "out of rectangle!" << reset << std::endl;
+		std::cout << yellow << "out of rectangle!" << reset << std::endl;
 
 	return 0;
 }

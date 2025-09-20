@@ -6,7 +6,7 @@
 /*   By: mkuida <reprise39@yahoo.co.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/17 16:46:07 by mkuida            #+#    #+#             */
-/*   Updated: 2025/09/20 17:31:26 by mkuida           ###   ########.fr       */
+/*   Updated: 2025/09/20 23:14:34 by mkuida           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,15 @@ Point::Point() : _x(), _y()
 {
 }
 
+Point::Point(int fx, int fy) : _x(fx), _y(fy)
+{
+}
+
 Point::Point(float fx, float fy) : _x(fx), _y(fy)
+{
+}
+
+Point::Point(Fixed x, Fixed y) : _x(x), _y(y)
 {
 }
 
@@ -35,6 +43,12 @@ Point &Point::operator=(const Point &other)
 	return (*this);
 }
 
+Point Point::operator-(const Point &other) const
+{
+	Point rtn(this->_x - other._x, this->_y - other._y);
+	return (rtn);
+}
+
 bool Point::operator==(const Point &other) const
 {
 	if (this->_x != other._x)
@@ -44,12 +58,30 @@ bool Point::operator==(const Point &other) const
 	return (true);
 }
 
-Fixed Point::getX() const
+const Fixed &Point::getX() const
 {
 	return (this->_x);
 }
 
-Fixed Point::getY() const
+const Fixed &Point::getY() const
 {
 	return (this->_y);
+}
+
+void Point::setX(const Fixed x)
+{
+	(this->_x) = x;
+}
+
+void Point::setY(const Fixed y)
+{
+	(this->_y) = y;
+}
+
+
+//
+void Point::print(void)
+{
+	std::cout << "x = " << this->_x << std::endl;
+	std::cout << "y = " << this->_y << std::endl;
 }

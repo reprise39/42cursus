@@ -108,30 +108,38 @@ Fixed& Fixed::operator=(const Fixed& other)
 	return (*this);
 }
 
-Fixed& Fixed::operator+(const Fixed& other)
+Fixed Fixed::operator+(const Fixed& other) const
 {
-	this->_fp_n += other.getRawBits();
-	return (*this);
+	int newbit = this->_fp_n + other.getRawBits();
+	Fixed rtn;
+	rtn.setRawBits(newbit);
+	return (rtn);
 }
 
-Fixed& Fixed::operator-(const Fixed& other)
+Fixed Fixed::operator-(const Fixed& other) const
 {
-	this->_fp_n -= other.getRawBits();
-	return (*this);
+	int newbit = this->_fp_n - other.getRawBits();
+	Fixed rtn;
+	rtn.setRawBits(newbit);
+	return (rtn);
 }
 
-Fixed& Fixed::operator*(const Fixed& other)
+Fixed Fixed::operator*(const Fixed& other) const
 {
-	this->_fp_n *= other.getRawBits();
-	(this->_fp_n) = (this->_fp_n) >> (this->_fractional_bit);
-	return (*this);
+	int newbit = this->_fp_n * other.getRawBits();
+	(newbit) = (newbit) >> (this->_fractional_bit);
+	Fixed rtn;
+	rtn.setRawBits(newbit);
+	return (rtn);
 }
 
-Fixed& Fixed::operator/(const Fixed& other)
+Fixed Fixed::operator/(const Fixed& other) const
 {
-	this->_fp_n /= other.getRawBits();
-	this->_fp_n = (this->_fp_n) << (this->_fractional_bit);
-	return (*this);
+	int newbit = this->_fp_n / other.getRawBits();
+	(newbit) = (newbit) << (this->_fractional_bit);
+	Fixed rtn;
+	rtn.setRawBits(newbit);
+	return (rtn);
 }
 
 Fixed& Fixed::operator++()
