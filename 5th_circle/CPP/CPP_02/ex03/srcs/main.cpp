@@ -12,27 +12,13 @@
 
 #include "Bsp.hpp"
 
-static void print_rule()
-{
-	std::cout << "At first print out in this assignment" << std::endl;
-	std::cout << ".---------------------------------------------" << std::endl;
-	std::cout << "|-" << red << "constructor " << reset << "is " << red << "red " << reset << "color" << std::endl;
-	std::cout << "|-" << blue << "destructor " << reset << "is " << blue << "blue " << reset << "color" << std::endl;
-	// std::cout << "constracter is " << red << "red " << reset << "color" << std::endl;
-	// std::cout << "constracter is " << red << "red " << reset << "color" << std::endl;
-	std::cout << "'---------------------------------------------" << std::endl;
-	std::cout << std::endl;
-}
-
 bool is_same(const Point &a, const Point &b, const Point &c)
 {
-	std::cout << "start : is_same" << std::endl;
 	if (a == b || b == c || c == a)
 	{
 		std::cout << "this is not rectangle ( give same point )" << std::endl;
 		return (true);
 	}
-	std::cout << "end : is_same" << std::endl;
 	return (false);
 }
 
@@ -66,21 +52,27 @@ bool is_triangle(const Point &a, const Point &b, const Point &c)
 bool isin_triangle(const Point &a, const Point &b, const Point &c, const Point &p)
 {
 	Point a_to_b(b-a);
+	std::cout << "vector : a->b" << std::endl;
 	a_to_b.print();
 
 	Point a_to_p(p-a);
+	std::cout << "vector : a->p" << std::endl;
 	a_to_p.print();
 
 	Point b_to_c(c-b);
+	std::cout << "vector : b->c" << std::endl;
 	b_to_c.print();
 
 	Point b_to_p(p-b);
+	std::cout << "vector : b->p" << std::endl;
 	b_to_p.print();
 
 	Point c_to_a(a-c);
+	std::cout << "vector : c->a" << std::endl;
 	c_to_a.print();
 
 	Point c_to_p(p-c);
+	std::cout << "vector : c->p" << std::endl;
 	c_to_p.print();
 
 
@@ -95,12 +87,10 @@ bool isin_triangle(const Point &a, const Point &b, const Point &c, const Point &
 	return (false);
 }
 
-bool bsp(const Point &a, const Point &b, const Point &c, const Point &p)
+static bool bsp(const Point &a, const Point &b, const Point &c, const Point &p)
 {
-	std::cout << "start : bsp" << std::endl;	
 	if (is_triangle(a, b, c) == false)
 		return (false);
-	std::cout << "end : is_tri" << std::endl;
 	if (isin_triangle(a, b, c, p) == false)
 		return (false);
 	return (true);
@@ -108,14 +98,10 @@ bool bsp(const Point &a, const Point &b, const Point &c, const Point &p)
 
 int main(void)
 {
-	print_rule();
-
 	Point a(0, 0);
 	Point b(4, 0);
 	Point c(4, 4);
 	Point point(2.00f, 1.5f);
-
-	std::cout << "end : junbi" << std::endl;
 
 	bool ans = bsp(a, b, c, point);
 
