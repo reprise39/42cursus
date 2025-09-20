@@ -31,8 +31,8 @@ class Fixed
 
 		//structor
 		Fixed();
-		Fixed(int i);
-		Fixed(float f);
+		Fixed(const int i);
+		Fixed(const float f);
 		Fixed(const Fixed& c);
 		~Fixed();
 
@@ -49,10 +49,10 @@ class Fixed
 
 		//operatir
 		Fixed& operator=(const Fixed& other);
-		Fixed& operator+(const Fixed& other);
-		Fixed& operator-(const Fixed& other);
-		Fixed& operator*(const Fixed& other);
-		Fixed& operator/(const Fixed& other);
+		Fixed operator+(const Fixed& other) const ;
+		Fixed operator-(const Fixed& other) const ;
+		Fixed operator*(const Fixed& other) const ;
+		Fixed operator/(const Fixed& other) const ;
 
 		Fixed& operator++();
 		Fixed operator++(int);

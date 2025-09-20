@@ -19,13 +19,13 @@ Fixed::Fixed()
 	this->_fp_n = 0;
 }
 
-Fixed::Fixed(int i)
+Fixed::Fixed(const int i)
 {
 	std::cout << blue << "Int constructor called" << reset << std::endl;
 	this->_fp_n = i << (this->_fractional_bit);
 }
 
-Fixed::Fixed(float f)
+Fixed::Fixed(const float f)
 {
 	std::cout << blue << "Float constructor called" << reset << std::endl;
 
@@ -107,30 +107,38 @@ Fixed& Fixed::operator=(const Fixed& other)
 	return (*this);
 }
 
-Fixed& Fixed::operator+(const Fixed& other)
+Fixed Fixed::operator+(const Fixed& other) const
 {
-	this->_fp_n += other.getRawBits();
-	return (*this);
+	int newbit = this->_fp_n + other.getRawBits();
+	Fixed rtn;
+	rtn.setRawBits(newbit);
+	return (rtn);
 }
 
-Fixed& Fixed::operator-(const Fixed& other)
+Fixed Fixed::operator-(const Fixed& other) const
 {
-	this->_fp_n -= other.getRawBits();
-	return (*this);
+	int newbit = this->_fp_n - other.getRawBits();
+	Fixed rtn;
+	rtn.setRawBits(newbit);
+	return (rtn);
 }
 
-Fixed& Fixed::operator*(const Fixed& other)
+Fixed Fixed::operator*(const Fixed& other) const
 {
-	this->_fp_n *= other.getRawBits();
-	(this->_fp_n) = (this->_fp_n) >> (this->_fractional_bit);
-	return (*this);
+	int newbit = this->_fp_n * other.getRawBits();
+	(newbit) = (newbit) >> (this->_fractional_bit);
+	Fixed rtn;
+	rtn.setRawBits(newbit);
+	return (rtn);
 }
 
-Fixed& Fixed::operator/(const Fixed& other)
+Fixed Fixed::operator/(const Fixed& other) const
 {
-	this->_fp_n /= other.getRawBits();
-	this->_fp_n = (this->_fp_n) << (this->_fractional_bit);
-	return (*this);
+	int newbit = this->_fp_n / other.getRawBits();
+	(newbit) = (newbit) << (this->_fractional_bit);
+	Fixed rtn;
+	rtn.setRawBits(newbit);
+	return (rtn);
 }
 
 Fixed& Fixed::operator++()
