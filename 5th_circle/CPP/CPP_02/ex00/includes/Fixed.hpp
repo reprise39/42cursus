@@ -30,9 +30,12 @@ class Fixed
 		Fixed();
 		Fixed(const Fixed& c);
 		~Fixed();
+
+		Fixed& operator=(const Fixed& other);
+
 		int getRawBits( void ) const;
 		void setRawBits( int const raw );
-		Fixed& operator=(const Fixed& other);
+
 	private:
 		int _fp_n;
 		static const int _fractional_bit = 8;

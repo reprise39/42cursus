@@ -110,11 +110,6 @@ int main(void)
 {
 	print_rule();
 
-	// Point const a;
-	// Point const b;
-	// Point const c;
-	// Point const point;
-
 	Point a(0, 0);
 	Point b(4, 0);
 	Point c(4, 4);

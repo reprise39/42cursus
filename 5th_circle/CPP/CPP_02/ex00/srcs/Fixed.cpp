@@ -12,16 +12,15 @@
 
 #include "Fixed.hpp"
 
-Fixed::Fixed()
+Fixed::Fixed() : _fp_n(0)
 {
 	std::cout << blue << "Default constructor called" << reset << std::endl;
-	this->_fp_n = 0;
 }
 
 Fixed::Fixed(const Fixed& c)
 {
 	std::cout << blue << "Copy constructor called" << reset << std::endl;
-	this->_fp_n = c.getRawBits();
+	*this = c;
 }
 
 Fixed::~Fixed()
@@ -46,8 +45,8 @@ Fixed& Fixed::operator=(const Fixed& other)
 	std::cout << "Copy assignment operator called" << std::endl;
 	//kansyu : memory,soket ... else
 	if(this != &other)
-	{
 		this->_fp_n = other.getRawBits();
-	}
+	else
+		std::cout << "Copy assignment doesnt work ( same pointer )" << std::endl;
 	return (*this);
 }
