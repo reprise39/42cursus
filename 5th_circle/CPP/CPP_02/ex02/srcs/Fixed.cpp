@@ -122,12 +122,14 @@ Fixed& Fixed::operator-(const Fixed& other)
 Fixed& Fixed::operator*(const Fixed& other)
 {
 	this->_fp_n *= other.getRawBits();
+	(this->_fp_n) = (this->_fp_n) >> (this->_fractional_bit);
 	return (*this);
 }
 
 Fixed& Fixed::operator/(const Fixed& other)
 {
 	this->_fp_n /= other.getRawBits();
+	this->_fp_n = (this->_fp_n) << (this->_fractional_bit);
 	return (*this);
 }
 

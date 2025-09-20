@@ -41,6 +41,7 @@ Fixed::Fixed(const Fixed& c)
 Fixed::~Fixed()
 {
 	std::cout << red << "Destructor called" << reset << std::endl;
+	std::cout << this->toFloat() << std::endl;
 }
 
 //function

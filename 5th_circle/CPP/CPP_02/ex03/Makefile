@@ -10,7 +10,7 @@
 #                                                                              #
 # **************************************************************************** #
 
-NAME = ex02
+NAME = ex03
 CC = c++
 CFLAGS = -Wall -Wextra -Werror -std=c++98 -pedantic -g
 LDFLAGS =
@@ -20,6 +20,7 @@ SRC_DIR = ./srcs
 
 SRC_FILES =	main.cpp\
 			Fixed.cpp\
+			Point.cpp\
 			utils_sio.cpp
 
 SRCS = $(addprefix $(SRC_DIR)/, $(SRC_FILES))
