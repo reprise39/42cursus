@@ -41,11 +41,4 @@ class Fixed
 		static const int _fractional_bit = 8;
 };
 
-// xxx.cpp
-std::ostream& reset(std::ostream& os);
-std::ostream& red(std::ostream& os);
-std::ostream& blue(std::ostream& os);
-std::ostream& yellow(std::ostream& os);
-
-
 #endif

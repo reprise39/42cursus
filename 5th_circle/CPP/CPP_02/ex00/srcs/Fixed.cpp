@@ -14,18 +14,18 @@
 
 Fixed::Fixed() : _fp_n(0)
 {
-	std::cout << blue << "Default constructor called" << reset << std::endl;
+	std::cout << "Default constructor called" << std::endl;
 }
 
 Fixed::Fixed(const Fixed& c)
 {
-	std::cout << blue << "Copy constructor called" << reset << std::endl;
+	std::cout << "Copy constructor called" << std::endl;
 	*this = c;
 }
 
 Fixed::~Fixed()
 {
-	std::cout << red << "Destructor called" << reset << std::endl;
+	std::cout << "Destructor called" << std::endl;
 }
 
 int Fixed::getRawBits( void ) const
