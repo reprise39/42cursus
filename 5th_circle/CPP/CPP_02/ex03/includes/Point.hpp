@@ -6,7 +6,7 @@
 /*   By: mkuida <reprise39@yahoo.co.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/17 16:35:15 by mkuida            #+#    #+#             */
-/*   Updated: 2025/09/20 13:54:24 by mkuida           ###   ########.fr       */
+/*   Updated: 2025/09/20 17:23:36 by mkuida           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,10 @@ public:
 	~Point();
 
 	Point &operator=(const Point &other);
+	bool operator==(const Point &other) const;
+
+	Fixed getX() const;
+	Fixed getY() const;
 
 private:
 	Fixed _x;

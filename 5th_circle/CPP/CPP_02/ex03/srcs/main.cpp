@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "Bsp.hpp"
+#include "Bsp.hpp"
 
 static void print_rule()
 {
@@ -24,65 +24,66 @@ static void print_rule()
 	std::cout << std::endl;
 }
 
-bool is_same(const Point a, const Point b, const Point c)
+bool is_same(const Point &a, const Point &b, const Point &c)
 {
-	if(a == b || b == c || c == a)
+	if (a == b || b == c || c == a)
+	{
+		std::cout << "this is not rectangle ( give same point )" << std::endl;
 		return (true);
+	}
 	return (false);
 }
 
-float get_inc(const Point a, const Point b)
+float get_cross_product(const Point &a, const Point &b)
 {
-	float ab_x = a._x - b._x;
-	folat ab_y = a._y - b._y;
-
-	retrun (ab_y/ab_x);
+	return ((a.getX().toFloat()) * (b.getY().toFloat()) - (a.getY().toFloat()) * (b.getX().toFloat()));
 }
 
-float get_sec(const Point a, flaot inc)
+bool is_line(const Point &a, const Point &b, const Point &c)
 {
-	retrun ((a._y) - (-1)*(a._x)*(inc));
+	float ab_cp = get_cross_product(a, b);
+	float bc_cp = get_cross_product(b, c);
+
+	if (ab_cp == 0 && bc_cp == 0)
+	{
+		std::cout << "this is not rectangle ( give on line point )" << std::endl;
+		return (true);
+	}
+	return (false);
 }
 
-bool is_line(const Point a, const Point b, const Point c)
+bool is_triangle(const Point &a, const Point &b, const Point &c)
 {
-	float ab_inc = get_inc(a,b);
-	float a_sec = get_sec(a,ab_inc);
-
-	float bc_inc = get_inc(b,c);
-	float b_sec = get_sec(b,bc_inc);
-
-	if(ab_inc == bc_inc && a_sec == b_sec)
-		retrun (true);
-	retrun (false);
-}
-
-bool is_triangle(const Point a, const Point b, const Point c, const Point point)
-{
-	if(is_same(a,b,c) == true)
+	if (is_same(a, b, c) == true)
 		return (false);
-	if(is_line(a,b,c) == true)
+	if (is_line(a, b, c) == true)
 		return (false);
 	return true;
 }
 
-bool isin_triangle(const Point a, const Point b, const Point c, const Point p)
+bool isin_triangle(const Point &a, const Point &b, const Point &c, const Point &p)
 {
-	get_inc(a,b);
-	get_
+	float cp_a = get_cross_product(a, p);
+	float cp_b = get_cross_product(b, p);
+	float cp_c = get_cross_product(c, p);
+
+	if (cp_a < 0 && cp_b < 0 && cp_c < 0)
+		return (true);
+	else if (cp_a > 0 && cp_b > 0 && cp_c > 0)
+		return (true);
+	return (false);
 }
 
-
-bool bsp(const Point a, const Point b, const Point c, const Point p)
+bool bsp(const Point &a, const Point &b, const Point &c, const Point &p)
 {
-	if (is_triangle(a,b,c) == false)
+	if (is_triangle(a, b, c) == false)
 		return (false);
-	if (isin_triangle(a,b,c,p) == false)
+	if (isin_triangle(a, b, c, p) == false)
 		return (false);
 	return (true);
 }
 
-int main( void )
+int main(void)
 {
 	print_rule();
 
@@ -91,19 +92,17 @@ int main( void )
 	// Point const c;
 	// Point const point;
 
-	Point a(1,1);
-	Point b;
-	Point c;
-	Point point;
-
+	Point a(1, 1);
+	Point b(3, 3);
+	Point c(3, 1);
+	Point point(2, 2.25);
 
 	bool ans = bsp(a, b, c, point);
 
-	// if(ans == true)
-	// 	std::cout << blue << "in rectangle!" << reset << std::endl;
-	// else 
-	// 	std::cout << red << "out of rectangle!" << reset << std::endl;
+	if (ans == true)
+		std::cout << blue << "in rectangle!" << reset << std::endl;
+	else
+		std::cout << red << "out of rectangle!" << reset << std::endl;
 
 	return 0;
 }
-
