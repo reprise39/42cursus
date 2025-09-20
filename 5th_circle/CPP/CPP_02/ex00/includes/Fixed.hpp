@@ -14,12 +14,8 @@
 # define FIXED_HPP
 
 // include
-# include <string>
 # include <iostream>
-# include <iomanip>
-# include <limits>
-# include <cstdio>
-# include <sstream>
+# include <cmath>
 
 // macro
 

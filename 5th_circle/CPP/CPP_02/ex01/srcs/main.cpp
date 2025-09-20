@@ -12,22 +12,8 @@
 
 # include "Fixed.hpp"
 
-static void print_rule()
-{
-	std::cout << "At first print out in this assignment" << std::endl;
-	std::cout << ".---------------------------------------------" << std::endl;
-	std::cout << "|-" << red << "constructor " << reset << "is " << red << "red " << reset << "color" << std::endl;
-	std::cout << "|-" << blue << "destructor " << reset << "is " << blue << "blue " << reset << "color" << std::endl;
-	// std::cout << "constracter is " << red << "red " << reset << "color" << std::endl;
-	// std::cout << "constracter is " << red << "red " << reset << "color" << std::endl;
-	std::cout << "'---------------------------------------------" << std::endl;
-	std::cout << std::endl;
-}
-
 int main( void )
 {
-	print_rule();
-
 	Fixed a;
 	Fixed const b( 10 );
 	Fixed const c( 42.42f );

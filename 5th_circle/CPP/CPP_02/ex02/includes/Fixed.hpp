@@ -14,13 +14,8 @@
 # define FIXED_HPP
 
 // include
-# include <string>
 # include <iostream>
-# include <iomanip>
-# include <limits>
-# include <cstdio>
-# include <sstream>
-#include  <cmath>
+# include <cmath>
 
 // macro
 
@@ -72,11 +67,5 @@ class Fixed
 };
 
 std::ostream& operator<<(std::ostream& os, const Fixed& fixed);
-
-// xxx.cpp
-std::ostream& reset(std::ostream& os);
-std::ostream& red(std::ostream& os);
-std::ostream& blue(std::ostream& os);
-std::ostream& yellow(std::ostream& os);
 
 #endif
