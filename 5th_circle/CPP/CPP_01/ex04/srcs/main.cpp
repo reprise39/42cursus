@@ -99,15 +99,12 @@ void print_out(std::string& str, char *argv)
 	return ;
 }
 
-
 int main(int argc ,char **argv)
 {
 	if (check_arg(argc,argv) == 1)
 		return (1);
 
 	std::string raw_string = get_input(argv[1]);
-	//nullcheck
-
 	std::string out_string = replace(raw_string, argv[2], argv[3]);
 	print_out(out_string, argv[1]);
 	return (0);

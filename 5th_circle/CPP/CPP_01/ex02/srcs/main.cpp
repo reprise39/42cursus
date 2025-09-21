@@ -30,6 +30,20 @@ int main()
 	std::cout << "|- str         = " << str << std::endl;
 	std::cout << "|- stringPTR-> = " << *stringPTR << std::endl;
 	std::cout << "|- stringREF-> = " << stringREF << std::endl;
+	std::cout << std::endl;
+
+	str = "HI I AM BRAIN";
+
+	std::cout << "~~ print_re_address ~~" << std::endl;
+	std::cout << "|- str_ptr   = " << &str << std::endl;
+	std::cout << "|- stringPTR = " << stringPTR << std::endl;
+	std::cout << "|- stringREF = " << &stringREF << std::endl;
+
+	std::cout << std::endl;
+	std::cout << "~~ print_re_valiable ~~" << std::endl;
+	std::cout << "|- str         = " << str << std::endl;
+	std::cout << "|- stringPTR-> = " << *stringPTR << std::endl;
+	std::cout << "|- stringREF-> = " << stringREF << std::endl;
 
 	return (0);
 }

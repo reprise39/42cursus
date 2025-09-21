@@ -6,7 +6,7 @@
 /*   By: mkuida <reprise39@yahoo.co.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/15 09:29:00 by mkuida            #+#    #+#             */
-/*   Updated: 2025/09/15 10:52:26 by mkuida           ###   ########.fr       */
+/*   Updated: 2025/09/16 19:20:16 by mkuida           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,20 +58,20 @@ int main(int argc, char **argv)
 		case 0:
 			std::cout << "[ DEBUG ]" << std::endl;
 			h.complain("DEBUG");
-			/* fall through */
+			// fall through
 		case 1:
 			std::cout << "[ INFO ]" << std::endl;
 			h.complain("INFO");
-			/* fall through */
+			// fall through
 		case 2:
 			std::cout << "[ WARNING ]" << std::endl;
 			h.complain("WARNING");
-			/* fall through */
+			// fall through
 		case 3:
 			std::cout << "[ ERROR ]" << std::endl;
 			h.complain("ERROR");
 			break;
-		case -1:
+		case 42:
 			std::cout << "[ Probably complaining about insignificant problems ]" << std::endl;
 			break;
 		default:
