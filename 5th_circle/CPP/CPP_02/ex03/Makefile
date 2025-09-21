@@ -20,8 +20,7 @@ SRC_DIR = ./srcs
 
 SRC_FILES =	main.cpp\
 			Fixed.cpp\
-			Point.cpp\
-			utils_sio.cpp
+			Point.cpp
 
 SRCS = $(addprefix $(SRC_DIR)/, $(SRC_FILES))
 

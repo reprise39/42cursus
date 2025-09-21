@@ -64,7 +64,7 @@ float Fixed::toFloat( void ) const
 
 int Fixed::toInt( void ) const
 {
-	return (roundf((getRawBits() >> 8)));
+	return (getRawBits() >> this->_fractional_bit);
 }
 
 const Fixed& Fixed::min(const Fixed& a, const Fixed& b)
@@ -133,8 +133,7 @@ Fixed Fixed::operator*(const Fixed& other) const
 
 Fixed Fixed::operator/(const Fixed& other) const
 {
-	int newbit = this->_fp_n / other.getRawBits();
-	(newbit) = (newbit) << (this->_fractional_bit);
+	int newbit = this->_fp_n / (other.getRawBits() << other._fractional_bit);
 	Fixed rtn;
 	rtn.setRawBits(newbit);
 	return (rtn);

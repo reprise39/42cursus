@@ -12,7 +12,27 @@
 
 #include "Bsp.hpp"
 
-bool is_same(const Point &a, const Point &b, const Point &c)
+std::ostream& reset(std::ostream& os)
+{
+	return (os << "\033[0m");
+}
+
+std::ostream& red(std::ostream& os)
+{
+	return (os << "\033[31m");
+}
+
+std::ostream& blue(std::ostream& os)
+{
+	return (os << "\033[34m");
+}
+
+std::ostream& yellow(std::ostream& os)
+{
+	return (os << "\033[33m");
+}
+
+static bool is_same(const Point &a, const Point &b, const Point &c)
 {
 	if (a == b || b == c || c == a)
 	{
@@ -22,12 +42,12 @@ bool is_same(const Point &a, const Point &b, const Point &c)
 	return (false);
 }
 
-float get_cross_product(const Point &a, const Point &b)
+static float get_cross_product(const Point &a, const Point &b)
 {
 	return ((a.getX().toFloat()) * (b.getY().toFloat()) - (a.getY().toFloat()) * (b.getX().toFloat()));
 }
 
-bool is_line(const Point &a, const Point &b, const Point &c)
+static bool is_line(const Point &a, const Point &b, const Point &c)
 {
 	float ab_cp = get_cross_product(a, b);
 	float bc_cp = get_cross_product(b, c);
@@ -40,7 +60,7 @@ bool is_line(const Point &a, const Point &b, const Point &c)
 	return (false);
 }
 
-bool is_triangle(const Point &a, const Point &b, const Point &c)
+static bool is_triangle(const Point &a, const Point &b, const Point &c)
 {
 	if (is_same(a, b, c) == true)
 		return (false);
@@ -49,41 +69,46 @@ bool is_triangle(const Point &a, const Point &b, const Point &c)
 	return true;
 }
 
-bool isin_triangle(const Point &a, const Point &b, const Point &c, const Point &p)
+static bool isin_triangle(const Point &a, const Point &b, const Point &c, const Point &p)
 {
 	Point a_to_b(b-a);
-	std::cout << "vector : a->b" << std::endl;
-	a_to_b.print();
+	// std::cout << "vector : a->b" << std::endl;
+	// a_to_b.print();
 
 	Point a_to_p(p-a);
-	std::cout << "vector : a->p" << std::endl;
-	a_to_p.print();
+	// std::cout << "vector : a->p" << std::endl;
+	// a_to_p.print();
 
 	Point b_to_c(c-b);
-	std::cout << "vector : b->c" << std::endl;
-	b_to_c.print();
+	// std::cout << "vector : b->c" << std::endl;
+	// b_to_c.print();
 
 	Point b_to_p(p-b);
-	std::cout << "vector : b->p" << std::endl;
-	b_to_p.print();
+	// std::cout << "vector : b->p" << std::endl;
+	// b_to_p.print();
 
 	Point c_to_a(a-c);
-	std::cout << "vector : c->a" << std::endl;
-	c_to_a.print();
+	// std::cout << "vector : c->a" << std::endl;
+	// c_to_a.print();
 
 	Point c_to_p(p-c);
-	std::cout << "vector : c->p" << std::endl;
-	c_to_p.print();
-
+	// std::cout << "vector : c->p" << std::endl;
+	// c_to_p.print();
 
 	float cp_a = get_cross_product(a_to_b, a_to_p);
 	float cp_b = get_cross_product(b_to_c, b_to_p);
 	float cp_c = get_cross_product(c_to_a, c_to_p);
+	// std::cout << cp_a << ", " <<  cp_b << ", " << cp_c << std::endl;
 
 	if (cp_a < 0 && cp_b < 0 && cp_c < 0)
 		return (true);
 	else if (cp_a > 0 && cp_b > 0 && cp_c > 0)
 		return (true);
+	else if (cp_a == 0 || cp_b == 0 || cp_c == 0)
+	{
+		std::cout << "on rectangle ( = is not inside ) " << std::endl;
+		return (false);
+	}
 	return (false);
 }
 
@@ -101,14 +126,14 @@ int main(void)
 	Point a(0, 0);
 	Point b(4, 0);
 	Point c(4, 4);
-	Point point(2.00f, 1.5f);
+	Point point(4, 2);
 
 	bool ans = bsp(a, b, c, point);
 
 	if (ans == true)
-		std::cout << yellow << "in rectangle!" << reset << std::endl;
+		std::cout << yellow << "Conclude : inside rectangle!" << reset << std::endl;
 	else
-		std::cout << yellow << "out of rectangle!" << reset << std::endl;
+		std::cout << yellow << "Conclude : outside rectangle!" << reset << std::endl;
 
 	return 0;
 }

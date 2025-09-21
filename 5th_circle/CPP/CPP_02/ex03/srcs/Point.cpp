@@ -6,7 +6,7 @@
 /*   By: mkuida <reprise39@yahoo.co.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/17 16:46:07 by mkuida            #+#    #+#             */
-/*   Updated: 2025/09/20 23:14:34 by mkuida           ###   ########.fr       */
+/*   Updated: 2025/09/21 09:27:32 by mkuida           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,5 @@ void Point::setY(const Fixed y)
 //
 void Point::print(void)
 {
-	std::cout << "x = " << this->_x << std::endl;
-	std::cout << "y = " << this->_y << std::endl;
+	std::cout << "(" << this->_x << ", " << this->_y << ")" << std::endl;
 }
