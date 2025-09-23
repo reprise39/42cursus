@@ -19,7 +19,8 @@ INCLUDES = -I includes
 SRC_DIR = ./srcs
 
 SRC_FILES =	main.cpp\
-			Fixed.cpp
+			ClapTrap.cpp\
+			ScavTrap.cpp
 
 SRCS = $(addprefix $(SRC_DIR)/, $(SRC_FILES))
 
