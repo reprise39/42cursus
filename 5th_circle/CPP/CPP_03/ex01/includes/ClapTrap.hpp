@@ -24,7 +24,7 @@ class ClapTrap
 {
 	public:
 		ClapTrap();
-		ClapTrap(std::string& str);
+		ClapTrap(const std::string& str);
 		ClapTrap(const ClapTrap& c);
 		~ClapTrap();
 
@@ -33,6 +33,8 @@ class ClapTrap
 		void attack( const std::string& target );
 		void takeDamage( unsigned int amount );
 		void beRepaired( unsigned int amount );
+
+		virtual std::string printMyClass() const ;
 
 		void setHP( int amount );
 		void setEP( int amount );

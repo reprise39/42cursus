@@ -14,51 +14,76 @@
 
 ClapTrap::ClapTrap() : _Name("NoName"), _Hitpoint(10), _EnergyPoint(10), _AttackDamage(0)
 {
-	std::cout << blue << "<Claptrap> Default constructor called" << reset << std::endl;
+	std::cout 
+		<< blue << this->printMyClass()
+		<< "Default constructor called" << reset << std::endl;
 }
 
-ClapTrap::ClapTrap(std::string& str) : _Name(str), _Hitpoint(10), _EnergyPoint(10) , _AttackDamage(0)
+ClapTrap::ClapTrap(const std::string& str) : _Name(str), _Hitpoint(10), _EnergyPoint(10) , _AttackDamage(0)
 {
-	std::cout << blue << "<Claptrap> String constructor called" << reset << std::endl;
+	std::cout 
+		<< blue << this->printMyClass()
+		<< "String constructor called" << reset << std::endl;
 }
 
 ClapTrap::ClapTrap(const ClapTrap &c)
 {
-	std::cout << blue << "<Claptrap> Copy constructor called" << reset << std::endl;
+	std::cout
+		<< blue << this->printMyClass()
+		<< "Copy constructor called" << reset << std::endl;
 	*this = c;
 }
 
 ClapTrap::~ClapTrap()
 {
-	std::cout << red << "<Claptrap> Destructor called" << reset << std::endl;
+	std::cout
+		<< red << this->printMyClass()
+		<< "Destructor called" << reset << std::endl;
 }
 
 void ClapTrap::attack(const std::string &target)
 {
 	if (this->_EnergyPoint > 0)
 	{
-		std::cout << "<Claptrap> " << this->_Name << " attacks " << target << ", causing " << this->_AttackDamage << " points of damage!" << std::endl;
+		std::cout
+			<< this->printMyClass() << this->getName() << " attacks " << target
+			<< ", causing " << this->getAD() << " points of damage!" << std::endl;
 		this->_EnergyPoint--;
 	}
 	else
-		std::cout << "<Claptrap> " << this->_Name << " cant attack (no EP) " << std::endl;
+		std::cout << this->printMyClass() << this->getName() << " cant attack (no EP) " << std::endl;
 }
 
 void ClapTrap::takeDamage(unsigned int amount)
 {
-	std::cout << "<Claptrap> " << this->_Name << " take damage HP <" << amount << ">" << std::endl;
-	this->_Hitpoint -= static_cast<int>(amount);
+	if(this->getHP() == 0)
+	{
+		std::cout << this->printMyClass() << this->getName() << " is alreadry HitPoint = 0" <<  std::endl;
+		return ;
+	}
+
+	std::cout << this->printMyClass() << this->getName() << " take damage HP <" << amount << ">" << std::endl;
+
+	if(this->getHP() - static_cast<int>(amount) >= 0)
+		this->setHP(this->getHP() - static_cast<int>(amount));
+	else
+		this->setHP(0);
 }
 
 void ClapTrap::beRepaired(unsigned int amount)
 {
-	std::cout << "<Claptrap> " << this->_Name << " is repaired HP <" << amount << ">" << std::endl;
-	this->_Hitpoint += static_cast<int>(amount);
+	if(this->getEP() > 0)
+	{
+		std::cout << this->printMyClass() << this->getName() << " is repaired HP <" << amount << ">" << std::endl;
+		this->_Hitpoint += static_cast<int>(amount);
+	}
+	else
+		std::cout << this->printMyClass() << this->getName() << " cant repair (no EP) " <<  std::endl;
 }
 
 ClapTrap &ClapTrap::operator=(const ClapTrap &other)
 {
-	std::cout << "<Claptrap> Copy assignment operator called" << std::endl;
+	std::cout << this->printMyClass() << "Copy assignment operator called" << std::endl;
 	// kansyu : memory,soket ... else
 	if (this != &other)
 	{
@@ -68,7 +93,7 @@ ClapTrap &ClapTrap::operator=(const ClapTrap &other)
 		this->_AttackDamage = other._AttackDamage;
 	}
 	else
-		std::cout << "<Claptrap> Copy assignment doesnt work ( same pointer )" << std::endl;
+		std::cout << this->printMyClass() << "Copy assignment doesnt work ( same pointer )" << std::endl;
 	return (*this);
 }
 
@@ -85,6 +110,11 @@ void ClapTrap::setEP( int amount )
 void ClapTrap::setAD( int amount )
 {
 	this->_AttackDamage = amount;
+}
+
+std::string ClapTrap::printMyClass(void) const
+{
+	return ("<ClapTrap> ");
 }
 
 const std::string& ClapTrap::getName() const

@@ -28,10 +28,15 @@ std::ostream& reset(std::ostream& os)
 	return (os << "\033[0m");
 }
 
-int main( void )
-{
-	ScavTrap test;
+int main() {
+	ScavTrap st("ST-Beta");
 
+	st.attack("evil-bot");
+	st.takeDamage(20);
+	st.beRepaired(15);
+
+	st.guardGate();
+	st.guardGate();
 
 	return 0;
 }
