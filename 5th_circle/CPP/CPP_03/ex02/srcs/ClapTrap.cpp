@@ -45,7 +45,7 @@ void ClapTrap::attack(const std::string &target)
 {
 	if(this->getHP() == 0)
 	{
-		std::cout << this->printMyClass() << this->getName() << " cant attack (is already dead...) " <<  std::endl;
+		std::cout << this->printMyClass() << this->getName() << " cant attack (already dead...) " <<  std::endl;
 	}
 	else if (this->getEP() == 0)
 	{
@@ -64,7 +64,7 @@ void ClapTrap::takeDamage(unsigned int amount)
 {
 	if(this->getHP() == 0)
 	{
-		std::cout << this->printMyClass() << this->getName() << " is alreadry HitPoint = 0" <<  std::endl;
+		std::cout << this->printMyClass() << this->getName() << " dont take damage (alreadry dead...)" <<  std::endl;
 		return ;
 	}
 
@@ -74,7 +74,7 @@ void ClapTrap::takeDamage(unsigned int amount)
 		this->setHP(this->getHP() - static_cast<int>(amount));
 	else
 	{
-		std::cout << this->printMyClass() << this->getName() << " is died :(" <<  std::endl;
+		std::cout << this->printMyClass() << this->getName() << " is died (;_;)/~ " <<  std::endl;
 		this->setHP(0);
 	}
 }
@@ -83,7 +83,7 @@ void ClapTrap::beRepaired(unsigned int amount)
 {
 	if(this->getHP() == 0)
 	{
-		std::cout << this->printMyClass() << this->_Name << " cant repair (already dead... (;_;)/~ )" << std::endl;
+		std::cout << this->printMyClass() << this->_Name << " cant repair (already dead...)" << std::endl;
 	}
 	else if(this->getEP() == 0)
 	{
