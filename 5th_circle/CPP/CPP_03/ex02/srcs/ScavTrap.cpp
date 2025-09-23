@@ -6,7 +6,7 @@
 /*   By: mkuida <reprise39@yahoo.co.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/23 02:00:12 by mkuida            #+#    #+#             */
-/*   Updated: 2025/09/23 16:34:47 by mkuida           ###   ########.fr       */
+/*   Updated: 2025/09/23 16:34:20 by mkuida           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ ScavTrap& ScavTrap::operator=(const ScavTrap& other)
 	// kansyu : memory,soket ... else
 	if (this != &other)
 	{
-		this->ClapTrap::operator=(other);
+		ClapTrap::operator=(other);
 		if(other.getGg() == true)
 			this->setActiveGg();
 		else

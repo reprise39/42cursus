@@ -10,21 +10,32 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "Fixed.hpp"
+#include "ClapTrap.hpp"
+#include "ScavTrap.hpp"
+#include "FlagTrap.hpp"
 
-int main( void )
+std::ostream& red(std::ostream& os)
 {
-	Fixed a;
-	Fixed const b( Fixed( 5.05f ) * Fixed( 2 ) );
+	return (os << "\033[31m");
+}
 
-	std::cout << a << std::endl;
-	std::cout << ++a << std::endl;
-	std::cout << a << std::endl;
-	std::cout << a++ << std::endl;
-	std::cout << a << std::endl;
-	std::cout << b << std::endl;
-	std::cout << Fixed::max( a, b ) << std::endl;
+std::ostream& blue(std::ostream& os)
+{
+	return (os << "\033[34m");
+}
+
+std::ostream& reset(std::ostream& os)
+{
+	return (os << "\033[0m");
+}
+
+int main() {
+	FlagTrap st("FT-Beta");
+
+	st.takeDamage(10000);
+	st.attack("evil-bot");
+	st.takeDamage(20);
+	st.beRepaired(15);
 
 	return 0;
 }
-
