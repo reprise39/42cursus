@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   FlagTrap.cpp                                       :+:      :+:    :+:   */
+/*   FragTrap.cpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mkuida <reprise39@yahoo.co.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/23 16:14:33 by mkuida            #+#    #+#             */
-/*   Updated: 2025/09/25 20:14:21 by mkuida           ###   ########.fr       */
+/*   Updated: 2025/09/25 20:24:19 by mkuida           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "FlagTrap.hpp"
+#include "FragTrap.hpp"
 
-FlagTrap::FlagTrap() : ClapTrap()
+FragTrap::FragTrap() : ClapTrap()
 {
 	std::cout
 		<< blue << this->printMyClass() << this->getName() << " : "
@@ -22,7 +22,7 @@ FlagTrap::FlagTrap() : ClapTrap()
 	ClapTrap::setHP(100);
 }
 
-FlagTrap::FlagTrap(const std::string &str) : ClapTrap(str)
+FragTrap::FragTrap(const std::string &str) : ClapTrap(str)
 {
 	std::cout
 		<< blue << this->printMyClass() << this->getName() << " : "
@@ -32,7 +32,7 @@ FlagTrap::FlagTrap(const std::string &str) : ClapTrap(str)
 	ClapTrap::setHP(100);
 }
 
-FlagTrap::FlagTrap(const FlagTrap &c) : ClapTrap(c)
+FragTrap::FragTrap(const FragTrap &c) : ClapTrap(c)
 {
 	std::cout
 		<< blue << this->printMyClass() << this->getName() << " : "
@@ -40,14 +40,14 @@ FlagTrap::FlagTrap(const FlagTrap &c) : ClapTrap(c)
 	*this = c;
 }
 
-FlagTrap::~FlagTrap()
+FragTrap::~FragTrap()
 {
 	std::cout
 		<< red << this->printMyClass() << this->getName() << " : "
 		<< "Destructor called" << reset << std::endl;
 }
 
-FlagTrap &FlagTrap::operator=(const FlagTrap &other)
+FragTrap &FragTrap::operator=(const FragTrap &other)
 {
 	std::cout << this->printMyClass() << "Copy assignment operator called" << std::endl;
 	// kansyu : memory,soket ... else
@@ -60,12 +60,12 @@ FlagTrap &FlagTrap::operator=(const FlagTrap &other)
 	return (*this);
 }
 
-std::string FlagTrap::printMyClass() const
+std::string FragTrap::printMyClass() const
 {
-	return ("<FlagTrap> ");
+	return ("<FragTrap> ");
 }
 
-void FlagTrap::highFivesGuys(void)
+void FragTrap::highFivesGuys(void)
 {
 	std::cout << this->printMyClass() << "want you to hight touch (._.)/"  << std::endl;
 }
