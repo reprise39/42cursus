@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Animal.cpp                                         :+:      :+:    :+:   */
+/*   WrongAnimal.cpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mkuida <reprise39@yahoo.co.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -10,23 +10,23 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Animal.hpp"
+#include "WrongAnimal.hpp"
 
-Animal::Animal() : _Type("No Name")
+WrongAnimal::WrongAnimal() : _Type("No Name")
 {
 	std::cout 
 		<< blue << this->printMyClass()
 		<< "Default constructor called" << reset << std::endl;
 }
 
-Animal::Animal(const std::string& str) : _Type(str) 
+WrongAnimal::WrongAnimal(const std::string& str) : _Type(str) 
 {
 	std::cout 
 		<< blue << this->printMyClass()
 		<< "String constructor called" << reset << std::endl;
 }
 
-Animal::Animal(const Animal& c)
+WrongAnimal::WrongAnimal(const WrongAnimal& c)
 {
 	std::cout 
 	<< blue << this->printMyClass()
@@ -34,14 +34,14 @@ Animal::Animal(const Animal& c)
 	*this = c;
 }
 
-Animal::~Animal()
+WrongAnimal::~WrongAnimal()
 {
 	std::cout
 		<< red << this->printMyClass()
 		<< "Destructor called" << reset << std::endl;
 }
 
-Animal& Animal::operator= (const Animal& other)
+WrongAnimal& WrongAnimal::operator= (const WrongAnimal& other)
 {
 	// std::cout << this->printMyClass() << "Copy assignment operator called" << std::endl;
 	// kansyu : memory,soket ... else
@@ -54,22 +54,22 @@ Animal& Animal::operator= (const Animal& other)
 	return (*this);
 }
 
-std::string Animal::printMyClass() const
+std::string WrongAnimal::printMyClass() const
 {
-	return ("< Animal > ");
+	return ("< WrongAnimal > ");
 }
 
-void Animal::makeSound() const
+void WrongAnimal::makeSound() const
 {
 	std::cout << this->getType() << " make sounds " << "[ ??? ]" << std::endl;
 }
 
-std::string Animal::getType() const
+std::string WrongAnimal::getType() const
 {
 	return (this->_Type);
 }
 
-void Animal::setType(const std::string& str)
+void WrongAnimal::setType(const std::string& str)
 {
 	this->_Type = str;
 }

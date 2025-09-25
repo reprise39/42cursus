@@ -10,10 +10,13 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "Animal.hpp"
+#include "Animal.hpp"
+#include "Cat.hpp"
+#include "Dog.hpp"
 
 int main( void )
 {
+	//test animal
 	Animal test1;
 	Animal test2("neko");
 	Animal test3(test2);
@@ -23,5 +26,15 @@ int main( void )
 	std::cout << test3.getType() << std::endl;
 
 	test3.makeSound();
+
+	//test cat
+	Cat c;
+	c.makeSound();
+
+	//test dog
+	Dog dd("cat");
+	dd.makeSound();
+	
+
 	return 0;
 }

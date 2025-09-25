@@ -1,22 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sio.hpp                                            :+:      :+:    :+:   */
+/*   Dog.hpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mkuida <reprise39@yahoo.co.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/09/24 19:27:35 by mkuida            #+#    #+#             */
-/*   Updated: 2025/09/25 01:14:29 by mkuida           ###   ########.fr       */
+/*   Created: 2025/09/24 20:10:52 by mkuida            #+#    #+#             */
+/*   Updated: 2025/09/25 10:25:33 by mkuida           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SIO_HPP
-# define SIO_HPP
+#ifndef DOG_HPP
+# define DOG_HPP
 
-# include <iostream>
+# include "Animal.hpp"
 
-std::ostream& red(std::ostream& os);
-std::ostream& blue(std::ostream& os);
-std::ostream& reset(std::ostream& os);
+class Dog : public Animal
+{
+	public:
+		Dog();
+		Dog(const std::string &str);
+		Dog(const Dog &c);
+		~Dog();
+		
+		Dog& operator=(const Dog &other);
+		
+		void makeSound() const;
+		
+		std::string printMyClass() const;
+	
+	private:
+
+};
 
 #endif

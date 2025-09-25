@@ -1,22 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sio.hpp                                            :+:      :+:    :+:   */
+/*   WrongCat.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mkuida <reprise39@yahoo.co.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/09/24 19:27:35 by mkuida            #+#    #+#             */
-/*   Updated: 2025/09/25 01:14:29 by mkuida           ###   ########.fr       */
+/*   Created: 2025/09/24 20:10:52 by mkuida            #+#    #+#             */
+/*   Updated: 2025/09/25 10:25:47 by mkuida           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SIO_HPP
-# define SIO_HPP
+#ifndef WRONGCAT_HPP
+# define WRONGCAT_HPP
 
-# include <iostream>
+# include "WrongAnimal.hpp"
 
-std::ostream& red(std::ostream& os);
-std::ostream& blue(std::ostream& os);
-std::ostream& reset(std::ostream& os);
+class WrongCat : public WrongAnimal
+{
+	public:
+		WrongCat();
+		WrongCat(const std::string &str);
+		WrongCat(const WrongCat &c);
+		~WrongCat();
+		
+		WrongCat& operator=(const WrongCat &other);
+		
+		void makeSound() const;
+		
+		std::string printMyClass() const;
+	
+	private:
+
+};
 
 #endif

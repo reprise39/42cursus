@@ -1,36 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Cat.hpp                                            :+:      :+:    :+:   */
+/*   Dog.hpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mkuida <reprise39@yahoo.co.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/24 20:10:52 by mkuida            #+#    #+#             */
-/*   Updated: 2025/09/25 10:25:28 by mkuida           ###   ########.fr       */
+/*   Updated: 2025/09/25 12:16:06 by mkuida           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CAT_HPP
-# define CAT_HPP
+#ifndef DOG_HPP
+# define DOG_HPP
 
 # include "Animal.hpp"
+# include "Brain.hpp"
 
-class Cat : public Animal
+class Dog : public Animal
 {
 	public:
-		Cat();
-		Cat(const std::string &str);
-		Cat(const Cat &c);
-		~Cat();
+		Dog();
+		Dog(const std::string &str);
+		Dog(const Dog &c);
+		~Dog();
 		
-		Cat& operator=(const Cat &other);
+		Dog& operator=(const Dog &other);
 		
 		void makeSound() const;
-		
+		void makeIdea(const int n,const std::string& str) const;
+		std::string getIdea(const int n) const;
 		std::string printMyClass() const;
 	
 	private:
-
+		Brain* _MyBrain;
 };
 
 #endif

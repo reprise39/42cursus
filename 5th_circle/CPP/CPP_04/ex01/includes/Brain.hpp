@@ -1,22 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sio.hpp                                            :+:      :+:    :+:   */
+/*   Brain.hpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mkuida <reprise39@yahoo.co.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/09/24 19:27:35 by mkuida            #+#    #+#             */
-/*   Updated: 2025/09/25 01:14:29 by mkuida           ###   ########.fr       */
+/*   Created: 2025/09/25 10:53:14 by mkuida            #+#    #+#             */
+/*   Updated: 2025/09/25 11:22:22 by mkuida           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SIO_HPP
-# define SIO_HPP
+#ifndef BRAIN_HPP
+# define BRAIN_HPP
 
-# include <iostream>
+# include "sio.hpp"
 
-std::ostream& red(std::ostream& os);
-std::ostream& blue(std::ostream& os);
-std::ostream& reset(std::ostream& os);
+class Brain
+{
+	public:
+		Brain();
+		Brain(const Brain &c);
+		~Brain();
+
+		std::string printMyClass() const;
+		Brain& operator=(const Brain& other);
+
+		std::string _Idea[100];
+		
+	private:
+};
 
 #endif

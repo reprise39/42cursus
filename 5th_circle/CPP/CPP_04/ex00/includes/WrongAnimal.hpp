@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Animal.hpp                                         :+:      :+:    :+:   */
+/*   WrongAnimal.hpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mkuida <reprise39@yahoo.co.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -10,8 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ANIMAL_HPP
-# define ANIMAL_HPP
+#ifndef WRONGANIMAL_HPP
+# define WRONGANIMAL_HPP
 
 // include
 # include "sio.hpp"
@@ -19,18 +19,18 @@
 // macro
 
 // class
-class Animal
+class WrongAnimal
 {
 	public:
-		Animal();
-		Animal(const std::string& str);
-		Animal(const Animal& c);
-		virtual ~Animal();
+		WrongAnimal();
+		WrongAnimal(const std::string& str);
+		WrongAnimal(const WrongAnimal& c);
+		~WrongAnimal();
 
-		Animal& operator=(const Animal& other);
+		WrongAnimal& operator=(const WrongAnimal& other);
 
 		std::string printMyClass() const;
-		virtual void makeSound() const;
+		void makeSound() const;
 
 		std::string getType() const;
 		void setType(const std::string& str);
