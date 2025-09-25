@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   FlagTrap.hpp                                       :+:      :+:    :+:   */
+/*   FragTrap.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mkuida <reprise39@yahoo.co.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/23 16:06:51 by mkuida            #+#    #+#             */
-/*   Updated: 2025/09/24 00:55:38 by mkuida           ###   ########.fr       */
+/*   Updated: 2025/09/25 20:46:11 by mkuida           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,15 +15,15 @@
 
 # include "ClapTrap.hpp"
 
-class FlagTrap : virtual public ClapTrap
+class FragTrap : virtual public ClapTrap
 {
 	public:
-		FlagTrap();
-		FlagTrap(const std::string& str);
-		FlagTrap(const FlagTrap& c);
-		~FlagTrap();
+		FragTrap();
+		FragTrap(const std::string& str);
+		FragTrap(const FragTrap& c);
+		~FragTrap();
 
-		FlagTrap&  operator=(const FlagTrap& other);
+		FragTrap&  operator=(const FragTrap& other);
 
 		std::string printMyClass() const;
 		void highFivesGuys(void);

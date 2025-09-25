@@ -15,21 +15,21 @@
 ClapTrap::ClapTrap() : _Name("NoName"), _Hitpoint(10), _EnergyPoint(10), _AttackDamage(0)
 {
 	std::cout 
-		<< blue << this->printMyClass()
+		<< blue << this->printMyClass() << this->_Name << " : "
 		<< "Default constructor called" << reset << std::endl;
 }
 
 ClapTrap::ClapTrap(const std::string& str) : _Name(str), _Hitpoint(10), _EnergyPoint(10) , _AttackDamage(0)
 {
 	std::cout 
-		<< blue << this->printMyClass()
+		<< blue << this->printMyClass() << this->_Name << " : "
 		<< "String constructor called" << reset << std::endl;
 }
 
 ClapTrap::ClapTrap(const ClapTrap &c)
 {
 	std::cout
-		<< blue << this->printMyClass()
+		<< blue << this->printMyClass() << c._Name << " : "
 		<< "Copy constructor called" << reset << std::endl;
 	*this = c;
 }
@@ -37,7 +37,7 @@ ClapTrap::ClapTrap(const ClapTrap &c)
 ClapTrap::~ClapTrap()
 {
 	std::cout
-		<< red << this->printMyClass()
+		<< red << this->printMyClass() << this->_Name << " : "
 		<< "Destructor called" << reset << std::endl;
 }
 
@@ -68,14 +68,18 @@ void ClapTrap::takeDamage(unsigned int amount)
 		return ;
 	}
 
-	std::cout << this->printMyClass() << this->getName() << " take damage HP <" << amount << ">" << std::endl;
+	std::cout << this->printMyClass() << this->getName() << " take damage " << amount;
 
 	if(this->getHP() - static_cast<int>(amount) > 0)
+	{
 		this->setHP(this->getHP() - static_cast<int>(amount));
+		std::cout << " (rest : " << this->_Hitpoint << ")" << std::endl;
+	}
 	else
 	{
-		std::cout << this->printMyClass() << this->getName() << " is died (;_;)/~ " <<  std::endl;
 		this->setHP(0);
+		std::cout << " (rest : " << this->_Hitpoint << ")" << std::endl;
+		std::cout << this->printMyClass() << this->getName() << " is died (;_;)/~ " <<  std::endl;
 	}
 }
 
@@ -91,8 +95,9 @@ void ClapTrap::beRepaired(unsigned int amount)
 	}
 	else
 	{
-		std::cout << this->printMyClass() << this->getName() << " is repaired HP <" << amount << ">" << std::endl;
+		std::cout << this->printMyClass() << this->getName() << " is repaired HP " << amount;
 		this->setHP(this->getHP() + static_cast<int>(amount));
+		std::cout << " (rest : " << this->_Hitpoint << " )" << std::endl;
 	}
 }
 

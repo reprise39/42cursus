@@ -10,7 +10,7 @@
 #                                                                              #
 # **************************************************************************** #
 
-NAME = ex02
+NAME = ex03
 CC = c++
 CFLAGS = -Wall -Wextra -Werror -std=c++98 -pedantic -g
 LDFLAGS =
@@ -21,7 +21,7 @@ SRC_DIR = ./srcs
 SRC_FILES =	main.cpp\
 			ClapTrap.cpp\
 			ScavTrap.cpp\
-			FlagTrap.cpp\
+			FragTrap.cpp\
 			DiamondTrap.cpp
 
 SRCS = $(addprefix $(SRC_DIR)/, $(SRC_FILES))
