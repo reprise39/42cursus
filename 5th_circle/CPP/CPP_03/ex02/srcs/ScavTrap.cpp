@@ -6,7 +6,7 @@
 /*   By: mkuida <reprise39@yahoo.co.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/23 02:00:12 by mkuida            #+#    #+#             */
-/*   Updated: 2025/09/23 16:34:20 by mkuida           ###   ########.fr       */
+/*   Updated: 2025/09/25 20:14:33 by mkuida           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,9 @@
 
 ScavTrap::ScavTrap() :  ClapTrap(), _isGardMord(false)
 {
-	std::cout << blue << this->printMyClass() << "Default constructor called" << reset << std::endl;
+	std::cout
+		<< blue << this->printMyClass() << this->getName() << " : "
+		<< "Default constructor called" << reset << std::endl;
 	ClapTrap::setAD(20);
 	ClapTrap::setEP(50);
 	ClapTrap::setHP(100);
@@ -22,7 +24,9 @@ ScavTrap::ScavTrap() :  ClapTrap(), _isGardMord(false)
 
 ScavTrap::ScavTrap(const std::string& str) : ClapTrap(str), _isGardMord(false)
 {
-	std::cout << blue << this->printMyClass() << "String constructor called" << reset << std::endl;
+	std::cout
+		<< blue << this->printMyClass() << this->getName() << " : "
+		<< "String constructor called" << reset << std::endl;
 	ClapTrap::setAD(20);
 	ClapTrap::setEP(50);
 	ClapTrap::setHP(100);
@@ -30,13 +34,17 @@ ScavTrap::ScavTrap(const std::string& str) : ClapTrap(str), _isGardMord(false)
 
 ScavTrap::ScavTrap(const ScavTrap& c) : ClapTrap(c)
 {
-	std::cout << blue << this->printMyClass() << "String constructor called" << reset << std::endl;
+	std::cout
+		<< blue << this->printMyClass() << this->getName() << " : "
+		<< "String constructor called" << reset << std::endl;
 	*this = c;
 }
 
 ScavTrap::~ScavTrap()
 {
-	std::cout << red << this->printMyClass() << "Destructor called" << reset << std::endl;
+	std::cout
+		<< red << this->printMyClass() << this->getName() << " : "
+		<< "Destructor called" << reset << std::endl;
 }
 
 void ScavTrap::guardGate()
