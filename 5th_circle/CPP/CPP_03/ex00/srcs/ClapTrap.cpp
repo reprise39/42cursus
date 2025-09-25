@@ -14,23 +14,23 @@
 
 ClapTrap::ClapTrap() : _Name("NoName"), _Hitpoint(10), _EnergyPoint(10) , _AttackDamage(0)
 {
-	std::cout << blue << "<ClapTrap> " << "Default constructor called" << reset << std::endl;
+	std::cout << blue << "<ClapTrap> " << "NoName" << " : " << "Default constructor called" << reset << std::endl;
 }
 
 ClapTrap::ClapTrap(const std::string& str) : _Name(str), _Hitpoint(10), _EnergyPoint(10) , _AttackDamage(0)
 {
-	std::cout << blue << "<ClapTrap> " << "String constructor called" << reset << std::endl;
+	std::cout << blue << "<ClapTrap> " << str << " : " << "String constructor called" << reset << std::endl;
 }
 
 ClapTrap::ClapTrap(const ClapTrap& c)
 {
-	std::cout << blue << "<ClapTrap> " << "Copy constructor called" << reset << std::endl;
+	std::cout << blue << "<ClapTrap> " << c._Name << " : " << "Copy constructor called" << reset << std::endl;
 	*this = c;
 }
 
 ClapTrap::~ClapTrap()
 {
-	std::cout << red << "<ClapTrap> " << "Destructor called" << reset << std::endl;
+	std::cout << red << "<ClapTrap> " << this->_Name << " : " << "Destructor called" << reset << std::endl;
 }
 
 void ClapTrap::attack( const std::string& target )
@@ -57,16 +57,19 @@ void ClapTrap::takeDamage( unsigned int amount )
 		std::cout << "<ClapTrap> " << this->_Name << " dont take damage (alreadry dead...)" <<  std::endl;
 		return ;
 	}
-	std::cout << "<ClapTrap> " << this->_Name << " take damage HP <"  << amount << ">" <<  std::endl;
+	std::cout << "<ClapTrap> " << this->_Name << " take damage "  << amount;
 	if (this->_Hitpoint - static_cast<int>(amount) > 0)
 	{
 		this->_Hitpoint -= static_cast<int>(amount);
+		std::cout << " (rest : " << this->_Hitpoint << ")" << std::endl;
 	}
 	else if (this->_Hitpoint - static_cast<int>(amount) <= 0)
 	{
-		std::cout << "<ClapTrap> " << this->_Name << " is died (;_;)/~ " <<  std::endl;
 		this->_Hitpoint = 0;
+		std::cout << " (rest : " << this->_Hitpoint << ")" << std::endl;
+		std::cout << "<ClapTrap> " << this->_Name << " is died (;_;)/~ " <<  std::endl;
 	}
+
 }
 
 void ClapTrap::beRepaired( unsigned int amount )
@@ -75,15 +78,15 @@ void ClapTrap::beRepaired( unsigned int amount )
 	{
 		std::cout << "<ClapTrap> " << this->_Name << " cant repair (already dead...)" <<  std::endl;
 	}
-	if(this->_EnergyPoint == 0)
+	else if(this->_EnergyPoint == 0)
 	{
 		std::cout << "<ClapTrap> " << this->_Name << " cant repair (no EP) " <<  std::endl;
 	}
 	else
 	{
-		std::cout << "<ClapTrap> " << this->_Name << " is repaired HP <"  << amount << ">" <<  std::endl;
+		std::cout << "<ClapTrap> " << this->_Name << " is repaired HP "  << amount;
 		this->_Hitpoint += static_cast<int>(amount);
-
+		std::cout << " (rest : " << this->_Hitpoint << " )" << std::endl;
 	}
 }
 
