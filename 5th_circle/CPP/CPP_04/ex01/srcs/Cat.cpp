@@ -6,7 +6,7 @@
 /*   By: mkuida <reprise39@yahoo.co.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/25 00:13:59 by mkuida            #+#    #+#             */
-/*   Updated: 2025/09/25 12:49:28 by mkuida           ###   ########.fr       */
+/*   Updated: 2025/09/26 20:28:49 by mkuida           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,37 +14,38 @@
 
 Cat::Cat() : Animal("Cat")
 {
+	this->_MyBrain = new Brain();
 	std::cout 
 		<< blue << this->printMyClass()
 		<< "Default constructor called" << reset << std::endl;
-	this->_MyBrain = new Brain();
 }
 
 Cat::Cat(const std::string &str) : Animal("Cat")
 {
 	(void)str;
+	this->_MyBrain = new Brain();
 
 	std::cout 
 		<< blue << this->printMyClass()
 		<< "String constructor called" << reset << std::endl;
-	this->_MyBrain = new Brain();
 }
 
 Cat::Cat(const Cat &other) : Animal(other)
 {
+	this->_MyBrain = new Brain(*(other._MyBrain));
+
 	std::cout 
 		<< blue << this->printMyClass()
 		<< "Copy constructor called" << reset << std::endl;
-	this->_MyBrain = new Brain();
-	*this = other;
 }
 
 Cat::~Cat()
 {
+	delete this->_MyBrain;
+	
 	std::cout
 		<< red << this->printMyClass()
 		<< "Destructor called" << reset << std::endl;
-	delete this->_MyBrain;
 }
 
 Cat& Cat::operator= (const Cat &other)

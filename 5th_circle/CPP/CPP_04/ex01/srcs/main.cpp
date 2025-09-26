@@ -16,41 +16,74 @@
 
 int main()
 {
-    std::cout << "=== Basic test ===" << std::endl;
-    const Animal* dog = new Dog();
-    const Animal* cat = new Cat();
+std::cout << "=== Test 1: makeIdea ===" << std::endl;
+	{
+		Dog d1;
+		d1.makeIdea(0, "zero idea");
+		d1.makeIdea(5, "five five");
 
-    std::cout << dog->getType() << std::endl;
-    std::cout << cat->getType() << std::endl;
+		for(int i = 0 ; i < 10 ; i++)
+			std::cout << "d1_idea[" << i << "] = " << d1.getIdea(i) << std::endl;
+	}
 
-    dog->makeSound(); // Woof!
-    cat->makeSound(); // Meow!
+	std::cout << "\n=== Test 2: double makeIdea ===" << std::endl;
+	{
+		Cat c1;
+		c1.makeIdea(0, "go");
 
-    delete dog;
-    delete cat;
+		Cat c2;
+		c2 = c1; // rebrain
 
-    std::cout << "\n=== Array test ===" << std::endl;
-    const Animal* animals[4];
-    for (int i = 0; i < 2; i++)
-        animals[i] = new Dog();
-    for (int i = 2; i < 4; i++)
-        animals[i] = new Cat();
+		c2.makeIdea(42, "42");
+		std::cout << "c1 idea[0]: " << c2.getIdea(0) << std::endl;
+		std::cout << "c2 idea[0]: " << c2.getIdea(42) << std::endl;
+	}
 
-    for (int i = 0; i < 4; i++)
-        delete animals[i]; // virtual dtor が正しく機能するかチェック
+	std::cout << "\n=== Test 4: getType ===" << std::endl;
+	{
+		Dog d;//dog
+		Cat c;//cat
+		std::cout << d.getType() << std::endl;
+		std::cout << c.getType() << std::endl;
 
-    std::cout << "\n=== Deep copy test ===" << std::endl;
-    Dog dog1;
-	dog1.makeIdea(0, "Chase the ball");   // ← Dog に Brain へのアクセサを実装している想定
-    Dog dog2 = dog1; // copy constructor (deep copy)
+		Dog dd("inu");//dog
+		Cat cd("neko");//cat
+		std::cout << dd.getType() << std::endl;
+		std::cout << cd.getType() << std::endl;
+	}
 
-    std::cout << "dog1 idea: " << dog1.getIdea(0) << std::endl;
-    std::cout << "dog2 idea: " << dog2.getIdea(0) << std::endl;
+	std::cout << "\n=== Test 5: Canonical Dog ===" << std::endl;
+	{
+		Dog d1;
+		Dog d2(d1);//re-bra
+		Dog d3;
+		d3 = d1; //re-brain
+	}
 
-    dog2.makeIdea(0, "Eat food");
+	std::cout << "\n=== Test 6: Canonical Cat ===" << std::endl;
+	{
+		Cat c1;
+		Cat c2(c1);
+		Cat c3;
+		c3 = c1;
+	}
 
-    std::cout << "dog1 idea (after dog2 modified): " << dog1.getIdea(0) << std::endl;
-    std::cout << "dog2 idea (after dog2 modified): " << dog2.getIdea(0) << std::endl;
+	std::cout << "\n=== Test 7: Canonical Brain ===" << std::endl;
+	{
+		Brain b1;
+			b1._Idea[22] = "check copy";
+			b1._Idea[42] = "42-tokyo";
+		Brain b2(b1);
+		Brain b3;
+		b3 = b1;
 
-    return 0;
+		std::cout << b2._Idea[22] << std::endl;
+		std::cout << b3._Idea[42] << std::endl;
+	}
+
+	std::cout << "\n=== Test 8: Virtual destruct ===" << std::endl;
+	{
+		Animal* a = new Dog();
+		delete a;
+	}
 }

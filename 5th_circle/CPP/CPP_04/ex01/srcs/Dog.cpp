@@ -6,7 +6,7 @@
 /*   By: mkuida <reprise39@yahoo.co.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/25 00:13:59 by mkuida            #+#    #+#             */
-/*   Updated: 2025/09/25 12:48:35 by mkuida           ###   ########.fr       */
+/*   Updated: 2025/09/26 20:21:07 by mkuida           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,37 +14,39 @@
 
 Dog::Dog() : Animal("Dog")
 {
+	this->_MyBrain = new Brain();
 	std::cout 
 		<< blue << this->printMyClass()
 		<< "Default constructor called" << reset << std::endl;
-	this->_MyBrain = new Brain();
 }
 
 Dog::Dog(const std::string &str) : Animal("Dog")
 {
 	(void)str;
 
+	this->_MyBrain = new Brain();
 	std::cout 
 		<< blue << this->printMyClass()
 		<< "String constructor called" << reset << std::endl;
-	this->_MyBrain = new Brain();
 }
 
 Dog::Dog(const Dog &other) : Animal(other)
 {
+	this->_MyBrain = new Brain();
+	*this = other;
+
 	std::cout 
 		<< blue << this->printMyClass()
 		<< "Copy constructor called" << reset << std::endl;
-	this->_MyBrain = new Brain();
-	*this = other;
 }
 
 Dog::~Dog()
 {
+	delete this->_MyBrain;
+
 	std::cout
 		<< red << this->printMyClass()
 		<< "Destructor called" << reset << std::endl;
-	delete this->_MyBrain;
 }
 
 Dog& Dog::operator= (const Dog &other)
@@ -53,11 +55,8 @@ Dog& Dog::operator= (const Dog &other)
 	// kansyu : memory,soket ... else
 	if (this != &other)
 	{
-		std::cout << "1" << std::endl;
 		this->setType(other.getType());
-		std::cout << "2" << std::endl;
 		delete this->_MyBrain;
-		std::cout << "3" << std::endl;
 		this->_MyBrain = new Brain(*(other._MyBrain));
 	}
 	else

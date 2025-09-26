@@ -18,7 +18,7 @@ INCLUDES = -I includes
 
 SRC_DIR = ./srcs
 
-SRC_FILES =	main2.cpp\
+SRC_FILES =	main.cpp\
 			sio.cpp\
 			Animal.cpp\
 			WrongAnimal.cpp\
