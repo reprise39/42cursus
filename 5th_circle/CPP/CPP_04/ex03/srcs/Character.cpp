@@ -68,6 +68,7 @@ Character& Character::operator=(const Character& other)
 			else
 				this->_inventory[i] = NULL;
 		}
+		this->_name = other.getName();
 	}
 	else
 		std::cout << this->printMyClass() << "Copy assignment doesnt work ( same pointer )" << std::endl;
@@ -83,7 +84,7 @@ void Character::equip(AMateria* other)
 {
 	if(other == NULL)
 	{
-		std::cout << "equip : failer" << std::endl;
+		std::cout << this->_name << " equip : failer ( given NULL )" << std::endl;
 		return;
 	}
 	else
@@ -93,27 +94,28 @@ void Character::equip(AMateria* other)
 			if(this->_inventory[i] == NULL)
 			{
 				this->_inventory[i] = other;
-				std::cout << "equip : success at slot " << i << std::endl;
+				std::cout << this->_name << " equip : success at slot " << i << "  (" << other->getType() << ")" << std::endl;
 				return;
 			}
 		}
+		std::cout << this->_name << " equip : failer ( already full inventory )" << std::endl;
 	}
 }
 
 void Character::unequip(int idx)
 {
-	if(idx < 0 && idx > 3)
+	if(idx < 0 || idx > 3)
 	{
-		std::cout << "unequip : failer ( unabaiable slot num )" << std::endl;
+		std::cout << this->_name << " unequip : failer ( unabaiable slot num " << idx << " given )" << std::endl;
 		return;
 	}
 	else
 	{
 		if(this->_inventory[idx] == NULL)
-			std::cout << "unequip : failer ( already empty ) " << std::endl;
+			std::cout << this->_name << " unequip : failer ( slot " << idx << " is already empty ) " << std::endl;
 		else
 		{
-			std::cout << "unequip : success " << std::endl;
+			std::cout << this->_name << " unequip : success (slot " << idx << " : " << this->_inventory[idx]->getType() << ")" << std::endl;
 			this->_inventory[idx] = NULL;
 		}
 	}
@@ -121,9 +123,14 @@ void Character::unequip(int idx)
 
 void Character::use(int idx, ICharacter& target)
 {
-	if (idx < 0 || idx > 4 || this->_inventory[idx] == NULL)
+	if (idx < 0 || idx > 4)
 	{
-		std::cout << "use : failer" << std::endl;
+		std::cout << "use : failer ( invalid slot num " << idx << " )" << std::endl;
+		return;
+	}
+	else if(this->_inventory[idx] == NULL)
+	{
+		std::cout << "use : failer ( slot " << idx << " is empty )" << std::endl;
 		return;
 	}
 	this->_inventory[idx]->use(target);

@@ -83,7 +83,7 @@ void MateriaSource::learnMateria(AMateria* other)
 			if(this->_learnMateria[i] == NULL)
 			{
 				this->_learnMateria[i] = other->clone();
-				std::cout << "learnMateria :lean materia at slot " << i << std::endl;
+				std::cout << "learnMateria : success at slot " << i << " (" << other->getType() << ")" << std::endl;
 				return;
 			}
 		}
@@ -95,11 +95,11 @@ AMateria* MateriaSource::createMateria(std::string const &str)
 	{
 		if (this->_learnMateria[i] && this->_learnMateria[i]->getType() == str)
 		{
-			std::cout << "createMateria : success" << std::endl;
+			std::cout << "createMateria : success (" << str << ")" << std::endl;
 			return (this->_learnMateria[i]->clone());
 		}
 	}
-	std::cout << "createMateria : failer" << std::endl;
+	std::cout << "createMateria : failer (" << str << ")" << std::endl;
 	return NULL;
 }
 
