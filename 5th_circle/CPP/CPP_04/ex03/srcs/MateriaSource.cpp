@@ -26,7 +26,13 @@ MateriaSource::MateriaSource()
 
 MateriaSource::MateriaSource(const MateriaSource& other)
 {
-	*this = other;
+	for(int i = 0 ; i < 4 ; i ++)
+	{
+		if(other._learnMateria[i] != NULL)
+			this->_learnMateria[i] = other._learnMateria[i]->clone();
+		else
+			this->_learnMateria[i] = NULL;
+	}
 	std::cout 
 		<< blue << this->printMyClass()
 		<< "Copy constructor called" << reset << std::endl;

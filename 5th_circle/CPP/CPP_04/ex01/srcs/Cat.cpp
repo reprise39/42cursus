@@ -6,7 +6,7 @@
 /*   By: mkuida <reprise39@yahoo.co.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/25 00:13:59 by mkuida            #+#    #+#             */
-/*   Updated: 2025/09/26 20:28:49 by mkuida           ###   ########.fr       */
+/*   Updated: 2025/09/26 21:47:18 by mkuida           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,12 +70,18 @@ void Cat::makeSound()const
 
 void Cat::makeIdea(const int n,const std::string& str) const
 {
-	this->_MyBrain->_Idea[n] = str;
+	if(0 <= n && n < 100 )
+		this->_MyBrain->_Idea[n] = str;
+	else
+		std::cout << "makeIdea : error (out of range)" << std::endl;
 }
 
 std::string Cat::getIdea(const int n) const
 {
-	return (this->_MyBrain->_Idea[n]);
+	if(0 <= n && n < 100 )
+		return (this->_MyBrain->_Idea[n]);
+	else
+		return ("getIdea : error (out of range)");
 }
 
 std::string Cat::printMyClass()const

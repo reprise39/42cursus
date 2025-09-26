@@ -17,10 +17,9 @@
 #include "WrongAnimal.hpp"
 #include "WrongCat.hpp"
 
-
 int main()
 {
-	std::cout << "\n=== EX00 Test 10: Subject test ===" << std::endl;
+	std::cout << "\n=== in Subject test ===" << std::endl;
 	{
 		const Animal* meta = new Animal();
 		const Animal* j = new Dog();
@@ -31,12 +30,13 @@ int main()
 		j->makeSound();
 		meta->makeSound();
 
+		//my_add_for_leak
 		delete meta;
 		delete j;
 		delete i;
 	}
 
-	std::cout << "=== EX00 Test 1: Animal base class ===" << std::endl;
+	std::cout << "\n=== Test 1: Animal class ===" << std::endl;
 	{
 		const Animal* meta = new Animal();
 		std::cout << meta->getType() << std::endl;
@@ -44,7 +44,7 @@ int main()
 		delete meta;
 	}
 
-	std::cout << "\n=== EX00 Test 2: Dog / Cat polymorphism ===" << std::endl;
+	std::cout << "\n=== Test 2: Dog / Cat ===" << std::endl;
 	{
 		const Animal* d = new Dog();
 		const Animal* c = new Cat();
@@ -54,14 +54,14 @@ int main()
 		delete c;
 	}
 
-	std::cout << "\n=== EX00 Test 3: WrongAnimal polymorphism ===" << std::endl;
+	std::cout << "\n=== Test 3: WrongAnimal polymorphism ===" << std::endl;
 	{
 		const WrongAnimal* wa = new WrongCat();
-		wa->makeSound(); // WrongCatの音が出ないはず
+		wa->makeSound(); // cat, but ...
 		delete wa;
 	}
 
-	std::cout << "\n=== EX00 Test 5: getType check ===" << std::endl;
+	std::cout << "\n=== Test 4: getType ==" << std::endl;
 	{
 		Dog d;
 		Cat c;
@@ -69,7 +69,7 @@ int main()
 		std::cout << c.getType() << std::endl;
 	}
 
-	std::cout << "\n=== EX00 Test 6: Canonical - Dog copy ===" << std::endl;
+	std::cout << "\n=== Test 5: Canonical - Dog copy ===" << std::endl;
 	{
 		Dog d1;
 		Dog d2(d1);   // copy constructor
@@ -77,7 +77,7 @@ int main()
 		d3 = d1;      // copy assignment
 	}
 
-	std::cout << "\n=== EX00 Test 7: Canonical - Cat copy ===" << std::endl;
+	std::cout << "\n=== Test 6: Canonical - Cat copy ===" << std::endl;
 	{
 		Cat c1;
 		Cat c2(c1);
@@ -85,28 +85,28 @@ int main()
 		c3 = c1;
 	}
 
-	std::cout << "\n=== EX00 Test 9: Virtual destructor check ===" << std::endl;
+	std::cout << "\n=== Test 7: Virtual destructor check ===" << std::endl;
 	{
 		Animal* a = new Dog();
-		delete a; // Dog destructor → Animal destructor が呼ばれる
+		delete a; // all destruct
 	}
 
-	// std::cout << "\n=== EX00 Test 10: wrong Subject test ===" << std::endl;
+	// std::cout << "\n=== WTest : wrong Subject test ===" << std::endl;
 	// {
 	// 	const WrongAnimal* meta = new WrongAnimal();
 	// 	const WrongAnimal* i = new WrongCat();
 	// 	std::cout << i->getType() << " " << std::endl;
-	// 	i->makeSound(); //will output the cat sound!
+	// 	i->makeSound(); //will not output the cat sound!
 	// 	meta->makeSound();
 
 	// 	delete meta;
 	// 	delete i;
 	// }
 
-	// std::cout << "\n=== EX00 Test 10: WrongAnimal destructor check ===" << std::endl;
+	// std::cout << "\n=== WTest : WrongAnimal destructor check ===" << std::endl;
 	// {
 	// 	WrongAnimal* wa = new WrongCat();
-	// 	delete wa; // WrongCatのデストラクタが呼ばれない可能性確認
+	// 	delete wa; // cant destruct
 	// }
 
 	return 0;
