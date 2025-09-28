@@ -18,7 +18,7 @@ int main()
 {
 	// std::cout << "=== EX02 Test 1: Abstract class check ===" << std::endl;
 	// {
-	// 	Animal a; // ← コンパイルエラーになるはず
+	// 	Animal a; // cant compile
 	// }
 
 	std::cout << "\n=== EX02 Test 2: Polymorphism ===" << std::endl;
