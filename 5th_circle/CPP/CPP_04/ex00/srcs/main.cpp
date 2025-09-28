@@ -19,23 +19,6 @@
 
 int main()
 {
-	std::cout << "\n=== in Subject test ===" << std::endl;
-	{
-		const Animal* meta = new Animal();
-		const Animal* j = new Dog();
-		const Animal* i = new Cat();
-		std::cout << j->getType() << " " << std::endl;
-		std::cout << i->getType() << " " << std::endl;
-		i->makeSound(); //will output the cat sound!
-		j->makeSound();
-		meta->makeSound();
-
-		//my_add_for_leak
-		delete meta;
-		delete j;
-		delete i;
-	}
-
 	std::cout << "\n=== Test 1: Animal class ===" << std::endl;
 	{
 		const Animal* meta = new Animal();
@@ -91,23 +74,46 @@ int main()
 		delete a; // all destruct
 	}
 
-	// std::cout << "\n=== WTest : wrong Subject test ===" << std::endl;
-	// {
-	// 	const WrongAnimal* meta = new WrongAnimal();
-	// 	const WrongAnimal* i = new WrongCat();
-	// 	std::cout << i->getType() << " " << std::endl;
-	// 	i->makeSound(); //will not output the cat sound!
-	// 	meta->makeSound();
+	std::cout << "\n=== in Subject test ===" << std::endl;
+	{
+		const Animal* meta = new Animal();
+		const Animal* j = new Dog();
+		const Animal* i = new Cat();
+		std::cout << j->getType() << " " << std::endl;
+		std::cout << i->getType() << " " << std::endl;
+		i->makeSound(); //will output cat
+		j->makeSound();
+		meta->makeSound();
 
-	// 	delete meta;
-	// 	delete i;
-	// }
+		//my_add_for_leak
+		delete meta;
+		delete j;
+		delete i;
+	}
 
-	// std::cout << "\n=== WTest : WrongAnimal destructor check ===" << std::endl;
-	// {
-	// 	WrongAnimal* wa = new WrongCat();
-	// 	delete wa; // cant destruct
-	// }
+	std::cout << "\n=== WTest : wrong Subject test ===" << std::endl;
+	{
+		const WrongAnimal* meta = new WrongAnimal();
+		const WrongAnimal* i = new WrongCat();
+		std::cout << i->getType() << " " << std::endl;
+		i->makeSound(); //will not output the cat sound!
+		meta->makeSound();
+
+		delete meta;
+		delete i;
+	}
+
+	std::cout << "\n=== Test ===" << std::endl;
+	{
+		Animal* wa = new Cat();
+		delete wa; // can destruct
+	}
+
+	std::cout << "\n=== WTest : WrongAnimal destructor check ===" << std::endl;
+	{
+		WrongAnimal* wa = new WrongCat();
+		delete wa; // cant destruct
+	}
 
 	return 0;
 }
