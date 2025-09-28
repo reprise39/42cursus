@@ -6,7 +6,7 @@
 /*   By: mkuida <reprise39@yahoo.co.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/25 10:53:14 by mkuida            #+#    #+#             */
-/*   Updated: 2025/09/25 11:22:22 by mkuida           ###   ########.fr       */
+/*   Updated: 2025/09/28 14:19:59 by mkuida           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,13 +21,14 @@ class Brain
 		Brain();
 		Brain(const Brain &c);
 		~Brain();
-
-		std::string printMyClass() const;
 		Brain& operator=(const Brain& other);
 
-		std::string _Idea[100];
+		void setIdea(const int inum , const std::string &str);
+		std::string getIdea(const int inum) const;
+		std::string printMyClass() const;
 		
-	private:
+	protected:
+		std::string _Idea[100];
 };
 
 #endif

@@ -77,13 +77,25 @@ int main()
 	std::cout << "\n=== Test 6: Canonical Brain ===" << std::endl;
 	{
 		Brain b1;
-			b1._Idea[22] = "check copy";
-			b1._Idea[42] = "42-tokyo";
-		Brain b2(b1);
-		Brain b3;
-		b3 = b1;
+			b1.setIdea(22,"check copy");
+			b1.setIdea(42,"42-tokyo");
 
-		std::cout << b2._Idea[22] << std::endl;
-		std::cout << b3._Idea[42] << std::endl;
+			Brain b2(b1);
+			b2.setIdea(62,"brain cp");
+
+		Brain b3;
+			b3 = b1;
+
+		std::cout << "b1-22 : " << b1.getIdea(22) << std::endl;
+		std::cout << "b1-42 : " << b1.getIdea(42) << std::endl;
+		std::cout << "b1-62 : " << b1.getIdea(62) << std::endl << std::endl;
+
+		std::cout << "b2-22 : " << b2.getIdea(22) << std::endl;
+		std::cout << "b2-42 : " << b2.getIdea(42) << std::endl;
+		std::cout << "b2-62 : " << b2.getIdea(62) << std::endl << std::endl;
+
+		std::cout << "b3-22 : " << b3.getIdea(22) << std::endl;
+		std::cout << "b3-42 : " << b3.getIdea(42) << std::endl;
+		std::cout << "b3-62 : " << b3.getIdea(62) << std::endl << std::endl;
 	}
 }

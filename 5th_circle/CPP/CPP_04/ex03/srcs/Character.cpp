@@ -37,6 +37,10 @@ Character::Character(std::string const & name) : _name(name)
 
 Character::Character(const Character& other)
 {
+	for(int i = 0 ; i < 4 ; i++)
+	{
+		this->_inventory[i] = NULL;
+	}
 	*this = other;
 	std::cout 
 		<< blue << this->printMyClass()
