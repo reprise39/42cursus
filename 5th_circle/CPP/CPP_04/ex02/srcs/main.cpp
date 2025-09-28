@@ -16,12 +16,12 @@
 
 int main()
 {
-	// std::cout << "=== EX02 Test 1: Abstract class check ===" << std::endl;
+	// std::cout << "===Test 0:class check ===" << std::endl;
 	// {
 	// 	Animal a; // cant compile
 	// }
 
-	std::cout << "\n=== EX02 Test 2: Polymorphism ===" << std::endl;
+	std::cout << "\n===Test 1: Polymorphism ===" << std::endl;
 	{
 		const Animal* d = new Dog();
 		const Animal* c = new Cat();
@@ -31,7 +31,7 @@ int main()
 		delete c;
 	}
 
-	std::cout << "\n=== EX02 Test 2: Polymorphism ===" << std::endl;
+	std::cout << "\n===Test 2: Polymorphism ===" << std::endl;
 	{
 		const Animal* c = new Cat();
 		c->makeSound();
