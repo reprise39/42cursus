@@ -1,0 +1,67 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   Bureaucrat.hpp                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mkuida <reprise39@yahoo.co.jp>             +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/10/15 11:44:11 by mkuida            #+#    #+#             */
+/*   Updated: 2025/10/23 16:12:24 by mkuida           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#ifndef BUREAUCRAT_HPP
+# define BUREAUCRAT_HPP
+
+//include inb
+# include "sio.hpp"
+
+//def macro
+//1 is upperest
+# define MAX_GRADE 1
+# define MIN_GRADE 150
+
+
+//def myClass
+class Bureaucrat
+{
+	public:
+		Bureaucrat(std::string name, int my_grade);
+		Bureaucrat(int my_grade, std::string name);
+		Bureaucrat(int my_grade);
+		Bureaucrat(const Bureaucrat& other);
+		~Bureaucrat();
+
+		const std::string& getName() const;
+		int getGrade() const;
+
+		void GradeUp();
+		void GradeDown();
+
+		// for be canonical
+		Bureaucrat& operator=(const Bureaucrat& other);
+		
+		// for print
+		const std::string strMyClass();
+
+		// exception class
+		class GradeTooHighException : public std::exception
+		{
+			public:
+				const char* what() const throw();
+		};
+	
+		class GradeTooLowException : public std::exception
+		{
+			public:
+				const char* what() const throw();
+		};
+
+	protected:
+		std::string _name;
+		int _grade;
+};
+
+std::ostream& operator <<(std::ostream& os, const Bureaucrat& b);
+
+#endif
