@@ -13,6 +13,17 @@
 #include "Bureaucrat.hpp"
 #include "Form.hpp"
 
+Bureaucrat::Bureaucrat() : _name(B_DEFO_NAME) , _grade(B_DEFO_GRADE)
+{
+	if(B_DEFO_GRADE < MAX_GRADE)
+		throw (Bureaucrat::GradeTooHighException());
+	if(B_DEFO_GRADE > MIN_GRADE)
+		throw (Bureaucrat::GradeTooLowException());
+
+	std::cout << blue
+		<< Bureaucrat::strMyClass() << strConstMsg() << *this << reset << std::endl;
+}
+
 Bureaucrat::Bureaucrat(std::string my_name, int my_grade) : _name(my_name) , _grade(my_grade)
 {
 	if(my_grade < MAX_GRADE)

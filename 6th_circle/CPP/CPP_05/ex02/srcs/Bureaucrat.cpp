@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "Bureaucrat.hpp"
+#include "AForm.hpp"
 
 Bureaucrat::Bureaucrat() : _name(B_DEFO_NAME) , _grade(B_DEFO_GRADE)
 {
@@ -31,7 +32,8 @@ Bureaucrat::Bureaucrat(std::string my_name, int my_grade) : _name(my_name) , _gr
 		throw (Bureaucrat::GradeTooLowException());
 
 	std::cout << blue
-		<< Bureaucrat::strMyClass() << strConstMsg() << *this << reset << std::endl;
+		<< Bureaucrat::strMyClass() << strConstMsg() << "name = " << getName() << ", " << "grade = " << getGrade()
+		<< reset << std::endl;
 }
 
 Bureaucrat::Bureaucrat(int my_grade, std::string my_name) : _name(my_name) , _grade(my_grade)
@@ -42,7 +44,8 @@ Bureaucrat::Bureaucrat(int my_grade, std::string my_name) : _name(my_name) , _gr
 		throw (Bureaucrat::GradeTooLowException());
 
 	std::cout << blue
-		<< Bureaucrat::strMyClass() << strConstMsg() << *this << reset << std::endl;
+		<< Bureaucrat::strMyClass() << strConstMsg() << "name = " << getName() << ", " << "grade = " << getGrade()
+		<< reset << std::endl;
 	}
 
 Bureaucrat::Bureaucrat(int my_grade) : _name("no_name") , _grade(my_grade)
@@ -53,7 +56,8 @@ Bureaucrat::Bureaucrat(int my_grade) : _name("no_name") , _grade(my_grade)
 		throw (Bureaucrat::GradeTooLowException());
 
 	std::cout << blue
-		<< Bureaucrat::strMyClass() << strConstMsg() << *this << reset << std::endl;
+		<< Bureaucrat::strMyClass() << strConstMsg() << "name = " << getName() << ", " << "grade = " << getGrade()
+		<< reset << std::endl;
 }
 
 Bureaucrat::Bureaucrat(const Bureaucrat& other)
@@ -61,13 +65,25 @@ Bureaucrat::Bureaucrat(const Bureaucrat& other)
 	*this = other;
 
 	std::cout << blue
-		<< Bureaucrat::strMyClass() << strConstMsg() << *this << reset << std::endl;
+		<< Bureaucrat::strMyClass() << strConstMsg() << "name = " << getName() << ", " << "grade = " << getGrade()
+		<< reset << std::endl;
 }
 
 Bureaucrat::~Bureaucrat()
 {
 	std::cout << red 
-		<< Bureaucrat::strMyClass() << strDestMsg() << *this << reset << std::endl;
+		<< Bureaucrat::strMyClass() << strDestMsg() << "name = " << getName() << ", " << "grade = " << getGrade()
+		<< reset << std::endl;
+}
+
+void Bureaucrat::signForm(Form& f) const
+{
+	f.beSigned(*this);
+}
+
+void Bureaucrat::executeForm(const Form& f) const
+{
+	f.execute(*this);
 }
 
 const std::string& Bureaucrat::getName() const
@@ -117,15 +133,16 @@ Bureaucrat& Bureaucrat::operator=(const Bureaucrat& other)
 
 const char* Bureaucrat::GradeTooHighException::what() const throw()
 {
-	return ("Grade is too High");
+	return ("Bureaucrat Grade is too High");
 }
 
 const char* Bureaucrat::GradeTooLowException::what() const throw()
 {
-	return ("Grade is too Low");
+	return ("Bureaucrat Grade is too Low");
 }
 
 std::ostream& operator <<(std::ostream& os, const Bureaucrat& b)
 {
 	return (os << b.getName() << ", bureaucrat grade" << b.getGrade());
 }
+

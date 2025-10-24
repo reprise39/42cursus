@@ -6,7 +6,7 @@
 /*   By: mkuida <reprise39@yahoo.co.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/23 14:05:32 by mkuida            #+#    #+#             */
-/*   Updated: 2025/10/24 13:15:19 by mkuida           ###   ########.fr       */
+/*   Updated: 2025/10/24 13:47:18 by mkuida           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,7 +124,7 @@ int main()
 	}
 
 	{
-	std::cout << "\n=== 07 : sign ===" << std::endl;
+	std::cout << "\n=== 08 : sign ===" << std::endl;
 	Bureaucrat mkuida("mkuida", 42);
 	Form exam("exam", 42, 42);
 	mkuida.signForm(exam);

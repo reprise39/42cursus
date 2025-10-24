@@ -6,7 +6,7 @@
 /*   By: mkuida <reprise39@yahoo.co.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/15 11:44:11 by mkuida            #+#    #+#             */
-/*   Updated: 2025/10/24 12:46:39 by mkuida           ###   ########.fr       */
+/*   Updated: 2025/10/24 16:56:46 by mkuida           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,8 @@
 //1 is upperest
 # define MAX_GRADE 1
 # define MIN_GRADE 150
-
+# define B_DEFO_NAME "mkuida"
+# define B_DEFO_GRADE 42
 
 class Form;
 
@@ -29,6 +30,7 @@ class Form;
 class Bureaucrat
 {
 	public:
+		Bureaucrat();
 		Bureaucrat(std::string name, int my_grade);
 		Bureaucrat(int my_grade, std::string name);
 		Bureaucrat(int my_grade);

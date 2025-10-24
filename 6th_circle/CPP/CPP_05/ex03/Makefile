@@ -10,7 +10,7 @@
 #                                                                              #
 # **************************************************************************** #
 
-NAME := ex02
+NAME := ex03
 
 CXX := c++
 CXXFLAGS := -Wall -Wextra -Werror -std=c++98 -pedantic
@@ -27,6 +27,7 @@ SRC_FILES := 	Bureaucrat.cpp\
 				ShrubberyCreationForm.cpp\
 				PresidentialPardonForm.cpp\
 				RobotomyRequestForm.cpp\
+				Intern.cpp\
 				main.cpp
 
 SRCS := $(addprefix $(SRC_DIR)/, $(SRC_FILES))

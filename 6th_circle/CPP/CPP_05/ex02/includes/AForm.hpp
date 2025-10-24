@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Form.hpp                                           :+:      :+:    :+:   */
+/*   AForm.hpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mkuida <reprise39@yahoo.co.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/23 17:09:59 by mkuida            #+#    #+#             */
-/*   Updated: 2025/10/24 16:59:10 by mkuida           ###   ########.fr       */
+/*   Updated: 2025/10/24 17:02:41 by mkuida           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,20 +28,22 @@ public:
 	Form();
 	Form(std::string name, int sGrade, int eGrade);
 	Form(const Form &other);
-	~Form();
+	virtual ~Form();
 
-	void beSigned(const Bureaucrat &b);
-
+	void beSigned(const Bureaucrat& b);
+	void execute(const Bureaucrat& excuter) const;
+	virtual void unqBehave() const = 0;
+	
 	std::string getName() const throw();
 	bool getIsSign() const throw();
 	int getGradeToSign() const throw();
 	int getGradeToExecute() const throw();
-
+	
 	// for be canonical
 	Form &operator=(const Form &other);
 
 	// for print
-	const std::string strMyClass();
+	virtual const std::string strMyClass();
 
 	// exception
 	class GradeTooHighException : public std::exception
@@ -51,6 +53,12 @@ public:
 	};
 
 	class GradeTooLowException : public std::exception
+	{
+		public :
+			const char *what() const throw();
+	};
+	
+	class NoSignException : public std::exception
 	{
 		public :
 			const char *what() const throw();

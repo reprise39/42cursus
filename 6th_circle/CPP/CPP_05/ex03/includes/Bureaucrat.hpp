@@ -6,7 +6,7 @@
 /*   By: mkuida <reprise39@yahoo.co.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/15 11:44:11 by mkuida            #+#    #+#             */
-/*   Updated: 2025/10/24 16:54:23 by mkuida           ###   ########.fr       */
+/*   Updated: 2025/10/24 16:56:55 by mkuida           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 //include inb
 # include "sio.hpp"
+# include "AForm.hpp"
 
 //def macro
 //1 is upperest
@@ -22,6 +23,8 @@
 # define MIN_GRADE 150
 # define B_DEFO_NAME "mkuida"
 # define B_DEFO_GRADE 42
+
+class Form;
 
 //def myClass
 class Bureaucrat
@@ -33,6 +36,9 @@ class Bureaucrat
 		Bureaucrat(int my_grade);
 		Bureaucrat(const Bureaucrat& other);
 		~Bureaucrat();
+
+		void signForm(Form& f) const;
+		void executeForm(const Form& f) const;
 
 		const std::string& getName() const;
 		int getGrade() const;
