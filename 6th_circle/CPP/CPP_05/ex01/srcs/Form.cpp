@@ -6,7 +6,7 @@
 /*   By: mkuida <reprise39@yahoo.co.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/23 17:28:30 by mkuida            #+#    #+#             */
-/*   Updated: 2025/10/23 18:47:49 by mkuida           ###   ########.fr       */
+/*   Updated: 2025/10/24 13:15:43 by mkuida           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,26 +14,47 @@
 
 Form::Form(std::string name, int sGrade, int eGrade) : _name(name), _isSigned(false), _gradeToSign(sGrade), _gradeToExecute(eGrade)
 {
-	if(sGrade < MAX_GRADE || eGrade < MAX_GRADE)
-		throw (Form::GradeTooHighException());
-	if(sGrade > MIN_GRADE || eGrade > MIN_GRADE)
-		throw (Form::GradeTooLowException());
+	if (sGrade < MAX_GRADE || eGrade < MAX_GRADE)
+		throw(Form::GradeTooHighException());
+	if (sGrade > MIN_GRADE || eGrade > MIN_GRADE)
+		throw(Form::GradeTooLowException());
 
 	std::cout << blue
-		<< strMyClass() << strConstMsg() << *this << reset << std::endl;
+			  << strMyClass() << strConstMsg() << *this << reset << std::endl;
 }
-Form::Form(const Form& other)
+Form::Form(const Form &other)
 {
 	*this = other;
 
 	std::cout << blue
-		<< strMyClass() << strConstMsg() << *this << reset << std::endl;
+			  << strMyClass() << strConstMsg() << *this << reset << std::endl;
 }
 
 Form::~Form()
 {
 	std::cout << red
-		<< strMyClass() << strDestMsg() << *this << reset << std::endl;	
+			  << strMyClass() << strDestMsg() << *this << reset << std::endl;
+}
+
+void Form::beSigned(const Bureaucrat &b)
+{
+	try
+	{
+		if(this->getGradeToSign() < b.getGrade())
+		{
+			throw(Form::GradeTooLowException());
+		}
+		this->_isSigned = true;
+		std::cout << b.getName() << " signed " << this->getName() << std::endl;
+	}
+	catch(Form::GradeTooLowException& e)
+	{
+		std::cout << b.getName() << " couldn’t sign " << this->getName() << " because " << e.what() << std::endl;		
+	}
+	catch(std::exception& e)
+	{
+		std::cout << b.getName() << " couldn’t sign " << this->getName() << " because " << e.what() << std::endl;
+	}
 }
 
 std::string Form::getName() const throw()
@@ -46,47 +67,50 @@ bool Form::getIsSign() const throw()
 	return (_isSigned);
 }
 
-int getGradeToSign() const throw()
+int Form::getGradeToSign() const throw()
 {
 	return (_gradeToSign);
 }
 
-int getGradeToExecute() const throw()
+int Form::getGradeToExecute() const throw()
 {
-	return (_gradeToExcute);
+	return (_gradeToExecute);
 }
 
 // for be canonical
-Form& operator=(const Form& other)
+Form &Form::operator=(const Form &other)
 {
-	if(*this != other)
+	if (this != &other)
 	{
 		this->_name = other.getName();
-		this->_isSigned = other.getIsSigned();
+		this->_isSigned = other.getIsSign();
 		this->_gradeToSign = other.getGradeToSign();
-		this->_gradeToExcute = other.getGradeToExecute();
+		this->_gradeToExecute = other.getGradeToExecute();
 	}
 	return (*this);
 }
 
 // for print
-const std::string strMyClass()
+const std::string Form::strMyClass()
 {
 	return ("<class : Bureaucrat> ");
 }
 
-//exception
-const char* Form::GradeTooHighException::what() const throw()
+// exception
+const char *Form::GradeTooHighException::what() const throw()
 {
 	return ("Form Grade is too High");
 }
 
-const char* Form::GradeTooLowException::what() const throw()
+const char *Form::GradeTooLowException::what() const throw()
 {
 	return ("Form Grade is too Low");
 }
 
-std::ostream& operator<<(std::ostream& os, const Form& f)
+std::ostream &operator<<(std::ostream &os, const Form &f)
 {
-	return (os << f.getName() << ", Form sign-grade = " << f.getGradeToSign << ", Form ex-grade = " << f.getGradeToExecute);
+	std::ostringstream adstr;
+	adstr << f.getName() << ", Form sign-grade = " << f.getGradeToSign() << ", Form ex-grade = " << f.getGradeToExecute();
+
+	return (os << adstr.str());
 }

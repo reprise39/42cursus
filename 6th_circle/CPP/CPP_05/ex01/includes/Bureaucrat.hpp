@@ -6,7 +6,7 @@
 /*   By: mkuida <reprise39@yahoo.co.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/15 11:44:11 by mkuida            #+#    #+#             */
-/*   Updated: 2025/10/23 16:12:24 by mkuida           ###   ########.fr       */
+/*   Updated: 2025/10/24 12:46:39 by mkuida           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,15 @@
 
 //include inb
 # include "sio.hpp"
+# include "Form.hpp"
 
 //def macro
 //1 is upperest
 # define MAX_GRADE 1
 # define MIN_GRADE 150
 
+
+class Form;
 
 //def myClass
 class Bureaucrat
@@ -31,6 +34,8 @@ class Bureaucrat
 		Bureaucrat(int my_grade);
 		Bureaucrat(const Bureaucrat& other);
 		~Bureaucrat();
+
+		void signForm(Form& f) const;
 
 		const std::string& getName() const;
 		int getGrade() const;

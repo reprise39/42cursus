@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "Bureaucrat.hpp"
+#include "Form.hpp"
 
 Bureaucrat::Bureaucrat(std::string my_name, int my_grade) : _name(my_name) , _grade(my_grade)
 {
@@ -63,6 +64,12 @@ Bureaucrat::~Bureaucrat()
 		<< Bureaucrat::strMyClass() << strDestMsg() << "name = " << getName() << ", " << "grade = " << getGrade()
 		<< reset << std::endl;
 }
+
+void Bureaucrat::signForm(Form& f) const
+{
+	f.beSigned(*this);
+}
+
 
 const std::string& Bureaucrat::getName() const
 {

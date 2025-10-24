@@ -6,33 +6,33 @@
 /*   By: mkuida <reprise39@yahoo.co.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/23 14:05:32 by mkuida            #+#    #+#             */
-/*   Updated: 2025/10/23 17:02:16 by mkuida           ###   ########.fr       */
+/*   Updated: 2025/10/24 13:15:19 by mkuida           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Bureaucrat.hpp"
+#include "Form.hpp"
 
 int main()
 {
-	std::cout << "\n=== 00 : basic Bureaucrat ===" << std::endl;
+	std::cout << "\n=== 00 : basic Form ===" << std::endl;
 	try
 	{
-		Bureaucrat a("Alice", 42);
-		std::cout << "Created: " << a << std::endl;
+		Form f("FormA", 42, 75); // (name,sign,excute)
+		std::cout << "Created: " << f << std::endl;
 	}
 	catch (const std::exception &e)
 	{
-		std::cout << "Unexpected exception while creating Alice: " << e.what() << std::endl;
+		std::cout << "Unexpected exception while creating FormA: " << e.what() << std::endl;
 	}
 
-	std::cout << "\n=== 01 : Bureaucrat toohigh Grade ===" << std::endl;
+	std::cout << "\n=== 01 : too high sign grade ===" << std::endl;
 	try
 	{
-		Bureaucrat tooHigh("TooHigh", 0); //
-		(void)tooHigh;
-		std::cout << "ERROR: constructing TooHigh should have thrown." << std::endl;
+		Form f("TooHighSign", 0, 50); // !!!
+		std::cout << "ERROR: constructing TooHighSign should have thrown." << std::endl;
 	}
-	catch (const Bureaucrat::GradeTooHighException &e)
+	catch (const Form::GradeTooHighException &e)
 	{
 		std::cout << "Caught GradeTooHighException as expected: " << e.what() << std::endl;
 	}
@@ -41,79 +41,95 @@ int main()
 		std::cout << "Caught other exception (unexpected): " << e.what() << std::endl;
 	}
 
-	std::cout << "\n=== 02 : Bureaucrat toolow Grade===" << std::endl;
+	std::cout << "\n=== 02 : too low sign grade ===" << std::endl;
 	try
 	{
-		Bureaucrat tooLow("TooLow", 151);
-		(void)tooLow;
-		std::cout << "ERROR: constructing TooLow should have thrown." << std::endl;
+		Form f("TooLowSign", 151, 100); // !!!
+		std::cout << "ERROR: constructing TooLowSign should have thrown." << std::endl;
 	}
-	catch (const Bureaucrat::GradeTooLowException &e)
+	catch (const Form::GradeTooLowException &e)
 	{
 		std::cout << "Caught GradeTooLowException as expected: " << e.what() << std::endl;
 	}
-	catch (const std::exception &e) {
+	catch (const std::exception &e)
+	{
 		std::cout << "Caught other exception (unexpected): " << e.what() << std::endl;
 	}
 
-	std::cout << "\n=== 03 : Grade up ===" << std::endl;
+	std::cout << "\n=== 03 : too high execute grade ===" << std::endl;
 	try
 	{
-		Bureaucrat bob("Bob", 2);
-		std::cout << "Initial: " << bob << std::endl;
-
-		bob.GradeUp();
-		std::cout << "After increment: " << bob << std::endl;
-
-		std::cout << "Attempting one more increment (should throw)..." << std::endl;
-		bob.GradeUp(); //!!!
-		std::cout << "ERROR: increment did not throw when expected." << std::endl;
+		Form f("TooHighExec", 100, 0); //
+		std::cout << "ERROR: constructing TooHighExec should have thrown." << std::endl;
 	}
-	catch (const Bureaucrat::GradeTooHighException &e)
+	catch (const Form::GradeTooHighException &e)
 	{
-		std::cout << "Caught GradeTooHighException during increment test: " << e.what() << std::endl;
+		std::cout << "Caught GradeTooHighException as expected: " << e.what() << std::endl;
 	}
 	catch (const std::exception &e)
 	{
-		std::cout << "Caught other exception during increment test: " << e.what() << std::endl;
+		std::cout << "Caught other exception (unexpected): " << e.what() << std::endl;
 	}
 
-	std::cout << "\n=== 04 : Grade down ===" << std::endl;
+	std::cout << "\n=== 04 : too low execute grade ===" << std::endl;
 	try
 	{
-		Bureaucrat carol("Carol", 149);
-		std::cout << "Initial: " << carol << std::endl;
-
-		carol.GradeDown();
-		std::cout << "After decrement: " << carol << std::endl;
-
-		std::cout << "Attempting one more decrement (should throw)..." << std::endl;
-		carol.GradeDown(); // !!!
-		std::cout << "ERROR: decrement did not throw when expected." << std::endl;
+		Form f("TooLowExec", 100, 151); // 
+		std::cout << "ERROR: constructing TooLowExec should have thrown." << std::endl;
 	}
-	catch (const Bureaucrat::GradeTooLowException &e)
+	catch (const Form::GradeTooLowException &e)
 	{
-		std::cout << "Caught GradeTooLowException during decrement test: " << e.what() << std::endl;
+		std::cout << "Caught GradeTooLowException as expected: " << e.what() << std::endl;
 	}
 	catch (const std::exception &e)
 	{
-		std::cout << "Caught other exception during decrement test: " << e.what() << std::endl;
+		std::cout << "Caught other exception (unexpected): " << e.what() << std::endl;
 	}
 
-	std::cout << "\n=== 05 : Canonical ===" << std::endl;
+	std::cout << "\n=== 05 : Canonical form ===" << std::endl;
 	try
 	{
-		Bureaucrat original("Original", 50);
-		Bureaucrat copy = original;
-		std::cout << "Original: " << original << " | Copy: " << copy << std::endl;
+		Form original("OriginalForm", 50, 75);
+		std::cout << "Original: " << original << std::endl;
 
-		original.GradeUp(); // original -> 49
-		std::cout << "After original.increment(): Original: " << original << " | Copy: " << copy << std::endl;
+		Form copy = original; // copy
+		std::cout << "Copy: " << copy << std::endl;
+
+		Form assigned("Temp", 100, 100);
+		assigned = original; // operator = 
+		std::cout << "Assigned: " << assigned << std::endl;
 	}
 	catch (const std::exception &e)
 	{
-		std::cout << "Exception during copy test: " << e.what() << std::endl;
+		std::cout << "Exception during copy/assign test: " << e.what() << std::endl;
 	}
 
+	std::cout << "\n=== 06 : operator<< output check ===" << std::endl;
+	try
+	{
+		Form form("DisplayForm", 42, 24);
+		std::cout << form << std::endl;
+	}
+	catch (const std::exception &e)
+	{
+		std::cout << "Exception during display test: " << e.what() << std::endl;
+	}
+
+	{
+	std::cout << "\n=== 07 : sign ===" << std::endl;
+	Bureaucrat mkuida("mkuida", 43);
+	Form exam("exam", 42, 42);
+	mkuida.signForm(exam);
+	exam.beSigned(mkuida);
+	}
+
+	{
+	std::cout << "\n=== 07 : sign ===" << std::endl;
+	Bureaucrat mkuida("mkuida", 42);
+	Form exam("exam", 42, 42);
+	mkuida.signForm(exam);
+	exam.beSigned(mkuida);
+	}
+	
 	return 0;
 }

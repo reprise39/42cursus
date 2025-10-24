@@ -20,8 +20,7 @@ Bureaucrat::Bureaucrat(std::string my_name, int my_grade) : _name(my_name) , _gr
 		throw (Bureaucrat::GradeTooLowException());
 
 	std::cout << blue
-		<< Bureaucrat::strMyClass() << strConstMsg() << "name = " << getName() << ", " << "grade = " << getGrade()
-		<< reset << std::endl;
+		<< Bureaucrat::strMyClass() << strConstMsg() << *this << reset << std::endl;
 }
 
 Bureaucrat::Bureaucrat(int my_grade, std::string my_name) : _name(my_name) , _grade(my_grade)
@@ -32,8 +31,7 @@ Bureaucrat::Bureaucrat(int my_grade, std::string my_name) : _name(my_name) , _gr
 		throw (Bureaucrat::GradeTooLowException());
 
 	std::cout << blue
-		<< Bureaucrat::strMyClass() << strConstMsg() << "name = " << getName() << ", " << "grade = " << getGrade()
-		<< reset << std::endl;
+		<< Bureaucrat::strMyClass() << strConstMsg() << *this << reset << std::endl;
 	}
 
 Bureaucrat::Bureaucrat(int my_grade) : _name("no_name") , _grade(my_grade)
@@ -44,8 +42,7 @@ Bureaucrat::Bureaucrat(int my_grade) : _name("no_name") , _grade(my_grade)
 		throw (Bureaucrat::GradeTooLowException());
 
 	std::cout << blue
-		<< Bureaucrat::strMyClass() << strConstMsg() << "name = " << getName() << ", " << "grade = " << getGrade()
-		<< reset << std::endl;
+		<< Bureaucrat::strMyClass() << strConstMsg() << *this << reset << std::endl;
 }
 
 Bureaucrat::Bureaucrat(const Bureaucrat& other)
@@ -53,15 +50,13 @@ Bureaucrat::Bureaucrat(const Bureaucrat& other)
 	*this = other;
 
 	std::cout << blue
-		<< Bureaucrat::strMyClass() << strConstMsg() << "name = " << getName() << ", " << "grade = " << getGrade()
-		<< reset << std::endl;
+		<< Bureaucrat::strMyClass() << strConstMsg() << *this << reset << std::endl;
 }
 
 Bureaucrat::~Bureaucrat()
 {
 	std::cout << red 
-		<< Bureaucrat::strMyClass() << strDestMsg() << "name = " << getName() << ", " << "grade = " << getGrade()
-		<< reset << std::endl;
+		<< Bureaucrat::strMyClass() << strDestMsg() << *this << reset << std::endl;
 }
 
 const std::string& Bureaucrat::getName() const
