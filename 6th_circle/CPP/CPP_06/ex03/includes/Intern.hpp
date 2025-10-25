@@ -1,43 +1,44 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   Intern.hpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mkuida <reprise39@yahoo.co.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/23 14:05:32 by mkuida            #+#    #+#             */
-/*   Updated: 2025/10/24 20:33:23 by mkuida           ###   ########.fr       */
+/*   Created: 2025/10/24 20:46:26 by mkuida            #+#    #+#             */
+/*   Updated: 2025/10/24 22:11:14 by mkuida           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Bureaucrat.hpp"
-#include "AForm.hpp"
+#ifndef INTERN_HPP
+# define INTERN_HPP
+
+#include <string>
 #include "ShrubberyCreationForm.hpp"
 #include "PresidentialPardonForm.hpp"
 #include "RobotomyRequestForm.hpp"
+#include "AForm.hpp"
 
-int main()
+class Form;
+
+class Intern
 {
-	srand(time(0));
+	public:
+		Intern();
+		Intern(const Intern& cp);
+		~Intern();
+		Intern& operator=(const Intern& cp);
 
-	Bureaucrat ore("ore", 1);
-	ShrubberyCreationForm scform("backup");
-	PresidentialPardonForm ppform("prison break");
-	RobotomyRequestForm rrform("mkuida");
-	
-	ore.signForm(scform);
-	ore.signForm(ppform);
-	ore.signForm(rrform);
+		std::string strMyClass() const;
+
+		Form* makeForm(std::string formstr, std::string tar);
+
+		class NoFormException : public std::exception
+		{
+			const char* what() const throw(); 
+		};
+};
 
 
-	ore.executeForm(scform);
-	ore.executeForm(ppform);
-	//
-	ore.executeForm(rrform);
-	ore.executeForm(rrform);
-	ore.executeForm(rrform);
-	ore.executeForm(rrform);
-	ore.executeForm(rrform);
+#endif
 
-	return 0;
-}

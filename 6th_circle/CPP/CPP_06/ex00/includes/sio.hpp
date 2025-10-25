@@ -1,18 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   sio.hpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mkuida <reprise39@yahoo.co.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/23 14:05:32 by mkuida            #+#    #+#             */
-/*   Updated: 2025/10/25 09:31:23 by mkuida           ###   ########.fr       */
+/*   Created: 2025/09/24 19:27:35 by mkuida            #+#    #+#             */
+/*   Updated: 2025/10/23 13:57:14 by mkuida           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ScalarConverter.hpp"
+#ifndef SIO_HPP
+# define SIO_HPP
 
-int main()
-{
-	return 0;
-}
+# include <iostream>
+
+std::ostream& red(std::ostream& os);
+std::ostream& yellow(std::ostream& os);
+std::ostream& blue(std::ostream& os);
+
+std::ostream& reset(std::ostream& os);
+
+std::string strConstMsg();
+std::string strDestMsg();
+
+#endif
