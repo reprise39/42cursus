@@ -10,35 +10,34 @@
 #                                                                              #
 # **************************************************************************** #
 
-NAME = ex01
-CC = c++
-CFLAGS = -Wall -Wextra -Werror -std=c++98 -pedantic -g
-LDFLAGS =
-INCLUDES = -I includes
+NAME := ex01
 
-SRC_DIR = ./srcs
+CXX := c++
+CXXFLAGS := -Wall -Wextra -Werror -std=c++98 -pedantic
+CPPFLAGS := -Iincludes 
+LDFLAGS :=
+LDLIBS :=
 
-SRC_FILES =	main.cpp\
-			Fixed.cpp
+SRC_DIR := ./srcs
+OBJ_DIR := ./objs
 
-SRCS = $(addprefix $(SRC_DIR)/, $(SRC_FILES))
+SRC_FILES :=	main.cpp
 
-OBJ_DIR = ./objs
-
-OBJS = $(SRCS:$(SRC_DIR)/%.cpp=$(OBJ_DIR)/%.o)
+SRCS := $(addprefix $(SRC_DIR)/, $(SRC_FILES))
+OBJS := $(SRCS:$(SRC_DIR)/%.cpp=$(OBJ_DIR)/%.o)
 
 .PHONY: all clean fclean re
 
-# defolt
+# Default target
 all: $(NAME)
 
-# make lib
+# Link
 $(NAME): $(OBJS)
-	$(CC) $(INCLUDES) -o $(NAME) $(OBJS) $(LDFLAGS)
+	$(CXX) $(LDFLAGS) -o $(NAME) $(OBJS) $(LDFLAGS)
 
-# make object files
+# Compile
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.cpp | $(OBJ_DIR)
-	$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c $< -o $@
 
 $(OBJ_DIR):
 	mkdir -p $(OBJ_DIR)

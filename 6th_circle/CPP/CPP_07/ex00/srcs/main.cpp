@@ -5,24 +5,31 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: mkuida <reprise39@yahoo.co.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/09 17:40:44 by mkuida            #+#    #+#             */
-/*   Updated: 2025/07/09 17:40:44 by mkuida           ###   ########.fr       */
+/*   Created: 2025/10/23 14:05:32 by mkuida            #+#    #+#             */
+/*   Updated: 2025/10/28 17:56:32 by mkuida           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "Fixed.hpp"
+#include "whatever.hpp"
 
-int main( void )
+// in subject main
+int main(void)
 {
-	Fixed a;
-	Fixed b( a );
-	Fixed c;
+	int a = 2;
+	int b = 3;
 
-	c = b;
+	::swap( a, b );
+	std::cout << "a = " << a << ", b = " << b << std::endl;
+	std::cout << "min( a, b ) = " << ::min( a, b ) << std::endl;
+	std::cout << "max( a, b ) = " << ::max( a, b ) << std::endl;
 
-	std::cout << a.getRawBits() << std::endl;
-	std::cout << b.getRawBits() << std::endl;
-	std::cout << c.getRawBits() << std::endl;
+	std::string c = "chaine1";
+	std::string d = "chaine2";
 
-	return 0;
+	::swap(c, d);
+	std::cout << "c = " << c << ", d = " << d << std::endl;
+	std::cout << "min( c, d ) = " << ::min( c, d ) << std::endl;
+	std::cout << "max( c, d ) = " << ::max( c, d ) << std::endl;
+
+	return (0);
 }

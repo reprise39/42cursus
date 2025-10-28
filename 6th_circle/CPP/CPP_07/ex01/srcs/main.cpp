@@ -5,32 +5,46 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: mkuida <reprise39@yahoo.co.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/09 17:40:44 by mkuida            #+#    #+#             */
-/*   Updated: 2025/07/09 17:40:44 by mkuida           ###   ########.fr       */
+/*   Created: 2025/10/23 14:05:32 by mkuida            #+#    #+#             */
+/*   Updated: 2025/10/28 20:06:08 by mkuida           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "Fixed.hpp"
+#include "iter.hpp"
 
-int main( void )
+// in subject main
+int main(void)
 {
-	Fixed a;
-	Fixed const b( 10 );
-	Fixed const c( 42.42f );
-	Fixed const d( b );
+	// int
+	std::cout << "== int test ==" <<  std::endl;
+	int dvec[] = {1, 2, 3, 4, 5};
 
-	a = Fixed( 1234.4321f );
+	::iter(dvec, 5, ::print);
+	std::cout << std::endl;
 
-	std::cout << "a is " << a << std::endl;
-	std::cout << "b is " << b << std::endl;
-	std::cout << "c is " << c << std::endl;
-	std::cout << "d is " << d << std::endl;
+	::iter(dvec, 3, ::dbl);
+	
+	::iter(dvec, 5, ::print);
+	std::cout << std::endl;
 
-	std::cout << "a is " << a.toInt() << " as integer" << std::endl;
-	std::cout << "b is " << b.toInt() << " as integer" << std::endl;
-	std::cout << "c is " << c.toInt() << " as integer" << std::endl;
-	std::cout << "d is " << d.toInt() << " as integer" << std::endl;
+	// const int
+	std::cout << "== const int test ==" <<  std::endl;
+	const int cdvec[] = {1, 2, 3, 4, 5};
 
-	return 0;
+	::iter(cdvec, 5, ::print);
+	std::cout << std::endl;
+
+	// float
+	std::cout << "== float test ==" <<  std::endl;
+	float fvec[] = {1.1, 2.0, 3.3, 4.4, 5.0};
+
+	::iter(fvec, 5, ::print);
+	std::cout << std::endl;
+
+	::iter(fvec, 4, ::dbl);
+	
+	::iter(fvec, 5, ::print);
+	std::cout << std::endl;
+
+	return (0);
 }
-
