@@ -6,7 +6,7 @@
 /*   By: mkuida <reprise39@yahoo.co.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/24 19:27:35 by mkuida            #+#    #+#             */
-/*   Updated: 2025/10/23 13:57:14 by mkuida           ###   ########.fr       */
+/*   Updated: 2025/10/25 22:21:52 by mkuida           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 # define SIO_HPP
 
 # include <iostream>
+# include <string>
+# include <sstream>
 
 std::ostream& red(std::ostream& os);
 std::ostream& yellow(std::ostream& os);

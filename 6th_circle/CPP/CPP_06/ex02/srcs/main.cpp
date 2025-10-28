@@ -6,38 +6,22 @@
 /*   By: mkuida <reprise39@yahoo.co.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/23 14:05:32 by mkuida            #+#    #+#             */
-/*   Updated: 2025/10/24 20:33:23 by mkuida           ###   ########.fr       */
+/*   Updated: 2025/10/28 13:39:08 by mkuida           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Bureaucrat.hpp"
-#include "AForm.hpp"
-#include "ShrubberyCreationForm.hpp"
-#include "PresidentialPardonForm.hpp"
-#include "RobotomyRequestForm.hpp"
+#include "Base.hpp"
 
 int main()
 {
-	srand(time(0));
+	Base* test = generate();
 
-	Bureaucrat ore("ore", 1);
-	ShrubberyCreationForm scform("backup");
-	PresidentialPardonForm ppform("prison break");
-	RobotomyRequestForm rrform("mkuida");
-	
-	ore.signForm(scform);
-	ore.signForm(ppform);
-	ore.signForm(rrform);
+	//ptr
+	identify(test);
 
+	//ref
+	identify(*test);
 
-	ore.executeForm(scform);
-	ore.executeForm(ppform);
-	//
-	ore.executeForm(rrform);
-	ore.executeForm(rrform);
-	ore.executeForm(rrform);
-	ore.executeForm(rrform);
-	ore.executeForm(rrform);
-
+	delete test;
 	return 0;
 }

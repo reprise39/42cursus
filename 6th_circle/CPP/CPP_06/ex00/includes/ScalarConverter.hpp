@@ -16,6 +16,13 @@
 //include inb
 # include "sio.hpp"
 
+#include <climits>
+#include <limits>
+
+#include <cstdlib>
+#include <iostream>
+#include <cerrno>
+
 //def macro
 
 //def myClass
@@ -29,7 +36,8 @@ class ScalarConverter
 		ScalarConverter& operator=(const ScalarConverter& other);
 
 		//
-		void convert(std::string str);
+		virtual void test() = 0;
+		static void convert(std::string str);
 
 		// for print
 		const std::string strMyClass();
@@ -46,9 +54,6 @@ class ScalarConverter
 		// 	public:
 		// 		const char* what() const throw();
 		// };
-	
 };
-
-std::ostream& operator<<(std::ostream& os, const ScalarConverter& oput);
 
 #endif

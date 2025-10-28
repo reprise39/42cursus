@@ -21,10 +21,9 @@ LDLIBS :=
 SRC_DIR := ./srcs
 OBJ_DIR := ./objs
 
-SRC_FILES := 	Bureaucrat.cpp\
+SRC_FILES := 	main.cpp\
 				sio.cpp\
-				Form.cpp\
-				main.cpp
+				Serialiser.cpp
 
 SRCS := $(addprefix $(SRC_DIR)/, $(SRC_FILES))
 OBJS := $(SRCS:$(SRC_DIR)/%.cpp=$(OBJ_DIR)/%.o)

@@ -21,13 +21,9 @@ LDLIBS :=
 SRC_DIR := ./srcs
 OBJ_DIR := ./objs
 
-SRC_FILES := 	Bureaucrat.cpp\
+SRC_FILES := 	main.cpp\
 				sio.cpp\
-				AForm.cpp\
-				ShrubberyCreationForm.cpp\
-				PresidentialPardonForm.cpp\
-				RobotomyRequestForm.cpp\
-				main.cpp
+				Base.cpp
 
 SRCS := $(addprefix $(SRC_DIR)/, $(SRC_FILES))
 OBJS := $(SRCS:$(SRC_DIR)/%.cpp=$(OBJ_DIR)/%.o)
