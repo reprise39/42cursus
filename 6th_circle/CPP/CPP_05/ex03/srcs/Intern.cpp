@@ -6,7 +6,7 @@
 /*   By: mkuida <reprise39@yahoo.co.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/24 21:20:25 by mkuida            #+#    #+#             */
-/*   Updated: 2025/10/24 22:21:47 by mkuida           ###   ########.fr       */
+/*   Updated: 2025/10/29 18:46:45 by mkuida           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ static Form* mkSCF(std::string tar)
 
 Form* Intern::makeForm(std::string formstr, std::string tar)
 {
-	Form* (*f[])(std::string)={mkPPF,mkRRF,mkSCF};
+	Form* (*f[])(std::string)={mkRRF,mkPPF,mkSCF};
 	Form* rtn = NULL;
 
 	std::string forms[3] = 
@@ -79,7 +79,7 @@ Form* Intern::makeForm(std::string formstr, std::string tar)
 		throw(Intern::NoFormException());
 	else
 	{
-		std::cout << "Intern make" << *rtn << std::endl;
+		std::cout << "Intern make -> " << *rtn << std::endl;
 		return (rtn);
 	}
 }

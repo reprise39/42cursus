@@ -6,7 +6,7 @@
 /*   By: mkuida <reprise39@yahoo.co.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/23 14:05:32 by mkuida            #+#    #+#             */
-/*   Updated: 2025/10/24 22:24:28 by mkuida           ###   ########.fr       */
+/*   Updated: 2025/10/29 18:49:48 by mkuida           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,22 +24,21 @@ int main()
 	try
 	{
 		Intern mame;
-		Form* rrf;
+		Form* f;
 		
-		rrf = mame.makeForm("robotomy requesta","skuida");
+		//"robotomy request", "presidential pardon", "shrubbery creation"
+		f = mame.makeForm("shrubbery creation","mkuida");
 	
 		
 		Bureaucrat ore("ore", 1);
-		// ShrubberyCreationForm scform("backup");
-		// PresidentialPardonForm ppform("prison break");
-		ore.signForm(*rrf);
-		ore.executeForm(*rrf);
+		ore.signForm(*f);
+		ore.executeForm(*f);
 
-		delete rrf;
+		delete f;
 	}
 	catch(std::exception &e)
 	{
-		std::cout << e.what() << std::endl;
+		std::cout << "in exception : " << e.what() << std::endl;
 	}
 	
 	return 0;
