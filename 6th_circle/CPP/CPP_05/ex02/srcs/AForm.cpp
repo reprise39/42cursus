@@ -6,7 +6,7 @@
 /*   By: mkuida <reprise39@yahoo.co.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/23 17:28:30 by mkuida            #+#    #+#             */
-/*   Updated: 2025/10/24 19:52:04 by mkuida           ###   ########.fr       */
+/*   Updated: 2025/10/29 17:45:22 by mkuida           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,10 +33,8 @@ Form::Form(std::string name, int sGrade, int eGrade) : _name(name), _isSigned(fa
 	std::cout << blue
 			  << strMyClass() << strConstMsg() << *this << reset << std::endl;
 }
-Form::Form(const Form &other)
+Form::Form(const Form &other) : _name(other.getName()), _isSigned(other.getIsSign()), _gradeToSign(other.getGradeToSign()), _gradeToExecute(other.getGradeToExecute())
 {
-	*this = other;
-
 	std::cout << blue
 			  << strMyClass() << strConstMsg() << *this << reset << std::endl;
 }
@@ -116,10 +114,7 @@ Form &Form::operator=(const Form &other)
 {
 	if (this != &other)
 	{
-		this->_name = other.getName();
 		this->_isSigned = other.getIsSign();
-		this->_gradeToSign = other.getGradeToSign();
-		this->_gradeToExecute = other.getGradeToExecute();
 	}
 	return (*this);
 }
@@ -151,7 +146,14 @@ const char *Form::NoSignException::what() const throw()
 std::ostream &operator<<(std::ostream &os, const Form &f)
 {
 	std::ostringstream adstr;
-	adstr << f.getName() << ", Form sign-grade = " << f.getGradeToSign() << ", Form ex-grade = " << f.getGradeToExecute();
+	std::string adstr2;
+	
+	if(f.getIsSign())
+		adstr2 = "(is-Signed)";
+	else
+		adstr2 = "(isNot-Signed)";
+
+	adstr << f.getName() << adstr2 <<", Form-sign-grade = " << f.getGradeToSign() << ", Form-ex-grade = " << f.getGradeToExecute();
 
 	return (os << adstr.str());
 }

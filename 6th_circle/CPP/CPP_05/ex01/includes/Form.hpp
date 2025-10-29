@@ -6,7 +6,7 @@
 /*   By: mkuida <reprise39@yahoo.co.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/23 17:09:59 by mkuida            #+#    #+#             */
-/*   Updated: 2025/10/24 16:59:10 by mkuida           ###   ########.fr       */
+/*   Updated: 2025/10/29 17:32:41 by mkuida           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,10 +57,10 @@ public:
 	};
 
 private:
-	std::string _name;
+	const std::string _name;
 	bool _isSigned;
-	int _gradeToSign;
-	int _gradeToExecute;
+	const int _gradeToSign;
+	const int _gradeToExecute;
 };
 
 std::ostream &operator<<(std::ostream &os, const Form &f);

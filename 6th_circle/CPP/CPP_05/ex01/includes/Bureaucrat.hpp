@@ -6,7 +6,7 @@
 /*   By: mkuida <reprise39@yahoo.co.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/15 11:44:11 by mkuida            #+#    #+#             */
-/*   Updated: 2025/10/24 16:56:46 by mkuida           ###   ########.fr       */
+/*   Updated: 2025/10/29 17:14:29 by mkuida           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ class Bureaucrat
 		};
 
 	protected:
-		std::string _name;
+		const std::string _name;
 		int _grade;
 };
 

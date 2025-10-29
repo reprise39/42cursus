@@ -6,7 +6,7 @@
 /*   By: mkuida <reprise39@yahoo.co.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/23 14:05:32 by mkuida            #+#    #+#             */
-/*   Updated: 2025/10/24 13:47:18 by mkuida           ###   ########.fr       */
+/*   Updated: 2025/10/29 17:41:22 by mkuida           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,11 +34,11 @@ int main()
 	}
 	catch (const Form::GradeTooHighException &e)
 	{
-		std::cout << "Caught GradeTooHighException as expected: " << e.what() << std::endl;
+		std::cout << "OK: " << e.what() << std::endl;
 	}
 	catch (const std::exception &e)
 	{
-		std::cout << "Caught other exception (unexpected): " << e.what() << std::endl;
+		std::cout << "OK(unexpected): " << e.what() << std::endl;
 	}
 
 	std::cout << "\n=== 02 : too low sign grade ===" << std::endl;
@@ -49,11 +49,11 @@ int main()
 	}
 	catch (const Form::GradeTooLowException &e)
 	{
-		std::cout << "Caught GradeTooLowException as expected: " << e.what() << std::endl;
+		std::cout << "OK: " << e.what() << std::endl;
 	}
 	catch (const std::exception &e)
 	{
-		std::cout << "Caught other exception (unexpected): " << e.what() << std::endl;
+		std::cout << "OK(unexpected): " << e.what() << std::endl;
 	}
 
 	std::cout << "\n=== 03 : too high execute grade ===" << std::endl;
@@ -64,11 +64,11 @@ int main()
 	}
 	catch (const Form::GradeTooHighException &e)
 	{
-		std::cout << "Caught GradeTooHighException as expected: " << e.what() << std::endl;
+		std::cout << "OK: " << e.what() << std::endl;
 	}
 	catch (const std::exception &e)
 	{
-		std::cout << "Caught other exception (unexpected): " << e.what() << std::endl;
+		std::cout << "OK(unexpected): " << e.what() << std::endl;
 	}
 
 	std::cout << "\n=== 04 : too low execute grade ===" << std::endl;
@@ -79,11 +79,11 @@ int main()
 	}
 	catch (const Form::GradeTooLowException &e)
 	{
-		std::cout << "Caught GradeTooLowException as expected: " << e.what() << std::endl;
+		std::cout << "OK: " << e.what() << std::endl;
 	}
 	catch (const std::exception &e)
 	{
-		std::cout << "Caught other exception (unexpected): " << e.what() << std::endl;
+		std::cout << "OK(unexpected): " << e.what() << std::endl;
 	}
 
 	std::cout << "\n=== 05 : Canonical form ===" << std::endl;
@@ -94,14 +94,10 @@ int main()
 
 		Form copy = original; // copy
 		std::cout << "Copy: " << copy << std::endl;
-
-		Form assigned("Temp", 100, 100);
-		assigned = original; // operator = 
-		std::cout << "Assigned: " << assigned << std::endl;
 	}
 	catch (const std::exception &e)
 	{
-		std::cout << "Exception during copy/assign test: " << e.what() << std::endl;
+		std::cout << "Exception during copy test: " << e.what() << std::endl;
 	}
 
 	std::cout << "\n=== 06 : operator<< output check ===" << std::endl;

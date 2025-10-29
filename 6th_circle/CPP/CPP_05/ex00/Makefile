@@ -25,8 +25,6 @@ SRC_FILES := 	Bureaucrat.cpp\
 				sio.cpp\
 				main.cpp
 
-
-
 SRCS := $(addprefix $(SRC_DIR)/, $(SRC_FILES))
 OBJS := $(SRCS:$(SRC_DIR)/%.cpp=$(OBJ_DIR)/%.o)
 
