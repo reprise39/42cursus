@@ -6,56 +6,73 @@
 /*   By: mkuida <reprise39@yahoo.co.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/29 08:48:11 by mkuida            #+#    #+#             */
-/*   Updated: 2025/10/29 09:05:22 by mkuida           ###   ########.fr       */
+/*   Updated: 2025/10/29 12:42:22 by mkuida           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Array.hpp"
 
-//structor
-template<typename T>
+// structor
+template <typename T>
 Array<T>::Array() : _slotptr(NULL), _size(0)
 {
-	std::cout << blue << "Defo-"
-		<< ScalarConverter::strMyClass() << strConstMsg() << reset << std::endl;
+	std::cout << blue
+			  << strMyClass() << "Defo-" << strConstMsg() << reset << std::endl;
 }
 
-template<typename T>
+template <typename T>
 Array<T>::Array(unsigned int n) : _slotptr(new T[n]), _size(n)
 {
-	std::cout << blue << "uInt-"
-		<< ScalarConverter::strMyClass() << strConstMsg() << reset << std::endl;	
+	std::cout << blue
+			  << strMyClass() << "uInt-" << strConstMsg() << reset << std::endl;
 }
 
-template<typename T>
-Array<T>::Array(const Array& cp)
+template <typename T>
+Array<T>::Array(const Array &cp)
 {
 	*this = cp;
 
-	std::cout << blue << "Copy-"
-		<< ScalarConverter::strMyClass() << strConstMsg() << reset << std::endl;	
+	std::cout << blue 
+			  << strMyClass() << "Copy-" << strConstMsg() << reset << std::endl;
 }
 
-template<typename T>
+template <typename T>
 Array<T>::~Array()
 {
 	delete[] (this->_slotptr);
 
-	std::cout << red << "Defo-"
-		<< ScalarConverter::strMyClass() << strDestMsg() << reset << std::endl;
+	std::cout << red
+			  << strMyClass() << "Defo-" << strDestMsg() << reset << std::endl;
 }
 
-//function
+// function
 
-template<typename T>
+template <typename T>
 size_t Array<T>::getSize()
 {
 	return (this->_size);
 }
 
-//operatir
-template<typename T>
-Array<T>& Array<T>operator=(const Array& other)
+template <typename T>
+const std::string Array<T>::strMyClass()
 {
-	
+	return ("<class : Array> ");
+}
+
+// operatir
+template <typename T>
+Array<T> &Array<T>::operator=(const Array &other)
+{
+	if (this != &other)
+	{
+		unsigned int new_size = other.getSize();
+
+		delete[] (this->_slotptr);
+		this->_slotptr = new T[new_size];
+		this->_size = new_size;
+
+		for (unsigned int i = 0; i < new_size; i++)
+			this->_slotptr[i] = other[i];
+	}
+	return (*this);
 }

@@ -11,36 +11,37 @@
 /* ************************************************************************** */
 
 #ifndef ARRAY_HPP
-# define ARRAY_HPP
+#define ARRAY_HPP
 
 // include
-# include <iostream>
+#include "sio.hpp"
 
 // macro
 
 // class
-template<typename T>
+template <typename T>
 class Array
 {
-	public:
+public:
+	// structor
+	Array();
+	Array(unsigned int n);
+	Array(const Array &cp);
+	~Array();
 
-		//structor
-		Array();
-		Array(unsigned int n);
-		Array(const Array& cp);
-		~Array();
+	// function
+	size_t getSize();
+	const std::string strMyClass();
 
-		//function
-		size_t getSize();
+	// operatir
+	Array &operator=(const Array &other);
 
-		//operatir
-		Array& operator=(const Array& other);
-
-		private:
-			T* _slotptr;
-			size_t _size;
+private:
+	T *_slotptr;
+	size_t _size;
 };
 
 // std::ostream& operator<<(std::ostream& os, const Array& Array);
+#include "../srcs/Array.tpp"
 
 #endif
