@@ -37,7 +37,7 @@ class Array
 		Array& operator=(const Array& other);
 
 		private:
-			T _slot;
+			T* _slotptr;
 			size_t _size;
 };
 
