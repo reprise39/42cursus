@@ -33,13 +33,19 @@ class Array
 		~Array();
 
 		// function
-		size_t getSize();
+		size_t getSize() const;
 		const std::string strMyClass();
 
 		// operatir
 		Array &operator=(const Array &other);
 		T operator[](size_t st)const;
 		T& operator[](size_t st);
+
+		//exception
+		class ooa_exception : public std::exception
+		{
+			const char* what() const throw();
+		};
 
 	private:
 		T *_slotptr;

@@ -6,7 +6,7 @@
 /*   By: mkuida <reprise39@yahoo.co.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/29 08:48:11 by mkuida            #+#    #+#             */
-/*   Updated: 2025/10/29 13:01:26 by mkuida           ###   ########.fr       */
+/*   Updated: 2025/10/29 14:46:11 by mkuida           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ Array<T>::~Array()
 // function
 
 template <typename T>
-size_t Array<T>::getSize()
+size_t Array<T>::getSize() const
 {
 	return (this->_size);
 }
@@ -61,7 +61,7 @@ const std::string Array<T>::strMyClass()
 
 // operatir
 template <typename T>
-Array<T> &Array<T>::operator=(const Array &other)
+Array<T> &Array<T>::operator=(const Array<T> &other)
 {
 	if (this != &other)
 	{
@@ -80,13 +80,22 @@ Array<T> &Array<T>::operator=(const Array &other)
 template<typename T>
 T Array<T>::operator[](size_t st)const
 {
-	assert (st < (this->getSize()));
+	if(st >= this->getSize())
+		throw(Array<T>::ooa_exception());
 	return (this->_slotptr[st]);
 }
 
 template <typename T>
 T& Array<T>::operator[](size_t st)
 {
-	assert(st < (this->getSize()));
+	if(st >= this->getSize())
+		throw(Array<T>::ooa_exception());
 	return (this->_slotptr[st]);
+}
+
+//exception
+template<typename T>
+const char* Array<T>::ooa_exception::what() const throw()
+{
+	return ("Error : Out of Area Access");
 }
