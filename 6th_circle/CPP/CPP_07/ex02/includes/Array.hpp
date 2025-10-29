@@ -16,29 +16,35 @@
 // include
 #include "sio.hpp"
 
+//assert
+#include <cassert>
+
 // macro
 
 // class
 template <typename T>
 class Array
 {
-public:
-	// structor
-	Array();
-	Array(unsigned int n);
-	Array(const Array &cp);
-	~Array();
+	public:
+		// structor
+		Array();
+		Array(unsigned int n);
+		Array(const Array &cp);
+		~Array();
 
-	// function
-	size_t getSize();
-	const std::string strMyClass();
+		// function
+		size_t getSize();
+		const std::string strMyClass();
 
-	// operatir
-	Array &operator=(const Array &other);
+		// operatir
+		Array &operator=(const Array &other);
+		T operator[](size_t st)const;
+		T& operator[](size_t st);
 
-private:
-	T *_slotptr;
-	size_t _size;
+	private:
+		T *_slotptr;
+		size_t _size;	
+
 };
 
 // std::ostream& operator<<(std::ostream& os, const Array& Array);

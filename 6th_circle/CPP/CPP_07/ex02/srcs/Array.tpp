@@ -6,7 +6,7 @@
 /*   By: mkuida <reprise39@yahoo.co.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/29 08:48:11 by mkuida            #+#    #+#             */
-/*   Updated: 2025/10/29 12:42:22 by mkuida           ###   ########.fr       */
+/*   Updated: 2025/10/29 13:01:26 by mkuida           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ Array<T>::Array(const Array &cp)
 {
 	*this = cp;
 
-	std::cout << blue 
+	std::cout << blue
 			  << strMyClass() << "Copy-" << strConstMsg() << reset << std::endl;
 }
 
@@ -75,4 +75,18 @@ Array<T> &Array<T>::operator=(const Array &other)
 			this->_slotptr[i] = other[i];
 	}
 	return (*this);
+}
+
+template<typename T>
+T Array<T>::operator[](size_t st)const
+{
+	assert (st < (this->getSize()));
+	return (this->_slotptr[st]);
+}
+
+template <typename T>
+T& Array<T>::operator[](size_t st)
+{
+	assert(st < (this->getSize()));
+	return (this->_slotptr[st]);
 }

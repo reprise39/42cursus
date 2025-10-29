@@ -15,7 +15,15 @@
 int main( void )
 {
 	int a[] = {1,2,3,4,5};
-	Array<int>(5);
+	Array<int> ArrayA(5);
+
+	ArrayA[0] = 0;
+	ArrayA[1] = 1;
+	ArrayA[2] = 2;
+	ArrayA[3] = 3;
+
+	std::cout << ArrayA[2]+ArrayA[3] << std::endl;
+
 	return (0);
 }
 
