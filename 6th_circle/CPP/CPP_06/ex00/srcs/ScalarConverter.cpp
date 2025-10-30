@@ -61,17 +61,12 @@ static void printdouble(double d)
 {
 	bool isinInt = false;
 	int i = 0;
-	std::cout << "printdouble: d = " << d << std::endl;
+
 	if(ft_isfinite(d) && std::numeric_limits<int>::min() <= d && std::numeric_limits<int>::max() >= d)
 	{
 		isinInt = true;
 		i = static_cast<int>(d);
 	}
-
-	if(isinInt == false)
-		std::cout << "out of int" << std::endl;
-	else
-		std::cout << "in of int" << i << std::endl;
 
 	//char
 	if(isinInt && std::isprint(static_cast<unsigned char>(d)))
@@ -85,21 +80,28 @@ static void printdouble(double d)
 	else
 		std::cout << "int: " << "Non displayable" << std::endl;
 
-	std::cout << "float:" << static_cast<float>(d) << std::endl;
-	std::cout << "double:" << static_cast<double>(d) << std::endl;
+	//float & double
+	std::cout << "float: " << std::fixed << std::setprecision(1) << static_cast<float>(d) << 'f' << std::endl;
+	std::cout << "double: " << std::fixed << std::setprecision(1) << static_cast<double>(d) << std::endl;
 }
 
 //convert
-static void getdoubleToPrint(std::string str)
+static int getdoubleToPrint(std::string str)
 {
 	char* eptr;
 	double d = strtod(str.c_str(), &eptr);
 	if(*eptr == 'd' || *eptr == 'f')
 		++eptr;
 	if(*eptr == '\0')
+	{
 		printdouble(d);
+		return (0);
+	}
 	else
+	{
 		std::cout << "convert error" << std::endl;
+		return (1);
+	}
 }
 
 static void printlong(long l)
@@ -120,20 +122,27 @@ static void printlong(long l)
 	else
 		std::cout << "int: " << "Non displayable" << std::endl;
 
-	std::cout << "float:" << static_cast<float>(l) << std::endl;
-	std::cout << "double:" << static_cast<double>(l) << std::endl;
+	//float & double
+	std::cout << "float: " << std::fixed << std::setprecision(1) << static_cast<float>(l) << 'f' << std::endl;
+	std::cout << "double: " << std::fixed << std::setprecision(1) << static_cast<double>(l) << std::endl;
 }
 
-static void getlongToPrint(std::string str)
+static int getlongToPrint(std::string str)
 {
 	char* eptr;
 	long l = strtol(str.c_str(), &eptr,10);
 	if(*eptr == 'i' || *eptr == 'l' || *eptr == 'f')
 		++eptr;
 	if(*eptr == '\0')
+	{
 		printlong(l);
+		return (0);
+	}
 	else
+	{
 		std::cout << "convert error" << std::endl;
+		return (1);
+	}
 }
 
 static bool isSpecial(std::string str)
@@ -163,24 +172,24 @@ static void printSpecial(std::string str)
 	{
 		case 0: case 1:
 		{
-			std::cout << "char: " << "imppossible" << std::endl;
-			std::cout << "int: " << "imppossible" << std::endl;
+			std::cout << "char: " << "impossible" << std::endl;
+			std::cout << "int: " << "impossible" << std::endl;
 			std::cout << "float: " << "nanf" << std::endl;
 			std::cout << "double: " << "nan" << std::endl;
 			break;
 		}
 		case 2:case 3:case 4:case 5:
 		{
-			std::cout << "char: " << "imppossible" << std::endl;
-			std::cout << "int: " << "imppossible" << std::endl;
+			std::cout << "char: " << "impossible" << std::endl;
+			std::cout << "int: " << "impossible" << std::endl;
 			std::cout << "float: " << "inf" << std::endl;
 			std::cout << "double: " << "inff" << std::endl;
 			break;
 		}
 		case 6:case 7:
 		{
-			std::cout << "char: " << "imppossible" << std::endl;
-			std::cout << "int: " << "imppossible" << std::endl;
+			std::cout << "char: " << "impossible" << std::endl;
+			std::cout << "int: " << "impossible" << std::endl;
 			std::cout << "float: " << "-inf" << std::endl;
 			std::cout << "double: " << "-inff" << std::endl;
 			break;
@@ -188,30 +197,30 @@ static void printSpecial(std::string str)
 	}
 }
 
-void ScalarConverter::convert(std::string str)
+int ScalarConverter::convert(std::string str)
 {
-	std::cout << "raw_data = " << str << std::endl;
+	int ret = 0;
 
 	if(str.length() == 1 && !isdigit(str[0]))
 	{
-		// char
+		// char(using long)
 		long l = static_cast<long>(str[0]);
 		printlong(l);
-		return;
+		return (0);
 	}
 	if(isSpecial(str) == true)
 	{
 		// special
 		printSpecial(str);
-		return;
+		return (0);
 	}
 	if(str.find('.') != std::string::npos)
 	{
 		// double or float
-		std::cout << "double" << std::endl;
-		getdoubleToPrint(str);
-		return;
+		ret = getdoubleToPrint(str);
+		return (ret);
 	}
 	// int-long
-	getlongToPrint(str);
+	ret = getlongToPrint(str);
+	return (ret);
 }

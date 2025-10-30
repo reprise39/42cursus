@@ -22,38 +22,27 @@
 #include <cstdlib>
 #include <iostream>
 #include <cerrno>
+#include <iomanip>
 
 //def macro
 
 //def myClass
 class ScalarConverter
 {
-	public:
+	private:
 		// for be canonical
 		ScalarConverter();
 		ScalarConverter(const ScalarConverter& other);
 		~ScalarConverter();
 		ScalarConverter& operator=(const ScalarConverter& other);
 
-		//
-		virtual void test() = 0;
-		static void convert(std::string str);
+	public:
+		// the subject
+		static int convert(std::string str);
 
 		// for print
-		const std::string strMyClass();
+		static const std::string strMyClass();
 
-		// exception class
-		// class GradeTooHighException : public std::exception
-		// {
-		// 	public:
-		// 		const char* what() const throw();
-		// };
-	
-		// class GradeTooLowException : public std::exception
-		// {
-		// 	public:
-		// 		const char* what() const throw();
-		// };
 };
 
 #endif

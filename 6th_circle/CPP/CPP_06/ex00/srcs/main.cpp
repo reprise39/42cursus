@@ -6,7 +6,7 @@
 /*   By: mkuida <reprise39@yahoo.co.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/23 14:05:32 by mkuida            #+#    #+#             */
-/*   Updated: 2025/10/25 21:41:52 by mkuida           ###   ########.fr       */
+/*   Updated: 2025/10/29 21:34:44 by mkuida           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ static int check_arg(int argc, char** argv)
 
 	if(argc != 2)
 	{
-		std::cerr << "input error : ./convert {one-arg} is correct" << std::endl;
+		std::cerr << red << "input error : ./convert {one-arg} is correct" << reset << std::endl;
 		return (1);
 	}
 	return (0);
@@ -31,7 +31,5 @@ int main(int argc, char** argv)
 		return (1);
 
 	std::string input(argv[1]);
-	ScalarConverter::convert(input);
-
-	return (0);
+	return (ScalarConverter::convert(input));
 }
