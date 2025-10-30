@@ -6,7 +6,7 @@
 /*   By: mkuida <reprise39@yahoo.co.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/28 17:30:17 by mkuida            #+#    #+#             */
-/*   Updated: 2025/10/28 18:04:29 by mkuida           ###   ########.fr       */
+/*   Updated: 2025/10/30 11:08:10 by mkuida           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@ void swap(T &a, T &b)
 }
 
 //for bog data : type using ref
-
 template<typename T>
 const T &min(const T &a, const T &b)
 {

@@ -6,7 +6,7 @@
 /*   By: mkuida <reprise39@yahoo.co.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/28 17:30:17 by mkuida            #+#    #+#             */
-/*   Updated: 2025/10/28 20:07:00 by mkuida           ###   ########.fr       */
+/*   Updated: 2025/10/30 11:36:55 by mkuida           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,14 +29,14 @@ void print(const T &t)
 }
 
 template<typename T>
-void iter(T a[], size_t d, void func(T&))
+void iter(T a[], size_t d, void (*func)(T&))
 {
 	for(size_t i = 0; i < d ; i++)
 		func(a[i]);
 }
 
 template<typename T>
-void iter(const T *a, size_t len, void func(const T&))
+void iter(const T *a, size_t len, void (*func)(const T&))
 {
 	for(size_t i = 0; i < len ; i++)
 		func(a[i]);

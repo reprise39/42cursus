@@ -15,9 +15,7 @@
 int main( void )
 {
 	//basic
-	int a[] = {0,1,2,3,4,5};
 	Array<int> ArrayA(6);
-
 	ArrayA[0] = 0;
 	ArrayA[1] = 1;
 	ArrayA[2] = 2;
@@ -57,7 +55,6 @@ int main( void )
 	{
 		std::cout << "<2>" << e.what() << std::endl;
 	}
-
 
 	return (0);
 }

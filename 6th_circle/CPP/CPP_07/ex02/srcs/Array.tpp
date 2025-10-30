@@ -6,7 +6,7 @@
 /*   By: mkuida <reprise39@yahoo.co.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/29 08:48:11 by mkuida            #+#    #+#             */
-/*   Updated: 2025/10/29 14:46:11 by mkuida           ###   ########.fr       */
+/*   Updated: 2025/10/30 11:55:09 by mkuida           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,9 +46,8 @@ Array<T>::~Array()
 }
 
 // function
-
 template <typename T>
-size_t Array<T>::getSize() const
+size_t Array<T>::size() const
 {
 	return (this->_size);
 }
@@ -65,7 +64,7 @@ Array<T> &Array<T>::operator=(const Array<T> &other)
 {
 	if (this != &other)
 	{
-		unsigned int new_size = other.getSize();
+		unsigned int new_size = other.size();
 
 		delete[] (this->_slotptr);
 		this->_slotptr = new T[new_size];
@@ -78,9 +77,9 @@ Array<T> &Array<T>::operator=(const Array<T> &other)
 }
 
 template<typename T>
-T Array<T>::operator[](size_t st)const
+const T& Array<T>::operator[](size_t st)const
 {
-	if(st >= this->getSize())
+	if(st >= this->size())
 		throw(Array<T>::ooa_exception());
 	return (this->_slotptr[st]);
 }
@@ -88,7 +87,7 @@ T Array<T>::operator[](size_t st)const
 template <typename T>
 T& Array<T>::operator[](size_t st)
 {
-	if(st >= this->getSize())
+	if(st >= this->size())
 		throw(Array<T>::ooa_exception());
 	return (this->_slotptr[st]);
 }

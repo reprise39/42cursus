@@ -33,12 +33,12 @@ class Array
 		~Array();
 
 		// function
-		size_t getSize() const;
+		size_t size() const;
 		const std::string strMyClass();
 
 		// operatir
 		Array &operator=(const Array &other);
-		T operator[](size_t st)const;
+		const T& operator[](size_t st)const;
 		T& operator[](size_t st);
 
 		//exception
