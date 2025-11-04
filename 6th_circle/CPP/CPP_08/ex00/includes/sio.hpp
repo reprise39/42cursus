@@ -1,36 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   FragTrap.hpp                                       :+:      :+:    :+:   */
+/*   sio.hpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mkuida <reprise39@yahoo.co.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/09/23 16:06:51 by mkuida            #+#    #+#             */
-/*   Updated: 2025/09/25 20:23:50 by mkuida           ###   ########.fr       */
+/*   Created: 2025/09/24 19:27:35 by mkuida            #+#    #+#             */
+/*   Updated: 2025/10/31 19:29:46 by mkuida           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FLAGTRAP_HPP
-# define FLAGTRAP_HPP
+#ifndef SIO_HPP
+# define SIO_HPP
 
-# include "ClapTrap.hpp"
+# include <iostream>
+# include <string>
+# include <sstream>
 
-class FragTrap : public ClapTrap
-{
-	public:
-		FragTrap();
-		FragTrap(const std::string& str);
-		FragTrap(const FragTrap& c);
-		~FragTrap();
+std::ostream& red(std::ostream& os);
+std::ostream& yellow(std::ostream& os);
+std::ostream& blue(std::ostream& os);
 
-		FragTrap&  operator=(const FragTrap& other);
+std::ostream& reset(std::ostream& os);
 
-		std::string printMyClass() const;
-		void highFivesGuys(void);
-
-	private:
-
-};
-
+std::string strConstMsg();
+std::string strDestMsg();
 
 #endif

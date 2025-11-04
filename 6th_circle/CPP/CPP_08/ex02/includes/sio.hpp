@@ -1,38 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   DiamondTrap.hpp                                    :+:      :+:    :+:   */
+/*   sio.hpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mkuida <reprise39@yahoo.co.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/09/23 17:51:56 by mkuida            #+#    #+#             */
-/*   Updated: 2025/09/25 20:53:11 by mkuida           ###   ########.fr       */
+/*   Created: 2025/09/24 19:27:35 by mkuida            #+#    #+#             */
+/*   Updated: 2025/10/25 22:21:52 by mkuida           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef DIAMONDTRAP_HPP
-# define DIAMONDTRAP_HPP
+#ifndef SIO_HPP
+# define SIO_HPP
 
-# include "FragTrap.hpp"
-# include "ScavTrap.hpp"
+# include <iostream>
+# include <string>
+# include <sstream>
 
-class DiamondTrap : public FragTrap, ScavTrap
-{
-	public:
-		DiamondTrap();
-		DiamondTrap(const std::string& str);
-		DiamondTrap(const DiamondTrap& other);
-		~DiamondTrap();
-		
-		void whoAmI();
-		std::string printMyClass() const;
+std::ostream& red(std::ostream& os);
+std::ostream& yellow(std::ostream& os);
+std::ostream& blue(std::ostream& os);
 
-		DiamondTrap& operator=(const DiamondTrap& other);
+std::ostream& reset(std::ostream& os);
 
-	private:
-		std::string _Name;
-};
-
-
+std::string strConstMsg();
+std::string strDestMsg();
 
 #endif

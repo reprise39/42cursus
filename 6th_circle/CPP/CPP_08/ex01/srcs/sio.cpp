@@ -1,0 +1,43 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   sio.cpp                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mkuida <reprise39@yahoo.co.jp>             +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/09/24 19:19:22 by mkuida            #+#    #+#             */
+/*   Updated: 2025/10/23 14:52:08 by mkuida           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "sio.hpp"
+
+std::ostream& red(std::ostream& os)
+{
+	return (os << "\033[31m");
+}
+
+std::ostream& yellow(std::ostream& os)
+{
+	return (os << "\033[33m");
+}
+
+std::ostream& blue(std::ostream& os)
+{
+	return (os << "\033[34m");
+}
+
+std::ostream& reset(std::ostream& os)
+{
+	return (os << "\033[0m");
+}
+
+std::string strConstMsg()
+{
+	return ("Constructer called : ");
+}
+
+std::string strDestMsg()
+{
+	return ("Destructor called : ");
+}
