@@ -6,13 +6,11 @@
 /*   By: mkuida <reprise39@yahoo.co.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/05 11:09:34 by mkuida            #+#    #+#             */
-/*   Updated: 2025/11/07 19:06:12 by mkuida           ###   ########.fr       */
+/*   Updated: 2025/11/13 20:29:50 by mkuida           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "BitcoinExchange.hpp"
-
-
 
 
 static int is_valit_date(std::string str, std::tm* now) //yyyy/mm/dd
@@ -136,8 +134,21 @@ double getprice(const std::string& date,const std::map<std::string ,double>& rat
 	return ((--it)->second);
 }
 
+static bool is_blank(const std::string &str)
+{
+	for(size_t i = 0 ; i < str.size() ; ++i)
+	{
+		if(!isspace(static_cast<unsigned char>(str[i])))
+			return false;
+	}
+	return true;
+}
+
+
 void printansline(std::string line, std::map<std::string, double> &rate_db, std::tm* now)
 {
+	if(is_blank(line))
+		return ;
 	std::string::size_type pos = 0;
 	pos = line.find('|', pos);
 	std::string date = line.substr(0,pos);
@@ -168,7 +179,8 @@ void printans(std::map<std::string, double> &rate_db, std::tm* now)
 	{
 		std::string line;
 		std::getline(ifs,line);
-		printansline(line,rate_db, now);
+		if(line.size() > 0)
+			printansline(line,rate_db, now);
 	}
 }
 

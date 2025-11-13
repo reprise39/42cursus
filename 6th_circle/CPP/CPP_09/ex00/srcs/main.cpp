@@ -39,12 +39,12 @@ static int check(int argc, char* argv[])
 	}
 	else if(is_file(argv[1]) != 0)
 	{
-		emsg.append("data-file cant open\n");
+		emsg.append("data-file(arg1) cant open\n");
 		rtn = 1;
 	}
 	if(is_file("input.csv") != 0)
 	{
-		emsg.append("input-file cant open\n");
+		emsg.append("input-file(input.csv) cant open\n");
 		rtn = 1;
 	}
 
