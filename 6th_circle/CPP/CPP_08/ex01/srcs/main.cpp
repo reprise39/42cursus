@@ -6,7 +6,7 @@
 /*   By: mkuida <reprise39@yahoo.co.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/23 14:05:32 by mkuida            #+#    #+#             */
-/*   Updated: 2025/11/04 11:59:40 by mkuida           ###   ########.fr       */
+/*   Updated: 2025/11/13 18:48:52 by mkuida           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,23 @@ int main(void)
 	// 		sp.addNumber(std::rand() % 100000); //0~10,000
 	// 	}
 
+	// 	std::cout << "Shortest span: " << sp.shortestSpan() << std::endl;
+	// 	std::cout << "Longest span: " << sp.longestSpan() << std::endl;
+	// }
+	// catch(std::exception &e)
+	// {
+	// 	std::cout << e.what() << std::endl;
+	// }
+
+
+	// try
+	// {
+	// 	Span sp(10);
+	// 	std::vector<int> vec(10);
+	// 	for (int i = 0; i < 10; ++i)
+	// 		vec[i] = i;
+	// 	sp.addNumber(vec.begin(), vec.end());
+			
 	// 	std::cout << "Shortest span: " << sp.shortestSpan() << std::endl;
 	// 	std::cout << "Longest span: " << sp.longestSpan() << std::endl;
 	// }

@@ -6,7 +6,7 @@
 /*   By: mkuida <reprise39@yahoo.co.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/28 17:30:17 by mkuida            #+#    #+#             */
-/*   Updated: 2025/11/04 11:23:13 by mkuida           ###   ########.fr       */
+/*   Updated: 2025/11/13 18:46:16 by mkuida           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 # include <limits>
 # include <cstdlib>
 # include <ctime>
+# include <vector>
 
 //subject
 class Span
@@ -33,6 +34,15 @@ class Span
 		unsigned int getSize() const;
 		std::multiset<int> getmSet() const;
 		void addNumber(int n);
+		template<typename Ite>
+		void addNumber(Ite begin, Ite end)
+		{
+			unsigned int adsize = std::distance(begin,end);
+			if(this->_nowsize + adsize > this->_maxsize)
+				throw Span::fullSet();
+			this->_mset.insert(begin,end);
+			this->_nowsize += adsize;
+		}
 		int shortestSpan( void ) const;
 		int longestSpan( void ) const;
 

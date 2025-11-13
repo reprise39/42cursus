@@ -6,7 +6,7 @@
 /*   By: mkuida <reprise39@yahoo.co.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/28 17:30:17 by mkuida            #+#    #+#             */
-/*   Updated: 2025/10/31 19:29:43 by mkuida           ###   ########.fr       */
+/*   Updated: 2025/11/04 16:47:43 by mkuida           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,20 +18,6 @@
 # include <vector>
 # include <iterator>
 # include <algorithm>
-
-// the subject
-// template<typename T>
-// typename T[]::iterator easyfind(T target, const T& array[])
-// {
-// 	T[]::iterator bgn = array.begin();
-// 	T[]::iterator end = array.end();
-
-// 	for(T::iterator now = bgn ; bgn < end ; bgn++)
-// 	{
-// 		if(array[now] == target)
-// 			return (now);
-// 	}
-// }
 
 template<typename T>
 typename T::iterator easyfind(T &container, int value)
