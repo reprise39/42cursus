@@ -1,36 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Cat.hpp                                            :+:      :+:    :+:   */
+/*   BitcoinExchange.hpp                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mkuida <reprise39@yahoo.co.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/09/24 20:10:52 by mkuida            #+#    #+#             */
-/*   Updated: 2025/09/25 10:25:28 by mkuida           ###   ########.fr       */
+/*   Created: 2025/11/05 11:07:07 by mkuida            #+#    #+#             */
+/*   Updated: 2025/11/07 17:53:15 by mkuida           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CAT_HPP
-# define CAT_HPP
+#pragma once
 
-# include "Animal.hpp"
+#include <map>
+#include <string>
+#include <ctime>
+#include <iostream>
+#include <sstream>
+#include <fstream>
+#include "sio.hpp"
 
-class Cat : public Animal
-{
-	public:
-		Cat();
-		Cat(const std::string &str);
-		Cat(const Cat &c);
-		~Cat();
-		
-		Cat& operator=(const Cat &other);
-		
-		void makeSound() const;
-		
-		std::string printMyClass() const;
-	
-	private:
+#define IFNAME "input.csv"
 
-};
-
-#endif
+void makeDB(std::map<std::string, double>& rate_db, const char* filename);

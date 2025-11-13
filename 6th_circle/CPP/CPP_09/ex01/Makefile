@@ -10,7 +10,7 @@
 #                                                                              #
 # **************************************************************************** #
 
-NAME = ex01
+NAME = RPN
 CC = c++
 CFLAGS = -Wall -Wextra -Werror -std=c++98 -pedantic -g
 LDFLAGS =
@@ -20,11 +20,7 @@ SRC_DIR = ./srcs
 
 SRC_FILES =	main.cpp\
 			sio.cpp\
-			Animal.cpp\
-			Cat.cpp\
-			Dog.cpp\
-			Brain.cpp
-
+			RPN.cpp
 
 SRCS = $(addprefix $(SRC_DIR)/, $(SRC_FILES))
 

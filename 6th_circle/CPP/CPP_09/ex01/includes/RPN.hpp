@@ -1,34 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Brain.hpp                                          :+:      :+:    :+:   */
+/*   RPN.hpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mkuida <reprise39@yahoo.co.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/09/25 10:53:14 by mkuida            #+#    #+#             */
-/*   Updated: 2025/09/28 14:19:59 by mkuida           ###   ########.fr       */
+/*   Created: 2025/11/07 19:36:29 by mkuida            #+#    #+#             */
+/*   Updated: 2025/11/08 00:52:58 by mkuida           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef BRAIN_HPP
-# define BRAIN_HPP
+#ifndef RPN_HPP
+# define RPN_HPP
 
 # include "sio.hpp"
+# include <stack>
+# include <string>
+# include <cstdlib>
+# include <iostream>
 
-class Brain
-{
-	public:
-		Brain();
-		Brain(const Brain &c);
-		~Brain();
-		Brain& operator=(const Brain& other);
+// void cal(char* argv);
+bool is_my_digit(char argv);
+bool is_my_operator(char argv);
+bool is_my_brank(char argv);
 
-		void setIdea(const int inum , const std::string &str);
-		std::string getIdea(const int inum) const;
-		std::string printMyClass() const;
-		
-	protected:
-		std::string _Idea[100];
-};
+
+bool cal_operator(std::stack<long>& st, char op);
+void cal(char* argv);
 
 #endif

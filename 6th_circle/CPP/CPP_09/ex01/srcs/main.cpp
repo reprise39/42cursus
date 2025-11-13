@@ -10,92 +10,55 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Animal.hpp"
-#include "Cat.hpp"
-#include "Dog.hpp"
+#include "RPN.hpp"
 
-int main()
+// static int check_using_c(char *argv)
+// {
+// 	size_t now = 0;
+// 	const char acceptc[15] = { ' ', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '+', '-', '*', '/' };
+// 	while(argv[now] != '\0')
+// 	{
+// 		bool check = false;
+// 		for(size_t i = 0; i < 15 ; i++)
+// 		{
+// 			if(acceptc[i] == argv[now])
+// 				check = true;
+// 		}
+// 		if(check == false)
+// 		{
+// 			std::cout << argv[now] << " is forbidden!" << std::endl;
+// 			return (1);
+// 		}
+// 		now++;
+// 	}
+// 	return (0);
+// }
+
+static int check_arg(int argc, char** argv)
 {
-	std::cout << "=== Test 1: makeIdea ===" << std::endl;
+	if (argc != 2)
 	{
-		Dog d1;
-		d1.makeIdea(0, "zero idea");
-		d1.makeIdea(5, "five five");
-
-		for(int i = 0 ; i < 10 ; i++)
-			std::cout << "d1_idea[" << i << "] = " << d1.getIdea(i) << std::endl;
-
-
-		std::cout << "\nd1_idea[100] = " << d1.getIdea(100) << std::endl; //error
-		std::cout << "d1_idea[-1] = " << d1.getIdea(-1) << std::endl; //error
+		std::cout << red  << "Error\n" << "This program accepts only one argument" << reset <<  std::endl;
+		return (1);
 	}
 
-	std::cout << "\n=== Test 2: double makeIdea ===" << std::endl;
+	size_t now = 0;
+	while (argv[1][now] != '\0')
 	{
-		Cat c1;
-		c1.makeIdea(0, "go");
-
-		Cat c2;
-		c2 = c1; // re-brain
-
-		c2.makeIdea(42, "42");
-		std::cout << "c1 idea[0]: " << c2.getIdea(0) << std::endl;
-		std::cout << "c2 idea[0]: " << c2.getIdea(42) << std::endl;
-
-		c2.makeIdea(1042, "1042");
+		if(!(is_my_digit(argv[1][now]) || is_my_operator(argv[1][now]) || is_my_brank(argv[1][now])))
+		{
+			std::cout << red << "Error\n" << "at input -> " << argv[1][now] << " : This program only can use { 0-9, +, -, *, / }" << reset <<  std::endl;
+			return (1);
+		}
+		now++;
 	}
+	return (0);
+}
 
-	std::cout << "\n=== Test 3: getType ===" << std::endl;
-	{
-		Dog d;//dog
-		Cat c;//cat
-		std::cout << d.getType() << std::endl;
-		std::cout << c.getType() << std::endl;
-
-		Dog dd("inu");//dog
-		Cat cd("neko");//cat
-		std::cout << dd.getType() << std::endl;
-		std::cout << cd.getType() << std::endl;
-	}
-
-	std::cout << "\n=== Test 4: Canonical Dog ===" << std::endl;
-	{
-		Dog d1;
-		Dog d2(d1);//re-bra
-		Dog d3;
-		d3 = d1; //re-brain
-	}
-
-	std::cout << "\n=== Test 5: Canonical Cat ===" << std::endl;
-	{
-		Cat c1;
-		Cat c2(c1);
-		Cat c3;
-		c3 = c1;
-	}
-
-	std::cout << "\n=== Test 6: Canonical Brain ===" << std::endl;
-	{
-		Brain b1;
-			b1.setIdea(22,"check copy");
-			b1.setIdea(42,"42-tokyo");
-
-			Brain b2(b1);
-			b2.setIdea(62,"brain cp");
-
-		Brain b3;
-			b3 = b1;
-
-		std::cout << "b1-22 : " << b1.getIdea(22) << std::endl;
-		std::cout << "b1-42 : " << b1.getIdea(42) << std::endl;
-		std::cout << "b1-62 : " << b1.getIdea(62) << std::endl << std::endl;
-
-		std::cout << "b2-22 : " << b2.getIdea(22) << std::endl;
-		std::cout << "b2-42 : " << b2.getIdea(42) << std::endl;
-		std::cout << "b2-62 : " << b2.getIdea(62) << std::endl << std::endl;
-
-		std::cout << "b3-22 : " << b3.getIdea(22) << std::endl;
-		std::cout << "b3-42 : " << b3.getIdea(42) << std::endl;
-		std::cout << "b3-62 : " << b3.getIdea(62) << std::endl << std::endl;
-	}
+int main(int argc, char** argv)
+{
+	if (check_arg(argc,argv) != 0)
+		return (1);
+	cal(argv[1]);
+	return 0;
 }
