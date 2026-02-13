@@ -1,0 +1,62 @@
+version: '3.8'
+
+services:
+# 1-1.mariadb
+  mariadb:
+    build:
+      context: ./contexts/mariadb
+    container_name: mariadb
+    restart: always
+    env_file:
+      - .env
+    volumes:
+      - hostPath:containerPath:ro
+    networks:
+      - incep
+
+# 1-2.wordpress
+  wordpress:
+    build:
+      context: ./contexts/wordpress
+    container_name: wordpress
+    restart: always
+    depends_on:
+      - mariadb
+    env_file:
+      - ./env
+    volumes: 
+    networks:
+      - incep
+
+# 1-3.nginx
+  nginx:
+    build:
+      context: ./contexts/nginx
+    container_name: nginx
+    restart: always
+    env_file:
+      - .env
+    volumes:
+      -
+    networks:
+      - incep
+    ports:
+      - "443:443"
+
+networks:
+  incep:
+    driver: bridge
+
+volumes:
+  mariadb_vol:
+    driver: local
+    driver_opts:
+      type: 'none'
+      o: 'bind'
+      device: '/home/repri/data/mariadb'
+  wordpress_data:
+    driver: local
+    driver_opts:
+      type: 'none'
+      o: 'bind'
+      device: '/home/repri/data/wordpress'
