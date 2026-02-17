@@ -6,11 +6,11 @@ services:
     build:
       context: ./contexts/mariadb
     container_name: mariadb
-    restart: always
+    #restart: always
     env_file:
       - .env
     volumes:
-      - hostPath:containerPath:ro
+      - mariadb_vol:/var/lib/mysql
     networks:
       - incep
 
@@ -19,12 +19,13 @@ services:
     build:
       context: ./contexts/wordpress
     container_name: wordpress
-    restart: always
+    #restart: always
     depends_on:
       - mariadb
     env_file:
-      - ./env
+      - .env
     volumes: 
+      - wordpress_vol:/var/www/html:rw
     networks:
       - incep
 
@@ -33,11 +34,13 @@ services:
     build:
       context: ./contexts/nginx
     container_name: nginx
-    restart: always
+    #restart: always
+    depends_on:
+      - wordpress
     env_file:
       - .env
     volumes:
-      -
+      - wordpress_vol:/var/www/html:rw
     networks:
       - incep
     ports:
@@ -54,7 +57,7 @@ volumes:
       type: 'none'
       o: 'bind'
       device: '/home/repri/data/mariadb'
-  wordpress_data:
+  wordpress_vol:
     driver: local
     driver_opts:
       type: 'none'

@@ -1,30 +1,24 @@
 [mysqld]
-# 1. 実行ユーザーの設定
+# 1. user
 user                    = mysql
 
-# 2. プロセスIDとソケットファイルの場所
-# Debian系デフォルトの場所を指定
+# 2. file_compose
 pid-file                = /run/mysqld/mysqld.pid
 socket                  = /run/mysqld/mysqld.sock
 
-# 3. ネットワーク設定（最重要）
-# デフォルトの127.0.0.1を 0.0.0.0 に変更することで、
-# WordPressコンテナからの通信を受け入れ可能にする
+# 3. network
 port                    = 3306
 bind-address            = 0.0.0.0
 
-# 4. データ保存場所の設定
-# 50-server.cnf のデフォルト値。
-# docker-composeのVolumeでここを永続化する。
+# 4. save_volume
 basedir                 = /usr
 datadir                 = /var/lib/mysql
 tmpdir                  = /tmp
 
-# 5. エラーログ
-# コンテナの標準出力に出すため、あるいは特定のパスに出すために設定
+# 5. error_log
 lc-messages-dir         = /usr/share/mysql
 log_error               = /var/log/mysql/error.log
 
-# 6. キャラクターセット（日本語などを扱う場合に推奨）
+# 6. chara-set
 character-set-server    = utf8mb4
 collation-server        = utf8mb4_general_ci
