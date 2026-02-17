@@ -9,6 +9,10 @@ RUN apt-get update -y && \
 	wget \
 	&& rm -rf /var/lib/apt/lists/*
 
+# Dockerfileの apt-get install の後あたりに追加 WP=CLI install
+RUN wget https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar && \
+	chmod +x wp-cli.phar && \
+	mv wp-cli.phar /usr/local/bin/wp
 
 RUN sed -i 's|listen = /run/php/php7.4-fpm.sock|listen = 9000|' /etc/php/7.4/fpm/pool.d/www.conf
 
@@ -16,7 +20,7 @@ WORKDIR /var/www/html
 
 EXPOSE 9000
 
-COPY ./scripts/setup.sh /usr/local/bin
+COPY ./scripts/setup.sh /usr/local/bin/
 RUN chmod +x /usr/local/bin/setup.sh
 
 ENTRYPOINT [ "/usr/local/bin/setup.sh" ]

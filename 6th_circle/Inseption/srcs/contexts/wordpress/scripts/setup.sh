@@ -6,8 +6,8 @@ until mariadb-admin ping -h"mariadb" --silent; do
 done
 
 
-if ! wp core is-installed --allow-root; then
-
+#if ! wp core is-installed --allow-root; then
+if [ ! -f wp-config.php ]; then
     wp core download --allow-root
 
     wp config create --allow-root \
