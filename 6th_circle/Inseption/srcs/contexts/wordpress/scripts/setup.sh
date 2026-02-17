@@ -18,14 +18,14 @@ if ! wp core is-installed --allow-root; then
 
     # 4. サイトのインストール（管理者ユーザーの作成）
     wp core install --allow-root \
-        --url=${DOMAIN_NAME} \
-        --title=${SITE_TITLE} \
-        --admin_user=${ADMIN_USER} \
-        --admin_password=${ADMIN_PASSWORD} \
-        --admin_email=${ADMIN_EMAIL}
+        --url=${WP_DOMAIN_NAME} \
+        --title=${WP_SITE_TITLE} \
+        --admin_user=${WP_ADMIN_USER} \
+        --admin_password=${WP_ADMIN_PASSWORD} \
+        --admin_email=${WP_ADMIN_EMAIL}
 
     # 5. 一般ユーザーの作成（課題要件）
-    wp user create ${USER_NAME} ${USER_EMAIL} --user_pass=${USER_PASSWORD} --role=author --allow-root
+    wp user create ${WP_USER_NAME} ${WP_USER_EMAIL} --user_pass=${USER_PASSWORD} --role=author --allow-root
 
 fi
 

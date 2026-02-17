@@ -17,6 +17,6 @@ WORKDIR /var/www/html
 EXPOSE 9000
 
 COPY ./scripts/setup.sh /usr/local/bin
-RUN chmod +x /user/local/bin/setup.sh
+RUN chmod +x /usr/local/bin/setup.sh
 
-ENTRYPOINT [ "/user/local/bin/setup.sh" ]
+ENTRYPOINT [ "/usr/local/bin/setup.sh" ]
