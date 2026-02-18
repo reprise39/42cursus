@@ -29,7 +29,5 @@ if [ ! -f wp-config.php ]; then
 
 fi
 
-# 6. PHP-FPMをフォアグラウンドで起動
-# -F はデーモン化（バックグラウンド化）させないためのフラグ
 mkdir -p /run/php
 exec php-fpm7.4 -F

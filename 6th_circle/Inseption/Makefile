@@ -1,8 +1,9 @@
-NAME			= inception
-COMPOSE_FILE 	= ./srcs/docker-compose.yml
-DATA_PATH		= /home/repri/data
+NAME				= inception
+COMPOSE_FILE 		= ./srcs/docker-compose.yml
+BONUS_COMPOSE_FILE	= ./srcs/bonus-docker-compose.yml
+DATA_PATH			= /home/repri/data
 
-.PHONY: all prepare up down clean fclean re
+.PHONY: all prepare up down clean fclean re bonus
 
 all: prepare up
 
@@ -13,14 +14,16 @@ prepare:
 up:
 	docker-compose -f $(COMPOSE_FILE) up --build -d
 
+bonus: prepare
+	docker-compose -f $(COMPOSE_FILE) -f $(BONUS_COMPOSE_FILE) up --build -d
+
 clean:
-	docker-compose -f $(COMPOSE_FILE) down --rmi all -v
+	docker-compose -f $(COMPOSE_FILE)  -f $(BONUS_COMPOSE_FILE) down --rmi all -v
 
 down:
-	docker-compose -f $(COMPOSE_FILE) down
+	docker-compose -f $(COMPOSE_FILE)  -f $(BONUS_COMPOSE_FILE) down
 
 fclean: clean
-	printf "All data remove\n"
 	sudo rm -rf $(DATA_PATH)/mariadb
 	sudo rm -rf $(DATA_PATH)/wordpress
 	# docker network prune -f
