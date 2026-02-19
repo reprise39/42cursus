@@ -9,6 +9,9 @@ services:
     #restart: always
     env_file:
       - .env
+    secrets:
+      - mariadb_root_password
+      - mariadb_user_password
     volumes:
       - mariadb_vol:/var/lib/mysql
     networks:
@@ -24,6 +27,9 @@ services:
       - mariadb
     env_file:
       - .env
+    secrets:
+      - wp_admin_password
+      - wp_password
     volumes: 
       - wordpress_vol:/var/www/html:rw
     networks:
@@ -63,3 +69,13 @@ volumes:
       type: 'none'
       o: 'bind'
       device: '/home/repri/data/wordpress'
+
+secrets:
+  mariadb_root_password:
+    file: ./secrets/db_root_password.txt
+  mariadb_user_password:
+    file: ./secrets/db_root_password.txt
+  wp_admin_password:
+    file: ./secrets/wp_admin_password.txt
+  wp_password:
+    file: ./secrets/wp_password.txt

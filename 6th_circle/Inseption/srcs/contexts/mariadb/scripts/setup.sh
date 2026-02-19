@@ -1,5 +1,14 @@
 #!/bin/sh
 
+# setup passwords
+if [ -f /run/secrets/mariadb_user_password ]; then
+    SQL_PASSWORD=$(cat /run/secrets/mariadb_user_password)
+fi
+
+if [ -f /run/secrets/mariadb_root_password ]; then
+    SQL_ROOT_PASSWORD=$(cat /run/secrets/mariadb_root_password)
+fi
+
 #pre-boot
 mysqld --skip-networking &
 

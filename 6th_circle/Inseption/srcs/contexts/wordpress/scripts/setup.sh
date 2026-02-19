@@ -1,5 +1,14 @@
 #!/bin/bash
 
+#setup-password
+if [ -f /run/secrets/wp_admin_password ]; then
+    WP_ADMIN_PASSWORD=$(cat /run/secrets/wp_admin_password)
+fi
+
+if [ -f /run/secrets/wp_password ]; then
+    SQL_ROOT_PASSWORD=$(cat /run/secrets/wp_password)
+fi
+
 #wait db
 until mariadb-admin ping -h"mariadb" --silent; do
     sleep 1
