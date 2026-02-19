@@ -6,7 +6,7 @@ services:
     build:
       context: ./contexts/mariadb
     container_name: mariadb
-    #restart: always
+    restart: always
     env_file:
       - .env
     secrets:
@@ -22,7 +22,7 @@ services:
     build:
       context: ./contexts/wordpress
     container_name: wordpress
-    #restart: always
+    restart: always
     depends_on:
       - mariadb
     env_file:
@@ -41,7 +41,7 @@ services:
     build:
       context: ./contexts/nginx
     container_name: nginx
-    #restart: always
+    restart: always
     depends_on:
       - wordpress
     env_file:
