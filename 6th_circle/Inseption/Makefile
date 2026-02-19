@@ -1,7 +1,9 @@
 NAME				= inception
+
+LOGIN				= $(shell whoami)
 COMPOSE_FILE 		= ./srcs/docker-compose.yml
 BONUS_COMPOSE_FILE	= ./srcs/bonus-docker-compose.yml
-DATA_PATH			= /home/repri/data
+DATA_PATH			= /home/$(LOGIN)/data
 
 .PHONY: all prepare up down clean fclean re bonus
 
