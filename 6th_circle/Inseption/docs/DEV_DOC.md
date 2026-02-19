@@ -25,6 +25,11 @@ This document explains the technical setup and maintenance of the Inception infr
    `make bonus`
    In addition to the above, this command also enables access to static HTML files.
 
+> **Note:** When running `make bonus`, please uncomment the following section.  
+> Conversely, when running `make` (mandatory part) afterward, ensure this section is commented out again.  
+> **Target Section:** The `#bonus` part within `srcs/contexts/nginx/config/nginx.conf`.  
+> [link](srcs/contexts/nginx/config/nginx.conf)
+
 ## 3. Management Commands
 - `make re`: Full rebuild (`fclean + all`).
 - `make clean`: Stop containers and remove containers/networks.

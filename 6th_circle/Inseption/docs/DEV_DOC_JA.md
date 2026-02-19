@@ -26,6 +26,10 @@
    `make bonus`
    このコマンドにより、上記に加え、静的htmlファイルへのアクセスも可能になります。
    
+   > **補足:** make bonus を実行するときは、以下のコメントアウト部分を有効にしてください。<br>
+   > 逆にそのあと、makeのみを実行するときは該当部分はコメントアウトしてください。<br>
+   > 該当部分　srcs/contexts/nginx/config/nginx.conf の中の #bonus 部分<br>
+   > [link](srcs/contexts/nginx/config/nginx.conf)
 
 ## 3. 管理用コマンド
 - `make re`: 完全に再構築します（fclean + all）。

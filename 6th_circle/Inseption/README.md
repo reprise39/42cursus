@@ -27,6 +27,11 @@ bonus     -> `https://${USER}.42.fr/static`
    `make bonus`
    In addition to the above, this command also enables access to static HTML files.
 
+> **Note:** When running `make bonus`, please uncomment the following section.  
+> Conversely, when running `make` (mandatory part) afterward, ensure this section is commented out again.  
+> **Target Section:** The `#bonus` part within `srcs/contexts/nginx/config/nginx.conf`.  
+> [link](srcs/contexts/nginx/config/nginx.conf)
+
 ## 📖 Concepts Comparison
 
 ### 1. Virtual Machines vs Docker
