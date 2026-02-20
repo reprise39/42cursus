@@ -2,6 +2,7 @@ services:
   bonus_nginx:
     build:
       context: ./contexts/bonus_nginx
+    image: bonus_nginx
     container_name: bonus_nginx
     restart: always
     env_file:

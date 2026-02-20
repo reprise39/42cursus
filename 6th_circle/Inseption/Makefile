@@ -14,16 +14,16 @@ prepare:
 	sudo mkdir -p $(DATA_PATH)/wordpress
 
 up:
-	docker-compose -f $(COMPOSE_FILE) up --build -d
+	docker-compose -p $(NAME) -f $(COMPOSE_FILE) up --build -d
 
 bonus: prepare
-	docker-compose -f $(COMPOSE_FILE) -f $(BONUS_COMPOSE_FILE) up --build -d
+	docker-compose -p $(NAME) -f $(COMPOSE_FILE) -f $(BONUS_COMPOSE_FILE) up --build -d
 
 clean:
-	docker-compose -f $(COMPOSE_FILE)  -f $(BONUS_COMPOSE_FILE) down --rmi all -v
+	docker-compose -p $(NAME) -f $(COMPOSE_FILE) -f $(BONUS_COMPOSE_FILE) down --rmi all -v
 
 down:
-	docker-compose -f $(COMPOSE_FILE)  -f $(BONUS_COMPOSE_FILE) down
+	docker-compose -p $(NAME) -f $(COMPOSE_FILE) -f $(BONUS_COMPOSE_FILE) down
 
 fclean: clean
 	sudo rm -rf $(DATA_PATH)/mariadb
