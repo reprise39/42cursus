@@ -6,7 +6,7 @@
 /*   By: mkuida <reprise39@yahoo.co.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/23 14:05:32 by mkuida            #+#    #+#             */
-/*   Updated: 2025/10/31 19:29:24 by mkuida           ###   ########.fr       */
+/*   Updated: 2026/02/22 03:02:57 by mkuida           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int main(void)
 
 {
 	// can't use initialization list (C++11~)
-	// std::vector<int> arr = {0,1,2,3,4,5};
+	// std::vector<int> intvec = {0,1,2,3,4,5};
 
 	// give head ptr & last ptr
 	int arr[] = {0, 1, 2, 3, 4, 5};
@@ -32,12 +32,21 @@ int main(void)
 	// intvec.push_back(4);
 	// intvec.push_back(5);
 
+	std::cout << "test : 1" << std::endl;
 	try
 	{
 		std::vector<int>::iterator target1 = easyfind(intvec,5);
 		std::cout << "target1 = " << *target1 << std::endl;
+	}
+	catch(std::exception &e)
+	{
+		std::cout << e.what() << std::endl;
+	}
 
-		std::vector<int>::iterator target2 = easyfind(intvec,10);
+	std::cout << "test : 2" << std::endl;
+	try
+	{
+		std::vector<int>::iterator target2 = easyfind(intvec,0);
 		std::cout << "target2 = " << *target2 << std::endl;
 	}
 	catch(std::exception &e)

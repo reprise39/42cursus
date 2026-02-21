@@ -6,7 +6,7 @@
 /*   By: mkuida <reprise39@yahoo.co.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/23 14:05:32 by mkuida            #+#    #+#             */
-/*   Updated: 2025/11/13 18:48:52 by mkuida           ###   ########.fr       */
+/*   Updated: 2026/02/22 03:35:30 by mkuida           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int main(void)
 		sp.addNumber(3);
 		sp.addNumber(17);
 		sp.addNumber(9);
-		sp.addNumber(11);
+		sp.addNumber(9);
 		std::cout << sp.shortestSpan() << std::endl;
 		std::cout << sp.longestSpan() << std::endl;
 	}
@@ -33,20 +33,11 @@ int main(void)
 		std::cout << e.what() << std::endl;
 	}
 
-	//time test
-	std::srand(std::time(NULL));
-
+	//my excuting-time test
 	// try
 	// {
-	// 	Span sp(10000); // 10,000
-
-	// 	for (int i = 0; i < 10000; ++i)
-	// 	// for (int i = 0; i < 10001; ++i)
-	// 	// for (int i = 0; i < 1; ++i)
-	// 	{
-	// 		sp.addNumber(std::rand() % 100000); //0~10,000
-	// 	}
-
+	// 	Span sp(10000);
+	// 	sp.addRandomNumber(10000, 100000);
 	// 	std::cout << "Shortest span: " << sp.shortestSpan() << std::endl;
 	// 	std::cout << "Longest span: " << sp.longestSpan() << std::endl;
 	// }

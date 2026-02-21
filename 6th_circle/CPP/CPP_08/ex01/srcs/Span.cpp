@@ -6,7 +6,7 @@
 /*   By: mkuida <reprise39@yahoo.co.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/31 20:14:15 by mkuida            #+#    #+#             */
-/*   Updated: 2025/11/04 11:24:54 by mkuida           ###   ########.fr       */
+/*   Updated: 2026/02/22 03:31:49 by mkuida           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,15 @@ void Span::addNumber(int n)
 		throw(Span::fullSet());
 	this->_mset.insert(n);
 	this->_nowsize++;
+}
+
+void Span::addRandomNumber(int addnum, unsigned int limit)
+{
+	if((this->_nowsize) + addnum > (this->_maxsize))
+		throw(Span::fullSet());
+	std::srand(std::time(NULL));
+	for (int i = 0; i < addnum; ++i)
+		this->addNumber(std::rand() % limit+1);
 }
 
 int Span::shortestSpan( void ) const

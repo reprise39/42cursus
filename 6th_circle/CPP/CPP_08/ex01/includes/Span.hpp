@@ -6,7 +6,7 @@
 /*   By: mkuida <reprise39@yahoo.co.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/28 17:30:17 by mkuida            #+#    #+#             */
-/*   Updated: 2025/11/13 18:46:16 by mkuida           ###   ########.fr       */
+/*   Updated: 2026/02/22 03:28:32 by mkuida           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ class Span
 		unsigned int getSize() const;
 		std::multiset<int> getmSet() const;
 		void addNumber(int n);
+		void addRandomNumber(int addnum, unsigned int limit);
 		template<typename Ite>
 		void addNumber(Ite begin, Ite end)
 		{
