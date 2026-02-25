@@ -47,7 +47,7 @@ static int check_arg(int argc, char** argv)
 	{
 		if(!(is_my_digit(argv[1][now]) || is_my_operator(argv[1][now]) || is_my_brank(argv[1][now])))
 		{
-			std::cout << red << "Error\n" << "at input -> " << argv[1][now] << " : This program only can use { 0-9, +, -, *, / }" << reset <<  std::endl;
+			std::cout << red << "Error : " << "input at -> '" << argv[1][now] << "'" << " : This program only can use { 0-9, +, -, *, / }" << reset <<  std::endl;
 			return (1);
 		}
 		now++;

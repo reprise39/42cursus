@@ -6,7 +6,7 @@
 /*   By: mkuida <reprise39@yahoo.co.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/07 23:43:27 by mkuida            #+#    #+#             */
-/*   Updated: 2025/11/08 00:58:44 by mkuida           ###   ########.fr       */
+/*   Updated: 2026/02/25 19:14:20 by mkuida           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,19 +70,19 @@ static long dev(long a, long b)
 {
 	if(b == 0)
 	{
-		std::cout << "Error : devide by zero" << std::endl;
+		std::cout << red << "Error : devide by zero" << reset << std::endl;
 		exit (1);
 	}
 	return (a/b);
 }
 
 
-bool cal_operator(std::stack<long> &st, char op)
+static void cal_operator(std::stack<long> &st, char op)
 {
 	if(st.size() < 2)
 	{
-		std::cout << "size-less : size = " << st.size() << std::endl;
-		return false;
+		std::cout << red << "Error : no enough numbers before operator ( n = " << st.size() << ")" << reset << std::endl;
+		exit (1);
 	}
 
 	long b = st.top();
@@ -100,14 +100,13 @@ bool cal_operator(std::stack<long> &st, char op)
 	}
 	if(sw == -1)
 	{
-		std::cout << "no-sw" << std::endl;
-		return false;
+		std::cout << red << "Error : unexpected" << reset << std::endl;
+		exit (1);
 	}
 	long (*funcp[4])(long,long)  = {add, substr, mul, dev};
 
 	long ans = funcp[sw](bb,b);
 	st.push(ans);
-	return (true);
 }
 
 void print_ans(std::stack<long> st)
@@ -140,17 +139,13 @@ void cal(char* argv)
 		}
 		else if (is_my_operator(argv[now]))
 		{
-			if(cal_operator(st,argv[now]) == false)
-			{
-				std::cout << "ope fail " << std::endl;
-				return ;
-			}
+			cal_operator(st,argv[now]);
 			++now;
 		}
-		else
-		{
-			std::cout << "??" << std::endl;
-		}
+		// else
+		// {
+		// 	std::cout << "??" << std::endl;
+		// }
 	}
 	print_ans(st);
 }
