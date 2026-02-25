@@ -6,7 +6,7 @@
 /*   By: mkuida <reprise39@yahoo.co.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/05 11:09:34 by mkuida            #+#    #+#             */
-/*   Updated: 2025/11/13 20:29:50 by mkuida           ###   ########.fr       */
+/*   Updated: 2026/02/25 17:29:05 by mkuida           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,10 +96,17 @@ static double my_stod(std::string rate)
 	return (d);
 }
 
-static void appendDB(std::string& line, std::map<std::string, double>& rate_db, std::tm* now)
+static int appendDB(std::string& line, std::map<std::string, double>& rate_db, std::tm* now)
 {
 	std::cout << "======== <appendDB> ========\n" << std::endl;
 
+	// check only space
+	unsigned int line_pos = 0;
+	while (line[line_pos] == " " && line_pos < line.size())
+		line_size++;
+	if (line.size() == line_pos)
+		retrun (0);
+	
 	std::string::size_type pos = 0;
 	//date
 	pos = line.find(',', pos);
@@ -107,7 +114,8 @@ static void appendDB(std::string& line, std::map<std::string, double>& rate_db, 
 	if( pos == std::string::npos || is_valit_date(date,now) != 0 )
 	{
 		std::cout << red << "break-appendDB : no',' or invalid-date" << reset << std::endl;
-		return ;
+		std::cout << red << "prease check data.csv" << reset << std::endl;
+		return 1;
 	}
 
 	++pos;
@@ -119,6 +127,7 @@ static void appendDB(std::string& line, std::map<std::string, double>& rate_db, 
 	std::cout << "date = " << date << ", rate =" << rate << std::endl;
 	std::cout << "======== <endDB> ========\n" << std::endl;
 	rate_db[date] = my_stod(rate);
+	return (0);
 }
 
 double getprice(const std::string& date,const std::map<std::string ,double>& rate_db)
@@ -184,21 +193,22 @@ void printans(std::map<std::string, double> &rate_db, std::tm* now)
 	}
 }
 
-void makeDB(std::map<std::string, double>& rate_db, const char* filename)
+void makeDB(std::map<std::string, double>& db)
 {
 	std::ifstream file;
 	std::time_t t = std::time(NULL);
 	std::tm* now = localtime(&t);
 	
-	file.open(filename);
+	file.open("data.csv");
 	while(file)
 	{
 		std::string line;
 		std::getline(file, line);
-		appendDB(line,rate_db,now);
+		if (appendDB(line,db,now) == 1)
+			return (1);
 	}
 	
-	for(auto it = rate_db.begin(); it != rate_db.end(); ++it)
+	for(auto it = db.begin(); it != db.end(); ++it)
 	{
 		std::cout << "key: " << it->first 
 		<< ",  value: " << it->second << std::endl;

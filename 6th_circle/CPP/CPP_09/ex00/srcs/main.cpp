@@ -34,17 +34,17 @@ static int check(int argc, char* argv[])
 
 	if(argc != 2)
 	{
-		emsg.append("need 1 arg (bitcoin filename)\n");
+		emsg.append("need 1 arg [according to bitcoin date-amount filename] \n");
 		rtn = 1;
 	}
 	else if(is_file(argv[1]) != 0)
 	{
-		emsg.append("data-file(arg1) cant open\n");
+		emsg.append("arg1-file(according to bitocoin date-amount) cant open\n");
 		rtn = 1;
 	}
-	if(is_file("input.csv") != 0)
+	if(is_file("data.csv") != 0)
 	{
-		emsg.append("input-file(input.csv) cant open\n");
+		emsg.append("input-file (data.csv according to bitocoin date-rate) cant open\n");
 		rtn = 1;
 	}
 
@@ -59,8 +59,10 @@ int main(int argc, char* argv[])
 	if (check(argc,argv) != 0)
 		return (1);
 
-	std::map<std::string, double> db;
-	makeDB(db, argv[1]);
+	std::map<std::string, double> rate_db;
+	if (makeDB(rate_db) == 1);
+		return (1);
+
 	// printaans();
 
 	return (0);
