@@ -6,12 +6,11 @@
 /*   By: mkuida <reprise39@yahoo.co.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/05 11:09:34 by mkuida            #+#    #+#             */
-/*   Updated: 2026/02/26 11:14:28 by mkuida           ###   ########.fr       */
+/*   Updated: 2026/02/26 13:06:12 by mkuida           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "BitcoinExchange.hpp"
-
 
 static int is_valit_date(std::string str, std::tm* now) //yyyy/mm/dd
 {
@@ -21,7 +20,6 @@ static int is_valit_date(std::string str, std::tm* now) //yyyy/mm/dd
 	std::string nostr;
 	
 	iss >> y >> sep1 >> m >> sep2 >> d >> nostr;
-	// std::cout << y << m << d;
 
 	if (sep1 != '-' || sep2 != '-')
 		return (1);
@@ -70,14 +68,14 @@ static int is_valit_rate(std::string rate)
 	iss >> d >> nostr;
 	if(d < 0 )
 	{
-		std::cout << "data.csv Error : negative number is not allow" << std::endl;
+		std::cout << red << "Error (data.csv) : negative number is not allow" << reset << std::endl;
 		return (1);
 	}
 	if(nostr.length() == 0)
 		return (0);
 	else
 	{
-		std::cout << blue << "data.csv Error : bad input => " << rate << reset << std::endl;
+		std::cout << red << "Error (data.csv) : bad input => " << rate << reset << std::endl;
 		return (1);
 	}
 }
@@ -108,9 +106,10 @@ static double my_stod(std::string rate)
 	return (d);
 }
 
-static int appendDB(std::string& line, std::map<std::string, double>& rate_db, std::tm* now)
+static int appendDB(std::string& line, std::map<std::string, double>& rate_db, std::tm* now, int mode)
 {
-	std::cout << "======== <appendDB> ========\n" << std::endl;
+	if (mode == DEBAG_MODE)
+		std::cout << green << "======== <appendDB> ========\n" << reset << std::endl;
 
 	// check only space
 	unsigned int line_pos = 0;
@@ -125,8 +124,7 @@ static int appendDB(std::string& line, std::map<std::string, double>& rate_db, s
 	std::string date = line.substr(0,pos);
 	if( pos == std::string::npos || is_valit_date(date,now) != 0 )
 	{
-		std::cout << red << "break-appendDB : no',' or invalid-date" << reset << std::endl;
-		std::cout << red << "prease check data.csv" << reset << std::endl;
+		std::cout << red << "Error (data.csv) : break-appendDB  no',' or invalid-date" << reset << std::endl;
 		return (1);
 	}
 
@@ -136,9 +134,12 @@ static int appendDB(std::string& line, std::map<std::string, double>& rate_db, s
 	std::string rate = line.substr(pos);
 	if( newpos != std::string::npos || is_valit_rate(rate) != 0 )
 		return (1); // need check
-	std::cout << "date = " << date << ", rate =" << rate << std::endl;
-	std::cout << "======== <endDB> ========\n" << std::endl;
-	rate_db[date] = my_stod(rate);
+	if( mode == DEBAG_MODE)
+	{
+		std::cout << "date = " << date << ", rate =" << rate << std::endl;
+		std::cout << green << "======== <endDB> ========\n" << reset << std::endl;			
+	}
+	rate_db[date] = my_stod(rate); // can override
 	return (0);
 }
 
@@ -188,18 +189,14 @@ void printansline(std::string line, std::map<std::string, double> &rate_db, std:
 	std::string::size_type newpos = line.find('|', pos);
 	std::string value = line.substr(pos);
 	int checkvalue_rtn = is_valit_value(value);
-	// if ( newpos != std::string::npos )
-	// {
-		
-	// }
 	if ( checkvalue_rtn == -1)
 	{
-		std::cout << "Error: not a positive number." << std::endl;
+		std::cout << blue << "Error: not a positive number." << reset << std::endl;
 		return ;
 	}
 	if ( checkvalue_rtn == 1)
 	{
-		std::cout << "Error: too large a number." << std::endl;
+		std::cout << blue << "Error: too large a number." << reset << std::endl;
 		return ;
 	}
 	if ( checkvalue_rtn == 2)
@@ -214,7 +211,7 @@ void printansline(std::string line, std::map<std::string, double> &rate_db, std:
 }
 
 
-void printans(char* arg, std::map<std::string, double>& db)
+void printans(char* arg, std::map<std::string, double>& db, int mode)
 {
 	std::ifstream txt_file;
 	txt_file.open(arg);
@@ -223,6 +220,9 @@ void printans(char* arg, std::map<std::string, double>& db)
 	std::time_t t = std::time(NULL);
 	std::tm* now = localtime(&t);
 
+	if(mode == DEBAG_MODE)
+		std::cout << green << "<< start printans >>" << reset << std::endl;
+	
 	size_t col = 0;
 	while(txt_file)
 	{
@@ -235,9 +235,11 @@ void printans(char* arg, std::map<std::string, double>& db)
 		}
 		col++;
 	}
+	if(mode == DEBAG_MODE)
+		std::cout << green << "<< end printans >>" << reset << std::endl;
 }
 
-void makeDB(std::map<std::string, double>& db)
+void makeDB(std::map<std::string, double>& db, int mode)
 {
 	std::ifstream file;
 	std::time_t t = std::time(NULL);
@@ -251,15 +253,18 @@ void makeDB(std::map<std::string, double>& db)
 		std::getline(file, line);
 		if(i != 0)
 		{
-			if ( appendDB(line, db, now) == 1 )
+			if ( appendDB(line, db, now, mode) == 1 )
 				exit (1);
 		}
 		i++;
 	}
 	
-	for(auto it = db.begin(); it != db.end(); ++it)
+	if(mode == DEBAG_MODE)
 	{
-		std::cout << "key: " << it->first 
-		<< ",  value: " << it->second << std::endl;
+		for(auto it = db.begin(); it != db.end(); ++it)
+		{
+			std::cout << "key: " << it->first 
+			<< ",  value: " << it->second << std::endl;
+		}
 	}
 }

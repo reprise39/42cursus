@@ -60,9 +60,9 @@ int main(int argc, char* argv[])
 		return (1);
 
 	std::map<std::string, double> rate_db;
-	makeDB(rate_db);
+	makeDB(rate_db, DEV_MODE);
 
-	printans(argv[1], rate_db);
+	printans(argv[1], rate_db, DEBAG_MODE);
 
 	return (0);
 }
