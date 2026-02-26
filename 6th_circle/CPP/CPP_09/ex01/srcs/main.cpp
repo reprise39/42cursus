@@ -12,28 +12,6 @@
 
 #include "RPN.hpp"
 
-// static int check_using_c(char *argv)
-// {
-// 	size_t now = 0;
-// 	const char acceptc[15] = { ' ', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '+', '-', '*', '/' };
-// 	while(argv[now] != '\0')
-// 	{
-// 		bool check = false;
-// 		for(size_t i = 0; i < 15 ; i++)
-// 		{
-// 			if(acceptc[i] == argv[now])
-// 				check = true;
-// 		}
-// 		if(check == false)
-// 		{
-// 			std::cout << argv[now] << " is forbidden!" << std::endl;
-// 			return (1);
-// 		}
-// 		now++;
-// 	}
-// 	return (0);
-// }
-
 static int check_arg(int argc, char** argv)
 {
 	if (argc != 2)
