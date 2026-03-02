@@ -10,20 +10,17 @@
 #                                                                              #
 # **************************************************************************** #
 
-NAME = PergeMe
+NAME = btc
 CC = c++
-CFLAGS = -Wall -Wextra -Werror -std=c++98 -pedantic -g
+CFLAGS = #-Wall -Wextra -Werror -std=c++98 -pedantic -g
 LDFLAGS =
 INCLUDES = -I includes
 
 SRC_DIR = ./srcs
 
 SRC_FILES =	main.cpp\
-			sio.cpp\
-			Animal.cpp\
-			Cat.cpp\
-			Dog.cpp\
-			Brain.cpp
+			BitcoinExchange.cpp\
+			sio.cpp
 
 
 SRCS = $(addprefix $(SRC_DIR)/, $(SRC_FILES))

@@ -12,6 +12,30 @@
 
 #include "BitcoinExchange.hpp"
 
+// private utils
+
+static bool is_blank(const std::string &str)
+{
+	for(size_t i = 0 ; i < str.size() ; ++i)
+	{
+		if(!isspace(static_cast<unsigned char>(str[i])))
+			return false;
+	}
+	return true;
+}
+
+static int is_file(const char* fname)
+{
+	std::ifstream rdfile;
+	rdfile.open(fname);
+
+	if(!rdfile.is_open())
+		return (1);
+	rdfile.close();
+	return (0);
+}
+
+
 static int is_valit_date(std::string str, std::tm* now) //yyyy/mm/dd
 {
 	std::istringstream iss(str);
@@ -106,9 +130,68 @@ static double my_stod(std::string rate)
 	return (d);
 }
 
-static int appendDB(std::string& line, std::map<std::string, double>& rate_db, std::tm* now, int mode)
+// canonical form
+
+BitcoinExchanger::BitcoinExchanger()
 {
-	if (mode == DEBAG_MODE)
+	std::cout << green << "Constructor called" << reset << std::endl;
+}
+
+BitcoinExchanger::BitcoinExchanger(char* arg) : _mode(DEV_MODE), _t(std::time(NULL)), _now(localtime(&_t))
+{
+	std::cout << green << "Constructor called" << reset << std::endl;
+
+	if (arg == NULL)
+		throw BitcoinExchanger::Error("Error: no arg");
+	if(is_file(arg) != 0)
+		throw Error("arg1-file (according to bitocoin date-amount) cant open\n");
+	if(is_file(CSV_DB_NAME) != 0)
+		throw Error("input-file (data.csv according to bitocoin date-rate) cant open\n");
+
+	this->_ifname = arg;
+	this->_makeDB();
+}
+
+
+BitcoinExchanger::~BitcoinExchanger()
+{
+	std::cout << red << "Destructor called" << reset << std::endl;
+}
+
+
+BitcoinExchanger::BitcoinExchanger(const BitcoinExchanger& other)
+{
+	std::cout << green << "Copy Constructor called" << reset << std::endl;
+	*this = other;
+}
+
+BitcoinExchanger& BitcoinExchanger::operator=(const BitcoinExchanger& other)
+{
+	if (this != &other)
+	{
+		this->_rate_db = other._rate_db;
+		this->_ifname = other._ifname;
+		this->_t = other._t;
+		this->_now = other._now;
+		this->_mode = other._mode;
+	}
+	return (*this);
+}
+
+
+// exception
+const char* BitcoinExchanger::Error::what() const throw()
+{
+	return (this->_msg);
+}
+
+
+// main-function
+
+void BitcoinExchanger::_appendDB(std::string& line)
+{
+	// std:: cout << line << std::endl;
+	if (this->_mode == DEBAG_MODE)
 		std::cout << green << "======== <appendDB> ========\n" << reset << std::endl;
 
 	// check only space
@@ -116,47 +199,54 @@ static int appendDB(std::string& line, std::map<std::string, double>& rate_db, s
 	while (line[line_pos] == ' ' && line_pos < line.size())
 		line_pos++;
 	if (line.size() == line_pos)
-		return (0);
+		return ;
 	
 	// date
 	std::string::size_type pos = 0;
 	pos = line.find(',', pos);
 	std::string date = line.substr(0,pos);
-	if( pos == std::string::npos || is_valit_date(date,now) != 0 )
-	{
-		std::cout << red << "Error (data.csv) : break-appendDB  no',' or invalid-date" << reset << std::endl;
-		return (1);
-	}
-
+	if( pos == std::string::npos || is_valit_date(date, this->_now) != 0 )
+		throw BitcoinExchanger::Error("Error: rate_db has invalid-date");
 	++pos;
 	//value
 	std::string::size_type newpos = line.find(',', pos);
 	std::string rate = line.substr(pos);
 	if( newpos != std::string::npos || is_valit_rate(rate) != 0 )
-		return (1); // need check
-	if( mode == DEBAG_MODE)
+		throw BitcoinExchanger::Error("Error: rate_db has invalid-value");
+	if( this->_mode == DEBAG_MODE)
 	{
 		std::cout << "date = " << date << ", rate =" << rate << std::endl;
 		std::cout << green << "======== <endDB> ========\n" << reset << std::endl;			
 	}
-	rate_db[date] = my_stod(rate); // can override
-	return (0);
+	this->_rate_db[date] = my_stod(rate); // can override
 }
 
-double getprice(const std::string& date,const std::map<std::string ,double>& rate_db)
+void BitcoinExchanger::_makeDB()
 {
-	auto it = rate_db.begin();
-	std::string ans = it->first;
-	while((it->first) <= date && it != rate_db.end())
-		it++;
-
-	if(it != rate_db.begin())
-		it--;
-	return ((it)->second);
+	std::ifstream file;
+	
+	file.open(CSV_DB_NAME);
+	size_t i = 0;
+	while(file)
+	{
+		std::string line;
+		std::getline(file, line);
+		if(i != 0)
+			_appendDB(line);
+		i++;
+	}
+	
+	if(this->_mode == DEBAG_MODE)
+	{
+		for(auto it = this->_rate_db.begin(); it != this->_rate_db.end(); ++it)
+		{
+			std::cout << "key: " << it->first 
+			<< ",  value: " << it->second << std::endl;
+		}
+	}
 }
 
-
-void printansline(std::string line, std::map<std::string, double> &rate_db, std::tm* now)
+void BitcoinExchanger::_printansline(std::string line)
 {
 	if(is_blank(line))
 		return ;
@@ -168,7 +258,7 @@ void printansline(std::string line, std::map<std::string, double> &rate_db, std:
 		std::cout << blue << "Error: bad input => " << line << reset << std::endl;
 		return ;
 	}
-	if( is_valit_date(date,now) != 0 )
+	if( is_valit_date(date,this->_now) != 0 )
 	{
 		std::cout << blue << "Error: uncorrect-date => " << date << reset << std::endl;
 		return ;
@@ -196,23 +286,18 @@ void printansline(std::string line, std::map<std::string, double> &rate_db, std:
 	}
 	//cal
 	double nm = my_stod(value);
-	double price = getprice(date,rate_db);
+	double price = _getprice(date);
 	std::cout << date << " => " << nm << " = " << (price*nm) << std::endl;
 }
 
 
-void printans(char* arg, std::map<std::string, double>& db, int mode)
+void BitcoinExchanger::print()
 {
-	std::ifstream txt_file;
-	txt_file.open(arg);
-	std::istringstream iss;
-
-	std::time_t t = std::time(NULL);
-	std::tm* now = localtime(&t);
-
-	if(mode == DEBAG_MODE)
+	if(this->_mode == DEBAG_MODE)
 		std::cout << green << "<< start printans >>" << reset << std::endl;
 	
+	std::ifstream txt_file;
+	txt_file.open(this->_ifname);
 	size_t col = 0;
 	while(txt_file)
 	{
@@ -221,40 +306,22 @@ void printans(char* arg, std::map<std::string, double>& db, int mode)
 		if(col != 0)
 		{
 			if ( line.size() != 0 )
-				printansline(line, db, now);
+				_printansline(line);
 		}
 		col++;
 	}
-	if(mode == DEBAG_MODE)
+	if(_mode == DEBAG_MODE)
 		std::cout << green << "<< end printans >>" << reset << std::endl;
 }
 
-void makeDB(std::map<std::string, double>& db, int mode)
+double BitcoinExchanger::_getprice(const std::string& date)
 {
-	std::ifstream file;
-	std::time_t t = std::time(NULL);
-	std::tm* now = localtime(&t);
-	
-	file.open("data.csv");
-	size_t i = 0;
-	while(file)
-	{
-		std::string line;
-		std::getline(file, line);
-		if(i != 0)
-		{
-			if ( appendDB(line, db, now, mode) == 1 )
-				exit (1);
-		}
-		i++;
-	}
-	
-	if(mode == DEBAG_MODE)
-	{
-		for(auto it = db.begin(); it != db.end(); ++it)
-		{
-			std::cout << "key: " << it->first 
-			<< ",  value: " << it->second << std::endl;
-		}
-	}
+	auto it = this->_rate_db.begin();
+	std::string ans = it->first;
+	while((it->first) <= date && it != this->_rate_db.end())
+		it++;
+
+	if(it != this->_rate_db.begin())
+		it--;
+	return ((it)->second);
 }
