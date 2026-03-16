@@ -10,7 +10,9 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "PergeMe.hpp"
+#include "../includes/PergeMe.hpp"
+#include "../includes/sio.hpp"
+#include <sstream>
 
 int main(int argc, char* argv[])
 {
