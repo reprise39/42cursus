@@ -6,7 +6,7 @@
 /*   By: mkuida <reprise39@yahoo.co.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/09 17:40:44 by mkuida            #+#    #+#             */
-/*   Updated: 2025/07/09 17:40:44 by mkuida           ###   ########.fr       */
+/*   Updated: 2026/03/16 21:32:15 by mkuida           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int main(int argc, char* argv[])
 {
 	if(argc == 1)
 	{
-		std::cerr << "can't caliculate : need int args" << std::endl;
+		std::cerr << red << "can't caliculate : need int args" << reset << std::endl;
 		return (1);
 	}
 
@@ -30,7 +30,7 @@ int main(int argc, char* argv[])
 
 		if(!(iss >> tmp) || tmp < 0)
 		{
-			std::cerr << "input need integer" << std::endl;
+			std::cerr << red << "input need integer" << reset << std::endl;
 			return (1);
 		}
 		myvec.push_back(tmp);

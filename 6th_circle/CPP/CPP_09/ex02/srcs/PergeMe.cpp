@@ -1,15 +1,15 @@
 
 #include "PergeMe.hpp"
 
-PergeMe::PergeMe(std::vector<int>myvec, std::deque<int> mydeq) : _vecint(myvec) , _deqint(mydeq)
+PergeMe::PergeMe(std::vector<int>myvec, std::deque<int> mydeq) : _vecint(myvec) , _deqint(mydeq) , _vectime(0) , _deqtime(0), _ans("")
 {
+	this->_range = myvec.size();
+	this->_input = this->vec_to_str();
+
+	this->_mergeInsertSortVec();
+	this->_mergeInsertSortDeq();
+	this->_ans = this->vec_to_str();
 }
-
-//private
-PergeMe::PergeMe() : _input("") {}
-
-
-PergeMe::~PergeMe() {}
 
 PergeMe::PergeMe(const PergeMe& other)
 {
@@ -31,6 +31,43 @@ PergeMe& PergeMe::operator=(const PergeMe& other)
 	return *this;
 }
 
+//function
+std::string PergeMe::vec_to_str() const
+{
+	std::ostringstream oss;
+
+	for(size_t i = 0 ; i < this->_range; i++)
+	{
+		if(i != 0)
+			oss << " ";
+		oss << this->_vecint[i];
+	}
+	return oss.str();
+}
+
+void PergeMe::_mergeInsertSortVec()
+{
+	std::clock_t start = std::clock();
+
+	// merge insert sort for vector
+
+	std::clock_t end = std::clock();
+	std::clock_t duration = end - start;
+	this->_vectime = static_cast<unsigned int>(duration * 1000000 / CLOCKS_PER_SEC);
+}
+
+void PergeMe::_mergeInsertSortDeq()
+{
+	std::clock_t start = std::clock();
+
+	// merge insert sort for deque
+
+	std::clock_t end = std::clock();
+	std::clock_t duration = end - start;
+	this->_deqtime = static_cast<unsigned int>(duration * 1000000 / CLOCKS_PER_SEC);
+}
+
+
 void PergeMe::printAns() const
 {
 	std::cout << "Before:  " << this->_input << std::endl;
@@ -44,16 +81,3 @@ const char* PergeMe::input_error::what() const throw()
 {
 	return (this->_msg);
 }
-
-//
-/*
-bool PergeMe::is_ui(char* str)
-{
-	std::istringstream iss(str);
-	unsigned int i = 0;
-
-	if(iss)
-		return true;
-	return false;
-}
-*/

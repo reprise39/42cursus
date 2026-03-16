@@ -19,6 +19,7 @@
 # include <iostream>
 # include <sstream>
 # include <ctime>
+# include <unistd.h> // for usleep
 # include "sio.hpp"
 
 // macro
@@ -28,11 +29,12 @@ class PergeMe
 {
 	public:
 		PergeMe(std::vector<int>myvec, std::deque<int> mydeq);
-		~PergeMe();
+		~PergeMe(){};
 		PergeMe(const PergeMe& other);
 		PergeMe& operator=(const PergeMe& other);
 
 		void printAns() const;
+		std::string vec_to_str() const;
 
 		class input_error : public std::exception
 		{
@@ -44,7 +46,7 @@ class PergeMe
 		};
 
 	protected:
-		PergeMe();
+		PergeMe(){};
 
 		std::vector<int> _vecint;
 		std::deque<int> _deqint;
@@ -53,6 +55,9 @@ class PergeMe
 		unsigned int _range;
 		std::string _input;
 		std::string _ans;
+
+		void _mergeInsertSortVec();
+		void _mergeInsertSortDeq();
 };
 
 #endif
