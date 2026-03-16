@@ -1,5 +1,6 @@
-
-#include "PergeMe.hpp"
+#include "../includes/PergeMe.hpp"
+#include <iostream>
+#include <sstream>
 
 PergeMe::PergeMe(std::vector<int>myvec, std::deque<int> mydeq) : _vecint(myvec) , _deqint(mydeq) , _vectime(0) , _deqtime(0), _ans("")
 {
@@ -45,11 +46,22 @@ std::string PergeMe::vec_to_str() const
 	return oss.str();
 }
 
+
+static void make_pair_vec(std::vector<int>& vec)
+{
+	if(vec.size() < 2)	
+		return;
+	
+	std::vector<std::pair<int, int> > pairs;
+
+}
+
 void PergeMe::_mergeInsertSortVec()
 {
 	std::clock_t start = std::clock();
 
 	// merge insert sort for vector
+	make_pair_vec(this->_vecint);
 
 	std::clock_t end = std::clock();
 	std::clock_t duration = end - start;
@@ -67,7 +79,6 @@ void PergeMe::_mergeInsertSortDeq()
 	this->_deqtime = static_cast<unsigned int>(duration * 1000000 / CLOCKS_PER_SEC);
 }
 
-
 void PergeMe::printAns() const
 {
 	std::cout << "Before:  " << this->_input << std::endl;
@@ -75,6 +86,7 @@ void PergeMe::printAns() const
 	std::cout << "Time to process a range of " << this->_range << " elements with std::[vector] : " << this->_vectime << " us" << std::endl;
 	std::cout << "Time to process a range of " << this->_range << " elements with std::[deque]  : " << this->_deqtime << " us" << std::endl;
 }
+
 
 // exception
 const char* PergeMe::input_error::what() const throw()

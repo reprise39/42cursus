@@ -14,13 +14,11 @@
 # define PERGEME_HPP
 
 // include
+# include <string>
 # include <deque>
 # include <vector>
-# include <iostream>
-# include <sstream>
 # include <ctime>
 # include <unistd.h> // for usleep
-# include "sio.hpp"
 
 // macro
 

@@ -45,5 +45,7 @@
 		"streambuf": "cpp",
 		"typeinfo": "cpp"
 	},
-	"chatgpt.openOnStartup": true
+	"chatgpt.openOnStartup": true,
+	"clangd.checkUpdates": true,
+	"clangd.enableHover": true
 }
