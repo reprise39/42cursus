@@ -10,35 +10,43 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Animal.hpp"
-#include "Cat.hpp"
-#include "Dog.hpp"
+#include "PergeMe.hpp"
 
-int main()
+int main(int argc, char* argv[])
 {
-	// std::cout << "===Test 0:class check ===" << std::endl;
-	// {
-	// 	Animal a; // cant compile
-	// }
-
-	std::cout << "\n===Test 1: Polymorphism ===" << std::endl;
+	if(argc == 1)
 	{
-		const Animal* d = new Dog();
-		const Animal* c = new Cat();
-		d->makeSound();
-		c->makeSound();
-		delete d;
-		delete c;
+		std::cerr << "can't caliculate : need int args" << std::endl;
+		return (1);
 	}
 
-	std::cout << "\n===Test 2: Polymorphism ===" << std::endl;
+	std::vector<int> myvec;
+	std::deque<int> mydeq;
+
+	for(int i = 1; i < argc; i++)
 	{
-		const Animal* c = new Cat();
-		c->makeSound();
-		c->Animal::makeSound();
-		delete c;
+		std::istringstream iss(argv[i]);
+		int tmp;
+
+		if(!(iss >> tmp) || tmp < 0)
+		{
+			std::cerr << "input need integer" << std::endl;
+			return (1);
+		}
+		myvec.push_back(tmp);
+		mydeq.push_back(tmp);
+	}
+
+	try
+	{
+		PergeMe Pm(myvec,mydeq);
+		Pm.printAns();
+	}
+	catch(const std::exception &e)
+	{
+		std::cerr << e.what() << std::endl;
+		return (1);
 	}
 
 	return 0;
 }
-

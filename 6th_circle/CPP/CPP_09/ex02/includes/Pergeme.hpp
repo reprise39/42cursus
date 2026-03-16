@@ -10,33 +10,49 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ANIMAL_HPP
-# define ANIMAL_HPP
+#ifndef PERGEME_HPP
+# define PERGEME_HPP
 
 // include
+# include <deque>
+# include <vector>
+# include <iostream>
+# include <sstream>
+# include <ctime>
 # include "sio.hpp"
 
 // macro
 
 // class
-class Animal
+class PergeMe
 {
 	public:
-		Animal();
-		Animal(const std::string& str);
-		Animal(const Animal& c);
-		virtual ~Animal();
+		PergeMe(std::vector<int>myvec, std::deque<int> mydeq);
+		~PergeMe();
+		PergeMe(const PergeMe& other);
+		PergeMe& operator=(const PergeMe& other);
 
-		Animal& operator=(const Animal& other) ;
+		void printAns() const;
 
-		std::string printMyClass() const;
-		virtual void makeSound() const = 0;
-
-		std::string getType() const;
-		void setType(const std::string& str);
+		class input_error : public std::exception
+		{
+			public:
+				input_error(const char* msg) : _msg(msg) {}
+				const char* what() const throw();
+			private:
+				const char* _msg;
+		};
 
 	protected:
-		std::string _Type;
+		PergeMe();
+
+		std::vector<int> _vecint;
+		std::deque<int> _deqint;
+		unsigned int _vectime;
+		unsigned int _deqtime;
+		unsigned int _range;
+		std::string _input;
+		std::string _ans;
 };
 
 #endif

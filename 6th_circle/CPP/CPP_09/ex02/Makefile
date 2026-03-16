@@ -20,10 +20,7 @@ SRC_DIR = ./srcs
 
 SRC_FILES =	main.cpp\
 			sio.cpp\
-			Animal.cpp\
-			Cat.cpp\
-			Dog.cpp\
-			Brain.cpp
+			PergeMe.cpp
 
 
 SRCS = $(addprefix $(SRC_DIR)/, $(SRC_FILES))
