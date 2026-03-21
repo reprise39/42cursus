@@ -6,13 +6,15 @@
 /*   By: mkuida <reprise39@yahoo.co.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/09 17:40:44 by mkuida            #+#    #+#             */
-/*   Updated: 2026/03/16 21:32:15 by mkuida           ###   ########.fr       */
+/*   Updated: 2026/03/21 02:54:34 by mkuida           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/PergeMe.hpp"
 #include "../includes/sio.hpp"
 #include <sstream>
+#include <algorithm> 
+//add descretion error
 
 int main(int argc, char* argv[])
 {
@@ -29,10 +31,16 @@ int main(int argc, char* argv[])
 	{
 		std::istringstream iss(argv[i]);
 		int tmp;
+		char bad;
 
-		if(!(iss >> tmp) || tmp < 0)
+		if(!(iss >> tmp) || tmp <= 0 || iss >> bad)
 		{
-			std::cerr << red << "input need integer" << reset << std::endl;
+			std::cerr << red << "input need positive integer" << reset << std::endl;
+			return (1);
+		}
+		if(std::find(myvec.begin(), myvec.end(), tmp) != myvec.end())
+		{
+			std::cerr << red << "input need unique integer" << reset << std::endl;
 			return (1);
 		}
 		myvec.push_back(tmp);

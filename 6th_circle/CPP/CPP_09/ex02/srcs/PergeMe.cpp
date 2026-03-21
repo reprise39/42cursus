@@ -1,6 +1,21 @@
 #include "../includes/PergeMe.hpp"
 #include <iostream>
 #include <sstream>
+#include <iterator>
+
+#define RESERVE_MODE 1
+
+static void dev_print_vec(std::string name, std::vector<int> vec)
+{
+	std::cout << name << ": ";
+	for(size_t i = 0; i < vec.size(); i++)
+	{
+		if(i != 0)
+			std::cout << " ";
+		std::cout << vec[i];
+	}
+	std::cout << std::endl;
+}
 
 PergeMe::PergeMe(std::vector<int>myvec, std::deque<int> mydeq) : _vecint(myvec) , _deqint(mydeq) , _vectime(0) , _deqtime(0), _ans("")
 {
@@ -32,7 +47,6 @@ PergeMe& PergeMe::operator=(const PergeMe& other)
 	return *this;
 }
 
-//function
 std::string PergeMe::vec_to_str() const
 {
 	std::ostringstream oss;
@@ -46,22 +60,145 @@ std::string PergeMe::vec_to_str() const
 	return oss.str();
 }
 
-
-static void make_pair_vec(std::vector<int>& vec)
+// fj utils
+static int search_pair(int search, std::vector<std::pair<int, int> > pairs)
 {
-	if(vec.size() < 2)	
-		return;
-	
-	std::vector<std::pair<int, int> > pairs;
+	size_t i = 0;
+	while(i < pairs.size())
+	{
+		if(pairs[i].first == search)
+			return (pairs[i].second);
+		i++;
+	}
+	throw std::runtime_error("search_pair: unmatch error");
+}
 
+static std::vector<int> get_insert_bignum(std::vector<int> chain)
+{
+	std::vector<int> fj;
+	fj.push_back(0);
+	fj.push_back(1);
+
+	while(fj.back() < static_cast<int>(chain.size()))
+	{
+		int size = fj.size();
+		fj.push_back(fj[size-1] + fj[size-2] * 2);
+	}
+
+	std::vector<int> ans;
+#if RESERVE_MODE
+	ans.reserve(chain.size());
+#endif
+	for(int i = 1; i < static_cast<int>(fj.size()); i++)
+	{
+		int curr = fj[i];
+		int prev = fj[i-1];
+
+		for(int j = curr - 1; j >= prev; j--)
+		{
+			if(j >= 0 && j < static_cast<int>(chain.size()))
+				ans.push_back(chain[j]);
+		}
+	}
+	return ans;
+}
+
+static int search_index(int search, std::vector<int> vec)
+{
+	int i = 0;
+	std::vector<int>::iterator itr = vec.begin();
+	while(*itr != search && itr != vec.end())
+	{
+		itr++;
+		i++;
+	}
+	if (itr == vec.end())
+		throw std::runtime_error("search_index: unmatch error");
+	return i;
+}
+
+static void binary_insert(std::vector<int> &vec, int value, int upper)
+{
+	int left = 0;
+	int right = upper;
+	while(left < right)
+	{
+		int mid = left + (right - left)/2;
+		if(vec[mid] < value)
+			left = mid + 1;
+		else
+			right = mid;
+	}
+	vec.insert(vec.begin() + left, value);
+}
+
+static std::vector<int> make_pair_vec(std::vector<int> vec)
+{
+	if(vec.size() < 2)
+		return vec;
+
+	bool odd_size = false;
+	int extra = -1;
+
+	if(vec.size() % 2 == 1)
+	{
+		odd_size = true;
+		extra = vec.back();
+		vec.pop_back();
+	}
+
+	std::vector<std::pair<int, int> > pairs;
+#if RESERVE_MODE
+	pairs.reserve(vec.size() / 2);
+#endif
+	for(size_t i = 0 ; i < vec.size() ; i += 2)
+	{
+		int big = vec[i];
+		int small = vec[i+1];
+		if(big < small)
+			std::swap(big, small);
+		pairs.push_back(std::make_pair(big, small));
+	}
+
+	int pairs_size = pairs.size();
+	std::vector<int> bigger_chain;
+	std::vector<int> smaller_chain;
+#if RESERVE_MODE
+	bigger_chain.reserve(pairs_size);
+	smaller_chain.reserve(pairs_size);
+#endif
+	for(int i = 0; i < pairs_size; i++)
+	{
+		bigger_chain.push_back(pairs[i].first);
+		smaller_chain.push_back(pairs[i].second);
+	}
+
+	// recursive
+	std::vector<int> sorted_main = make_pair_vec(bigger_chain);
+#if RESERVE_MODE
+	sorted_main.reserve(vec.size());
+#endif
+
+	std::vector<int> insert_wait_bg = get_insert_bignum(sorted_main);
+	for(size_t i = 0 ; i < insert_wait_bg.size() ; i++)
+	{
+		int upper_index = search_index(insert_wait_bg[i], sorted_main);
+		int search = search_pair(insert_wait_bg[i], pairs);
+
+		binary_insert(sorted_main, search, upper_index);
+	}
+
+	// last
+	if(odd_size)
+		binary_insert(sorted_main, extra, sorted_main.size());
+	return (sorted_main);
 }
 
 void PergeMe::_mergeInsertSortVec()
 {
 	std::clock_t start = std::clock();
 
-	// merge insert sort for vector
-	make_pair_vec(this->_vecint);
+	this->_vecint = make_pair_vec(this->_vecint);
 
 	std::clock_t end = std::clock();
 	std::clock_t duration = end - start;
@@ -86,7 +223,6 @@ void PergeMe::printAns() const
 	std::cout << "Time to process a range of " << this->_range << " elements with std::[vector] : " << this->_vectime << " us" << std::endl;
 	std::cout << "Time to process a range of " << this->_range << " elements with std::[deque]  : " << this->_deqtime << " us" << std::endl;
 }
-
 
 // exception
 const char* PergeMe::input_error::what() const throw()
