@@ -6,15 +6,13 @@
 /*   By: mkuida <reprise39@yahoo.co.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/09 17:40:44 by mkuida            #+#    #+#             */
-/*   Updated: 2026/03/21 02:54:34 by mkuida           ###   ########.fr       */
+/*   Updated: 2026/03/21 19:47:55 by mkuida           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/PergeMe.hpp"
-#include "../includes/sio.hpp"
+#include "PmergeMe.hpp"
 #include <sstream>
 #include <algorithm> 
-//add descretion error
 
 int main(int argc, char* argv[])
 {

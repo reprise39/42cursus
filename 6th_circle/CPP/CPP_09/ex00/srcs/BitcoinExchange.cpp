@@ -6,7 +6,7 @@
 /*   By: mkuida <reprise39@yahoo.co.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/05 11:09:34 by mkuida            #+#    #+#             */
-/*   Updated: 2026/03/21 18:07:48 by mkuida           ###   ########.fr       */
+/*   Updated: 2026/03/21 19:43:45 by mkuida           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -323,4 +323,25 @@ double BitcoinExchanger::_getprice(const std::string& date)
 	if(it != this->_rate_db.begin())
 		it--;
 	return ((it)->second);
+}
+
+//sio
+std::ostream& red(std::ostream& os)
+{
+	return (os << "\033[31m");
+}
+
+std::ostream& blue(std::ostream& os)
+{
+	return (os << "\033[34m");
+}
+
+std::ostream& green(std::ostream& os)
+{
+	return (os << "\033[32m");
+}
+
+std::ostream& reset(std::ostream& os)
+{
+	return (os << "\033[0m");
 }

@@ -6,7 +6,7 @@
 /*   By: mkuida <reprise39@yahoo.co.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/24 19:24:03 by mkuida            #+#    #+#             */
-/*   Updated: 2026/03/21 18:49:05 by mkuida           ###   ########.fr       */
+/*   Updated: 2026/03/21 19:41:44 by mkuida           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 # include <vector>
 # include <ctime>
 # include <unistd.h> // for usleep
+# include <iostream>
 
 // macro
 #define RESERVE_MODE 1
@@ -60,4 +61,9 @@ class PergeMe
 		void _mergeInsertSortDeq();
 };
 
+std::ostream& red(std::ostream& os);
+std::ostream& blue(std::ostream& os);
+std::ostream& reset(std::ostream& os);
+
 #endif
+

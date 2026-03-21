@@ -19,9 +19,7 @@ INCLUDES = -I includes
 SRC_DIR = ./srcs
 
 SRC_FILES =	main.cpp\
-			BitcoinExchange.cpp\
-			sio.cpp
-
+			BitcoinExchange.cpp
 
 SRCS = $(addprefix $(SRC_DIR)/, $(SRC_FILES))
 

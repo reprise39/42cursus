@@ -6,7 +6,7 @@
 /*   By: mkuida <reprise39@yahoo.co.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/05 11:07:07 by mkuida            #+#    #+#             */
-/*   Updated: 2026/03/21 18:03:59 by mkuida           ###   ########.fr       */
+/*   Updated: 2026/03/21 19:44:32 by mkuida           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@
 #include <iostream>
 #include <sstream>
 #include <fstream>
-#include "sio.hpp"
 
 #define CSV_DB_NAME "data.csv"
 #define IFNAME "input.csv"
@@ -60,3 +59,8 @@ class BitcoinExchanger
 		void _printansline(std::string line);
 		double _getprice(const std::string& date);
 };
+
+std::ostream& red(std::ostream& os);
+std::ostream& blue(std::ostream& os);
+std::ostream& green(std::ostream& os);
+std::ostream& reset(std::ostream& os);

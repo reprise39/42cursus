@@ -1,4 +1,4 @@
-#include "../includes/PergeMe.hpp"
+#include "PmergeMe.hpp"
 #include <iostream>
 #include <sstream>
 #include <iterator>
@@ -355,4 +355,20 @@ void PergeMe::printAns() const
 const char* PergeMe::input_error::what() const throw()
 {
 	return (this->_msg);
+}
+
+//sio
+std::ostream& red(std::ostream& os)
+{
+	return (os << "\033[31m");
+}
+
+std::ostream& blue(std::ostream& os)
+{
+	return (os << "\033[34m");
+}
+
+std::ostream& reset(std::ostream& os)
+{
+	return (os << "\033[0m");
 }

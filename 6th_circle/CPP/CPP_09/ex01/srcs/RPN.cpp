@@ -6,7 +6,7 @@
 /*   By: mkuida <reprise39@yahoo.co.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/07 23:43:27 by mkuida            #+#    #+#             */
-/*   Updated: 2026/02/28 13:24:01 by mkuida           ###   ########.fr       */
+/*   Updated: 2026/03/21 19:42:30 by mkuida           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -206,4 +206,21 @@ void RPN::_calculate()
 	{
 		throw RPN::input_error("Error : can't calculate (luck operator)");
 	}
+}
+
+
+//sio
+std::ostream& red(std::ostream& os)
+{
+	return (os << "\033[31m");
+}
+
+std::ostream& blue(std::ostream& os)
+{
+	return (os << "\033[34m");
+}
+
+std::ostream& reset(std::ostream& os)
+{
+	return (os << "\033[0m");
 }

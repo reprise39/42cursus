@@ -10,7 +10,7 @@
 #                                                                              #
 # **************************************************************************** #
 
-NAME = PergeMe
+NAME = PmergeMe
 CC = c++
 CFLAGS = -Wall -Wextra -Werror -std=c++98 -pedantic -g
 LDFLAGS =
@@ -19,8 +19,7 @@ INCLUDES = -I includes
 SRC_DIR = ./srcs
 
 SRC_FILES =	main.cpp\
-			sio.cpp\
-			PergeMe.cpp
+			PmergeMe.cpp
 
 
 SRCS = $(addprefix $(SRC_DIR)/, $(SRC_FILES))

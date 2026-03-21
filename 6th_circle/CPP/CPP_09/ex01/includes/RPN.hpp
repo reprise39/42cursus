@@ -6,14 +6,13 @@
 /*   By: mkuida <reprise39@yahoo.co.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/07 19:36:29 by mkuida            #+#    #+#             */
-/*   Updated: 2026/02/28 13:27:26 by mkuida           ###   ########.fr       */
+/*   Updated: 2026/03/21 19:45:50 by mkuida           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef RPN_HPP
 # define RPN_HPP
 
-# include "sio.hpp"
 # include <stack>
 # include <string>
 # include <cstdlib>
@@ -59,5 +58,8 @@ class RPN
 		bool _is_my_brank(char argv);
 };
 
+std::ostream& red(std::ostream& os);
+std::ostream& blue(std::ostream& os);
+std::ostream& reset(std::ostream& os);
 
 #endif
