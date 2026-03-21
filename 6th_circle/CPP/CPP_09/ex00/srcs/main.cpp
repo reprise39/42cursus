@@ -16,53 +16,61 @@
 #include "sio.hpp"
 #include <map>
 
-static int is_file(const char* fname)
-{
-	std::ifstream rdfile;
-	rdfile.open(fname);
+// static int is_file(const char* fname)
+// {
+// 	std::ifstream rdfile;
+// 	rdfile.open(fname);
 
-	if(!rdfile.is_open())
-		return (1);
-	rdfile.close();
-	return (0);
-}
+// 	if(!rdfile.is_open())
+// 		return (1);
+// 	rdfile.close();
+// 	return (0);
+// }
 
-static int check(int argc, char* argv[])
-{
-	std::string emsg;
-	int rtn = 0;
+// static int check(int argc, char* argv[])
+// {
+// 	std::string emsg;
+// 	int rtn = 0;
 
-	if(argc != 2)
-	{
-		emsg.append("need 1 arg [according to bitcoin date-amount filename] \n");
-		rtn = 1;
-	}
-	else if(is_file(argv[1]) != 0)
-	{
-		emsg.append("arg1-file(according to bitocoin date-amount) cant open\n");
-		rtn = 1;
-	}
-	if(is_file("data.csv") != 0)
-	{
-		emsg.append("input-file (data.csv according to bitocoin date-rate) cant open\n");
-		rtn = 1;
-	}
+// 	if(argc != 2)
+// 	{
+// 		emsg.append("need 1 arg [according to bitcoin date-amount filename] \n");
+// 		rtn = 1;
+// 	}
+// 	else if(is_file(argv[1]) != 0)
+// 	{
+// 		emsg.append("arg1-file(according to bitocoin date-amount) cant open\n");
+// 		rtn = 1;
+// 	}
+// 	if(is_file("data.csv") != 0)
+// 	{
+// 		emsg.append("input-file (data.csv according to bitocoin date-rate) cant open\n");
+// 		rtn = 1;
+// 	}
 
-	if(rtn == 1)
-		std::cout << red << emsg << reset;
-	return (rtn);
-}
+// 	if(rtn == 1)
+// 		std::cout << red << emsg << reset;
+// 	return (rtn);
+// }
 
 
 int main(int argc, char* argv[])
 {
-	if (check(argc,argv) != 0)
+	if (argc != 2)
+	{
+		std::cerr << red << "need only-1 arg [according to bitcoin date-amount filename]" << reset << std::endl;
 		return (1);
+	}
 
-	std::map<std::string, double> rate_db;
-	makeDB(rate_db, DEV_MODE);
-
-	printans(argv[1], rate_db, DEBAG_MODE);
-
+	try
+	{
+		BitcoinExchanger btc_changer(argv[1]);
+		btc_changer.print();
+	}
+	catch(const std::exception& e)
+	{
+		std::cerr << e.what() << std::endl;
+		return (1);
+	}
 	return (0);
 }

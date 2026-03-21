@@ -14,22 +14,12 @@
 
 static int check_arg(int argc, char** argv)
 {
-	if (argc != 2)
+	if (argc != 2 || argv[1] == NULL)
 	{
-		std::cout << red  << "Error\n" << "This program accepts only one argument" << reset <<  std::endl;
+		std::cout << red  << "Error : " << "This program accepts only one argument" << reset <<  std::endl;
 		return (1);
 	}
 
-	size_t now = 0;
-	while (argv[1][now] != '\0')
-	{
-		if(!(is_my_digit(argv[1][now]) || is_my_operator(argv[1][now]) || is_my_brank(argv[1][now])))
-		{
-			std::cout << red << "Error : " << "input at -> '" << argv[1][now] << "'" << " : This program only can use { 0-9, +, -, *, / }" << reset <<  std::endl;
-			return (1);
-		}
-		now++;
-	}
 	return (0);
 }
 
@@ -37,6 +27,17 @@ int main(int argc, char** argv)
 {
 	if (check_arg(argc,argv) != 0)
 		return (1);
-	cal(argv[1]);
+
+	try
+	{
+		RPN my_rpn(argv[1]);
+		my_rpn.print_ans();
+	}
+	catch (const std::exception& e)
+	{
+		std::cerr << e.what() << std::endl;
+		return 1;
+	}
+
 	return 0;
 }

@@ -1,6 +1,0 @@
-{
-    "clangd.arguments": [
-        "--query-driver=/usr/bin/g++,/usr/bin/c++"
-	],
-	"git.ignoreLimitWarning": true
-}
