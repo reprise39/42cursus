@@ -6,7 +6,7 @@
 /*   By: mkuida <reprise39@yahoo.co.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/05 11:09:34 by mkuida            #+#    #+#             */
-/*   Updated: 2026/03/21 19:43:45 by mkuida           ###   ########.fr       */
+/*   Updated: 2026/03/23 04:32:21 by mkuida           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ static int is_valit_date(std::string str, std::tm* now) //yyyy/mm/dd
 	}
 	else
 	{
-		std::cout << red << "extra-word exist = " << str << reset << std::endl;
+		std::cout << red << "extra-word exist (in date) = " << str << reset << std::endl;
 		return (1);
 	}
 }
@@ -110,7 +110,10 @@ static int is_valit_value(std::string rate)
 	double d;
 	std::string nostr;
 
-	iss >> d >> nostr;
+	iss >> d;
+	if(iss.fail())
+		return (2);
+	iss >> nostr;
 	if(d < 0 )
 		return (-1);
 	if(d > 1000)
@@ -253,12 +256,14 @@ void BitcoinExchanger::_printansline(std::string line)
 	std::string::size_type pos = 0;
 	pos = line.find('|', pos);
 	std::string date = line.substr(0,pos);
+
+
 	if( pos == std::string::npos )
 	{
 		std::cout << blue << "Error: bad input => " << line << reset << std::endl;
 		return ;
 	}
-	if( is_valit_date(date,this->_now) != 0 )
+	if( is_valit_date(date, this->_now) != 0 )
 	{
 		std::cout << blue << "Error: uncorrect-date => " << date << reset << std::endl;
 		return ;
@@ -285,8 +290,12 @@ void BitcoinExchanger::_printansline(std::string line)
 	}
 	//cal
 	double nm = my_stod(value);
+	while(date[0] == ' ' || date[0] == '\t')
+		date.erase(0,1);
 	double price = _getprice(date);
 	std::cout << date << " => " << nm << " = " << (price*nm) << std::endl;
+	if(this->_mode == DEBAG_MODE )
+		std::cout << "nm = " << nm << ", price = " << price << std::endl;
 }
 
 
@@ -317,7 +326,7 @@ double BitcoinExchanger::_getprice(const std::string& date)
 {
 	std::map<std::string, double>::iterator it = this->_rate_db.begin();
 	std::string ans = it->first;
-	while((it->first) <= date && it != this->_rate_db.end())
+	while(it != this->_rate_db.end() && (it->first) <= date )
 		it++;
 
 	if(it != this->_rate_db.begin())

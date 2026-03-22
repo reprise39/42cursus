@@ -125,6 +125,7 @@ static void binary_insert_vec(std::vector<int> &vec, int value, int upper)
 	while(left < right)
 	{
 		int mid = left + (right - left)/2;
+		// std::cout << std::endl;
 		if(vec[mid] < value)
 			left = mid + 1;
 		else
@@ -137,17 +138,14 @@ static std::vector<int> make_chain_rec_vec(std::vector<int> vec)
 {
 	if(vec.size() < 2)
 		return vec;
-
 	bool odd_size = false;
 	int extra = -1;
-
 	if(vec.size() % 2 == 1)
 	{
 		odd_size = true;
 		extra = vec.back();
 		vec.pop_back();
 	}
-
 	std::vector<std::pair<int, int> > pairs;
 #if RESERVE_MODE
 	pairs.reserve(vec.size() / 2);
@@ -156,11 +154,11 @@ static std::vector<int> make_chain_rec_vec(std::vector<int> vec)
 	{
 		int big = vec[i];
 		int small = vec[i+1];
+		// std::cout << std::endl;
 		if(big < small)
 			std::swap(big, small);
 		pairs.push_back(std::make_pair(big, small));
 	}
-
 	int pairs_size = pairs.size();
 	std::vector<int> bigger_chain;
 #if RESERVE_MODE
@@ -170,25 +168,26 @@ static std::vector<int> make_chain_rec_vec(std::vector<int> vec)
 	{
 		bigger_chain.push_back(pairs[i].first);
 	}
-
 	// recursive
 	std::vector<int> sorted_main = make_chain_rec_vec(bigger_chain);
 #if RESERVE_MODE
 	sorted_main.reserve(vec.size());
 #endif
-
+	// injuction extra
+	if(odd_size)
+	{
+		pairs.push_back(std::make_pair(0, extra));
+		sorted_main.push_back(0);
+	}
 	std::vector<int> insert_wait_bg = get_insert_bignum_vec(sorted_main);
 	for(size_t i = 0 ; i < insert_wait_bg.size() ; i++)
 	{
 		int upper_index = search_index_vec(insert_wait_bg[i], sorted_main);
 		int search = search_pair_vec(insert_wait_bg[i], pairs);
-
 		binary_insert_vec(sorted_main, search, upper_index);
 	}
-
-	// last
 	if(odd_size)
-		binary_insert_vec(sorted_main, extra, sorted_main.size());
+		sorted_main.erase(sorted_main.begin() + (sorted_main.size() - 1));
 	return (sorted_main);
 }
 
@@ -313,6 +312,13 @@ static std::deque<int> make_chain_rec_deq(std::deque<int> deq)
 	// recursive
 	std::deque<int> sorted_main = make_chain_rec_deq(bigger_chain);
 
+
+	// injuction extra
+	if(odd_size)
+	{
+		pairs.push_back(std::make_pair(0, extra));
+		sorted_main.push_back(0);
+	}
 	std::deque<int> insert_wait_bg = get_insert_bignum_deq(sorted_main);
 	for(size_t i = 0 ; i < insert_wait_bg.size() ; i++)
 	{
@@ -322,9 +328,8 @@ static std::deque<int> make_chain_rec_deq(std::deque<int> deq)
 		binary_insert_deq(sorted_main, search, upper_index);
 	}
 
-	// last
 	if(odd_size)
-		binary_insert_deq(sorted_main, extra, sorted_main.size());
+		sorted_main.pop_back();
 	return (sorted_main);
 }
 

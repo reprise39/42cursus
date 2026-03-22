@@ -6,7 +6,7 @@
 /*   By: mkuida <reprise39@yahoo.co.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/07 23:43:27 by mkuida            #+#    #+#             */
-/*   Updated: 2026/03/21 19:42:30 by mkuida           ###   ########.fr       */
+/*   Updated: 2026/03/23 04:52:00 by mkuida           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,16 +123,20 @@ void RPN::_check_valid_input(char* input)
 
 static long add(long a, long b)
 {
-	if (a > INT_MAX - b)
+	if (b > 0 && a > INT_MAX - b)
+		throw RPN::input_error("Integer overflow ( add )");
+	if (b < 0 && a < INT_MIN - b)
 		throw RPN::input_error("Integer overflow ( add )");
 	return (a+b);
 }
 
 static long substr(long a, long b)
 {
-	if (a < INT_MIN + b)
+	if (b > 0 && a < INT_MIN + b)
 		throw RPN::input_error("Integer overflow ( substr )");
-	return (a-b);
+	if (b < 0 && a > INT_MAX + b)
+		throw RPN::input_error("Integer overflow ( substr )");
+		return (a-b);
 }
 
 static long mul(long a, long b)
